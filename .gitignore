@@ -1,0 +1,8 @@
+# Ignorowanie folderu .vs (Visual Studio)
+.vs/
+
+# Ignorowanie folderu packages (nuget packages)
+packages/
+
+# Ignorowanie folderu x64 (może zawierać pliki build)
+x64/

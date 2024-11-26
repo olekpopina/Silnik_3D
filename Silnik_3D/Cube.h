@@ -7,6 +7,7 @@ class Cube {
 private:
     float vertices[24];
     unsigned int indices[36];
+    float normals[24];
     float colors[24];
 
 public:

@@ -3,6 +3,8 @@
 
 #include <GL/freeglut.h>
 #include <iostream>
+#include "PrimitiveDrawer.h"
+#include "Cube.h"
 
 class Engine {
 public:

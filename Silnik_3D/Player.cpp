@@ -1,6 +1,6 @@
 #include "Player.h"
 
-Player::Player(Triangle* triangle) : triangle(triangle), isRotating(false) {}
+Player::Player(Triangle* triangle, Cube* cube) : triangle(triangle), cube(cube), isRotating(false) {}
 
 void Player::handleInput(unsigned char key) {
     if (key == 'i' || key == 'I') { // W³¹cz/wy³¹cz obrót
@@ -18,6 +18,12 @@ void Player::handleInput(unsigned char key) {
     }
     else if (key == 'd' || key == 'D') { // Przesuniêcie w prawo
         triangle->setPosition(triangle->getPositionX() + 0.1f, triangle->getPositionY());
+    }
+    else if (key == '+') {  // Powiêkszenie szeœcioœcianu
+        cube->scaleUp();
+    }
+    else if (key == '-') {  // Zmniejszenie szeœcioœcianu
+        cube->scaleDown();
     }
 }
 

@@ -11,7 +11,7 @@ Engine::Engine(int width, int height, const char* title)
     : windowWidth(width), windowHeight(height), windowTitle(title),
     frameRate(60), clearColor{ 0.0f, 0.0f, 0.0f, 1.0f },
     lastMouseX(0), lastMouseY(0), lastTime(0),
-    isDragging(false), cameraZ(5.0f), player(&triangle) {
+    isDragging(false), cameraZ(5.0f), player(&triangle, &cube) {
     lineStart[0] = -0.5f; lineStart[1] = 0.0f; lineStart[2] = -5.0f;
     lineEnd[0] = 0.5f; lineEnd[1] = 0.0f; lineEnd[2] = -5.0f;
 }
@@ -117,6 +117,14 @@ void Engine::onKeyboard(unsigned char key, int x, int y) {
     if (key == 27) { // ESC key
         stop();
     }
+    /*
+    else if (key == '+') {  // Powiêkszenie szeœcioœcianu
+        cube.scaleUp();
+    }
+    else if (key == '-') {  // Zmniejszenie szeœcioœcianu
+        cube.scaleDown();
+    }
+    */
     player.handleInput(key);
     glutPostRedisplay(); // Aktualizacja ekranu
 }

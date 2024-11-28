@@ -16,9 +16,11 @@ Cube::Cube() : vertices{
 }, colors{
     1.0f, 0.0f, 0.0f,  0.0f, 1.0f, 0.0f,  0.0f, 0.0f, 1.0f,  1.0f, 1.0f, 0.0f,
     1.0f, 0.0f, 1.0f,  0.0f, 1.0f, 1.0f,  0.5f, 0.5f, 0.5f,  1.0f, 1.0f, 1.0f
-} {}
+}, scale(1.0f) {}
 
 void Cube::draw() {
+    glPushMatrix();
+    glScalef(scale, scale, scale);
     glEnableClientState(GL_VERTEX_ARRAY);
     glEnableClientState(GL_COLOR_ARRAY);
     glEnableClientState(GL_NORMAL_ARRAY);
@@ -32,4 +34,11 @@ void Cube::draw() {
     glDisableClientState(GL_VERTEX_ARRAY);
     glDisableClientState(GL_COLOR_ARRAY);
     glDisableClientState(GL_NORMAL_ARRAY);
+}
+void Cube::scaleUp() {
+    scale *= 1.1f; // Zwiêkszamy skalê o 10%
+}
+
+void Cube::scaleDown() {
+    scale *= 0.9f; // Zmniejszamy skalê o 10%
 }

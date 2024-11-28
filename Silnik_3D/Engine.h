@@ -4,6 +4,7 @@
 #include <GL/freeglut.h>
 #include <iostream>
 #include "PrimitiveDrawer.h"
+#include "Triangle.h"
 
 class Engine {
 public:
@@ -23,18 +24,28 @@ public:
     static void setInstance(Engine* engineInstance);
 
 private:
+    Triangle triangle;
     int windowWidth, windowHeight;
     const char* windowTitle;
     int frameRate;
     float clearColor[4];
-    bool isRunning;
+    float deltaTime = 0.0f;
     int lastTime;
+    float cameraZ;
 
-    // Mouse interaction
-    float lineStart[3];  // Start of the line
-    float lineEnd[3];    // End of the line
-    bool isDragging;     // Is the line being dragged
-    int lastMouseX, lastMouseY; // Last mouse position
+    bool isRotating = false;    // Flaga okreœlaj¹ca, czy trójk¹t ma siê obracaæ
+
+    // Pozycje wierzcho³ków trójk¹ta
+ // float triangleVertices[9];
+   // bool isDraggingTriangle; // Czy trójk¹t jest przeci¹gany
+    int lastMouseX, lastMouseY; // Ostatnia pozycja myszy
+    float lineStart[3], lineEnd[3]; // Pocz¹tek i koniec linii
+    bool isDragging; // Stan, czy linia jest przeci¹gana
+    bool isPointNearLine(float px, float py, float x1, float y1, float x2, float y2, float threshold);
+    float trianglePosX = 0.0f; // Pozycja trójk¹ta na osi X
+    float trianglePosY = 0.0f; // Pozycja trójk¹ta na osi Y
+    float linePosX = 0.1f; // Pozycja trójk¹ta na osi X
+    float linePosY = 0.1f; // Pozycja trójk¹ta na osi Y
 
     static void renderCallback();
     static void idleCallback();
@@ -44,6 +55,7 @@ private:
     static void reshapeCallback(int width, int height);
 
     static Engine* instance;
+
 };
 
 #endif // ENGINE_H

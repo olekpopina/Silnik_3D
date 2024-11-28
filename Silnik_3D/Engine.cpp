@@ -11,9 +11,10 @@ Engine::Engine(int width, int height, const char* title)
     : windowWidth(width), windowHeight(height), windowTitle(title),
     frameRate(60), clearColor{ 0.0f, 0.0f, 0.0f, 1.0f },
     lastMouseX(0), lastMouseY(0), lastTime(0),
-    isDragging(false), cameraZ(5.0f), player(&triangle, &cube) {
-    lineStart[0] = -0.5f; lineStart[1] = 0.0f; lineStart[2] = -5.0f;
-    lineEnd[0] = 0.5f; lineEnd[1] = 0.0f; lineEnd[2] = -5.0f;
+    isDragging(false), cameraZ(5.0f), player(&triangle, &cube), 
+    pointX(0.5f), pointY(0.5f), pointZ(0.5f),
+    line(0.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f) {
+    
 }
 
 
@@ -78,12 +79,9 @@ void Engine::render() {
 
     // Rysowanie linii
     glPushMatrix();
-    glTranslatef(linePosX, linePosY, 0.0f); // Transformacja tylko dla linii
-    PrimitiveDrawer::drawLine(
-        lineStart[0], lineStart[1], lineStart[2],
-        lineEnd[0], lineEnd[1], lineEnd[2],
-        2.0f
-    );
+    glTranslatef(linePosX, linePosY, 0.0f);
+    line.draw();  // Rysowanie linii
+    PrimitiveDrawer::drawPoint(pointX, pointY, pointZ, 5.0f);
     glPopMatrix();
    
     glutSwapBuffers();
@@ -149,13 +147,22 @@ void Engine::onMouse(int button, int state, int x, int y) {
 
 void Engine::onMouseMove(int x, int y) {
     if (isDragging) {
+        // Zmiana pozycji punktu na linii w zale¿noœci od ruchu myszy
         float dx = (x - lastMouseX) * 0.01f;
         float dy = -(y - lastMouseY) * 0.01f;
 
-        lineStart[0] += dx;
-        lineStart[1] += dy;
-        lineEnd[0] += dx;
-        lineEnd[1] += dy;
+        // Ustalamy now¹ pozycjê punktu wzd³u¿ linii
+        float lineStartX, lineStartY, lineStartZ, lineEndX, lineEndY, lineEndZ;
+        line.getStart(lineStartX, lineStartY, lineStartZ);
+        line.getEnd(lineEndX, lineEndY, lineEndZ);
+
+        // Przemieszczanie punktu wzd³u¿ linii
+        pointX += dx;
+        pointY += dy;
+
+        // Zaktualizowanie pozycji linii, aby punkt pozosta³ na niej
+        line.setStart(lineStartX + dx, lineStartY + dy, lineStartZ);
+        line.setEnd(lineEndX + dx, lineEndY + dy, lineEndZ);
 
         lastMouseX = x;
         lastMouseY = y;
@@ -163,6 +170,7 @@ void Engine::onMouseMove(int x, int y) {
         glutPostRedisplay();
     }
 }
+
 void Engine::idleCallback() {
     float currentTime = glutGet(GLUT_ELAPSED_TIME) / 1000.0f; // Czas w sekundach
     float deltaTime = currentTime - instance->lastTime;       // Delta czasu

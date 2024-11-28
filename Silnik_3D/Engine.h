@@ -6,6 +6,7 @@
 #include "PrimitiveDrawer.h"
 #include "Triangle.h"
 #include "Player.h"
+#include "Line.h"
 
 class Engine {
 public:
@@ -37,17 +38,17 @@ private:
 
     bool isRotating = false;    // Flaga okreœlaj¹ca, czy trójk¹t ma siê obracaæ
 
-    // Pozycje wierzcho³ków trójk¹ta
- // float triangleVertices[9];
-   // bool isDraggingTriangle; // Czy trójk¹t jest przeci¹gany
+    
     int lastMouseX, lastMouseY; // Ostatnia pozycja myszy
-    float lineStart[3], lineEnd[3]; // Pocz¹tek i koniec linii
+ 
     bool isDragging; // Stan, czy linia jest przeci¹gana
     bool isPointNearLine(float px, float py, float x1, float y1, float x2, float y2, float threshold);
     float trianglePosX = 0.0f; // Pozycja trójk¹ta na osi X
     float trianglePosY = 0.0f; // Pozycja trójk¹ta na osi Y
-    float linePosX = 0.1f; // Pozycja trójk¹ta na osi X
-    float linePosY = 0.1f; // Pozycja trójk¹ta na osi Y
+    float linePosX = 0.10f; // Pozycja trójk¹ta na osi X
+    float linePosY = 0.10f; // Pozycja trójk¹ta na osi Y
+    float pointX, pointY, pointZ;
+    Line line;
 
     static void renderCallback();
     static void idleCallback();

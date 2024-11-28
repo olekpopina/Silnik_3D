@@ -15,7 +15,6 @@ void PrimitiveDrawer::drawLine(float x1, float y1, float z1, float x2, float y2,
     glEnd();
 }
 
-
 void PrimitiveDrawer::drawTriangle(float* vertices, float* colors) {
     glBegin(GL_TRIANGLES);
     for (int i = 0; i < 3; i++) {

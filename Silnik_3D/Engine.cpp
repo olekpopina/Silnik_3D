@@ -11,7 +11,7 @@ Engine::Engine(int width, int height, const char* title)
     : windowWidth(width), windowHeight(height), windowTitle(title),
     frameRate(60), clearColor{ 0.0f, 0.0f, 0.0f, 1.0f },
     lastMouseX(0), lastMouseY(0), lastTime(0),
-    isDragging(false), cameraZ(5.0f) {
+    isDragging(false), cameraZ(5.0f), player(&triangle) {
     lineStart[0] = -0.5f; lineStart[1] = 0.0f; lineStart[2] = -5.0f;
     lineEnd[0] = 0.5f; lineEnd[1] = 0.0f; lineEnd[2] = -5.0f;
 }
@@ -117,26 +117,7 @@ void Engine::onKeyboard(unsigned char key, int x, int y) {
     if (key == 27) { // ESC key
         stop();
     }
-    else if (key == 'i' || key == 'I') { // W³¹cz/wy³¹cz obrót
-        isRotating = !isRotating;
-        triangle.setRotation(isRotating);
-    }
-    else if (key == 'w' || key == 'W') {
-        trianglePosY += 0.1f;
-        triangle.setPosition(trianglePosX, trianglePosY);
-    }
-    else if (key == 's' || key == 'S') {
-        trianglePosY -= 0.1f;
-        triangle.setPosition(trianglePosX, trianglePosY);
-    }
-    else if (key == 'a' || key == 'A') {
-        trianglePosX -= 0.1f;
-        triangle.setPosition(trianglePosX, trianglePosY);
-    }
-    else if (key == 'd' || key == 'D') {
-        trianglePosX += 0.1f;
-        triangle.setPosition(trianglePosX, trianglePosY);
-    }
+    player.handleInput(key);
     glutPostRedisplay(); // Aktualizacja ekranu
 }
 
@@ -179,10 +160,9 @@ void Engine::idleCallback() {
     float deltaTime = currentTime - instance->lastTime;       // Delta czasu
     instance->lastTime = currentTime;
 
-    instance->triangle.updateRotation(deltaTime); // Aktualizacja obrotu trójk¹ta
-    glutPostRedisplay();                          // Wymuœ ponowne renderowanie
+    instance->player.update(deltaTime); // Zaktualizowanie stanu gracza (ruch i obrót trójk¹ta)
+    glutPostRedisplay();                // Wymuœ ponowne renderowanie
 }
-
 
 void Engine::renderCallback() {
     if (instance) {

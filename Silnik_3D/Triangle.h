@@ -25,6 +25,8 @@ public:
     void updateRotation(float deltaTime);
     void setPosition(float x, float y);
     void updatePosition();
+    float getPositionX() const { return posX; }
+    float getPositionY() const { return posY; }
 
 };
 

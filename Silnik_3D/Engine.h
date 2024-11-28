@@ -5,6 +5,7 @@
 #include <iostream>
 #include "PrimitiveDrawer.h"
 #include "Triangle.h"
+#include "Player.h"
 
 class Engine {
 public:
@@ -25,6 +26,7 @@ public:
 
 private:
     Triangle triangle;
+    Player player;
     int windowWidth, windowHeight;
     const char* windowTitle;
     int frameRate;

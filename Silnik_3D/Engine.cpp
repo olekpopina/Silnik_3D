@@ -2,10 +2,9 @@
 #include "Cube.h"
 #include "Triangle.h"
 
-
-
 Cube cube;
 Engine* Engine::instance = nullptr;
+
 
 Engine::Engine(int width, int height, const char* title)
     : windowWidth(width), windowHeight(height), windowTitle(title),
@@ -16,7 +15,6 @@ Engine::Engine(int width, int height, const char* title)
     line(0.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f) {
     
 }
-
 
 void Engine::init(int argc, char** argv) {
     glutInit(&argc, argv);
@@ -37,6 +35,7 @@ void Engine::init(int argc, char** argv) {
     glutIdleFunc(idleCallback);
 
 }
+
 
 void Engine::setClearColor(float r, float g, float b, float a) {
     clearColor[0] = r;
@@ -60,7 +59,6 @@ void Engine::stop() {
     glutLeaveMainLoop();
 }
 
-
 void Engine::render() {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glLoadIdentity();
@@ -70,12 +68,10 @@ void Engine::render() {
         0.0, 0.0, 0.0,      // Punkt, na który patrzy kamera
         0.0, 1.0, 0.0);     // Wektor "w górê"
 
-
    cube.draw();
     triangle.updateRotation(deltaTime); // Aktualizacja obrotu
     triangle.updatePosition(); // Aktualizacja pozycji (jeœli potrzeba)
     triangle.draw(); // Rysowanie trójk¹ta
-
 
     // Rysowanie linii
     glPushMatrix();
@@ -85,13 +81,7 @@ void Engine::render() {
     glPopMatrix();
    
     glutSwapBuffers();
-
- 
-   
 }
-
-
-
 
 bool Engine::isPointNearLine(float px, float py, float x1, float y1, float x2, float y2, float threshold) {
     float dx = x2 - x1;
@@ -110,25 +100,13 @@ bool Engine::isPointNearLine(float px, float py, float x1, float y1, float x2, f
     return distSq <= threshold * threshold;
 }
 
-
 void Engine::onKeyboard(unsigned char key, int x, int y) {
     if (key == 27) { // ESC key
         stop();
     }
-    /*
-    else if (key == '+') {  // Powiêkszenie szeœcioœcianu
-        cube.scaleUp();
-    }
-    else if (key == '-') {  // Zmniejszenie szeœcioœcianu
-        cube.scaleDown();
-    }
-    */
     player.handleInput(key);
     glutPostRedisplay(); // Aktualizacja ekranu
 }
-
-
-
 
 void Engine::onMouse(int button, int state, int x, int y) {
     if (button == GLUT_LEFT_BUTTON) {
@@ -142,8 +120,6 @@ void Engine::onMouse(int button, int state, int x, int y) {
         }
     }
 }
-
-
 
 void Engine::onMouseMove(int x, int y) {
     if (isDragging) {
@@ -189,11 +165,7 @@ void Engine::renderCallback() {
 void Engine::cleanup() {
     std::cout << "Engine shutting down.\n";
 }
-/*
-void Engine::renderCallback() {
-    instance->render();
-}
-*/
+
 void Engine::keyboardCallback(unsigned char key, int x, int y) {
     instance->onKeyboard(key, x, y);
 }
@@ -217,3 +189,4 @@ void Engine::reshapeCallback(int width, int height) {
 void Engine::setInstance(Engine* engineInstance) {
     instance = engineInstance;
 }
+

@@ -25,6 +25,24 @@ void Player::handleInput(unsigned char key) {
     else if (key == '-') {  // Zmniejszenie szeœcioœcianu
         cube->scaleDown();
     }
+    else if (key == 'm') {  // Powiêkszenie szeœcioœcianu
+        triangle->scale_Up();
+    }
+    else if (key == 'n') {  // Zmniejszenie szeœcioœcianu
+        triangle->scale_Down();
+    }
+ else if (key == 'U') { // Ruch w górê
+     cube->move(0.0f, 0.1f);
+    }
+ else if (key == 'C') { // Ruch w dó³
+     cube->move(0.0f, -0.1f);
+    }
+ else if (key == 'L') { // Ruch w lewo
+     cube->move(-0.1f, 0.0f);
+    }
+ else if (key == 'R') { // Ruch w prawo
+     cube->move(0.1f, 0.0f);
+    }
 }
 
 void Player::update(float deltaTime) {

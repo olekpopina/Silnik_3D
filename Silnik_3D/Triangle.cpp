@@ -1,7 +1,7 @@
 #include "Triangle.h"
 #include <fstream>
 
-Triangle::Triangle() : posX(0.0f), posY(0.0f), rotationAngle(0.0f), isRotating(false) {
+Triangle::Triangle() : posX(0.0f), posY(0.0f), rotationAngle(0.0f), scale(1.0f), isRotating(false) {
     // Ustawienia kolorów dla wierzcho³ków
     float initialColors[] = {
         1.0f, 0.0f, 0.0f,  // Czerwony
@@ -31,6 +31,7 @@ Triangle::Triangle() : posX(0.0f), posY(0.0f), rotationAngle(0.0f), isRotating(f
        -0.5f, -0.5f, -0.5f  // Prawy dolny
     };
     std::copy(std::begin(initialVertices3), std::end(initialVertices3), vertices3);
+
 }
 /*
 void Triangle::draw() {
@@ -106,10 +107,16 @@ void Triangle::draw() {
 
     glDisable(GL_LIGHT0);
     glDisable(GL_LIGHTING);
+    glScalef(scale, scale, scale);
 }
 
+void Triangle::scale_Up() {
+    scale *= 1.1f; // Zwiêkszamy skalê o 10%
+}
 
-
+void Triangle::scale_Down() {
+    scale *= 0.9f; // Zmniejszamy skalê o 10%
+}
 
 
 void Triangle::setRotation(bool rotating) {

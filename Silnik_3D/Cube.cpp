@@ -16,30 +16,14 @@ Cube::Cube() : vertices{
 }, colors{
     1.0f, 0.0f, 0.0f,  0.0f, 1.0f, 0.0f,  0.0f, 0.0f, 1.0f,  1.0f, 1.0f, 0.0f,
     1.0f, 0.0f, 1.0f,  0.0f, 1.0f, 1.0f,  0.5f, 0.5f, 0.5f,  1.0f, 1.0f, 1.0f
-}, scale(1.0f) {}
-/*
-void Cube::draw() {
-    glPushMatrix();
-    glScalef(scale, scale, scale);
-    glEnableClientState(GL_VERTEX_ARRAY);
-    glEnableClientState(GL_COLOR_ARRAY);
-    glEnableClientState(GL_NORMAL_ARRAY);
+}, scale(1.0f),
+offsetX(0.0f), offsetY(0.0f) {} 
 
-    glVertexPointer(3, GL_FLOAT, 0, vertices);
-    glColorPointer(3, GL_FLOAT, 0, colors);
-    glNormalPointer(GL_FLOAT, 0, normals);
-
-    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, indices);
-
-    glDisableClientState(GL_VERTEX_ARRAY);
-    glDisableClientState(GL_COLOR_ARRAY);
-    glDisableClientState(GL_NORMAL_ARRAY);
-}
-*/
 
 void Cube::draw() {
     glPushMatrix();
     glScalef(scale, scale, scale);
+    glTranslatef(offsetX, offsetY, 0.0f); // Przesuniêcie
 
     // Ustawienia materia³ów
     GLfloat matAmbient[] = { 0.2f, 0.2f, 0.5f, 1.0f };   // Sk³adowa ambientowa
@@ -88,13 +72,15 @@ void Cube::draw() {
     glPopMatrix();
 }
 
-
-
-
 void Cube::scaleUp() {
     scale *= 1.1f; // Zwiêkszamy skalê o 10%
 }
 
 void Cube::scaleDown() {
     scale *= 0.9f; // Zmniejszamy skalê o 10%
+}
+
+void Cube::move(float dx, float dy) {
+    offsetX += dx;
+    offsetY += dy;
 }

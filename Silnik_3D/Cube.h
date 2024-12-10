@@ -10,12 +10,14 @@ private:
     float normals[24];
     float colors[24];
     float scale;
+    float offsetX, offsetY;
 
 public:
     Cube();
     void draw();
     void scaleUp();    // Powiêkszenie
     void scaleDown();  // Pomniejszenie
+    void move(float dx, float dy); // Przesuniêcie szeœcianu
 };
 
 #endif // CUBE_H

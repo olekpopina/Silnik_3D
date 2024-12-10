@@ -10,6 +10,7 @@ public:
 
     void handleInput(unsigned char key);
     void update(float deltaTime);
+    void move(float dx, float dy); // Deklaracja metody move
 
 private:
     Triangle* triangle;

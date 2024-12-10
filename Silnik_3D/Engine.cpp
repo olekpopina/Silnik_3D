@@ -33,6 +33,8 @@ void Engine::init(int argc, char** argv) {
     glutReshapeFunc(reshapeCallback);
 
     glutIdleFunc(idleCallback);
+    glutSpecialFunc(specialKeyboardCallback);
+
 
 }
 
@@ -106,6 +108,30 @@ void Engine::onKeyboard(unsigned char key, int x, int y) {
     }
     player.handleInput(key);
     glutPostRedisplay(); // Aktualizacja ekranu
+}
+
+void Engine::specialKeyboardCallback(int key, int x, int y) {
+    if (instance) {
+        instance->onSpecialKeyboard(key, x, y);
+    }
+}
+
+void Engine::onSpecialKeyboard(int key, int x, int y) {
+    switch (key) {
+    case GLUT_KEY_UP:
+        player.handleInput('U'); // Przeka¿ symboliczne klawisze
+        break;
+    case GLUT_KEY_DOWN:
+        player.handleInput('C');
+        break;
+    case GLUT_KEY_LEFT:
+        player.handleInput('L');
+        break;
+    case GLUT_KEY_RIGHT:
+        player.handleInput('R');
+        break;
+    }
+    glutPostRedisplay();
 }
 
 void Engine::onMouse(int button, int state, int x, int y) {

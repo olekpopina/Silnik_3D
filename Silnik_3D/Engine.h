@@ -24,6 +24,7 @@ public:
     void onMouse(int button, int state, int x, int y);
     void onMouseMove(int x, int y);
     void cleanup();
+    void onSpecialKeyboard(int key, int x, int y);
 
     static void setInstance(Engine* engineInstance);
 
@@ -58,6 +59,9 @@ private:
     static void mouseCallback(int button, int state, int x, int y);
     static void motionCallback(int x, int y);
     static void reshapeCallback(int width, int height);
+    static void specialKeyboardCallback(int key, int x, int y);
+   
+
 
     static Engine* instance;
 

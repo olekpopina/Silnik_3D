@@ -19,12 +19,15 @@ private:
     bool isRotating = false; // Domyœlnie brak obrotu
     float rotationAngle = 0.0f; // Pocz¹tkowy k¹t
     float rotationSpeed = 0.1f; // Prêdkoœæ obrotu w stopniach/sekundê
+    float scale;
 
 public:
     void setRotation(bool rotate);
     void updateRotation(float deltaTime);
     void setPosition(float x, float y);
     void updatePosition();
+    void scale_Up();
+    void scale_Down();
     float getPositionX() const { return posX; }
     float getPositionY() const { return posY; }
 

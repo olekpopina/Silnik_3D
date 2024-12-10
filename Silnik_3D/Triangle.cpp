@@ -76,6 +76,7 @@ void Triangle::draw() {
     glPushMatrix(); // Zapamiêtanie bie¿¹cej macierzy
     glTranslatef(posX, posY, 0.0f); // Przesuniêcie trójk¹ta na pozycjê
     glRotatef(rotationAngle, 0.0f, 1.0f, 0.0f); // Obrót wokó³ osi Y
+    glScalef(scale, scale, scale);
 
     // Normalki dla ka¿dego wierzcho³ka
     GLfloat normals[] = {

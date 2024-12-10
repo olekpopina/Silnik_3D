@@ -1,4 +1,4 @@
-#include "Engine.h"
+Ôªø#include "Engine.h"
 #include "Cube.h"
 #include "Triangle.h"
 
@@ -65,23 +65,24 @@ void Engine::render() {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glLoadIdentity();
 
-    // Ustawienie kamery
-    gluLookAt(1.5, 1.5, cameraZ,  // Pozycja kamery
-        0.0, 0.0, 0.0,      // Punkt, na ktÛry patrzy kamera
-        0.0, 1.0, 0.0);     // Wektor "w gÛrÍ"
+    gluLookAt(1.5, 1.5, cameraZ, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
 
-   cube.draw();
-    triangle.updateRotation(deltaTime); // Aktualizacja obrotu
-    triangle.updatePosition(); // Aktualizacja pozycji (jeúli potrzeba)
-    triangle.draw(); // Rysowanie trÛjkπta
+    glPushMatrix();
+    cube.draw();
+    glPopMatrix();
 
-    // Rysowanie linii
+    glPushMatrix();
+    triangle.updateRotation(deltaTime);
+    triangle.updatePosition();
+    triangle.draw();
+    glPopMatrix();
+
     glPushMatrix();
     glTranslatef(linePosX, linePosY, 0.0f);
     line.draw();  // Rysowanie linii
     PrimitiveDrawer::drawPoint(pointX, pointY, pointZ, 5.0f);
     glPopMatrix();
-   
+
     glutSwapBuffers();
 }
 
@@ -119,7 +120,7 @@ void Engine::specialKeyboardCallback(int key, int x, int y) {
 void Engine::onSpecialKeyboard(int key, int x, int y) {
     switch (key) {
     case GLUT_KEY_UP:
-        player.handleInput('U'); // Przekaø symboliczne klawisze
+        player.handleInput('U'); // Przeka≈º symboliczne klawisze
         break;
     case GLUT_KEY_DOWN:
         player.handleInput('C');
@@ -149,20 +150,20 @@ void Engine::onMouse(int button, int state, int x, int y) {
 
 void Engine::onMouseMove(int x, int y) {
     if (isDragging) {
-        // Zmiana pozycji punktu na linii w zaleønoúci od ruchu myszy
+        // Zmiana pozycji punktu na linii w zale≈ºno≈õci od ruchu myszy
         float dx = (x - lastMouseX) * 0.01f;
         float dy = -(y - lastMouseY) * 0.01f;
 
-        // Ustalamy nowπ pozycjÍ punktu wzd≥uø linii
+        // Ustalamy nowƒÖ pozycjƒô punktu wzd≈Çu≈º linii
         float lineStartX, lineStartY, lineStartZ, lineEndX, lineEndY, lineEndZ;
         line.getStart(lineStartX, lineStartY, lineStartZ);
         line.getEnd(lineEndX, lineEndY, lineEndZ);
 
-        // Przemieszczanie punktu wzd≥uø linii
+        // Przemieszczanie punktu wzd≈Çu≈º linii
         pointX += dx;
         pointY += dy;
 
-        // Zaktualizowanie pozycji linii, aby punkt pozosta≥ na niej
+        // Zaktualizowanie pozycji linii, aby punkt pozosta≈Ç na niej
         line.setStart(lineStartX + dx, lineStartY + dy, lineStartZ);
         line.setEnd(lineEndX + dx, lineEndY + dy, lineEndZ);
 
@@ -178,13 +179,13 @@ void Engine::idleCallback() {
     float deltaTime = currentTime - instance->lastTime;       // Delta czasu
     instance->lastTime = currentTime;
 
-    instance->player.update(deltaTime); // Zaktualizowanie stanu gracza (ruch i obrÛt trÛjkπta)
-    glutPostRedisplay();                // Wymuú ponowne renderowanie
+    instance->player.update(deltaTime); // Zaktualizowanie stanu gracza (ruch i obr√≥t tr√≥jkƒÖta)
+    glutPostRedisplay();                // Wymu≈õ ponowne renderowanie
 }
 
 void Engine::renderCallback() {
     if (instance) {
-        instance->render(); // Wywo≥anie metody instancji
+        instance->render(); // Wywo≈Çanie metody instancji
     }
 }
 

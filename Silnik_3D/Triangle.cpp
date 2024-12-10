@@ -33,20 +33,6 @@ Triangle::Triangle() : posX(0.0f), posY(0.0f), rotationAngle(0.0f), scale(1.0f),
     std::copy(std::begin(initialVertices3), std::end(initialVertices3), vertices3);
 
 }
-/*
-void Triangle::draw() {
-    glPushMatrix(); // Zapamiêtanie bie¿¹cej macierzy
-    glTranslatef(posX, posY, 0.0f); // Przesuniêcie trójk¹ta na pozycjê
-    glRotatef(rotationAngle, 0.0f, 1.0f, 0.0f); // Obrót wokó³ osi Y
-
-    // Rysowanie trzech czêœci trójk¹ta
-    drawTriangle(vertices1, colors);
-    drawTriangle(vertices2, colors);
-    drawTriangle(vertices3, colors);
-
-    glPopMatrix(); // Przywrócenie poprzedniej macierzy
-}
-*/
 
 void Triangle::draw() {
     // W³¹czenie oœwietlenia i ustawienie materia³u
@@ -137,7 +123,6 @@ void Triangle::updateRotation(float deltaTime) {
         }
     }
 }
-
 
 void Triangle::updatePosition() {
     // Mo¿esz dodaæ logikê aktualizacji pozycji, jeœli bêdzie to potrzebne

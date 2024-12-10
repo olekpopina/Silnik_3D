@@ -25,7 +25,7 @@ public:
     void onMouseMove(int x, int y);
     void cleanup();
     void onSpecialKeyboard(int key, int x, int y);
-
+    void onMouseWheel(int wheel, int direction, int x, int y);
     static void setInstance(Engine* engineInstance);
 
 private:
@@ -51,6 +51,9 @@ private:
     float linePosX = 0.10f; // Pozycja trójk¹ta na osi X
     float linePosY = 0.10f; // Pozycja trójk¹ta na osi Y
     float pointX, pointY, pointZ;
+    float minCameraZ = 2.0f; // Minimalna odleg³oœæ kamery
+    float maxCameraZ = 20.0f; // Maksymalna odleg³oœæ kamery
+
     Line line;
 
     static void renderCallback();

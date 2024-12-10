@@ -34,7 +34,12 @@ void Engine::init(int argc, char** argv) {
 
     glutIdleFunc(idleCallback);
     glutSpecialFunc(specialKeyboardCallback);
-
+    
+    glutMouseWheelFunc([](int wheel, int direction, int x, int y) {
+        if (instance) {
+            instance->onMouseWheel(wheel, direction, x, y);
+        }
+        });
 
 }
 
@@ -82,6 +87,8 @@ void Engine::render() {
     line.draw();  // Rysowanie linii
     PrimitiveDrawer::drawPoint(pointX, pointY, pointZ, 5.0f);
     glPopMatrix();
+
+    gluLookAt(1.5, 1.5, cameraZ, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
 
     glutSwapBuffers();
 }
@@ -215,5 +222,24 @@ void Engine::reshapeCallback(int width, int height) {
 
 void Engine::setInstance(Engine* engineInstance) {
     instance = engineInstance;
+}
+void Engine::onMouseWheel(int wheel, int direction, int x, int y) {
+    // Zoomowanie kamery
+    if (direction > 0) {
+        cameraZ -= 1.0f; // Przybliżenie
+    }
+    else if (direction < 0) {
+        cameraZ += 1.0f; // Oddalenie
+    }
+
+    // Ograniczenie odległości kamery
+    if (cameraZ < minCameraZ) {
+        cameraZ = minCameraZ;
+    }
+    else if (cameraZ > maxCameraZ) {
+        cameraZ = maxCameraZ;
+    }
+
+    glutPostRedisplay(); // Aktualizacja ekranu
 }
 

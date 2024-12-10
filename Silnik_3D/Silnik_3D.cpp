@@ -1,4 +1,5 @@
-﻿#include "Engine.h"
+﻿
+#include "Engine.h"
 
 int main(int argc, char** argv) {
     Engine gameEngine(800, 600, "Game Engine");
@@ -12,3 +13,5 @@ int main(int argc, char** argv) {
     gameEngine.cleanup();
     return 0;
 }
+
+

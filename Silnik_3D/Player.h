@@ -4,6 +4,7 @@
 #include "Triangle.h"
 #include "Cube.h"
 
+
 class Player {
 public:
     Player(Triangle* triangle, Cube* cube);

@@ -1,6 +1,8 @@
 #include "Triangle.h"
 #include <fstream>
 
+
+
 Triangle::Triangle() : posX(0.0f), posY(0.0f), rotationAngle(0.0f), scale(1.0f), isRotating(false) {
     // Ustawienia kolorów dla wierzcho³ków
     float initialColors[] = {
@@ -39,11 +41,12 @@ void Triangle::draw() {
 }
 
 void Triangle::scale_Up() {
-    scale *= 1.1f; // Zwiêkszamy skalê o 10%
+    TransformableObject::scaleUp_Triangle(scale);
 }
 
 void Triangle::scale_Down() {
-    scale *= 0.9f; // Zmniejszamy skalê o 10%
+
+    TransformableObject::scaleDown_Triangle(scale);
 }
 
 

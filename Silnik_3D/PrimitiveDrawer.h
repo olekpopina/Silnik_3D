@@ -2,7 +2,6 @@
 #define PRIMITIVE_DRAWER_H
 
 #include <GL/freeglut.h>
-#include "Cube.h"
 
 class PrimitiveDrawer {
 public:

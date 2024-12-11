@@ -2,7 +2,7 @@
 #define CUBE_H
 
 #include <GL/freeglut.h>
-#include "PrimitiveDrawer.h"
+#include "TransformableObject.h"
 
 class Cube {
 public:

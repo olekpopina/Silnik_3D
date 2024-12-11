@@ -1,4 +1,5 @@
 #include "Cube.h"
+#include "PrimitiveDrawer.h"
 
 Cube::Cube() : vertices{
     -0.5f, -0.5f, -0.5f,  0.5f, -0.5f, -0.5f,  0.5f,  0.5f, -0.5f, -0.5f,  0.5f, -0.5f,
@@ -25,11 +26,13 @@ void Cube::draw() {
 }
 
 void Cube::scaleUp() {
-    scale *= 1.1f; // Zwiêkszamy skalê o 10%
+   
+    TransformableObject::scaleUp_Cube(scale);
 }
 
 void Cube::scaleDown() {
-    scale *= 0.9f; // Zmniejszamy skalê o 10%
+   
+    TransformableObject::scaleDown_Cube(scale);
 }
 
 void Cube::move(float dx, float dy) {

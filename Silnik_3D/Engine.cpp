@@ -2,6 +2,7 @@
 #include "Cube.h"
 #include "Triangle.h"
 
+
 Cube cube;
 Engine* Engine::instance = nullptr;
 

@@ -7,7 +7,7 @@
 #include "Triangle.h"
 #include "Player.h"
 #include "Line.h"
-
+#include "TransformableObject.h"
 
 
 class Engine {
@@ -30,6 +30,7 @@ public:
 
 private:
     Triangle triangle;
+    TransformableObject transformable;
     Player player;
     int windowWidth, windowHeight;
     const char* windowTitle;

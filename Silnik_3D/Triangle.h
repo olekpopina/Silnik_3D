@@ -3,6 +3,8 @@
 
 #include <GL/freeglut.h>
 #include "PrimitiveDrawer.h"
+#include "TransformableObject.h"
+
 
 class Triangle : public PrimitiveDrawer { // Dziedziczenie z PrimitiveDrawer
 public:

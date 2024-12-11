@@ -70,7 +70,7 @@ void Engine::render() {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glLoadIdentity();
 
-    gluLookAt(1.5, 1.5, cameraZ, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
+    gluLookAt(1.5, 1.5, cameraZ, 0.0, 0.0, 0.0, 0.0, 8.0, 0.0);
 
     glPushMatrix();
     cube.draw();
@@ -88,7 +88,7 @@ void Engine::render() {
     PrimitiveDrawer::drawPoint(pointX, pointY, pointZ, 5.0f);
     glPopMatrix();
 
-    gluLookAt(1.5, 1.5, cameraZ, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
+    gluLookAt(3.0, 3.0, cameraZ, 5.0, 0.0, 0.0, 0.0, 3.0, 2.0);
 
     glutSwapBuffers();
 }

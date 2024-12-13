@@ -1,6 +1,7 @@
 #include "Player.h"
+#include <iostream>
 
-Player::Player(Triangle* triangle, Cube* cube) : triangle(triangle), cube(cube), isRotating(false) {}
+Player::Player(Triangle* triangle, Cube* cube, PrimitiveDrawer* drawer) : triangle(triangle), cube(cube), drawer(drawer), isRotating(false) {}
 
 void Player::handleInput(unsigned char key) {
     if (key == 'i' || key == 'I') { // W³¹cz/wy³¹cz obrót
@@ -43,8 +44,34 @@ void Player::handleInput(unsigned char key) {
  else if (key == 'R') { // Ruch w prawo
      cube->move(0.1f, 0.0f);
     }
+    if (key == 'f') {
+        drawer->setShadingMode(PrimitiveDrawer::FLAT);  // Zmieniamy tryb na FLAT
+    }
+    else if (key == 'g') {
+        drawer->setShadingMode(PrimitiveDrawer::GOURAUD);  // Zmieniamy tryb na GOURAUD
+    }
+    else if (key == 'p') {
+        drawer->setShadingMode(PrimitiveDrawer::PHONG);  // Zmieniamy tryb na PHONG
+        currentShadingMode = PHONG;
+        std::cout << key;
+    }
+
 }
+
 
 void Player::update(float deltaTime) {
     triangle->updateRotation(deltaTime);
+    if (currentShadingMode == FLAT) {
+        // Jeœli tryb cieniowania to FLAT, mo¿emy np. zaktualizowaæ ustawienia œwiat³a itp.
+        cube->setShadingMode(PrimitiveDrawer::FLAT);
+    }
+    else if (currentShadingMode == GOURAUD) {
+        // Zaktualizuj tryb cieniowania na Gouraud
+        cube->setShadingMode(PrimitiveDrawer::GOURAUD);
+    }
+    else if (currentShadingMode == PHONG) {
+        // Zaktualizuj tryb cieniowania na Phong (przy u¿yciu shaderów)
+        cube->setShadingMode(PrimitiveDrawer::PHONG);
+        currentShadingMode = PHONG;  // Ustawienie PHONG
+    }
 }

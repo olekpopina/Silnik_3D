@@ -32,6 +32,7 @@ private:
     Triangle triangle;
     TransformableObject transformable;
     Player player;
+    PrimitiveDrawer drawer;
     int windowWidth, windowHeight;
     const char* windowTitle;
     int frameRate;

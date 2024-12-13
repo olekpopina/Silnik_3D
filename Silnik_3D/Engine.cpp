@@ -11,7 +11,7 @@ Engine::Engine(int width, int height, const char* title)
     : windowWidth(width), windowHeight(height), windowTitle(title),
     frameRate(60), clearColor{ 0.0f, 0.0f, 0.0f, 1.0f },
     lastMouseX(0), lastMouseY(0), lastTime(0),
-    isDragging(false), cameraZ(5.0f), player(&triangle, &cube), 
+    isDragging(false), cameraZ(5.0f), player(&triangle, &cube, &drawer), 
     pointX(0.5f), pointY(0.5f), pointZ(0.5f),
     line(0.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f) {
     

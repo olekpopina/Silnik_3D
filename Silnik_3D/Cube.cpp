@@ -1,6 +1,7 @@
 #include "Cube.h"
 #include "PrimitiveDrawer.h"
 
+
 Cube::Cube() : vertices{
     -0.5f, -0.5f, -0.5f,  0.5f, -0.5f, -0.5f,  0.5f,  0.5f, -0.5f, -0.5f,  0.5f, -0.5f,
     -0.5f, -0.5f,  0.5f,  0.5f, -0.5f,  0.5f,  0.5f,  0.5f,  0.5f, -0.5f,  0.5f,  0.5f
@@ -20,9 +21,12 @@ Cube::Cube() : vertices{
 }, scale(1.0f),
 offsetX(0.0f), offsetY(0.0f) {} 
 
-
 void Cube::draw() {
     PrimitiveDrawer::drawCube(scale, offsetX, offsetY, vertices, indices, normals, colors);
+    PrimitiveDrawer::setShadingMode(PrimitiveDrawer::FLAT); 
+    PrimitiveDrawer::setShadingMode(PrimitiveDrawer::GOURAUD);
+    PrimitiveDrawer::setShadingMode(PrimitiveDrawer::PHONG);
+
 }
 
 void Cube::scaleUp() {
@@ -38,4 +42,9 @@ void Cube::scaleDown() {
 void Cube::move(float dx, float dy) {
     offsetX += dx;
     offsetY += dy;
+}
+
+void Cube::setShadingMode(int mode)
+{
+    shadingMode = mode;
 }

@@ -19,7 +19,9 @@ private:
     Cube* cube;
     PrimitiveDrawer* drawer;
     bool isRotating;
-    int currentShadingMode; // Dodajemy zmienn¹ przechowuj¹c¹ aktualny tryb cieniowania
+   
+    bool isRotatingCube; // Flaga kontroluj¹ca rotacjê szeœcianu
+    int currentShadingMode;
     enum ShadingMode {
         FLAT,
         GOURAUD,

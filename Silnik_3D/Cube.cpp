@@ -18,14 +18,22 @@ Cube::Cube() : vertices{
 }, colors{
     1.0f, 0.0f, 0.0f,  0.0f, 1.0f, 0.0f,  0.0f, 0.0f, 1.0f,  1.0f, 1.0f, 0.0f,
     1.0f, 0.0f, 1.0f,  0.0f, 1.0f, 1.0f,  0.5f, 0.5f, 0.5f,  1.0f, 1.0f, 1.0f
-}, scale(1.0f),
-offsetX(0.0f), offsetY(0.0f) {} 
+}, scale(1.0f),offsetX(0.0f), offsetY(0.0f) {} 
 
 void Cube::draw() {
+    glPushMatrix(); // Zapisz obecny stan macierzy
+   // glTranslatef(offsetX, offsetY, 0.0f); // Przemieszczamy obiekt (jeœli ma byæ przesuniêty)
+
+    // Je¿eli obiekt ma siê obracaæ, zastosuj obrót
+    if (isRotating) {
+        glRotatef(rotationAngle, 0.0f, 1.0f, 0.0f); // Obrót wokó³ osi Y (lub innej osi)
+    }
+
     PrimitiveDrawer::drawCube(scale, offsetX, offsetY, vertices, indices, normals, colors);
     PrimitiveDrawer::setShadingMode(PrimitiveDrawer::FLAT); 
     PrimitiveDrawer::setShadingMode(PrimitiveDrawer::GOURAUD);
     PrimitiveDrawer::setShadingMode(PrimitiveDrawer::PHONG);
+    glPopMatrix(); // Przywróæ poprzedni stan macierzy
 
 }
 
@@ -48,3 +56,18 @@ void Cube::setShadingMode(int mode)
 {
     shadingMode = mode;
 }
+
+void Cube::setRotation(bool rotating)
+{
+    isRotating = rotating;
+}
+
+void Cube::updateRotationC(float deltaTime)
+{
+    if (isRotating) {
+        rotationAngle += rotationSpeed * deltaTime;
+        if (rotationAngle > 360.0f) {
+            rotationAngle -= 360.0f; 
+    }
+}
+

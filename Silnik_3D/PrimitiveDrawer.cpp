@@ -239,7 +239,7 @@ void PrimitiveDrawer::drawCube(float scale, float offsetX, float offsetY, float 
         glEnable(GL_LIGHT0);
 
         // Ustawienie œwiat³a
-        GLfloat lightPos[] = { 1.0f, 1.0f, 1.0f, 1.0f }; // Pozycja œwiat³a
+        GLfloat lightPos[] = { 1.0f, 1.0f, 8.0f, 1.0f }; // Pozycja œwiat³a
         GLfloat lightAmbient[] = { 0.2f, 0.2f, 0.2f, 1.0f }; // Ambient light
         GLfloat lightDiffuse[] = { 0.8f, 0.8f, 0.8f, 1.0f }; // Diffuse light
         GLfloat lightSpecular[] = { 1.0f, 1.0f, 1.0f, 1.0f }; // Specular light

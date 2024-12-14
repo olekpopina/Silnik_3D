@@ -55,12 +55,19 @@ void Player::handleInput(unsigned char key) {
         currentShadingMode = PHONG;
         std::cout << key;
     }
-
+    else if (key == 'q') { // Zmieniamy stan rotacji szeœcianu
+        isRotatingCube = !isRotatingCube;
+        cube->setRotation(isRotatingCube); // Ustawiamy rotacjê szeœcianu
+    }
 }
 
 
 void Player::update(float deltaTime) {
+
     triangle->updateRotation(deltaTime);
+
+    cube->updateRotationC(deltaTime);
+
     if (currentShadingMode == FLAT) {
         // Jeœli tryb cieniowania to FLAT, mo¿emy np. zaktualizowaæ ustawienia œwiat³a itp.
         cube->setShadingMode(PrimitiveDrawer::FLAT);

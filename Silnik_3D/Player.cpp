@@ -4,60 +4,60 @@
 Player::Player(Triangle* triangle, Cube* cube, PrimitiveDrawer* drawer) : triangle(triangle), cube(cube), drawer(drawer), isRotating(false) {}
 
 void Player::handleInput(unsigned char key) {
-    if (key == 'i' || key == 'I') { // W³¹cz/wy³¹cz obrót
+    if (key == 'i' || key == 'I') { 
         isRotating = !isRotating;
         triangle->setRotation(isRotating);
     }
-    else if (key == 'w' || key == 'W') { // Przesuniêcie w górê
+    else if (key == 'w' || key == 'W') { 
         triangle->setPosition(triangle->getPositionX(), triangle->getPositionY() + 0.1f);
     }
-    else if (key == 's' || key == 'S') { // Przesuniêcie w dó³
+    else if (key == 's' || key == 'S') {
         triangle->setPosition(triangle->getPositionX(), triangle->getPositionY() - 0.1f);
     }
-    else if (key == 'a' || key == 'A') { // Przesuniêcie w lewo
+    else if (key == 'a' || key == 'A') { 
         triangle->setPosition(triangle->getPositionX() - 0.1f, triangle->getPositionY());
     }
-    else if (key == 'd' || key == 'D') { // Przesuniêcie w prawo
+    else if (key == 'd' || key == 'D') { 
         triangle->setPosition(triangle->getPositionX() + 0.1f, triangle->getPositionY());
     }
-    else if (key == '+') {  // Powiêkszenie szeœcioœcianu
+    else if (key == '+') {  
         cube->scaleUp();
     }
-    else if (key == '-') {  // Zmniejszenie szeœcioœcianu
+    else if (key == '-') {  
         cube->scaleDown();
     }
-    else if (key == 'm') {  // Powiêkszenie szeœcioœcianu
+    else if (key == 'm') {  
         triangle->scale_Up();
     }
-    else if (key == 'n') {  // Zmniejszenie szeœcioœcianu
+    else if (key == 'n') { 
         triangle->scale_Down();
     }
- else if (key == 'U') { // Ruch w górê
+ else if (key == 'U') { 
      cube->move(0.0f, 0.1f);
     }
- else if (key == 'C') { // Ruch w dó³
+ else if (key == 'C') { 
      cube->move(0.0f, -0.1f);
     }
- else if (key == 'L') { // Ruch w lewo
+ else if (key == 'L') { 
      cube->move(-0.1f, 0.0f);
     }
- else if (key == 'R') { // Ruch w prawo
+ else if (key == 'R') { 
      cube->move(0.1f, 0.0f);
     }
     if (key == 'f') {
-        drawer->setShadingMode(PrimitiveDrawer::FLAT);  // Zmieniamy tryb na FLAT
+        drawer->setShadingMode(PrimitiveDrawer::FLAT);  
     }
     else if (key == 'g') {
-        drawer->setShadingMode(PrimitiveDrawer::GOURAUD);  // Zmieniamy tryb na GOURAUD
+        drawer->setShadingMode(PrimitiveDrawer::GOURAUD);  
     }
     else if (key == 'p') {
-        drawer->setShadingMode(PrimitiveDrawer::PHONG);  // Zmieniamy tryb na PHONG
+        drawer->setShadingMode(PrimitiveDrawer::PHONG);  
         currentShadingMode = PHONG;
         std::cout << key;
     }
-    else if (key == 'q') { // Zmieniamy stan rotacji szeœcianu
+    else if (key == 'q') { 
         isRotatingCube = !isRotatingCube;
-        cube->setRotation(isRotatingCube); // Ustawiamy rotacjê szeœcianu
+        cube->setRotationC(isRotatingCube); 
     }
 }
 
@@ -69,16 +69,16 @@ void Player::update(float deltaTime) {
     cube->updateRotationC(deltaTime);
 
     if (currentShadingMode == FLAT) {
-        // Jeœli tryb cieniowania to FLAT, mo¿emy np. zaktualizowaæ ustawienia œwiat³a itp.
+
         cube->setShadingMode(PrimitiveDrawer::FLAT);
     }
     else if (currentShadingMode == GOURAUD) {
-        // Zaktualizuj tryb cieniowania na Gouraud
+
         cube->setShadingMode(PrimitiveDrawer::GOURAUD);
     }
     else if (currentShadingMode == PHONG) {
-        // Zaktualizuj tryb cieniowania na Phong (przy u¿yciu shaderów)
+
         cube->setShadingMode(PrimitiveDrawer::PHONG);
-        currentShadingMode = PHONG;  // Ustawienie PHONG
+        currentShadingMode = PHONG; 
     }
 }

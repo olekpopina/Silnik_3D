@@ -1,4 +1,4 @@
-#ifndef CUBE_H
+ï»¿#ifndef CUBE_H
 #define CUBE_H
 
 #include <GL/freeglut.h>
@@ -8,11 +8,11 @@ class Cube {
 public:
     Cube();
     void draw();
-    void scaleUp();    // Powiêkszenie
-    void scaleDown();  // Pomniejszenie
-    void move(float dx, float dy); // Przesuniêcie szeœcianu
+    void scaleUp();    
+    void scaleDown();  
+    void move(float dx, float dy); 
     void setShadingMode(int mode);
-    void setRotation(bool rotating);
+    void setRotationC(bool rotating);
     void updateRotationC(float deltaTime);
     float vertices[24];
     unsigned int indices[36];
@@ -21,9 +21,9 @@ public:
     float scale;
     float offsetX, offsetY;
     int shadingMode;
-    bool isRotating = false; // Domyœlnie brak obrotu
-    float rotationAngle = 0.0f; // Pocz¹tkowy k¹t
-    float rotationSpeed = 0.1f; // Prêdkoœæ obrotu w stopniach/sekundê
+    bool isRotating = false; 
+    float rotationAngle = 0.0f; 
+    float rotationSpeed = 0.1f; 
 };
 
 #endif // CUBE_H

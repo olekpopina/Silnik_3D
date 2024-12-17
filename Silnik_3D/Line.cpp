@@ -2,12 +2,10 @@
 #include "PrimitiveDrawer.h"
 
 Line::Line() {
-    // Inicjalizujemy liniê domyœlnymi wartoœciami
     start[0] = 0.0f; start[1] = 0.0f; start[2] = 0.0f;
     end[0] = 1.0f; end[1] = 0.0f; end[2] = 0.0f;
 }
 
-// Konstruktor z parametrami
 Line::Line(float startX, float startY, float startZ, float endX, float endY, float endZ) {
     start[0] = startX;
     start[1] = startY;
@@ -42,6 +40,5 @@ void Line::getEnd(float& x, float& y, float& z) const {
 }
 
 void Line::draw() {
-    // U¿ywamy funkcji z PrimitiveDrawer do narysowania linii
     PrimitiveDrawer::drawLine(start[0], start[1], start[2], end[0], end[1], end[2], 2.0f);
 }

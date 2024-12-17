@@ -45,20 +45,20 @@ private:
     int lastTime;
     float cameraZ;
 
-    bool isRotating = false;    // Flaga okreœlaj¹ca, czy trójk¹t ma siê obracaæ
+    bool isRotating = false;   
 
     
-    int lastMouseX, lastMouseY; // Ostatnia pozycja myszy
+    int lastMouseX, lastMouseY; 
  
-    bool isDragging; // Stan, czy linia jest przeci¹gana
+    bool isDragging; 
     bool isPointNearLine(float px, float py, float x1, float y1, float x2, float y2, float threshold);
-    float trianglePosX = 0.0f; // Pozycja trójk¹ta na osi X
-    float trianglePosY = 0.0f; // Pozycja trójk¹ta na osi Y
-    float linePosX = 0.10f; // Pozycja trójk¹ta na osi X
-    float linePosY = 0.10f; // Pozycja trójk¹ta na osi Y
+    float trianglePosX = 0.0f; 
+    float trianglePosY = 0.0f; 
+    float linePosX = 0.10f; 
+    float linePosY = 0.10f; 
     float pointX, pointY, pointZ;
-    float minCameraZ = 2.0f; // Minimalna odleg³oœæ kamery
-    float maxCameraZ = 20.0f; // Maksymalna odleg³oœæ kamery
+    float minCameraZ = 2.0f; 
+    float maxCameraZ = 20.0f;
 
     Line line;
 

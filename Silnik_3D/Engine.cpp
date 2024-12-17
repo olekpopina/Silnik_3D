@@ -90,7 +90,7 @@ void Engine::render() {
 
     glPushMatrix();
     glTranslatef(linePosX, linePosY, 0.0f);
-    line.draw();  // Rysowanie linii
+    line.draw();  
     PrimitiveDrawer::drawPoint(pointX, pointY, pointZ, 5.0f);
     glPopMatrix();
 
@@ -106,7 +106,7 @@ bool Engine::isPointNearLine(float px, float py, float x1, float y1, float x2, f
     float projection = ((px - x1) * dx + (py - y1) * dy) / lengthSq;
 
     if (projection < 0.0f || projection > 1.0f) {
-        return false; // Punkt poza odcinkiem
+        return false; 
     }
 
     float closestX = x1 + projection * dx;
@@ -117,11 +117,11 @@ bool Engine::isPointNearLine(float px, float py, float x1, float y1, float x2, f
 }
 
 void Engine::onKeyboard(unsigned char key, int x, int y) {
-    if (key == 27) { // ESC key
+    if (key == 27) { 
         stop();
     }
     player.handleInput(key);
-    glutPostRedisplay(); // Aktualizacja ekranu
+    glutPostRedisplay(); 
 }
 
 void Engine::specialKeyboardCallback(int key, int x, int y) {
@@ -133,7 +133,7 @@ void Engine::specialKeyboardCallback(int key, int x, int y) {
 void Engine::onSpecialKeyboard(int key, int x, int y) {
     switch (key) {
     case GLUT_KEY_UP:
-        player.handleInput('U'); // Przekaż symboliczne klawisze
+        player.handleInput('U'); 
         break;
     case GLUT_KEY_DOWN:
         player.handleInput('C');
@@ -163,20 +163,17 @@ void Engine::onMouse(int button, int state, int x, int y) {
 
 void Engine::onMouseMove(int x, int y) {
     if (isDragging) {
-        // Zmiana pozycji punktu na linii w zależności od ruchu myszy
+    
         float dx = (x - lastMouseX) * 0.01f;
         float dy = -(y - lastMouseY) * 0.01f;
 
-        // Ustalamy nową pozycję punktu wzdłuż linii
         float lineStartX, lineStartY, lineStartZ, lineEndX, lineEndY, lineEndZ;
         line.getStart(lineStartX, lineStartY, lineStartZ);
         line.getEnd(lineEndX, lineEndY, lineEndZ);
 
-        // Przemieszczanie punktu wzdłuż linii
         pointX += dx;
         pointY += dy;
 
-        // Zaktualizowanie pozycji linii, aby punkt pozostał na niej
         line.setStart(lineStartX + dx, lineStartY + dy, lineStartZ);
         line.setEnd(lineEndX + dx, lineEndY + dy, lineEndZ);
 
@@ -188,17 +185,17 @@ void Engine::onMouseMove(int x, int y) {
 }
 
 void Engine::idleCallback() {
-    float currentTime = glutGet(GLUT_ELAPSED_TIME) / 1000.0f; // Czas w sekundach
-    float deltaTime = currentTime - instance->lastTime;       // Delta czasu
+    float currentTime = glutGet(GLUT_ELAPSED_TIME) / 1000.0f; 
+    float deltaTime = currentTime - instance->lastTime;     
     instance->lastTime = currentTime;
 
-    instance->player.update(deltaTime); // Zaktualizowanie stanu gracza (ruch i obrót trójkąta)
-    glutPostRedisplay();                // Wymuś ponowne renderowanie
+    instance->player.update(deltaTime); 
+    glutPostRedisplay();               
 }
 
 void Engine::renderCallback() {
     if (instance) {
-        instance->render(); // Wywołanie metody instancji
+        instance->render();
     }
 }
 
@@ -230,15 +227,14 @@ void Engine::setInstance(Engine* engineInstance) {
     instance = engineInstance;
 }
 void Engine::onMouseWheel(int wheel, int direction, int x, int y) {
-    // Zoomowanie kamery
+ 
     if (direction > 0) {
-        cameraZ -= 1.0f; // Przybliżenie
+        cameraZ -= 1.0f; 
     }
     else if (direction < 0) {
-        cameraZ += 1.0f; // Oddalenie
+        cameraZ += 1.0f; 
     }
 
-    // Ograniczenie odległości kamery
     if (cameraZ < minCameraZ) {
         cameraZ = minCameraZ;
     }
@@ -246,6 +242,6 @@ void Engine::onMouseWheel(int wheel, int direction, int x, int y) {
         cameraZ = maxCameraZ;
     }
 
-    glutPostRedisplay(); // Aktualizacja ekranu
+    glutPostRedisplay(); 
 }
 

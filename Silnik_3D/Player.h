@@ -12,7 +12,7 @@ public:
 
     void handleInput(unsigned char key);
     void update(float deltaTime);
-    void move(float dx, float dy); // Deklaracja metody move
+    void move(float dx, float dy); 
 
 private:
     Triangle* triangle;
@@ -20,7 +20,7 @@ private:
     PrimitiveDrawer* drawer;
     bool isRotating;
    
-    bool isRotatingCube; // Flaga kontroluj¹ca rotacjê szeœcianu
+    bool isRotatingCube; 
     int currentShadingMode;
     enum ShadingMode {
         FLAT,

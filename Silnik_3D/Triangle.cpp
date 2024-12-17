@@ -4,7 +4,7 @@
 
 
 Triangle::Triangle() : posX(0.0f), posY(0.0f), rotationAngle(0.0f), scale(1.0f), isRotating(false) {
-    // Ustawienia kolorów dla wierzcho³ków
+
     float initialColors[] = {
         1.0f, 0.0f, 0.0f,  // Czerwony
         0.0f, 1.0f, 0.0f,  // Zielony
@@ -12,7 +12,7 @@ Triangle::Triangle() : posX(0.0f), posY(0.0f), rotationAngle(0.0f), scale(1.0f),
     };
     std::copy(std::begin(initialColors), std::end(initialColors), colors);
 
-    // Wierzho³ki trójk¹tów
+
     float initialVertices1[] = {
         0.0f,  0.5f, 0.0f,  // Górny wierzcho³ek
        -0.5f, -0.5f, -0.5f, // Lewy dolny
@@ -55,21 +55,21 @@ void Triangle::setRotation(bool rotating) {
 }
 
 void Triangle::setPosition(float x, float y) {
-    posX = x; // Ustawia pozycjê X
-    posY = y; // Ustawia pozycjê Y
+    posX = x; 
+    posY = y; 
 }
 
 void Triangle::updateRotation(float deltaTime) {
     if (isRotating) {
         rotationAngle += rotationSpeed * deltaTime;
         if (rotationAngle > 360.0f) {
-            rotationAngle -= 360.0f; // Resetowanie k¹ta
+            rotationAngle -= 360.0f; 
         }
     }
 }
 
 void Triangle::updatePosition() {
-    // Mo¿esz dodaæ logikê aktualizacji pozycji, jeœli bêdzie to potrzebne
+    //jeszcze nie dodalem
 }
 
 

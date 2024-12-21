@@ -23,7 +23,7 @@ public:
     int shadingMode;
     bool isRotating = false; 
     float rotationAngle = 0.0f; 
-    float rotationSpeed = 0.1f; 
+    float rotationSpeed = 1.0f; 
 };
 
 #endif // CUBE_H

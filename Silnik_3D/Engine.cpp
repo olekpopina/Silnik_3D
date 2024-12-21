@@ -26,6 +26,7 @@ void Engine::init(int argc, char** argv) {
     glEnable(GL_DEPTH_TEST);
     glClearColor(clearColor[0], clearColor[1], clearColor[2], clearColor[3]);
 
+
     glutDisplayFunc(renderCallback);
     glutIdleFunc(idleCallback);
     glutKeyboardFunc(keyboardCallback);
@@ -43,7 +44,7 @@ void Engine::init(int argc, char** argv) {
         });
    
 
-    
+   
 }
 
 
@@ -69,14 +70,24 @@ void Engine::stop() {
     glutLeaveMainLoop();
 }
 
+void Engine::setBackgroundTexture(const std::string& filePath) {
+    if (!bitmapHandler.loadTexture(filePath)) {
+        std::cerr << "Nie udało się ustawić tekstury tła!" << std::endl;
+    }
+}
+
+
+
 void Engine::render() {
 
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glLoadIdentity();
 
-   // bitmapHandler.drawBackground();
+
 
     gluLookAt(1.5, 1.5, cameraZ, 0.0, 0.0, 0.0, 0.0, 8.0, 0.0);
+
+    bitmapHandler.drawBackground();
 
     glPushMatrix();
     cube.draw();
@@ -98,6 +109,7 @@ void Engine::render() {
 
     glutSwapBuffers();
 }
+
 
 bool Engine::isPointNearLine(float px, float py, float x1, float y1, float x2, float y2, float threshold) {
     float dx = x2 - x1;
@@ -221,6 +233,12 @@ void Engine::reshapeCallback(int width, int height) {
     glLoadIdentity();
     gluPerspective(45.0, (double)width / (double)height, 1.0, 100.0);
     glMatrixMode(GL_MODELVIEW);
+
+
+    GLenum error = glGetError();
+    if (error != GL_NO_ERROR) {
+        std::cerr << "OpenGL error during reshape: " << gluErrorString(error) << std::endl;
+    }
 }
 
 void Engine::setInstance(Engine* engineInstance) {

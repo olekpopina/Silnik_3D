@@ -21,19 +21,19 @@ Cube::Cube() : vertices{
 }, scale(1.0f),offsetX(0.0f), offsetY(0.0f) {} 
 
 void Cube::draw() {
-    glPushMatrix(); // Zapisz obecny stan macierzy
-   // glTranslatef(offsetX, offsetY, 0.0f); // Przemieszczamy obiekt (jeśli ma być przesunięty)
+    glPushMatrix(); 
+   // glTranslatef(offsetX, offsetY, 0.0f); 
 
-    // Jeżeli obiekt ma się obracać, zastosuj obrót
+
     if (isRotating) {
-        glRotatef(rotationAngle, 0.0f, 1.0f, 0.0f); // Obrót wokół osi Y (lub innej osi)
+        glRotatef(rotationAngle, 0.0f, 1.0f, 0.0f); 
     }
 
     PrimitiveDrawer::drawCube(scale, offsetX, offsetY, vertices, indices, normals, colors);
     PrimitiveDrawer::setShadingMode(PrimitiveDrawer::FLAT); 
     PrimitiveDrawer::setShadingMode(PrimitiveDrawer::GOURAUD);
     PrimitiveDrawer::setShadingMode(PrimitiveDrawer::PHONG);
-    glPopMatrix(); // Przywróć poprzedni stan macierzy
+    glPopMatrix(); 
 
 }
 

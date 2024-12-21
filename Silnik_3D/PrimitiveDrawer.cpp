@@ -86,7 +86,7 @@ void PrimitiveDrawer::drawTriangle(float vertices1[9], float vertices2[9], float
     glDisable(GL_LIGHTING);
     glScalef(scale, scale, scale);
 }
-
+/*
 void PrimitiveDrawer::drawCube(float scale, float offsetX, float offsetY, float vertices[24], unsigned int indices[36], float normals[24], float colors[24]) {
     glPushMatrix();
     glScalef(scale, scale, scale);
@@ -185,6 +185,72 @@ void PrimitiveDrawer::drawCube(float scale, float offsetX, float offsetY, float 
  
         glDisable(GL_LIGHT0);
         glDisable(GL_LIGHTING);
+    }
+
+    glPopMatrix();
+}
+*/
+void PrimitiveDrawer::drawCube(float scale, float offsetX, float offsetY, float vertices[24], unsigned int indices[36], float normals[24], float colors[24]) {
+    glPushMatrix();
+    glScalef(scale, scale, scale);
+    glTranslatef(offsetX, offsetY, 0.0f);
+
+    if (currentShadingMode == PHONG) {
+        // W³¹cz oœwietlenie i œwiat³o
+        glEnable(GL_LIGHTING);
+        glEnable(GL_LIGHT0);
+
+        // Ustawienia œwiat³a
+        GLfloat lightPos[] = { 1.0f, 1.0f, 8.0f, 1.0f };
+        GLfloat lightAmbient[] = { 0.2f, 0.2f, 0.2f, 1.0f };
+        GLfloat lightDiffuse[] = { 0.8f, 0.0f, 0.0f, 1.0f }; // Czerwone œwiat³o
+        GLfloat lightSpecular[] = { 1.0f, 1.0f, 1.0f, 1.0f };
+        glLightfv(GL_LIGHT0, GL_POSITION, lightPos);
+        glLightfv(GL_LIGHT0, GL_AMBIENT, lightAmbient);
+        glLightfv(GL_LIGHT0, GL_DIFFUSE, lightDiffuse);
+        glLightfv(GL_LIGHT0, GL_SPECULAR, lightSpecular);
+
+        // Ustawienia materia³u
+        GLfloat matAmbient[] = { 0.2f, 0.0f, 0.0f, 1.0f }; // Czerwony ambient
+        GLfloat matDiffuse[] = { 0.8f, 0.0f, 0.0f, 1.0f }; // Czerwony diffuse
+        GLfloat matSpecular[] = { 1.0f, 1.0f, 1.0f, 1.0f };
+        GLfloat matShininess = 50.0f;
+        glMaterialfv(GL_FRONT, GL_AMBIENT, matAmbient);
+        glMaterialfv(GL_FRONT, GL_DIFFUSE, matDiffuse);
+        glMaterialfv(GL_FRONT, GL_SPECULAR, matSpecular);
+        glMaterialf(GL_FRONT, GL_SHININESS, matShininess);
+
+        // W³¹cz tablice wierzcho³ków i normalnych
+        glEnableClientState(GL_VERTEX_ARRAY);
+        glEnableClientState(GL_NORMAL_ARRAY);
+
+        glVertexPointer(3, GL_FLOAT, 0, vertices);
+        glNormalPointer(GL_FLOAT, 0, normals);
+
+        // Rysowanie elementów
+        glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, indices);
+
+        // Wy³¹cz oœwietlenie po rysowaniu
+        glDisable(GL_LIGHT0);
+        glDisable(GL_LIGHTING);
+    }
+    else {
+        // Tryb Flat lub Gouraud (pozostawiony bez zmian)
+        if (currentShadingMode == FLAT) {
+            glShadeModel(GL_FLAT);
+        }
+        else if (currentShadingMode == GOURAUD) {
+            glShadeModel(GL_SMOOTH);
+        }
+
+        // W³¹cz tablice wierzcho³ków
+        glEnableClientState(GL_VERTEX_ARRAY);
+        glEnableClientState(GL_NORMAL_ARRAY);
+
+        glVertexPointer(3, GL_FLOAT, 0, vertices);
+        glNormalPointer(GL_FLOAT, 0, normals);
+
+        glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, indices);
     }
 
     glPopMatrix();

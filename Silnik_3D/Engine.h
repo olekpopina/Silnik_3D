@@ -9,6 +9,7 @@
 #include "Line.h"
 #include "TransformableObject.h"
 #include "BitmapHandler.h"
+#include <SFML/Graphics.hpp>
 
 
 class Engine {
@@ -28,14 +29,18 @@ public:
     void onSpecialKeyboard(int key, int x, int y);
     void onMouseWheel(int wheel, int direction, int x, int y);
     static void setInstance(Engine* engineInstance);
-    BitmapHandler bitmapHandler;
+
+    void setBackgroundTexture(const std::string& filePath);
+   
+
+
 
 private:
     Triangle triangle;
     TransformableObject transformable;
     Player player;
     PrimitiveDrawer drawer;
-   
+    BitmapHandler bitmapHandler;  // Tekstura obiektu
 
     int windowWidth, windowHeight;
     const char* windowTitle;

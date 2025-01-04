@@ -12,7 +12,7 @@ int main(int argc, char** argv) {
     gameEngine.setClearColor(0.2f, 0.3f, 0.4f);
     gameEngine.setFrameRate(60);
 
-    gameEngine.setBackgroundTexture("D:/win10/tlo.png");
+    gameEngine.setBackgroundTexture("D:/Silnik_3D/images/tlo.png");
 
     gameEngine.run();
 

@@ -8,6 +8,7 @@ class Cube {
 public:
     Cube();
     void draw();
+    void drawNew();
     void scaleUp();    
     void scaleDown();  
     void move(float dx, float dy); 
@@ -24,6 +25,7 @@ public:
     bool isRotating = false; 
     float rotationAngle = 0.0f; 
     float rotationSpeed = 1.0f; 
+    BitmapHandler bitmapHandler;
 };
 
 #endif // CUBE_H

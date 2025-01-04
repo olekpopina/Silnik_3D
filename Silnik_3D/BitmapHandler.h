@@ -16,11 +16,15 @@ public:
     // Rysowanie obrazu jako t³a
     void drawBackground();
 
+    void drawCubeFace(float x, float y, float z, float width, float height, GLfloat textureCoordinates[4][2]);
+
+  
+    bool isTextureLoaded;       // Flaga wskazuj¹ca, czy tekstura zosta³a za³adowana
 private:
     GLuint textureId;           // Identyfikator tekstury OpenGL
     int textureWidth;           // Szerokoœæ tekstury
     int textureHeight;          // Wysokoœæ tekstury
-    bool isTextureLoaded;       // Flaga wskazuj¹ca, czy tekstura zosta³a za³adowana
+    
 };
 
 #endif // BITMAPHANDLER_H

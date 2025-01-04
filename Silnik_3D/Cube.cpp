@@ -37,6 +37,13 @@ void Cube::draw() {
 
 }
 
+void Cube::drawNew() {
+    
+
+    PrimitiveDrawer::drawCubeNew(scale, offsetX, offsetY, vertices, indices, normals, colors, bitmapHandler);
+}
+
+
 void Cube::scaleUp() {
    
     TransformableObject::scaleUp_Cube(scale);

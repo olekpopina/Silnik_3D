@@ -91,6 +91,8 @@ void Engine::render() {
 
     glPushMatrix();
     cube.draw();
+  
+
     glPopMatrix();
 
     glPushMatrix();
@@ -109,6 +111,50 @@ void Engine::render() {
 
     glutSwapBuffers();
 }
+
+
+/*
+void Engine::render() {
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);  // Czyszczenie buforów
+    glLoadIdentity();  // Resetowanie macierzy
+
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();  // Resetowanie macierzy projekcji
+    gluPerspective(45.0f, 1.0f, 0.1f, 100.0f);  // Ustawienie kamery w perspektywie
+    glMatrixMode(GL_MODELVIEW);  // Powrót do modelowania
+
+    glTranslatef(0.0f, 0.0f, -5.0f);  // Ustawienie kamery z tyłu obiektów, aby były widoczne
+
+    bitmapHandler.drawBackground();  // Rysowanie tła
+
+    // Ładowanie tekstury tylko raz, przed rysowaniem sześcianu
+    if (!cube.bitmapHandler.isTextureLoaded) {
+        cube.bitmapHandler.loadTexture("D:/win10/tlo.png");
+    }
+
+    // Rysowanie sześcianu z teksturą
+    cube.drawNew();  // Narysowanie sześcianu z teksturą
+
+    // Rysowanie innych obiektów
+    glPushMatrix();
+    triangle.updateRotation(deltaTime);
+    triangle.updatePosition();
+    triangle.draw();
+    glPopMatrix();
+
+    glPushMatrix();
+    glTranslatef(linePosX, linePosY, 0.0f);
+    line.draw();
+    PrimitiveDrawer::drawPoint(pointX, pointY, pointZ, 5.0f);
+    glPopMatrix();
+
+    // Zmiana widoku kamery
+    gluLookAt(3.0, 3.0, cameraZ, 5.0, 0.0, 0.0, 0.0, 3.0, 2.0);
+
+    glutSwapBuffers();  // Zmiana buforów
+}
+*/
+
 
 
 bool Engine::isPointNearLine(float px, float py, float x1, float y1, float x2, float y2, float threshold) {

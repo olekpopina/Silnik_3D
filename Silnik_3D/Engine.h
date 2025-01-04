@@ -65,6 +65,9 @@ private:
     float minCameraZ = 2.0f; 
     float maxCameraZ = 20.0f;
 
+    float scale; float offsetX; float offsetY; float vertices[24]; unsigned int indices[36]; float normals[24]; float colors[24];
+
+
     Line line;
 
     static void renderCallback();

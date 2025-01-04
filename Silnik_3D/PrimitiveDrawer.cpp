@@ -255,3 +255,58 @@ void PrimitiveDrawer::drawCube(float scale, float offsetX, float offsetY, float 
 
     glPopMatrix();
 }
+
+void PrimitiveDrawer::drawCubeNew(float scale, float offsetX, float offsetY, float vertices[24], unsigned int indices[36], float normals[24], float colors[24], BitmapHandler& bitmapHandler) {
+    glPushMatrix();
+    glScalef(scale, scale, scale);
+    glTranslatef(offsetX, offsetY, 0.0f);
+
+    // Wspó³rzêdne tekstury dla ka¿dej z szeœciu œcian szeœcianu
+    GLfloat textureCoordinates[6][4][2] = {
+        {{0.0f, 0.0f}, {1.0f, 0.0f}, {1.0f, 1.0f}, {0.0f, 1.0f}},  // Przód
+        {{1.0f, 0.0f}, {1.0f, 1.0f}, {0.0f, 1.0f}, {0.0f, 0.0f}},  // Ty³
+        {{0.0f, 0.0f}, {1.0f, 0.0f}, {1.0f, 1.0f}, {0.0f, 1.0f}},  // Lewa
+        {{1.0f, 0.0f}, {1.0f, 1.0f}, {0.0f, 1.0f}, {0.0f, 0.0f}},  // Prawa
+        {{0.0f, 0.0f}, {1.0f, 0.0f}, {1.0f, 1.0f}, {0.0f, 1.0f}},  // Góra
+        {{0.0f, 1.0f}, {1.0f, 1.0f}, {1.0f, 0.0f}, {0.0f, 0.0f}}   // Dó³
+    };
+
+    // Rysowanie wszystkich 6 œcian szeœcianu
+    for (int i = 0; i < 6; ++i) {
+        glPushMatrix();
+
+        // Obracamy ka¿d¹ z œcian na odpowiedni¹ orientacjê
+        if (i == 0) {
+            glRotatef(0.0f, 1.0f, 0.0f, 0.0f);  // Przód
+        }
+        else if (i == 1) {
+            glRotatef(180.0f, 1.0f, 0.0f, 0.0f);  // Ty³
+        }
+        else if (i == 2) {
+            glRotatef(90.0f, 0.0f, 1.0f, 0.0f);  // Lewa
+        }
+        else if (i == 3) {
+            glRotatef(-90.0f, 0.0f, 1.0f, 0.0f);  // Prawa
+        }
+        else if (i == 4) {
+            glRotatef(90.0f, 1.0f, 0.0f, 0.0f);  // Góra
+        }
+        else if (i == 5) {
+            glRotatef(-90.0f, 1.0f, 0.0f, 0.0f);  // Dó³
+        }
+
+        // Obliczanie wspó³rzêdnych dla ka¿dej œciany szeœcianu (wierzcho³ki s¹ indeksowane w vertices i indices)
+        GLfloat x = vertices[indices[i * 4] * 3 + 0];
+        GLfloat y = vertices[indices[i * 4] * 3 + 1];
+        GLfloat z = vertices[indices[i * 4] * 3 + 2];
+        GLfloat width = vertices[indices[i * 4 + 1] * 3 + 0] - x;
+        GLfloat height = vertices[indices[i * 4 + 2] * 3 + 1] - y;
+
+        // Rysowanie teksturowanej œciany szeœcianu
+        bitmapHandler.drawCubeFace(x, y, z, width, height, textureCoordinates[i]);
+
+        glPopMatrix();
+    }
+
+    glPopMatrix();
+}

@@ -18,7 +18,7 @@ Cube::Cube() : vertices{
 }, colors{
     1.0f, 0.0f, 0.0f,  0.0f, 1.0f, 0.0f,  0.0f, 0.0f, 1.0f,  1.0f, 1.0f, 0.0f,
     1.0f, 0.0f, 1.0f,  0.0f, 1.0f, 1.0f,  0.5f, 0.5f, 0.5f,  1.0f, 1.0f, 1.0f
-}, scale(1.0f),offsetX(0.0f), offsetY(0.0f) {} 
+}, scale(1.0f),offsetX(0.0f), offsetY(0.0f), textureFilePath("") {}
 
 void Cube::draw() {
     glPushMatrix(); 
@@ -36,11 +36,18 @@ void Cube::draw() {
     glPopMatrix(); 
 
 }
+void Cube::setTextureFile(const std::string& filePath) {
+    textureFilePath = filePath;
+    bitmapHandler.loadTexture(filePath); // Załaduj teksturę za pomocą BitmapHandler
+}
+
+void Cube::setBitmapHandler(const BitmapHandler& handler) {
+    bitmapHandler = handler;
+}
 
 void Cube::drawNew() {
-    
-
-    PrimitiveDrawer::drawCubeNew(scale, offsetX, offsetY, vertices, indices, normals, colors, bitmapHandler);
+    bitmapHandler.bindTexture();
+    PrimitiveDrawer::drawCube(scale, offsetX, offsetY, vertices, indices, normals, colors);
 }
 
 

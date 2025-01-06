@@ -5,10 +5,11 @@
 #include <GL/freeglut.h>
 #include "BitmapHandler.h"
 
+
 class PrimitiveDrawer {
 
 public:
-  
+
     enum ShadingMode {
         FLAT,
         GOURAUD,

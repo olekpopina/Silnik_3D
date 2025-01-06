@@ -9,19 +9,18 @@ class BitmapHandler {
 public:
     BitmapHandler();
     ~BitmapHandler();
-
+     void bindTexture();
     // £adowanie obrazu
     bool loadTexture(const std::string& filePath);
 
     // Rysowanie obrazu jako t³a
     void drawBackground();
 
-    void drawCubeFace(float x, float y, float z, float width, float height, GLfloat textureCoordinates[4][2]);
-
+    GLuint textureId;           // Identyfikator tekstury OpenGL
   
     bool isTextureLoaded;       // Flaga wskazuj¹ca, czy tekstura zosta³a za³adowana
 private:
-    GLuint textureId;           // Identyfikator tekstury OpenGL
+   
     int textureWidth;           // Szerokoœæ tekstury
     int textureHeight;          // Wysokoœæ tekstury
     

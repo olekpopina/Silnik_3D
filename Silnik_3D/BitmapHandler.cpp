@@ -1,5 +1,7 @@
 #include "BitmapHandler.h"
 
+
+
 BitmapHandler::BitmapHandler()
     : textureId(0), textureWidth(0), textureHeight(0), isTextureLoaded(false) {
 }
@@ -73,22 +75,8 @@ void BitmapHandler::drawBackground() {
     glMatrixMode(GL_MODELVIEW);
     glPopMatrix();
 }
-void BitmapHandler::drawCubeFace(float x, float y, float z, float width, float height, GLfloat textureCoordinates[4][2]) {
-    if (!isTextureLoaded) return;
-
-    glEnable(GL_TEXTURE_2D);
-    glBindTexture(GL_TEXTURE_2D, textureId);
-
-    // Rysowanie prostok¹tnej œciany szeœcianu (cztery wierzcho³ki)
-    glBegin(GL_QUADS);
-    for (int i = 0; i < 4; ++i) {
-        glTexCoord2f(textureCoordinates[i][0], textureCoordinates[i][1]);
-        glVertex3f(x + (i == 1 || i == 2 ? width : 0.0f),
-            y + (i == 2 || i == 3 ? height : 0.0f),
-            z);
+void BitmapHandler::bindTexture() {
+    if (isTextureLoaded) {
+        glBindTexture(GL_TEXTURE_2D, textureId);
     }
-    glEnd();
-
-    glBindTexture(GL_TEXTURE_2D, 0);
-    glDisable(GL_TEXTURE_2D);
 }

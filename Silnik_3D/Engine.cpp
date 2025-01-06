@@ -14,7 +14,11 @@ Engine::Engine(int width, int height, const char* title)
     isDragging(false), cameraZ(5.0f), player(&triangle, &cube, &drawer), 
     pointX(0.5f), pointY(0.5f), pointZ(0.5f),
     line(0.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f) {
-    
+
+    std::fill(std::begin(vertices), std::end(vertices), 0.0f);
+    std::fill(std::begin(colors), std::end(colors), 1.0f);
+    std::fill(std::begin(normals), std::end(normals), 0.0f);
+    std::fill(std::begin(indices), std::end(indices), 0);
 }
 
 void Engine::init(int argc, char** argv) {
@@ -77,7 +81,7 @@ void Engine::setBackgroundTexture(const std::string& filePath) {
 }
 
 
-
+/*
 void Engine::render() {
 
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -111,49 +115,35 @@ void Engine::render() {
 
     glutSwapBuffers();
 }
-
-
-/*
+*/
 void Engine::render() {
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);  // Czyszczenie buforów
-    glLoadIdentity();  // Resetowanie macierzy
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    glLoadIdentity();
 
-    glMatrixMode(GL_PROJECTION);
-    glLoadIdentity();  // Resetowanie macierzy projekcji
-    gluPerspective(45.0f, 1.0f, 0.1f, 100.0f);  // Ustawienie kamery w perspektywie
-    glMatrixMode(GL_MODELVIEW);  // Powrót do modelowania
+    gluLookAt(1.5, 1.5, cameraZ, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
 
-    glTranslatef(0.0f, 0.0f, -5.0f);  // Ustawienie kamery z tyłu obiektów, aby były widoczne
-
-    bitmapHandler.drawBackground();  // Rysowanie tła
-
-    // Ładowanie tekstury tylko raz, przed rysowaniem sześcianu
-    if (!cube.bitmapHandler.isTextureLoaded) {
-        cube.bitmapHandler.loadTexture("D:/win10/tlo.png");
+    // Ustawienia tekstury
+    if (bitmapHandler.isTextureLoaded) {
+        glEnable(GL_TEXTURE_2D);
+        glBindTexture(GL_TEXTURE_2D, bitmapHandler.textureId);
     }
 
     // Rysowanie sześcianu z teksturą
-    cube.drawNew();  // Narysowanie sześcianu z teksturą
+    glBegin(GL_QUADS);
+    cube.setTextureFile("D:/win10/tlo.png");
+    cube.drawNew();
 
-    // Rysowanie innych obiektów
-    glPushMatrix();
-    triangle.updateRotation(deltaTime);
-    triangle.updatePosition();
-    triangle.draw();
-    glPopMatrix();
+    glEnd();
 
-    glPushMatrix();
-    glTranslatef(linePosX, linePosY, 0.0f);
-    line.draw();
-    PrimitiveDrawer::drawPoint(pointX, pointY, pointZ, 5.0f);
-    glPopMatrix();
+    if (bitmapHandler.isTextureLoaded) {
+        glBindTexture(GL_TEXTURE_2D, 0);
+        glDisable(GL_TEXTURE_2D);
+    }
 
-    // Zmiana widoku kamery
-    gluLookAt(3.0, 3.0, cameraZ, 5.0, 0.0, 0.0, 0.0, 3.0, 2.0);
-
-    glutSwapBuffers();  // Zmiana buforów
+    glutSwapBuffers();
 }
-*/
+
+
 
 
 

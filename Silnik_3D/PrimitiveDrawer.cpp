@@ -86,110 +86,7 @@ void PrimitiveDrawer::drawTriangle(float vertices1[9], float vertices2[9], float
     glDisable(GL_LIGHTING);
     glScalef(scale, scale, scale);
 }
-/*
-void PrimitiveDrawer::drawCube(float scale, float offsetX, float offsetY, float vertices[24], unsigned int indices[36], float normals[24], float colors[24]) {
-    glPushMatrix();
-    glScalef(scale, scale, scale);
-    glTranslatef(offsetX, offsetY, 0.0f);
 
-    if (currentShadingMode == FLAT) {
-        glShadeModel(GL_FLAT); //p³askie
-    }
-    else if (currentShadingMode == GOURAUD) {
-        glShadeModel(GL_SMOOTH); //Gourod
-    }
-    else if (currentShadingMode == PHONG) {
-    
-        glEnable(GL_LIGHTING);
-        glEnable(GL_LIGHT0);
-
-        GLfloat lightPos[] = { 1.0f, 1.0f, 8.0f, 1.0f };
-        GLfloat lightAmbient[] = { 0.2f, 0.2f, 0.2f, 1.0f };
-        GLfloat lightDiffuse[] = { 0.8f, 0.8f, 0.8f, 1.0f }; 
-        GLfloat lightSpecular[] = { 1.0f, 1.0f, 1.0f, 1.0f }; 
-        glLightfv(GL_LIGHT0, GL_POSITION, lightPos);
-        glLightfv(GL_LIGHT0, GL_AMBIENT, lightAmbient);
-        glLightfv(GL_LIGHT0, GL_DIFFUSE, lightDiffuse);
-        glLightfv(GL_LIGHT0, GL_SPECULAR, lightSpecular);
-
-        GLfloat matAmbient[] = { 0.10f, 0.2f, 0.5f, 1.0f };
-        GLfloat matDiffuse[] = { 0.5f, 0.5f, 1.0f, 1.0f };
-        GLfloat matSpecular[] = { 1.0f, 1.0f, 1.0f, 1.0f };
-        GLfloat matShininess = 50.0f;
-        glMaterialfv(GL_FRONT, GL_AMBIENT, matAmbient);
-        glMaterialfv(GL_FRONT, GL_DIFFUSE, matDiffuse);
-        glMaterialfv(GL_FRONT, GL_SPECULAR, matSpecular);
-        glMaterialf(GL_FRONT, GL_SHININESS, matShininess);
-
-        glEnableClientState(GL_VERTEX_ARRAY);
-        glEnableClientState(GL_NORMAL_ARRAY);
-
-        glVertexPointer(3, GL_FLOAT, 0, vertices);
-        glNormalPointer(GL_FLOAT, 0, normals);
-
-    
-        for (int i = 0; i < 36; i += 3) {
-            GLfloat vertex1[] = { vertices[indices[i] * 3], vertices[indices[i] * 3 + 1], vertices[indices[i] * 3 + 2] };
-            GLfloat vertex2[] = { vertices[indices[i + 1] * 3], vertices[indices[i + 1] * 3 + 1], vertices[indices[i + 1] * 3 + 2] };
-            GLfloat vertex3[] = { vertices[indices[i + 2] * 3], vertices[indices[i + 2] * 3 + 1], vertices[indices[i + 2] * 3 + 2] };
-            GLfloat normal1[] = { normals[indices[i] * 3], normals[indices[i] * 3 + 1], normals[indices[i] * 3 + 2] };
-            GLfloat normal2[] = { normals[indices[i + 1] * 3], normals[indices[i + 1] * 3 + 1], normals[indices[i + 1] * 3 + 2] };
-            GLfloat normal3[] = { normals[indices[i + 2] * 3], normals[indices[i + 2] * 3 + 1], normals[indices[i + 2] * 3 + 2] };
-
-       
-            for (int j = 0; j < 3; ++j) {
-                GLfloat vertex[] = { vertex1[0], vertex1[1], vertex1[2] };
-                GLfloat normal[] = { normal1[0], normal1[1], normal1[2] };
-
-                GLfloat ambient[] = { lightAmbient[0] * matAmbient[0], lightAmbient[1] * matAmbient[1], lightAmbient[2] * matAmbient[2] };
-                GLfloat diffuse[] = { lightDiffuse[0] * matDiffuse[0], lightDiffuse[1] * matDiffuse[1], lightDiffuse[2] * matDiffuse[2] };
-                GLfloat specular[] = { lightSpecular[0] * matSpecular[0], lightSpecular[1] * matSpecular[1], lightSpecular[2] * matSpecular[2] };
-
-             
-                GLfloat lightDir[] = { lightPos[0] - vertex[0], lightPos[1] - vertex[1], lightPos[2] - vertex[2] };
-                GLfloat lightLength = sqrtf(lightDir[0] * lightDir[0] + lightDir[1] * lightDir[1] + lightDir[2] * lightDir[2]);
-                lightDir[0] /= lightLength;
-                lightDir[1] /= lightLength;
-                lightDir[2] /= lightLength;
-
-               
-                GLfloat normalLength = sqrtf(normal[0] * normal[0] + normal[1] * normal[1] + normal[2] * normal[2]);
-                normal[0] /= normalLength;
-                normal[1] /= normalLength;
-                normal[2] /= normalLength;
-
-                //Phong
-                GLfloat dotLN = normal[0] * lightDir[0] + normal[1] * lightDir[1] + normal[2] * lightDir[2];
-                GLfloat diffuseFactor = fmaxf(dotLN, 0.0f);
-
-                GLfloat reflection[] = { 2.0f * normal[0] * dotLN - lightDir[0], 2.0f * normal[1] * dotLN - lightDir[1], 2.0f * normal[2] * dotLN - lightDir[2] };
-                GLfloat viewDir[] = { 0.0f, 0.0f, 1.0f }; 
-                GLfloat dotRV = reflection[0] * viewDir[0] + reflection[1] * viewDir[1] + reflection[2] * viewDir[2];
-                GLfloat specularFactor = powf(fmaxf(dotRV, 0.0f), matShininess);
-
-        
-                GLfloat finalColor[] = {
-                    ambient[0] + diffuseFactor * diffuse[0] + specularFactor * specular[0],
-                    ambient[1] + diffuseFactor * diffuse[1] + specularFactor * specular[1],
-                    ambient[2] + diffuseFactor * diffuse[2] + specularFactor * specular[2]
-                };
-
-         
-                glColor3f(finalColor[0], finalColor[1], finalColor[2]);
-
-             
-                glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, indices);
-            }
-        }
-
- 
-        glDisable(GL_LIGHT0);
-        glDisable(GL_LIGHTING);
-    }
-
-    glPopMatrix();
-}
-*/
 void PrimitiveDrawer::drawCube(float scale, float offsetX, float offsetY, float vertices[24], unsigned int indices[36], float normals[24], float colors[24]) {
     glPushMatrix();
     glScalef(scale, scale, scale);
@@ -257,56 +154,45 @@ void PrimitiveDrawer::drawCube(float scale, float offsetX, float offsetY, float 
 }
 
 void PrimitiveDrawer::drawCubeNew(float scale, float offsetX, float offsetY, float vertices[24], unsigned int indices[36], float normals[24], float colors[24], BitmapHandler& bitmapHandler) {
-    glPushMatrix();
-    glScalef(scale, scale, scale);
-    glTranslatef(offsetX, offsetY, 0.0f);
+    glBindTexture(GL_TEXTURE_2D, bitmapHandler.textureId);
 
-    // Wspó³rzêdne tekstury dla ka¿dej z szeœciu œcian szeœcianu
-    GLfloat textureCoordinates[6][4][2] = {
-        {{0.0f, 0.0f}, {1.0f, 0.0f}, {1.0f, 1.0f}, {0.0f, 1.0f}},  // Przód
-        {{1.0f, 0.0f}, {1.0f, 1.0f}, {0.0f, 1.0f}, {0.0f, 0.0f}},  // Ty³
-        {{0.0f, 0.0f}, {1.0f, 0.0f}, {1.0f, 1.0f}, {0.0f, 1.0f}},  // Lewa
-        {{1.0f, 0.0f}, {1.0f, 1.0f}, {0.0f, 1.0f}, {0.0f, 0.0f}},  // Prawa
-        {{0.0f, 0.0f}, {1.0f, 0.0f}, {1.0f, 1.0f}, {0.0f, 1.0f}},  // Góra
-        {{0.0f, 1.0f}, {1.0f, 1.0f}, {1.0f, 0.0f}, {0.0f, 0.0f}}   // Dó³
-    };
+    glBegin(GL_QUADS);
 
-    // Rysowanie wszystkich 6 œcian szeœcianu
-    for (int i = 0; i < 6; ++i) {
-        glPushMatrix();
+    // Przednia œciana
+    glTexCoord2f(0.0f, 0.0f); glVertex3f(-1.0f, -1.0f, 1.0f);
+    glTexCoord2f(1.0f, 0.0f); glVertex3f(1.0f, -1.0f, 1.0f);
+    glTexCoord2f(1.0f, 1.0f); glVertex3f(1.0f, 1.0f, 1.0f);
+    glTexCoord2f(0.0f, 1.0f); glVertex3f(-1.0f, 1.0f, 1.0f);
 
-        // Obracamy ka¿d¹ z œcian na odpowiedni¹ orientacjê
-        if (i == 0) {
-            glRotatef(0.0f, 1.0f, 0.0f, 0.0f);  // Przód
-        }
-        else if (i == 1) {
-            glRotatef(180.0f, 1.0f, 0.0f, 0.0f);  // Ty³
-        }
-        else if (i == 2) {
-            glRotatef(90.0f, 0.0f, 1.0f, 0.0f);  // Lewa
-        }
-        else if (i == 3) {
-            glRotatef(-90.0f, 0.0f, 1.0f, 0.0f);  // Prawa
-        }
-        else if (i == 4) {
-            glRotatef(90.0f, 1.0f, 0.0f, 0.0f);  // Góra
-        }
-        else if (i == 5) {
-            glRotatef(-90.0f, 1.0f, 0.0f, 0.0f);  // Dó³
-        }
+    // Tylna œciana
+    glTexCoord2f(0.0f, 0.0f); glVertex3f(-1.0f, -1.0f, -1.0f);
+    glTexCoord2f(1.0f, 0.0f); glVertex3f(-1.0f, 1.0f, -1.0f);
+    glTexCoord2f(1.0f, 1.0f); glVertex3f(1.0f, 1.0f, -1.0f);
+    glTexCoord2f(0.0f, 1.0f); glVertex3f(1.0f, -1.0f, -1.0f);
 
-        // Obliczanie wspó³rzêdnych dla ka¿dej œciany szeœcianu (wierzcho³ki s¹ indeksowane w vertices i indices)
-        GLfloat x = vertices[indices[i * 4] * 3 + 0];
-        GLfloat y = vertices[indices[i * 4] * 3 + 1];
-        GLfloat z = vertices[indices[i * 4] * 3 + 2];
-        GLfloat width = vertices[indices[i * 4 + 1] * 3 + 0] - x;
-        GLfloat height = vertices[indices[i * 4 + 2] * 3 + 1] - y;
+    // Lewa œciana
+    glTexCoord2f(0.0f, 0.0f); glVertex3f(-1.0f, -1.0f, -1.0f);
+    glTexCoord2f(1.0f, 0.0f); glVertex3f(-1.0f, -1.0f, 1.0f);
+    glTexCoord2f(1.0f, 1.0f); glVertex3f(-1.0f, 1.0f, 1.0f);
+    glTexCoord2f(0.0f, 1.0f); glVertex3f(-1.0f, 1.0f, -1.0f);
 
-        // Rysowanie teksturowanej œciany szeœcianu
-        bitmapHandler.drawCubeFace(x, y, z, width, height, textureCoordinates[i]);
+    // Prawa œciana
+    glTexCoord2f(0.0f, 0.0f); glVertex3f(1.0f, -1.0f, -1.0f);
+    glTexCoord2f(1.0f, 0.0f); glVertex3f(1.0f, 1.0f, -1.0f);
+    glTexCoord2f(1.0f, 1.0f); glVertex3f(1.0f, 1.0f, 1.0f);
+    glTexCoord2f(0.0f, 1.0f); glVertex3f(1.0f, -1.0f, 1.0f);
 
-        glPopMatrix();
-    }
+    // Górna œciana
+    glTexCoord2f(0.0f, 0.0f); glVertex3f(-1.0f, 1.0f, -1.0f);
+    glTexCoord2f(1.0f, 0.0f); glVertex3f(-1.0f, 1.0f, 1.0f);
+    glTexCoord2f(1.0f, 1.0f); glVertex3f(1.0f, 1.0f, 1.0f);
+    glTexCoord2f(0.0f, 1.0f); glVertex3f(1.0f, 1.0f, -1.0f);
 
-    glPopMatrix();
+    // Dolna œciana
+    glTexCoord2f(0.0f, 0.0f); glVertex3f(-1.0f, -1.0f, -1.0f);
+    glTexCoord2f(1.0f, 0.0f); glVertex3f(1.0f, -1.0f, -1.0f);
+    glTexCoord2f(1.0f, 1.0f); glVertex3f(1.0f, -1.0f, 1.0f);
+    glTexCoord2f(0.0f, 1.0f); glVertex3f(-1.0f, -1.0f, 1.0f);
+
+    glEnd();
 }

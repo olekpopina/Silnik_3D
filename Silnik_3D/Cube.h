@@ -3,11 +3,14 @@
 
 #include <GL/freeglut.h>
 #include "TransformableObject.h"
+#include "BitmapHandler.h"
 
 class Cube {
 public:
     Cube();
     void draw();
+    void setTextureFile(const std::string& filePath);
+    void setBitmapHandler(const BitmapHandler& handler);
     void drawNew();
     void scaleUp();    
     void scaleDown();  
@@ -26,6 +29,7 @@ public:
     float rotationAngle = 0.0f; 
     float rotationSpeed = 1.0f; 
     BitmapHandler bitmapHandler;
+    std::string textureFilePath;
 };
 
 #endif // CUBE_H

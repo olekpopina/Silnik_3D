@@ -29,7 +29,7 @@ int main(int argc, char** argv) {
     }
     gameEngine.run();
 
-    gameEngine.cleanup();
+   //gameEngine.cleanup();
     return 0;
 }
 

@@ -4,8 +4,9 @@
 #include <GL/freeglut.h>
 #include "TransformableObject.h"
 #include "BitmapHandler.h"
+#include "PrimitiveDrawer.h"
 
-class Cube {
+class Cube : public PrimitiveDrawer {
 public:
     Cube();
     void draw();
@@ -26,7 +27,7 @@ public:
     bool isRotating = false; 
     float rotationAngle = 0.0f; 
     float rotationSpeed = 0.5f; 
-
+    BitmapHandler bitmapHandler;
 };
 
 #endif // CUBE_H

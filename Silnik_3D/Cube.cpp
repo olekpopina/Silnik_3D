@@ -37,8 +37,8 @@ void Cube::draw() {
 
 }
 void Cube::drawNew() {
-   
-    PrimitiveDrawer::drawCube(scale, offsetX2, offsetY2, vertices, indices, normals, colors);
+    // Wywołanie nowej funkcji rysującej z PrimitiveDrawer
+    PrimitiveDrawer::drawCubeNew(scale, offsetX2, offsetY2, bitmapHandler);
 }
 
 

@@ -164,7 +164,9 @@ void PrimitiveDrawer::drawCubeNew(float scale, float offsetX, float offsetY, Bit
     glPushMatrix();
     glTranslatef(offsetX, offsetY, 0.0f);
     glScalef(scale, scale, scale);
-    
+
+   
+
     glBegin(GL_QUADS);
 
     // Przednia œciana

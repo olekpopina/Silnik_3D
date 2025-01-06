@@ -18,7 +18,7 @@ Cube::Cube() : vertices{
 }, colors{
     1.0f, 0.0f, 0.0f,  0.0f, 1.0f, 0.0f,  0.0f, 0.0f, 1.0f,  1.0f, 1.0f, 0.0f,
     1.0f, 0.0f, 1.0f,  0.0f, 1.0f, 1.0f,  0.5f, 0.5f, 0.5f,  1.0f, 1.0f, 1.0f
-}, scale(1.0f),offsetX(0.0f), offsetY(0.0f) {}
+}, scale(1.0f),offsetX(0.0f), offsetY(0.0f), offsetX2(0.8f), offsetY2(0.8f) {}
 
 void Cube::draw() {
     glPushMatrix(); 
@@ -38,7 +38,7 @@ void Cube::draw() {
 }
 void Cube::drawNew() {
    
-    PrimitiveDrawer::drawCube(scale, offsetX, offsetY, vertices, indices, normals, colors);
+    PrimitiveDrawer::drawCube(scale, offsetX2, offsetY2, vertices, indices, normals, colors);
 }
 
 

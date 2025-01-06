@@ -1,5 +1,4 @@
-﻿/*
-#include "Engine.h"
+﻿#include "Engine.h"
 #include <SFML/Graphics.hpp>
 
 
@@ -9,19 +8,21 @@ int main(int argc, char** argv) {
 
     Engine::setInstance(&gameEngine);
 
+    BitmapHandler bitmapHandler;
+
     gameEngine.init(argc, argv);
     gameEngine.setClearColor(0.2f, 0.3f, 0.4f);
     gameEngine.setFrameRate(60);
 
     gameEngine.setBackgroundTexture("D:/win10/tlo.png");
-
+    
     gameEngine.run();
 
     gameEngine.cleanup();
     return 0;
 }
-*/
 
+/*
 #include <GL/freeglut.h>
 #include <SFML/Graphics.hpp>
 #include <SFML/OpenGL.hpp>
@@ -144,3 +145,4 @@ int main(int argc, char** argv) {
 
     return 0;
 }
+*/

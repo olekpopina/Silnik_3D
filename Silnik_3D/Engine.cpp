@@ -92,6 +92,11 @@ void Engine::render() {
 
     glPushMatrix();
     cube.draw();
+    static float angle = 0.0f;
+    angle += 0.2f;
+
+    glRotatef(angle, 0.1f, 0.1f, 0.0f); // Obrót sześcianu
+    cube.drawNew();
     glPopMatrix();
 
     glPushMatrix();
@@ -111,7 +116,25 @@ void Engine::render() {
     glutSwapBuffers();
 }
 
+/*
+void Engine::render() {
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    glLoadIdentity();
 
+    // Ustawienie kamery
+    gluLookAt(0.0, 0.0, 5.0,   // Pozycja kamery
+        0.0, 0.0, 0.0,   // Punkt, na który patrzy
+        0.0, 1.0, 0.0);  // Wektor "w górę"
+
+    static float angle = 0.0f;
+    angle += 0.2f;
+
+    glRotatef(angle, 0.1f, 0.1f, 0.0f); // Obrót sześcianu
+    cube.drawNew();
+
+    glutSwapBuffers();
+}
+*/
 bool Engine::isPointNearLine(float px, float py, float x1, float y1, float x2, float y2, float threshold) {
     float dx = x2 - x1;
     float dy = y2 - y1;

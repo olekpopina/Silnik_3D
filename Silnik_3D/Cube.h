@@ -21,7 +21,7 @@ public:
     float normals[24];
     float colors[24];
     float scale;
-    float offsetX, offsetY;
+    float offsetX, offsetY, offsetX2, offsetY2;
     int shadingMode;
     bool isRotating = false; 
     float rotationAngle = 0.0f; 

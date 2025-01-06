@@ -7,6 +7,7 @@ void Player::handleInput(unsigned char key) {
     if (key == 'i' || key == 'I') { 
         isRotating = !isRotating;
         triangle->setRotation(isRotating);
+        std::cout << key;
     }
     else if (key == 'w' || key == 'W') { 
         triangle->setPosition(triangle->getPositionX(), triangle->getPositionY() + 0.1f);
@@ -58,6 +59,7 @@ void Player::handleInput(unsigned char key) {
     else if (key == 'q') { 
         isRotatingCube = !isRotatingCube;
         cube->setRotationC(isRotatingCube); 
+        std::cout << key;
     }
 }
 

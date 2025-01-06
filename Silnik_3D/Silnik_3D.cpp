@@ -4,18 +4,29 @@
 
 
 int main(int argc, char** argv) {
+    const std::string texture1Path = "D:/Silnik_3D/images/tlo.png";
+    const std::string texture2Path = "D:/win10/tlo.png";
+
     Engine gameEngine(800, 600, "Game Engine");
 
     Engine::setInstance(&gameEngine);
-
+    
     BitmapHandler bitmapHandler;
-
+    if (!bitmapHandler.loadTextures(texture1Path, texture2Path)) {
+        std::cerr << "Nie udało się załadować tekstury tła!" << std::endl;
+        return -1;
+    }
     gameEngine.init(argc, argv);
     gameEngine.setClearColor(0.2f, 0.3f, 0.4f);
     gameEngine.setFrameRate(60);
 
-    gameEngine.setBackgroundTexture("D:/win10/tlo.png");
-    
+    gameEngine.setTextures(texture1Path, texture2Path);
+
+    BitmapHandler cubeBitmapHandler;
+    if (!cubeBitmapHandler.loadTextures(texture2Path, texture1Path)) {
+        std::cerr << "Nie udało się załadować tekstury dla sześcianu!" << std::endl;
+        return -1;
+    }
     gameEngine.run();
 
     gameEngine.cleanup();

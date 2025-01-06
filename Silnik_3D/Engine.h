@@ -21,6 +21,7 @@ public:
     void setFrameRate(int fps);
     void run();
     void stop();
+    void setTextures(const std::string& backgroundPath, const std::string& cubePath);
     void render();
     void onKeyboard(unsigned char key, int x, int y);
     void onMouse(int button, int state, int x, int y);

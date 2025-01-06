@@ -3,45 +3,49 @@
 
 
 BitmapHandler::BitmapHandler()
-    : textureId(0), textureWidth(0), textureHeight(0), isTextureLoaded(false) {
+    : texture1(0), texture2(0), textureWidth(0), textureHeight(0), isTextureLoaded_1(false), isTextureLoaded_2(false) {
 }
 
 BitmapHandler::~BitmapHandler() {
-    if (isTextureLoaded) {
-        glDeleteTextures(1, &textureId);
+    if (isTextureLoaded_1) {
+        glDeleteTextures(1, &texture1);
+    }
+    if (isTextureLoaded_2) {
+        glDeleteTextures(1, &texture2);
     }
 }
-
-bool BitmapHandler::loadTexture(const std::string& filePath) {
+GLuint BitmapHandler::loadSingleTexture(const std::string& filePath) {
     sf::Image image;
     if (!image.loadFromFile(filePath)) {
-        std::cerr << "Nie mozna wczytac obrazu: " << filePath << std::endl;
-        return false;
+        std::cerr << "Nie mo¿na za³adowaæ obrazu: " << filePath << std::endl;
+        return 0;
     }
 
-    textureWidth = image.getSize().x;
-    textureHeight = image.getSize().y;
-
-    // Generowanie tekstury w OpenGL
+    GLuint textureId;
     glGenTextures(1, &textureId);
     glBindTexture(GL_TEXTURE_2D, textureId);
 
-    // Za³aduj dane obrazu jako teksturê
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, textureWidth, textureHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, image.getPixelsPtr());
-
-    // Ustawienia filtrowania tekstury
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, image.getSize().x, image.getSize().y, 0, GL_RGBA, GL_UNSIGNED_BYTE, image.getPixelsPtr());
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
     glBindTexture(GL_TEXTURE_2D, 0);
-    isTextureLoaded = true;
-
-    std::cout << "Obraz zaladowano pomylnie: " << filePath << std::endl;
-    return true;
+    return textureId;
 }
 
+bool BitmapHandler::loadTextures(const std::string& filePath1, const std::string& filePath2) {
+    texture1 = loadSingleTexture(filePath1);
+    isTextureLoaded_1 = (texture1 != 0);
+
+    texture2 = loadSingleTexture(filePath2);
+    isTextureLoaded_2 = (texture2 != 0);
+
+    return isTextureLoaded_1 && isTextureLoaded_2;
+}
+
+
 void BitmapHandler::drawBackground() {
-    if (!isTextureLoaded) return;
+    if (!isTextureLoaded_1) return;
 
     // Save the current projection and modelview matrices
     glMatrixMode(GL_PROJECTION);
@@ -56,7 +60,7 @@ void BitmapHandler::drawBackground() {
     // Disable depth test and enable textures
     glDisable(GL_DEPTH_TEST);
     glEnable(GL_TEXTURE_2D);
-    glBindTexture(GL_TEXTURE_2D, textureId);
+    glBindTexture(GL_TEXTURE_2D, texture1);
 
     // Draw a fullscreen quad
     glBegin(GL_QUADS);
@@ -75,4 +79,10 @@ void BitmapHandler::drawBackground() {
     glMatrixMode(GL_MODELVIEW);
     glPopMatrix();
 }
-
+void BitmapHandler::bindTextureForCube() {
+    if (!isTextureLoaded_2) {
+        std::cerr << "Tekstura kostki nie zosta³a za³adowana!" << std::endl;
+        return;
+    }
+    glBindTexture(GL_TEXTURE_2D, texture2);
+}

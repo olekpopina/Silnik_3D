@@ -10,21 +10,26 @@ public:
     BitmapHandler();
     ~BitmapHandler();
      void bindTexture();
-    // £adowanie obrazu
-    bool loadTexture(const std::string& filePath);
+
+   
 
     // Rysowanie obrazu jako t³a
     void drawBackground();
 
+    void bindTextureForCube();
 
-    GLuint textureId;           // Identyfikator tekstury OpenGL
-  
-  
+
+    GLuint texture1;           // Identyfikator tekstury OpenGL
+    bool isTextureLoaded_1;       // Flaga wskazuj¹ca, czy tekstura zosta³a za³adowana
+    GLuint texture2;           // Identyfikator tekstury OpenGL
+    bool isTextureLoaded_2;       // Flaga wskazuj¹ca, czy tekstura zosta³a za³adowana
+    GLuint loadSingleTexture(const std::string& filePath);
+    bool loadTextures(const std::string& filePath1, const std::string& filePath2);
 private:
    
     int textureWidth;           // Szerokoœæ tekstury
     int textureHeight;          // Wysokoœæ tekstury
-    bool isTextureLoaded;       // Flaga wskazuj¹ca, czy tekstura zosta³a za³adowana
+    
 };
 
 #endif // BITMAPHANDLER_H

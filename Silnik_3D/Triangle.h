@@ -20,7 +20,7 @@ private:
     float posX, posY;    
     bool isRotating = false;
     float rotationAngle = 0.0f; 
-    float rotationSpeed = 0.1f; 
+    float rotationSpeed = 1.0f; 
     float scale;
 
 public:

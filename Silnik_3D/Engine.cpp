@@ -71,11 +71,12 @@ void Engine::stop() {
     glutLeaveMainLoop();
 }
 
-void Engine::setBackgroundTexture(const std::string& filePath) {
-    if (!bitmapHandler.loadTexture(filePath)) {
-        std::cerr << "Nie udało się ustawić tekstury tła!" << std::endl;
+void Engine::setTextures(const std::string& backgroundPath, const std::string& cubePath) {
+    if (!bitmapHandler.loadTextures(backgroundPath, cubePath)) {
+        std::cerr << "Nie udało się załadować tekstur!" << std::endl;
     }
 }
+
 
 
 
@@ -92,11 +93,13 @@ void Engine::render() {
 
     glPushMatrix();
     cube.draw();
+    //bitmapHandler.loadTexture("D:/Silnik_3D/images/tlo.png");
     static float angle = 0.0f;
     angle += 0.2f;
 
     glRotatef(angle, 0.1f, 0.1f, 0.0f); // Obrót sześcianu
-    cube.drawNew();
+    //cube.drawNew();
+    PrimitiveDrawer::drawCubeNew(1.0f, 0.0f, 0.0f, bitmapHandler);
     glPopMatrix();
 
     glPushMatrix();
@@ -116,25 +119,7 @@ void Engine::render() {
     glutSwapBuffers();
 }
 
-/*
-void Engine::render() {
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    glLoadIdentity();
 
-    // Ustawienie kamery
-    gluLookAt(0.0, 0.0, 5.0,   // Pozycja kamery
-        0.0, 0.0, 0.0,   // Punkt, na który patrzy
-        0.0, 1.0, 0.0);  // Wektor "w górę"
-
-    static float angle = 0.0f;
-    angle += 0.2f;
-
-    glRotatef(angle, 0.1f, 0.1f, 0.0f); // Obrót sześcianu
-    cube.drawNew();
-
-    glutSwapBuffers();
-}
-*/
 bool Engine::isPointNearLine(float px, float py, float x1, float y1, float x2, float y2, float threshold) {
     float dx = x2 - x1;
     float dy = y2 - y1;

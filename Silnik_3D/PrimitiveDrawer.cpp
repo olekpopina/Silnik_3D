@@ -154,9 +154,17 @@ void PrimitiveDrawer::drawCube(float scale, float offsetX, float offsetY, float 
 }
 
 
-void PrimitiveDrawer::drawCubeNew(float scale, float offsetX, float offsetY, float vertices[24], unsigned int indices[36], float normals[24], float colors[24], BitmapHandler& bitmapHandler) {
-    glBindTexture(GL_TEXTURE_2D, bitmapHandler.textureId);
+void PrimitiveDrawer::drawCubeNew(float scale, float offsetX, float offsetY, BitmapHandler& bitmapHandler) {
+   
+    bitmapHandler.bindTextureForCube();
 
+    glEnable(GL_TEXTURE_2D);
+    
+    
+    glPushMatrix();
+    glTranslatef(offsetX, offsetY, 0.0f);
+    glScalef(scale, scale, scale);
+    
     glBegin(GL_QUADS);
 
     // Przednia œciana
@@ -167,9 +175,9 @@ void PrimitiveDrawer::drawCubeNew(float scale, float offsetX, float offsetY, flo
 
     // Tylna œciana
     glTexCoord2f(0.0f, 0.0f); glVertex3f(-1.0f, -1.0f, -1.0f);
-    glTexCoord2f(1.0f, 0.0f); glVertex3f(-1.0f, 1.0f, -1.0f);
+    glTexCoord2f(1.0f, 0.0f); glVertex3f(1.0f, -1.0f, -1.0f);
     glTexCoord2f(1.0f, 1.0f); glVertex3f(1.0f, 1.0f, -1.0f);
-    glTexCoord2f(0.0f, 1.0f); glVertex3f(1.0f, -1.0f, -1.0f);
+    glTexCoord2f(0.0f, 1.0f); glVertex3f(-1.0f, 1.0f, -1.0f);
 
     // Lewa œciana
     glTexCoord2f(0.0f, 0.0f); glVertex3f(-1.0f, -1.0f, -1.0f);
@@ -179,9 +187,9 @@ void PrimitiveDrawer::drawCubeNew(float scale, float offsetX, float offsetY, flo
 
     // Prawa œciana
     glTexCoord2f(0.0f, 0.0f); glVertex3f(1.0f, -1.0f, -1.0f);
-    glTexCoord2f(1.0f, 0.0f); glVertex3f(1.0f, 1.0f, -1.0f);
+    glTexCoord2f(1.0f, 0.0f); glVertex3f(1.0f, -1.0f, 1.0f);
     glTexCoord2f(1.0f, 1.0f); glVertex3f(1.0f, 1.0f, 1.0f);
-    glTexCoord2f(0.0f, 1.0f); glVertex3f(1.0f, -1.0f, 1.0f);
+    glTexCoord2f(0.0f, 1.0f); glVertex3f(1.0f, 1.0f, -1.0f);
 
     // Górna œciana
     glTexCoord2f(0.0f, 0.0f); glVertex3f(-1.0f, 1.0f, -1.0f);
@@ -191,10 +199,16 @@ void PrimitiveDrawer::drawCubeNew(float scale, float offsetX, float offsetY, flo
 
     // Dolna œciana
     glTexCoord2f(0.0f, 0.0f); glVertex3f(-1.0f, -1.0f, -1.0f);
-    glTexCoord2f(1.0f, 0.0f); glVertex3f(1.0f, -1.0f, -1.0f);
+    glTexCoord2f(1.0f, 0.0f); glVertex3f(-1.0f, -1.0f, 1.0f);
     glTexCoord2f(1.0f, 1.0f); glVertex3f(1.0f, -1.0f, 1.0f);
-    glTexCoord2f(0.0f, 1.0f); glVertex3f(-1.0f, -1.0f, 1.0f);
+    glTexCoord2f(0.0f, 1.0f); glVertex3f(1.0f, -1.0f, -1.0f);
 
     glEnd();
+
+    glPopMatrix();
+
+    glBindTexture(GL_TEXTURE_2D, 0);
+    glDisable(GL_TEXTURE_2D);
+    
 }
 

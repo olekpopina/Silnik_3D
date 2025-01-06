@@ -15,10 +15,7 @@ Engine::Engine(int width, int height, const char* title)
     pointX(0.5f), pointY(0.5f), pointZ(0.5f),
     line(0.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f) {
 
-    std::fill(std::begin(vertices), std::end(vertices), 0.0f);
-    std::fill(std::begin(colors), std::end(colors), 1.0f);
-    std::fill(std::begin(normals), std::end(normals), 0.0f);
-    std::fill(std::begin(indices), std::end(indices), 0);
+   
 }
 
 void Engine::init(int argc, char** argv) {
@@ -81,7 +78,7 @@ void Engine::setBackgroundTexture(const std::string& filePath) {
 }
 
 
-/*
+
 void Engine::render() {
 
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -95,8 +92,6 @@ void Engine::render() {
 
     glPushMatrix();
     cube.draw();
-  
-
     glPopMatrix();
 
     glPushMatrix();
@@ -115,36 +110,6 @@ void Engine::render() {
 
     glutSwapBuffers();
 }
-*/
-void Engine::render() {
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    glLoadIdentity();
-
-    gluLookAt(1.5, 1.5, cameraZ, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
-
-    // Ustawienia tekstury
-    if (bitmapHandler.isTextureLoaded) {
-        glEnable(GL_TEXTURE_2D);
-        glBindTexture(GL_TEXTURE_2D, bitmapHandler.textureId);
-    }
-
-    // Rysowanie sześcianu z teksturą
-    glBegin(GL_QUADS);
-    cube.setTextureFile("D:/win10/tlo.png");
-    cube.drawNew();
-
-    glEnd();
-
-    if (bitmapHandler.isTextureLoaded) {
-        glBindTexture(GL_TEXTURE_2D, 0);
-        glDisable(GL_TEXTURE_2D);
-    }
-
-    glutSwapBuffers();
-}
-
-
-
 
 
 bool Engine::isPointNearLine(float px, float py, float x1, float y1, float x2, float y2, float threshold) {

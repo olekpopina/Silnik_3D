@@ -9,8 +9,6 @@ class Cube {
 public:
     Cube();
     void draw();
-    void setTextureFile(const std::string& filePath);
-    void setBitmapHandler(const BitmapHandler& handler);
     void drawNew();
     void scaleUp();    
     void scaleDown();  
@@ -27,9 +25,8 @@ public:
     int shadingMode;
     bool isRotating = false; 
     float rotationAngle = 0.0f; 
-    float rotationSpeed = 1.0f; 
-    BitmapHandler bitmapHandler;
-    std::string textureFilePath;
+    float rotationSpeed = 0.5f; 
+
 };
 
 #endif // CUBE_H

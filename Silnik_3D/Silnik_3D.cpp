@@ -1,4 +1,4 @@
-﻿
+﻿/*
 #include "Engine.h"
 #include <SFML/Graphics.hpp>
 
@@ -13,15 +13,15 @@ int main(int argc, char** argv) {
     gameEngine.setClearColor(0.2f, 0.3f, 0.4f);
     gameEngine.setFrameRate(60);
 
-    gameEngine.setBackgroundTexture("D:/Silnik_3D/images/tlo.png");
+    gameEngine.setBackgroundTexture("D:/win10/tlo.png");
 
     gameEngine.run();
 
     gameEngine.cleanup();
     return 0;
 }
+*/
 
-/*
 #include <GL/freeglut.h>
 #include <SFML/Graphics.hpp>
 #include <SFML/OpenGL.hpp>
@@ -107,9 +107,9 @@ void display() {
         0.0, 1.0, 0.0);  // Wektor "w górę"
 
     static float angle = 0.0f;
-    angle += 0.5f;
+    angle += 0.2f;
 
-    //glRotatef(angle, 1.0f, 1.0f, 0.0f); // Obrót sześcianu
+    glRotatef(angle, 0.1f, 0.1f, 0.0f); // Obrót sześcianu
     drawCube();
 
     glutSwapBuffers();
@@ -144,4 +144,3 @@ int main(int argc, char** argv) {
 
     return 0;
 }
-*/

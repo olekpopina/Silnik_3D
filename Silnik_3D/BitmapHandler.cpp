@@ -75,8 +75,4 @@ void BitmapHandler::drawBackground() {
     glMatrixMode(GL_MODELVIEW);
     glPopMatrix();
 }
-void BitmapHandler::bindTexture() {
-    if (isTextureLoaded) {
-        glBindTexture(GL_TEXTURE_2D, textureId);
-    }
-}
+

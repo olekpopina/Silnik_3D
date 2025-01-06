@@ -16,14 +16,15 @@ public:
     // Rysowanie obrazu jako t³a
     void drawBackground();
 
+
     GLuint textureId;           // Identyfikator tekstury OpenGL
   
-    bool isTextureLoaded;       // Flaga wskazuj¹ca, czy tekstura zosta³a za³adowana
+  
 private:
    
     int textureWidth;           // Szerokoœæ tekstury
     int textureHeight;          // Wysokoœæ tekstury
-    
+    bool isTextureLoaded;       // Flaga wskazuj¹ca, czy tekstura zosta³a za³adowana
 };
 
 #endif // BITMAPHANDLER_H

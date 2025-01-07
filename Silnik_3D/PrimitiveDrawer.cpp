@@ -155,62 +155,69 @@ void PrimitiveDrawer::drawCube(float scale, float offsetX, float offsetY, float 
 
 
 void PrimitiveDrawer::drawCubeNew(float scale, float offsetX, float offsetY, BitmapHandler& bitmapHandler) {
-   
-    bitmapHandler.bindTextureForCube();
-
     glEnable(GL_TEXTURE_2D);
-    
-    
+
     glPushMatrix();
     glTranslatef(offsetX, offsetY, 0.0f);
     glScalef(scale, scale, scale);
 
-   
-
-    glBegin(GL_QUADS);
-
     // Przednia œciana
+    glBindTexture(GL_TEXTURE_2D, bitmapHandler.texture2);
+    glBegin(GL_QUADS);
     glTexCoord2f(0.0f, 0.0f); glVertex3f(-1.0f, -1.0f, 1.0f);
     glTexCoord2f(1.0f, 0.0f); glVertex3f(1.0f, -1.0f, 1.0f);
     glTexCoord2f(1.0f, 1.0f); glVertex3f(1.0f, 1.0f, 1.0f);
     glTexCoord2f(0.0f, 1.0f); glVertex3f(-1.0f, 1.0f, 1.0f);
+    glEnd();
 
     // Tylna œciana
+    glBindTexture(GL_TEXTURE_2D, bitmapHandler.texture3);
+    glBegin(GL_QUADS);
     glTexCoord2f(0.0f, 0.0f); glVertex3f(-1.0f, -1.0f, -1.0f);
     glTexCoord2f(1.0f, 0.0f); glVertex3f(1.0f, -1.0f, -1.0f);
     glTexCoord2f(1.0f, 1.0f); glVertex3f(1.0f, 1.0f, -1.0f);
     glTexCoord2f(0.0f, 1.0f); glVertex3f(-1.0f, 1.0f, -1.0f);
+    glEnd();
 
     // Lewa œciana
+    glBindTexture(GL_TEXTURE_2D, bitmapHandler.texture4);
+    glBegin(GL_QUADS);
     glTexCoord2f(0.0f, 0.0f); glVertex3f(-1.0f, -1.0f, -1.0f);
     glTexCoord2f(1.0f, 0.0f); glVertex3f(-1.0f, -1.0f, 1.0f);
     glTexCoord2f(1.0f, 1.0f); glVertex3f(-1.0f, 1.0f, 1.0f);
     glTexCoord2f(0.0f, 1.0f); glVertex3f(-1.0f, 1.0f, -1.0f);
+    glEnd();
 
     // Prawa œciana
+    glBindTexture(GL_TEXTURE_2D, bitmapHandler.texture5);
+    glBegin(GL_QUADS);
     glTexCoord2f(0.0f, 0.0f); glVertex3f(1.0f, -1.0f, -1.0f);
     glTexCoord2f(1.0f, 0.0f); glVertex3f(1.0f, -1.0f, 1.0f);
     glTexCoord2f(1.0f, 1.0f); glVertex3f(1.0f, 1.0f, 1.0f);
     glTexCoord2f(0.0f, 1.0f); glVertex3f(1.0f, 1.0f, -1.0f);
+    glEnd();
 
     // Górna œciana
+    glBindTexture(GL_TEXTURE_2D, bitmapHandler.texture6);
+    glBegin(GL_QUADS);
     glTexCoord2f(0.0f, 0.0f); glVertex3f(-1.0f, 1.0f, -1.0f);
     glTexCoord2f(1.0f, 0.0f); glVertex3f(-1.0f, 1.0f, 1.0f);
     glTexCoord2f(1.0f, 1.0f); glVertex3f(1.0f, 1.0f, 1.0f);
     glTexCoord2f(0.0f, 1.0f); glVertex3f(1.0f, 1.0f, -1.0f);
+    glEnd();
 
     // Dolna œciana
+    glBindTexture(GL_TEXTURE_2D, bitmapHandler.texture7);
+    glBegin(GL_QUADS);
     glTexCoord2f(0.0f, 0.0f); glVertex3f(-1.0f, -1.0f, -1.0f);
     glTexCoord2f(1.0f, 0.0f); glVertex3f(-1.0f, -1.0f, 1.0f);
     glTexCoord2f(1.0f, 1.0f); glVertex3f(1.0f, -1.0f, 1.0f);
     glTexCoord2f(0.0f, 1.0f); glVertex3f(1.0f, -1.0f, -1.0f);
-
     glEnd();
 
     glPopMatrix();
 
     glBindTexture(GL_TEXTURE_2D, 0);
     glDisable(GL_TEXTURE_2D);
-    
 }
 

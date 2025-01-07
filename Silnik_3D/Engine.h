@@ -21,7 +21,7 @@ public:
     void setFrameRate(int fps);
     void run();
     void stop();
-    void setTextures(const std::string& backgroundPath, const std::string& cubePath);
+    void setTextures(const std::string& backgroundPath, const std::string& cubePath2, const std::string& cubePath3, const std::string& cubePath4, const std::string& cubePath5, const std::string& cubePath6, const std::string& cubePath7);
     void render();
     void onKeyboard(unsigned char key, int x, int y);
     void onMouse(int button, int state, int x, int y);
@@ -31,7 +31,7 @@ public:
     void onMouseWheel(int wheel, int direction, int x, int y);
     static void setInstance(Engine* engineInstance);
 
-    void setBackgroundTexture(const std::string& filePath);
+
    
 
 

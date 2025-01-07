@@ -3,7 +3,8 @@
 
 
 BitmapHandler::BitmapHandler()
-    : texture1(0), texture2(0), textureWidth(0), textureHeight(0), isTextureLoaded_1(false), isTextureLoaded_2(false) {
+    : texture1(0), texture2(0), texture3(0), texture4(0), texture5(0), texture6(0), texture7(0), textureWidth(0), textureHeight(0), 
+    isTextureLoaded_1(false), isTextureLoaded_2(false), isTextureLoaded_3(false), isTextureLoaded_4(false), isTextureLoaded_5(false), isTextureLoaded_6(false), isTextureLoaded_7(false) {
 }
 
 BitmapHandler::~BitmapHandler() {
@@ -13,6 +14,22 @@ BitmapHandler::~BitmapHandler() {
     if (isTextureLoaded_2) {
         glDeleteTextures(1, &texture2);
     }
+    if (isTextureLoaded_3) {
+        glDeleteTextures(1, &texture3);
+    }
+    if (isTextureLoaded_4) {
+        glDeleteTextures(1, &texture4);
+    }
+    if (isTextureLoaded_5) {
+        glDeleteTextures(1, &texture5);
+    }
+    if (isTextureLoaded_6) {
+        glDeleteTextures(1, &texture6);
+    }
+    if (isTextureLoaded_7) {
+        glDeleteTextures(1, &texture7);
+    }
+ 
 }
 GLuint BitmapHandler::loadSingleTexture(const std::string& filePath) {
     sf::Image image;
@@ -33,14 +50,29 @@ GLuint BitmapHandler::loadSingleTexture(const std::string& filePath) {
     return textureId;
 }
 
-bool BitmapHandler::loadTextures(const std::string& filePath1, const std::string& filePath2) {
+bool BitmapHandler::loadTextures(const std::string& filePath1, const std::string& filePath2, const std::string& filePath3, const std::string& filePath4, const std::string& filePath5, const std::string& filePath6, const std::string& filePath7) {
     texture1 = loadSingleTexture(filePath1);
     isTextureLoaded_1 = (texture1 != 0);
 
     texture2 = loadSingleTexture(filePath2);
     isTextureLoaded_2 = (texture2 != 0);
 
-    return isTextureLoaded_1 && isTextureLoaded_2;
+    texture3 = loadSingleTexture(filePath3);
+    isTextureLoaded_3 = (texture3 != 0);
+
+    texture4 = loadSingleTexture(filePath4);
+    isTextureLoaded_4 = (texture4 != 0);
+
+    texture5 = loadSingleTexture(filePath5);
+    isTextureLoaded_5 = (texture5 != 0);
+
+    texture6 = loadSingleTexture(filePath6);
+    isTextureLoaded_6 = (texture6 != 0);
+
+    texture7 = loadSingleTexture(filePath7);
+    isTextureLoaded_7 = (texture7 != 0);
+
+    return isTextureLoaded_1 && isTextureLoaded_2 && isTextureLoaded_3 && isTextureLoaded_4 && isTextureLoaded_5 && isTextureLoaded_6 && isTextureLoaded_7;
 }
 
 
@@ -84,5 +116,27 @@ void BitmapHandler::bindTextureForCube() {
         std::cerr << "Tekstura kostki nie zosta³a za³adowana!" << std::endl;
         return;
     }
+    if (!isTextureLoaded_3) {
+        std::cerr << "Tekstura kostki nie zosta³a za³adowana!" << std::endl;
+        return;
+    }
+    if (!isTextureLoaded_4) {
+        std::cerr << "Tekstura kostki nie zosta³a za³adowana!" << std::endl;
+        return;
+    }
+    if (!isTextureLoaded_5) {
+        std::cerr << "Tekstura kostki nie zosta³a za³adowana!" << std::endl;
+        return;
+    }
+    if (!isTextureLoaded_6) {
+        std::cerr << "Tekstura kostki nie zosta³a za³adowana!" << std::endl;
+        return;
+    }
+    if (!isTextureLoaded_7) {
+        std::cerr << "Tekstura kostki nie zosta³a za³adowana!" << std::endl;
+        return;
+    }
+
+
     glBindTexture(GL_TEXTURE_2D, texture2);
 }

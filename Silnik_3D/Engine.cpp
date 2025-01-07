@@ -71,8 +71,8 @@ void Engine::stop() {
     glutLeaveMainLoop();
 }
 
-void Engine::setTextures(const std::string& backgroundPath, const std::string& cubePath) {
-    if (!bitmapHandler.loadTextures(backgroundPath, cubePath)) {
+void Engine::setTextures(const std::string& backgroundPath, const std::string& cubePath2, const std::string& cubePath3, const std::string& cubePath4, const std::string& cubePath5, const std::string& cubePath6, const std::string& cubePath7) {
+    if (!bitmapHandler.loadTextures(backgroundPath, cubePath2, cubePath3, cubePath4, cubePath5, cubePath6, cubePath7)) {
         std::cerr << "Nie udało się załadować tekstur!" << std::endl;
     }
 }

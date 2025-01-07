@@ -10,7 +10,7 @@
 #include "TransformableObject.h"
 #include "BitmapHandler.h"
 #include <SFML/Graphics.hpp>
-
+#include <random>
 
 class Engine {
 public:
@@ -60,11 +60,21 @@ private:
     bool isPointNearLine(float px, float py, float x1, float y1, float x2, float y2, float threshold);
     float trianglePosX = 0.0f; 
     float trianglePosY = 0.0f; 
-    float linePosX = 0.10f; 
+    float linePosX = 2.0f; 
     float linePosY = 0.10f; 
     float pointX, pointY, pointZ;
     float minCameraZ = 2.0f; 
     float maxCameraZ = 20.0f;
+
+    bool isCubeRotating = false; // Czy kostka siê obraca
+    float rotationStartTime = 0.0f; // Czas rozpoczêcia obrotu
+    float cubeRotationAngle = 0.0f; // Aktualny k¹t obrotu kostki
+    float targetRotationAngle = 0.0f; // Docelowy k¹t obrotu po losowaniu
+   
+    std::mt19937 rng; // Generator liczb losowych
+    std::uniform_int_distribution<int> dist; // Rozk³ad liczb losowych
+    int previousSide = -1; // Ostatnia wylosowana strona, -1 oznacza brak pocz¹tkowej strony
+
 
     Line line;
 

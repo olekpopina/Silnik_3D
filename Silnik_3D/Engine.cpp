@@ -13,7 +13,7 @@ Engine::Engine(int width, int height, const char* title)
     lastMouseX(0), lastMouseY(0), lastTime(0),
     isDragging(false), cameraZ(5.0f), player(&triangle, &cube, &drawer), 
     pointX(0.5f), pointY(0.5f), pointZ(0.5f),
-    line(0.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f) {
+    line(0.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f), rng(std::random_device{}()), dist(0, 5) {
 
    
 }
@@ -93,12 +93,27 @@ void Engine::render() {
 
     glPushMatrix();
     cube.draw();
-    //bitmapHandler.loadTexture("D:/Silnik_3D/images/tlo.png");
-    static float angle = 0.0f;
-    angle += 0.2f;
+  
+    //static float angle = 0.0f;
+   // angle += 0.2f;
 
-    glRotatef(angle, 0.1f, 0.1f, 0.0f); // Obrót sześcianu
-    //cube.drawNew();
+   // glRotatef(angle, 0.1f, 0.1f, 0.0f); // Obrót sześcianu
+    
+   //cube.drawNew(); trzeba poprawic
+    if (isCubeRotating) {
+        float currentTime = glutGet(GLUT_ELAPSED_TIME) / 1000.0f;
+        float elapsedTime = currentTime - rotationStartTime;
+
+        if (elapsedTime < 2.0f) {
+            cubeRotationAngle = 360.0f * elapsedTime; // Dynamiczny obrót
+        }
+        else {
+            cubeRotationAngle = targetRotationAngle; // Ustaw docelowy kąt
+            isCubeRotating = false; // Zakończenie obrotu
+        }
+    }
+
+    glRotatef(cubeRotationAngle, 0.1f, 0.1f, 0.0f); // Obrót kostki
     PrimitiveDrawer::drawCubeNew(1.0f, 0.0f, 0.0f, bitmapHandler);
     glPopMatrix();
 
@@ -170,6 +185,7 @@ void Engine::onSpecialKeyboard(int key, int x, int y) {
 }
 
 void Engine::onMouse(int button, int state, int x, int y) {
+    /*
     if (button == GLUT_LEFT_BUTTON) {
         if (state == GLUT_DOWN) {
             isDragging = true;
@@ -180,9 +196,24 @@ void Engine::onMouse(int button, int state, int x, int y) {
             isDragging = false;
         }
     }
+    */
+    if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN && !isCubeRotating) {
+        isCubeRotating = true;
+        rotationStartTime = glutGet(GLUT_ELAPSED_TIME) / 1000.0f; // Start obrotu
+
+        int newSide;
+        do {
+            newSide = dist(rng); // Losowanie strony (0–5)
+        } while (newSide == previousSide); // Powtarzaj losowanie, jeśli jest taka sama jak poprzednia
+
+        previousSide = newSide; // Zapisz nową stronę jako poprzednią
+        targetRotationAngle = 360.0f * newSide; // Ustaw docelowy kąt na podstawie nowej strony
+    }
+
 }
 
 void Engine::onMouseMove(int x, int y) {
+    /*
     if (isDragging) {
     
         float dx = (x - lastMouseX) * 0.01f;
@@ -203,12 +234,17 @@ void Engine::onMouseMove(int x, int y) {
 
         glutPostRedisplay();
     }
+    */
 }
 
 void Engine::idleCallback() {
     float currentTime = glutGet(GLUT_ELAPSED_TIME) / 1000.0f; 
     float deltaTime = currentTime - instance->lastTime;     
     instance->lastTime = currentTime;
+
+    if (instance->isCubeRotating) {
+        glutPostRedisplay(); // Odświeżanie podczas obrotu
+    }
 
     instance->player.update(deltaTime); 
     glutPostRedisplay();               

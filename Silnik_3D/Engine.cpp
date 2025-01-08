@@ -94,10 +94,7 @@ void Engine::render() {
     glPushMatrix();
     cube.draw();
   
-    //static float angle = 0.0f;
-   // angle += 0.2f;
-
-   // glRotatef(angle, 0.1f, 0.1f, 0.0f); // Obrót sześcianu
+   
     
    //cube.drawNew(); trzeba poprawic
     if (isCubeRotating) {
@@ -105,15 +102,18 @@ void Engine::render() {
         float elapsedTime = currentTime - rotationStartTime;
 
         if (elapsedTime < 2.0f) {
-            cubeRotationAngle = 360.0f * elapsedTime; // Dynamiczny obrót
+            cubeRotationAngle = elapsedTime * 180.0f; // Dynamiczny obrót
         }
         else {
-            cubeRotationAngle = targetRotationAngle; // Ustaw docelowy kąt
-            isCubeRotating = false; // Zakończenie obrotu
+            cubeRotationAngle = targetRotationAngle; // Docelowy kąt
+            isCubeRotating = false; // Zatrzymaj obrót
         }
     }
 
-    glRotatef(cubeRotationAngle, 0.1f, 0.1f, 0.0f); // Obrót kostki
+    // Obracaj kostkę wokół losowo wybranej osi
+    glRotatef(cubeRotationAngle, rotationAxisX, rotationAxisY, rotationAxisZ);
+
+
     PrimitiveDrawer::drawCubeNew(1.0f, 0.0f, 0.0f, bitmapHandler);
     glPopMatrix();
 
@@ -201,14 +201,25 @@ void Engine::onMouse(int button, int state, int x, int y) {
         isCubeRotating = true;
         rotationStartTime = glutGet(GLUT_ELAPSED_TIME) / 1000.0f; // Start obrotu
 
+        // Losuj nową ścianę
         int newSide;
         do {
             newSide = dist(rng); // Losowanie strony (0–5)
-        } while (newSide == previousSide); // Powtarzaj losowanie, jeśli jest taka sama jak poprzednia
-
+        } while (newSide == previousSide); // Powtarzaj losowanie, jeśli wylosowano tę samą ścianę
         previousSide = newSide; // Zapisz nową stronę jako poprzednią
-        targetRotationAngle = 360.0f * newSide; // Ustaw docelowy kąt na podstawie nowej strony
+
+        // Losuj kierunek obrotu (zgodnie/przeciwnie do ruchu wskazówek zegara)
+        rotationDirection = (dist(rng) % 2 == 0); // Prawda/fałsz
+
+        // Losuj oś obrotu
+        rotationAxisX = (dist(rng) % 2 == 0) ? 1.0f : 0.0f;
+        rotationAxisY = (dist(rng) % 2 == 0) ? 1.0f : 0.0f;
+        rotationAxisZ = (dist(rng) % 2 == 0) ? 1.0f : 0.0f;
+
+        // Ustaw docelowy kąt na podstawie nowej ściany i kierunku obrotu
+        targetRotationAngle = rotationDirection ? 90.0f * newSide : -90.0f * newSide;
     }
+
 
 }
 

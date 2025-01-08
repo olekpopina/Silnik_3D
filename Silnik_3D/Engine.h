@@ -70,7 +70,10 @@ private:
     float rotationStartTime = 0.0f; // Czas rozpoczêcia obrotu
     float cubeRotationAngle = 0.0f; // Aktualny k¹t obrotu kostki
     float targetRotationAngle = 0.0f; // Docelowy k¹t obrotu po losowaniu
-   
+    float rotationAxisX = 1.0f;
+    float rotationAxisY = 0.0f;
+    float rotationAxisZ = 0.0f;
+    bool rotationDirection = true; // true = zgodnie z ruchem wskazówek zegara
     std::mt19937 rng; // Generator liczb losowych
     std::uniform_int_distribution<int> dist; // Rozk³ad liczb losowych
     int previousSide = -1; // Ostatnia wylosowana strona, -1 oznacza brak pocz¹tkowej strony

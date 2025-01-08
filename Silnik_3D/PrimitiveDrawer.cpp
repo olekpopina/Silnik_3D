@@ -26,20 +26,29 @@ void PrimitiveDrawer::drawLine(float x1, float y1, float z1, float x2, float y2,
 }
 
 void PrimitiveDrawer::drawTriangle(float vertices1[9], float vertices2[9], float vertices3[9], float colors[9], float posX, float posY, float scale, float rotationAngle) {
-
     glEnable(GL_LIGHTING);
-    glEnable(GL_LIGHT0); 
+    glEnable(GL_LIGHT0);
 
-    GLfloat lightPos[] = { 0.0f, 0.0f, 5.0f, 1.0f }; 
-    GLfloat lightAmbient[] = { 0.2f, 0.2f, 0.2f, 1.0f }; 
-    GLfloat lightDiffuse[] = { 0.8f, 0.8f, 0.8f, 1.0f }; 
+    // Pozycja œwiat³a
+    GLfloat lightPos[] = { 0.0f, 0.0f, 5.0f, 1.0f };
+    GLfloat lightAmbient[] = { 0.2f, 0.2f, 0.2f, 1.0f };
+    GLfloat lightDiffuse[] = { 0.8f, 0.8f, 0.8f, 1.0f };
     GLfloat lightSpecular[] = { 1.0f, 1.0f, 1.0f, 1.0f };
+
+    // Parametry sto¿ka
+    GLfloat spotDirection[] = { 0.0f, 0.0f, -1.0f }; // Kierunek sto¿ka œwiat³a
+    GLfloat spotCutoff = 25.0f; // K¹t odciêcia sto¿ka (w stopniach)
+    GLfloat spotExponent = 15.0f; // Eksponent decyduj¹cy o rozmyciu krawêdzi sto¿ka
 
     glLightfv(GL_LIGHT0, GL_POSITION, lightPos);
     glLightfv(GL_LIGHT0, GL_AMBIENT, lightAmbient);
     glLightfv(GL_LIGHT0, GL_DIFFUSE, lightDiffuse);
     glLightfv(GL_LIGHT0, GL_SPECULAR, lightSpecular);
+    glLightfv(GL_LIGHT0, GL_SPOT_DIRECTION, spotDirection);
+    glLightf(GL_LIGHT0, GL_SPOT_CUTOFF, spotCutoff);
+    glLightf(GL_LIGHT0, GL_SPOT_EXPONENT, spotExponent);
 
+    // Materia³ trójk¹ta
     GLfloat matAmbient[] = { 0.2f, 0.5f, 0.2f, 1.0f };
     GLfloat matDiffuse[] = { 0.5f, 1.0f, 0.5f, 1.0f };
     GLfloat matSpecular[] = { 1.0f, 1.0f, 1.0f, 1.0f };
@@ -50,11 +59,13 @@ void PrimitiveDrawer::drawTriangle(float vertices1[9], float vertices2[9], float
     glMaterialfv(GL_FRONT, GL_SPECULAR, matSpecular);
     glMaterialf(GL_FRONT, GL_SHININESS, matShininess);
 
+    // Transformacje
     glPushMatrix();
-    glTranslatef(posX, posY, 0.0f); 
-    glRotatef(rotationAngle, 0.0f, 1.0f, 0.0f); 
+    glTranslatef(posX, posY, 0.0f);
+    glRotatef(rotationAngle, 0.0f, 1.0f, 0.0f);
     glScalef(scale, scale, scale);
 
+    // Normalne
     GLfloat normals[] = {
         0.0f, 0.0f, 1.0f,
         0.0f, 0.0f, 1.0f,
@@ -63,7 +74,6 @@ void PrimitiveDrawer::drawTriangle(float vertices1[9], float vertices2[9], float
 
     glEnableClientState(GL_VERTEX_ARRAY);
     glEnableClientState(GL_NORMAL_ARRAY);
-
 
     glVertexPointer(3, GL_FLOAT, 0, vertices1);
     glNormalPointer(GL_FLOAT, 0, normals);
@@ -84,8 +94,8 @@ void PrimitiveDrawer::drawTriangle(float vertices1[9], float vertices2[9], float
 
     glDisable(GL_LIGHT0);
     glDisable(GL_LIGHTING);
-    glScalef(scale, scale, scale);
 }
+
 
 void PrimitiveDrawer::drawCube(float scale, float offsetX, float offsetY, float vertices[24], unsigned int indices[36], float normals[24], float colors[24]) {
     glPushMatrix();
@@ -95,10 +105,11 @@ void PrimitiveDrawer::drawCube(float scale, float offsetX, float offsetY, float 
     if (currentShadingMode == PHONG) {
         // W³¹cz oœwietlenie i œwiat³o
         glEnable(GL_LIGHTING);
-        glEnable(GL_LIGHT0);
+        glEnable(GL_LIGHT0); // Œwiat³o punktowe
+        glEnable(GL_LIGHT1); // Œwiat³o kierunkowe
 
-        // Ustawienia œwiat³a
-        GLfloat lightPos[] = { 1.0f, 1.0f, 8.0f, 1.0f };
+        // Ustawienia œwiat³a punktowego
+        GLfloat lightPos[] = { 1.0f, 1.0f, 5.0f, 1.0f };
         GLfloat lightAmbient[] = { 0.2f, 0.2f, 0.2f, 1.0f };
         GLfloat lightDiffuse[] = { 0.8f, 0.0f, 0.0f, 1.0f }; // Czerwone œwiat³o
         GLfloat lightSpecular[] = { 1.0f, 1.0f, 1.0f, 1.0f };
@@ -106,6 +117,16 @@ void PrimitiveDrawer::drawCube(float scale, float offsetX, float offsetY, float 
         glLightfv(GL_LIGHT0, GL_AMBIENT, lightAmbient);
         glLightfv(GL_LIGHT0, GL_DIFFUSE, lightDiffuse);
         glLightfv(GL_LIGHT0, GL_SPECULAR, lightSpecular);
+
+        // Ustawienia œwiat³a kierunkowego
+        GLfloat dirLightDirection[] = { -1.0f, -1.0f, -1.0f }; // Kierunek œwiat³a (w dó³ i na lewo)
+        GLfloat dirLightAmbient[] = { 0.1f, 0.1f, 0.1f, 1.0f };
+        GLfloat dirLightDiffuse[] = { 0.5f, 0.5f, 0.5f, 1.0f };
+        GLfloat dirLightSpecular[] = { 0.8f, 0.8f, 0.8f, 1.0f };
+        glLightfv(GL_LIGHT1, GL_POSITION, dirLightDirection); // Kierunek œwiat³a kierunkowego
+        glLightfv(GL_LIGHT1, GL_AMBIENT, dirLightAmbient);
+        glLightfv(GL_LIGHT1, GL_DIFFUSE, dirLightDiffuse);
+        glLightfv(GL_LIGHT1, GL_SPECULAR, dirLightSpecular);
 
         // Ustawienia materia³u
         GLfloat matAmbient[] = { 0.2f, 0.0f, 0.0f, 1.0f }; // Czerwony ambient
@@ -128,7 +149,8 @@ void PrimitiveDrawer::drawCube(float scale, float offsetX, float offsetY, float 
         glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, indices);
 
         // Wy³¹cz oœwietlenie po rysowaniu
-        glDisable(GL_LIGHT0);
+        glDisable(GL_LIGHT1); // Wy³¹cz œwiat³o kierunkowe
+        glDisable(GL_LIGHT0); // Wy³¹cz œwiat³o punktowe
         glDisable(GL_LIGHTING);
     }
     else {
@@ -152,6 +174,7 @@ void PrimitiveDrawer::drawCube(float scale, float offsetX, float offsetY, float 
 
     glPopMatrix();
 }
+
 
 
 void PrimitiveDrawer::drawCubeNew(float scale, float offsetX, float offsetY, BitmapHandler& bitmapHandler) {

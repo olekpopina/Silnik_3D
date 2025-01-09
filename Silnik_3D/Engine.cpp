@@ -105,6 +105,7 @@ void Engine::render() {
 
     // Обертання кубика
     glPushMatrix();
+    cube.draw();
     glRotatef(cubeRotationAngle, rotationAxisX, rotationAxisY, rotationAxisZ);
     // Wywołaj funkcję drawCubeNew z wylosowaną teksturą, która jest przechowywana w zmiennej
     if (textureSet != -1) {
@@ -128,6 +129,20 @@ void Engine::render() {
     }
 
     bitmapHandler.drawPionek(pawnX, pawnY, 0.1f, 0.1f);
+
+    glPushMatrix();
+    triangle.updateRotation(deltaTime);
+    triangle.updatePosition();
+    triangle.draw();
+    glPopMatrix();
+
+    glPushMatrix();
+    glTranslatef(linePosX, linePosY, 0.0f);
+    line.draw();
+    PrimitiveDrawer::drawPoint(pointX, pointY, pointZ, 5.0f);
+    glPopMatrix();
+
+    gluLookAt(3.0, 3.0, cameraZ, 5.0, 0.0, 0.0, 0.0, 3.0, 2.0);
 
     glutSwapBuffers();
 }
@@ -308,11 +323,14 @@ void Engine::idleCallback() {
         instance->lastTime = currentTime;
 
         if (instance->isCubeRotating || instance->isPawnMoving) {
-            glutPostRedisplay(); // Оновлення екрану, якщо є активний рух
+        
+            
         }
+        instance->player.update(elapsedTime);
+        glutPostRedisplay(); // Оновлення екрану, якщо є активний рух
     }
-}
 
+}
 
 
 

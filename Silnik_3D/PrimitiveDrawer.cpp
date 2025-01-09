@@ -175,17 +175,75 @@ void PrimitiveDrawer::drawCube(float scale, float offsetX, float offsetY, float 
     glPopMatrix();
 }
 
-
-
-void PrimitiveDrawer::drawCubeNew(float scale, float offsetX, float offsetY, BitmapHandler& bitmapHandler) {
+void PrimitiveDrawer::drawCubeNew(float scale, float offsetX, float offsetY, BitmapHandler& bitmapHandler, int textureSet) {
     glEnable(GL_TEXTURE_2D);
+
+    GLuint textures[6];
+    switch (textureSet) {
+    case 1: // Zestaw tekstur 1
+        textures[0] = bitmapHandler.texture2; // Przednia
+        textures[1] = bitmapHandler.texture3; // Tylna
+        textures[2] = bitmapHandler.texture4; // Lewa
+        textures[3] = bitmapHandler.texture5; // Prawa
+        textures[4] = bitmapHandler.texture6; // Górna
+        textures[5] = bitmapHandler.texture7; // Dolna
+        break;
+    case 2: // Zestaw tekstur 2
+        textures[0] = bitmapHandler.texture3; // Przednia
+        textures[1] = bitmapHandler.texture4; // Tylna
+        textures[2] = bitmapHandler.texture5; // Lewa
+        textures[3] = bitmapHandler.texture6; // Prawa
+        textures[4] = bitmapHandler.texture7; // Górna
+        textures[5] = bitmapHandler.texture2; // Dolna
+        break;
+    case 3: // Zestaw tekstur 2
+        textures[0] = bitmapHandler.texture4; // Przednia
+        textures[1] = bitmapHandler.texture3; // Tylna
+        textures[2] = bitmapHandler.texture5; // Lewa
+        textures[3] = bitmapHandler.texture6; // Prawa
+        textures[4] = bitmapHandler.texture7; // Górna
+        textures[5] = bitmapHandler.texture2; // Dolna
+        break;
+    case 4: // Zestaw tekstur 2
+        textures[0] = bitmapHandler.texture5; // Przednia
+        textures[1] = bitmapHandler.texture4; // Tylna
+        textures[2] = bitmapHandler.texture3; // Lewa
+        textures[3] = bitmapHandler.texture6; // Prawa
+        textures[4] = bitmapHandler.texture7; // Górna
+        textures[5] = bitmapHandler.texture2; // Dolna
+        break;
+    case 5: // Zestaw tekstur 2
+        textures[0] = bitmapHandler.texture6; // Przednia
+        textures[1] = bitmapHandler.texture3; // Tylna
+        textures[2] = bitmapHandler.texture5; // Lewa
+        textures[3] = bitmapHandler.texture4; // Prawa
+        textures[4] = bitmapHandler.texture7; // Górna
+        textures[5] = bitmapHandler.texture2; // Dolna
+        break;
+    case 6: // Zestaw tekstur 2
+        textures[0] = bitmapHandler.texture7; // Przednia
+        textures[1] = bitmapHandler.texture3; // Tylna
+        textures[2] = bitmapHandler.texture5; // Lewa
+        textures[3] = bitmapHandler.texture6; // Prawa
+        textures[4] = bitmapHandler.texture4; // Górna
+        textures[5] = bitmapHandler.texture2; // Dolna
+        break;
+    default: // Domyœlny zestaw tekstur
+        textures[0] = bitmapHandler.texture2;
+        textures[1] = bitmapHandler.texture3;
+        textures[2] = bitmapHandler.texture4;
+        textures[3] = bitmapHandler.texture5;
+        textures[4] = bitmapHandler.texture6;
+        textures[5] = bitmapHandler.texture7;
+        break;
+    }
 
     glPushMatrix();
     glTranslatef(offsetX, offsetY, 0.0f);
     glScalef(scale, scale, scale);
 
     // Przednia œciana
-    glBindTexture(GL_TEXTURE_2D, bitmapHandler.texture2);
+    glBindTexture(GL_TEXTURE_2D, textures[0]);
     glBegin(GL_QUADS);
     glTexCoord2f(0.0f, 0.0f); glVertex3f(-1.0f, -1.0f, 1.0f);
     glTexCoord2f(1.0f, 0.0f); glVertex3f(1.0f, -1.0f, 1.0f);
@@ -194,7 +252,7 @@ void PrimitiveDrawer::drawCubeNew(float scale, float offsetX, float offsetY, Bit
     glEnd();
 
     // Tylna œciana
-    glBindTexture(GL_TEXTURE_2D, bitmapHandler.texture3);
+    glBindTexture(GL_TEXTURE_2D, textures[1]);
     glBegin(GL_QUADS);
     glTexCoord2f(0.0f, 0.0f); glVertex3f(-1.0f, -1.0f, -1.0f);
     glTexCoord2f(1.0f, 0.0f); glVertex3f(1.0f, -1.0f, -1.0f);
@@ -203,7 +261,7 @@ void PrimitiveDrawer::drawCubeNew(float scale, float offsetX, float offsetY, Bit
     glEnd();
 
     // Lewa œciana
-    glBindTexture(GL_TEXTURE_2D, bitmapHandler.texture4);
+    glBindTexture(GL_TEXTURE_2D, textures[2]);
     glBegin(GL_QUADS);
     glTexCoord2f(0.0f, 0.0f); glVertex3f(-1.0f, -1.0f, -1.0f);
     glTexCoord2f(1.0f, 0.0f); glVertex3f(-1.0f, -1.0f, 1.0f);
@@ -212,7 +270,7 @@ void PrimitiveDrawer::drawCubeNew(float scale, float offsetX, float offsetY, Bit
     glEnd();
 
     // Prawa œciana
-    glBindTexture(GL_TEXTURE_2D, bitmapHandler.texture5);
+    glBindTexture(GL_TEXTURE_2D, textures[3]);
     glBegin(GL_QUADS);
     glTexCoord2f(0.0f, 0.0f); glVertex3f(1.0f, -1.0f, -1.0f);
     glTexCoord2f(1.0f, 0.0f); glVertex3f(1.0f, -1.0f, 1.0f);
@@ -221,7 +279,7 @@ void PrimitiveDrawer::drawCubeNew(float scale, float offsetX, float offsetY, Bit
     glEnd();
 
     // Górna œciana
-    glBindTexture(GL_TEXTURE_2D, bitmapHandler.texture6);
+    glBindTexture(GL_TEXTURE_2D, textures[4]);
     glBegin(GL_QUADS);
     glTexCoord2f(0.0f, 0.0f); glVertex3f(-1.0f, 1.0f, -1.0f);
     glTexCoord2f(1.0f, 0.0f); glVertex3f(-1.0f, 1.0f, 1.0f);
@@ -230,7 +288,7 @@ void PrimitiveDrawer::drawCubeNew(float scale, float offsetX, float offsetY, Bit
     glEnd();
 
     // Dolna œciana
-    glBindTexture(GL_TEXTURE_2D, bitmapHandler.texture7);
+    glBindTexture(GL_TEXTURE_2D, textures[5]);
     glBegin(GL_QUADS);
     glTexCoord2f(0.0f, 0.0f); glVertex3f(-1.0f, -1.0f, -1.0f);
     glTexCoord2f(1.0f, 0.0f); glVertex3f(-1.0f, -1.0f, 1.0f);
@@ -239,7 +297,6 @@ void PrimitiveDrawer::drawCubeNew(float scale, float offsetX, float offsetY, Bit
     glEnd();
 
     glPopMatrix();
-
     glBindTexture(GL_TEXTURE_2D, 0);
     glDisable(GL_TEXTURE_2D);
 }

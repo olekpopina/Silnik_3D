@@ -16,8 +16,10 @@ public:
     // Rysowanie obrazu jako t³a
     void drawBackground();
 
-    void bindTextureForCube();
+   static void bindTextureForCube(int steps);
 
+    void drawPionek(float x, float y, float width, float height);
+    static BitmapHandler* handler;
 
     GLuint texture1;           
     bool isTextureLoaded_1;      
@@ -33,9 +35,10 @@ public:
     bool isTextureLoaded_6;
     GLuint texture7;
     bool isTextureLoaded_7;
-    
+    GLuint texture_pionek;
+    bool isTextureLoaded_pionek;
     GLuint loadSingleTexture(const std::string& filePath);
-    bool loadTextures(const std::string& filePath1, const std::string& filePath2, const std::string& filePath3, const std::string& filePath4, const std::string& filePath5, const std::string& filePath6, const std::string& filePath7);
+    bool loadTextures(const std::string& filePath1, const std::string& filePath2, const std::string& filePath3, const std::string& filePath4, const std::string& filePath5, const std::string& filePath6, const std::string& filePath7, const std::string& pionek);
 private:
    
     int textureWidth;           // Szerokoœæ tekstury

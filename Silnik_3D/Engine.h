@@ -21,13 +21,15 @@ public:
     void setFrameRate(int fps);
     void run();
     void stop();
-    void setTextures(const std::string& backgroundPath, const std::string& cubePath2, const std::string& cubePath3, const std::string& cubePath4, const std::string& cubePath5, const std::string& cubePath6, const std::string& cubePath7);
+    void setTextures(const std::string& backgroundPath, const std::string& cubePath2, const std::string& cubePath3, const std::string& cubePath4, const std::string& cubePath5, const std::string& cubePath6, const std::string& cubePath7, const std::string& pionek);
     void render();
     void onKeyboard(unsigned char key, int x, int y);
     void onMouse(int button, int state, int x, int y);
+
     void onMouseMove(int x, int y);
     void cleanup();
     void onSpecialKeyboard(int key, int x, int y);
+    void updatePawnPosition();
     void onMouseWheel(int wheel, int direction, int x, int y);
     static void setInstance(Engine* engineInstance);
 
@@ -66,7 +68,8 @@ private:
     float minCameraZ = 2.0f; 
     float maxCameraZ = 20.0f;
 
-    bool isCubeRotating = false; // Czy kostka siê obraca
+    bool isCubeRotating_old = false; // Czy kostka siê obraca
+    bool isCubeRotating = false;
     float rotationStartTime = 0.0f; // Czas rozpoczêcia obrotu
     float cubeRotationAngle = 0.0f; // Aktualny k¹t obrotu kostki
     float targetRotationAngle = 0.0f; // Docelowy k¹t obrotu po losowaniu
@@ -78,6 +81,16 @@ private:
     std::uniform_int_distribution<int> dist; // Rozk³ad liczb losowych
     int previousSide = -1; // Ostatnia wylosowana strona, -1 oznacza brak pocz¹tkowej strony
 
+    bool isPawnMoving = false;
+    int pawnStepsRemaining = 0;
+    float pawnStepSize = 0.05f;
+    float pawnX = 0.1f, pawnY = 0.1f;
+    float pawnTargetX = 0.3f, pawnTargetY = 0.3f;
+    float pawnMoveDelay = 0.5f;
+    float pawnLastMoveTime = 0.0f;
+    bool movePawnAfterRotation = false;
+    int targetSide = 2;
+  
 
     Line line;
 

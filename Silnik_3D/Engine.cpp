@@ -71,8 +71,8 @@ void Engine::stop() {
     glutLeaveMainLoop();
 }
 
-void Engine::setTextures(const std::string& backgroundPath, const std::string& cubePath2, const std::string& cubePath3, const std::string& cubePath4, const std::string& cubePath5, const std::string& cubePath6, const std::string& cubePath7) {
-    if (!bitmapHandler.loadTextures(backgroundPath, cubePath2, cubePath3, cubePath4, cubePath5, cubePath6, cubePath7)) {
+void Engine::setTextures(const std::string& backgroundPath, const std::string& cubePath2, const std::string& cubePath3, const std::string& cubePath4, const std::string& cubePath5, const std::string& cubePath6, const std::string& cubePath7, const std::string& pionek) {
+    if (!bitmapHandler.loadTextures(backgroundPath, cubePath2, cubePath3, cubePath4, cubePath5, cubePath6, cubePath7, pionek)) {
         std::cerr << "Nie udało się załadować tekstur!" << std::endl;
     }
 }
@@ -91,12 +91,12 @@ void Engine::render() {
 
     bitmapHandler.drawBackground();
 
+    updatePawnPosition();
+
     glPushMatrix();
     cube.draw();
   
    
-    
-   //cube.drawNew(); trzeba poprawic
     if (isCubeRotating) {
         float currentTime = glutGet(GLUT_ELAPSED_TIME) / 1000.0f;
         float elapsedTime = currentTime - rotationStartTime;
@@ -105,17 +105,38 @@ void Engine::render() {
             cubeRotationAngle = elapsedTime * 180.0f; // Dynamiczny obrót
         }
         else {
-            cubeRotationAngle = targetRotationAngle; // Docelowy kąt
-            isCubeRotating = false; // Zatrzymaj obrót
+            cubeRotationAngle = targetRotationAngle;
+            isCubeRotating = false;
+
+            // Zakończ obrót i rozpocznij ruch pionka
+            isPawnMoving = true;
+            pawnLastMoveTime = currentTime;
         }
     }
 
     // Obracaj kostkę wokół losowo wybranej osi
     glRotatef(cubeRotationAngle, rotationAxisX, rotationAxisY, rotationAxisZ);
 
-
     PrimitiveDrawer::drawCubeNew(1.0f, 0.0f, 0.0f, bitmapHandler);
     glPopMatrix();
+    // Rysowanie pionka i jego ruch
+    if (isPawnMoving) {
+        float currentTime = glutGet(GLUT_ELAPSED_TIME) / 1000.0f;
+        float elapsedTime = currentTime - pawnLastMoveTime;
+
+        if (elapsedTime >= 0.1f && pawnStepsRemaining > 0) { // Jeden krok co 0.1 sekundy
+            pawnX += pawnStepSize;
+            pawnStepsRemaining--;
+            pawnLastMoveTime = currentTime;
+        }
+
+        if (pawnStepsRemaining == 0) {
+            isPawnMoving = false;
+        }
+    }
+    bitmapHandler.drawPionek(pawnX, pawnY, 0.1f, 0.1f);
+
+  //  glPopMatrix();
 
     glPushMatrix();
     triangle.updateRotation(deltaTime);
@@ -184,6 +205,33 @@ void Engine::onSpecialKeyboard(int key, int x, int y) {
     glutPostRedisplay();
 }
 
+void Engine::updatePawnPosition() {
+    // Jeśli pionek osiągnął prawą krawędź
+    if (pawnX >= 750.0f) {
+        pawnX = 0.0f;   // Resetujemy na lewą krawędź
+        pawnY += 0.1f;   // Przemieszczamy pionka do góry
+    }
+
+    // Jeśli pionek osiągnął górną krawędź
+    if (pawnY >= 550.0f) {
+        pawnY = 0.0f;   // Resetujemy na dolną krawędź
+        pawnX += 0.1f;   // Przemieszczamy pionka w prawo
+    }
+
+    // Jeśli pionek osiągnął dolną krawędź
+    if (pawnY <= 0.0f) {
+        pawnY = 550.0f;   // Resetujemy na górną krawędź
+        pawnX += 0.1f;   // Przemieszczamy pionka w prawo
+    }
+
+    // Jeśli pionek osiągnął lewą krawędź
+    if (pawnX <= 0.0f) {
+        pawnX = 750.0f;   // Resetujemy na prawą krawędź
+        pawnY -= 0.1f;   // Przemieszczamy pionka w dół
+    }
+}
+
+
 void Engine::onMouse(int button, int state, int x, int y) {
     /*
     if (button == GLUT_LEFT_BUTTON) {
@@ -197,30 +245,31 @@ void Engine::onMouse(int button, int state, int x, int y) {
         }
     }
     */
-    if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN && !isCubeRotating) {
+  
+    if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN && !isCubeRotating && !isPawnMoving) {
+        // Rozpocznij obrót kostki
         isCubeRotating = true;
-        rotationStartTime = glutGet(GLUT_ELAPSED_TIME) / 1000.0f; // Start obrotu
+        rotationStartTime = glutGet(GLUT_ELAPSED_TIME) / 1000.0f;
 
-        // Losuj nową ścianę
-        int newSide;
-        do {
-            newSide = dist(rng); // Losowanie strony (0–5)
-        } while (newSide == previousSide); // Powtarzaj losowanie, jeśli wylosowano tę samą ścianę
-        previousSide = newSide; // Zapisz nową stronę jako poprzednią
+        // Losuj liczbę kroków (1–6)
+        srand(static_cast<unsigned int>(time(nullptr)));
+        int steps = (rand() % 6) + 1;
+        pawnStepsRemaining = steps;
+        std::cout << "Wylosowano: " << steps << " ";
 
-        // Losuj kierunek obrotu (zgodnie/przeciwnie do ruchu wskazówek zegara)
-        rotationDirection = (dist(rng) % 2 == 0); // Prawda/fałsz
+        BitmapHandler::bindTextureForCube(steps);
+ 
+        // Obrót i ruch pionka
+        rotationAxisX = static_cast<float>(rand() % 2);
+        rotationAxisY = static_cast<float>(rand() % 2);
+        rotationAxisZ = (rotationAxisX == 0 && rotationAxisY == 0) ? 1.0f : 0.0f;
 
-        // Losuj oś obrotu
-        rotationAxisX = (dist(rng) % 2 == 0) ? 1.0f : 0.0f;
-        rotationAxisY = (dist(rng) % 2 == 0) ? 1.0f : 0.0f;
-        rotationAxisZ = (dist(rng) % 2 == 0) ? 1.0f : 0.0f;
-
-        // Ustaw docelowy kąt na podstawie nowej ściany i kierunku obrotu
-        targetRotationAngle = rotationDirection ? 90.0f * newSide : -90.0f * newSide;
+        pawnTargetX = pawnX + steps * pawnStepSize;
+        targetRotationAngle = 180.0f;
+        isPawnMoving = false; // Ruch pionka rozpocznie się po zakończeniu obrotu
     }
 
-
+    
 }
 
 void Engine::onMouseMove(int x, int y) {
@@ -247,11 +296,14 @@ void Engine::onMouseMove(int x, int y) {
     }
     */
 }
-
+/*
 void Engine::idleCallback() {
     float currentTime = glutGet(GLUT_ELAPSED_TIME) / 1000.0f; 
     float deltaTime = currentTime - instance->lastTime;     
     instance->lastTime = currentTime;
+
+   
+
 
     if (instance->isCubeRotating) {
         glutPostRedisplay(); // Odświeżanie podczas obrotu
@@ -260,6 +312,43 @@ void Engine::idleCallback() {
     instance->player.update(deltaTime); 
     glutPostRedisplay();               
 }
+*/
+
+void Engine::idleCallback() {
+  
+    if (instance) {
+        float currentTime = glutGet(GLUT_ELAPSED_TIME) / 1000.0f;
+        float deltaTime = currentTime - instance->lastTime;
+        instance->lastTime = currentTime;
+
+        if (instance->isCubeRotating) {
+            glutPostRedisplay(); // Odświeżanie podczas obrotu
+        }
+
+        if (instance->isPawnMoving) {
+            if (currentTime - instance->pawnLastMoveTime >= instance->pawnMoveDelay) {
+                if (instance->pawnStepsRemaining > 0) {
+                    instance->pawnX += instance->pawnStepSize;
+                    instance->pawnStepsRemaining--;
+                    instance->pawnLastMoveTime = currentTime;
+                }
+                else {
+                    instance->isPawnMoving = false;
+                }
+            }
+        }
+
+        if (instance->isCubeRotating) {
+            glutPostRedisplay();
+        }
+        instance->updatePawnPosition();
+        instance->player.update(deltaTime);
+        glutPostRedisplay();
+    }
+    
+
+}
+
 
 void Engine::renderCallback() {
     if (instance) {

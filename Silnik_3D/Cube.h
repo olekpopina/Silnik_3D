@@ -26,7 +26,7 @@ public:
     int shadingMode;
     bool isRotating = false; 
     float rotationAngle = 0.0f; 
-    float rotationSpeed = 0.1f; 
+    float rotationSpeed = 0.8f; 
     BitmapHandler bitmapHandler;
 };
 

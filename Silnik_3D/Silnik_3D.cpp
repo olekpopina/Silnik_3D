@@ -4,14 +4,14 @@
 
 
 int main(int argc, char** argv) {
-    const std::string texture1Path = "D:/Silnik_3D/images/tlowin.png";
-    const std::string texture2Path = "D:/Silnik_3D/images/1.png";
-    const std::string texture3Path = "D:/Silnik_3D/images/2.png";
-    const std::string texture4Path = "D:/Silnik_3D/images/3.png";
-    const std::string texture5Path = "D:/Silnik_3D/images/4.png";
-    const std::string texture6Path = "D:/Silnik_3D/images/5.png";
-    const std::string texture7Path = "D:/Silnik_3D/images/6.png";
-    const std::string texture_pionek = "D:/Silnik_3D/images/pionek.png";
+    const std::string texture1Path = "images/tlowin.png";
+    const std::string texture2Path = "images/1.png";
+    const std::string texture3Path = "images/2.png";
+    const std::string texture4Path = "images/3.png";
+    const std::string texture5Path = "images/4.png";
+    const std::string texture6Path = "images/5.png";
+    const std::string texture7Path = "images/6.png";
+    const std::string texture_pionek = "images/pionek.png";
 
     Engine gameEngine(800, 600, "Game Engine");
 

@@ -87,30 +87,30 @@ void Engine::render() {
     gluLookAt(1.5, 1.5, cameraZ, 0.0, 0.0, 0.0, 0.0, 8.0, 0.0);
 
     bitmapHandler.drawBackground();
-
+    
     if (isCubeRotating) {
-        float currentTime = glutGet(GLUT_ELAPSED_TIME) / 1000.0f;
-        float elapsedTime = currentTime - rotationStartTime;
+       float currentTime = glutGet(GLUT_ELAPSED_TIME) / 1000.0f;
+       float elapsedTime = currentTime - rotationStartTime;
 
         if (elapsedTime < 2.0f) {
             cubeRotationAngle = elapsedTime * 180.0f; // Обертання кубика
         }
         else {
-            cubeRotationAngle = targetRotationAngle;
+          
             isCubeRotating = false; // Завершення обертання
             isPawnMoving = true;    // Початок руху пішака
             pawnLastMoveTime = currentTime;
         }
     }
-
+    
     // Обертання кубика
     glPushMatrix();
     cube.draw();
     glRotatef(cubeRotationAngle, rotationAxisX, rotationAxisY, rotationAxisZ);
-    // Wywołaj funkcję drawCubeNew z wylosowaną teksturą, która jest przechowywana w zmiennej
-    if (textureSet != -1) {
-        PrimitiveDrawer::drawCubeNew(1.0f, 0.0f, 0.0f, bitmapHandler, textureSet);
-    }
+  
+   
+        PrimitiveDrawer::drawCubeNew(1.0f, 0.0f, 0.0f, bitmapHandler);
+    
     glPopMatrix();
 
     // Рух пішака
@@ -254,10 +254,25 @@ void Engine::onMouse(int button, int state, int x, int y) {
 
         //BitmapHandler::bindTextureForCube(steps);
         
-        // Losuj wartość textureSet z zakresu [1, 6] tylko raz przy pierwszym kliknięciu
-        if (textureSet == -1) {
-            textureSet = (rand() % 6) + 1;  // Losujemy teksturę
-            std::cout << "Wylosowano textureSet: " << textureSet << std::endl;
+       
+        if (steps == 1) {
+            drawer.textureSet = 1;  
+           
+        }
+        else if (steps == 2) {
+            drawer.textureSet = 2;
+        }
+        else if (steps == 3) {
+            drawer.textureSet = 3;
+        }
+        else if (steps == 4) {
+            drawer.textureSet = 4;
+        }
+        else if (steps == 5) {
+            drawer.textureSet = 5;
+        }
+        else if (steps == 6) {
+            drawer.textureSet = 6;
         }
 
         // Встановлення осей для обертання кубика

@@ -91,7 +91,7 @@ private:
     bool movePawnAfterRotation = false;
     int targetSide = 2;
   
-    int textureSet = 1;
+    int textureSet = -1;
     Line line;
 
     static void renderCallback();

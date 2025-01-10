@@ -15,7 +15,7 @@ public:
     void bindTextureForCube();
     void drawPionek(float x, float y, float width, float height);
     
-
+    GLuint numberTextures[6];
     GLuint texture1;           
     bool isTextureLoaded_1;      
     GLuint texture2;           

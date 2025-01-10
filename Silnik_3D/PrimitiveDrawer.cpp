@@ -5,6 +5,9 @@
 
 PrimitiveDrawer::ShadingMode PrimitiveDrawer::currentShadingMode = PrimitiveDrawer::GOURAUD;
 
+GLuint PrimitiveDrawer::textures[6];
+int PrimitiveDrawer::textureSet;
+
 void PrimitiveDrawer::setShadingMode(ShadingMode mode) {
     
     currentShadingMode = mode;
@@ -175,10 +178,10 @@ void PrimitiveDrawer::drawCube(float scale, float offsetX, float offsetY, float 
     glPopMatrix();
 }
 
-void PrimitiveDrawer::drawCubeNew(float scale, float offsetX, float offsetY, BitmapHandler& bitmapHandler, int textureSet) {
+void PrimitiveDrawer::drawCubeNew(float scale, float offsetX, float offsetY, BitmapHandler& bitmapHandler) {
     glEnable(GL_TEXTURE_2D);
 
-    GLuint textures[6];
+
     switch (textureSet) {
     case 1: // Zestaw tekstur 1
         textures[0] = bitmapHandler.texture2; // Przednia
@@ -241,7 +244,6 @@ void PrimitiveDrawer::drawCubeNew(float scale, float offsetX, float offsetY, Bit
     glPushMatrix();
     glTranslatef(offsetX, offsetY, 0.0f);
     glScalef(scale, scale, scale);
-
     // Przednia œciana
     glBindTexture(GL_TEXTURE_2D, textures[0]);
     glBegin(GL_QUADS);
@@ -250,7 +252,7 @@ void PrimitiveDrawer::drawCubeNew(float scale, float offsetX, float offsetY, Bit
     glTexCoord2f(1.0f, 1.0f); glVertex3f(1.0f, 1.0f, 1.0f);
     glTexCoord2f(0.0f, 1.0f); glVertex3f(-1.0f, 1.0f, 1.0f);
     glEnd();
-
+   
     // Tylna œciana
     glBindTexture(GL_TEXTURE_2D, textures[1]);
     glBegin(GL_QUADS);

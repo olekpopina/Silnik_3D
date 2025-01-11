@@ -201,37 +201,42 @@ void Engine::onSpecialKeyboard(int key, int x, int y) {
 }
 
 void Engine::updatePawnPosition() {
-    const float LEFT_LIMIT = 0.1f;  // Ліва межа
-    const float RIGHT_LIMIT = 0.85f; // Права межа
-    const float BOTTOM_LIMIT = 0.1f; // Нижня межа
-    const float TOP_LIMIT = 0.85f;   // Верхня межа
+    const float LEFT_LIMIT = 0.1f;   // Lewa granica
+    const float RIGHT_LIMIT = 0.85f; // Prawa granica
+    const float BOTTOM_LIMIT = 0.1f; // Dolna granica
+    const float TOP_LIMIT = 0.85f;   // Górna granica
+    const float EPSILON = 0.01f;     // Tolerancja błędu dla porównań
 
     if (pawnStepsRemaining > 0) {
-        // Якщо пішак знаходиться внизу і рухається праворуч
-        if (std::abs(pawnY - BOTTOM_LIMIT) < 0.01f && pawnX < RIGHT_LIMIT) {
-            pawnX += pawnStepSize; // Рух праворуч
+        // Jeśli pionek znajduje się w lewym górnym rogu, zaczyna poruszać się w dół
+        if (std::abs(pawnX - LEFT_LIMIT) < EPSILON && std::abs(pawnY - TOP_LIMIT) < EPSILON) {
+            pawnY -= pawnStepSize; // Ruch w dół
         }
-        // Якщо пішак знаходиться праворуч і рухається вгору
-        else if (std::abs(pawnX - RIGHT_LIMIT) < 0.01f && pawnY < TOP_LIMIT) {
-            pawnY += pawnStepSize; // Рух вгору
+        // Jeśli pionek znajduje się na dole i porusza się w prawo
+        else if (std::abs(pawnY - BOTTOM_LIMIT) < EPSILON && pawnX < RIGHT_LIMIT) {
+            pawnX += pawnStepSize; // Ruch w prawo
         }
-        // Якщо пішак знаходиться вгорі і рухається ліворуч
-        else if (std::abs(pawnY - TOP_LIMIT) < 0.01f && pawnX > LEFT_LIMIT) {
-            pawnX -= pawnStepSize; // Рух ліворуч
+        // Jeśli pionek znajduje się po prawej i porusza się w górę
+        else if (std::abs(pawnX - RIGHT_LIMIT) < EPSILON && pawnY < TOP_LIMIT) {
+            pawnY += pawnStepSize; // Ruch w górę
         }
-        // Якщо пішак знаходиться ліворуч і рухається вниз
-        else if (std::abs(pawnX - LEFT_LIMIT) < 0.01f && pawnY > BOTTOM_LIMIT) {
-            pawnY -= pawnStepSize; // Рух вниз
+        // Jeśli pionek znajduje się na górze i porusza się w lewo
+        else if (std::abs(pawnY - TOP_LIMIT) < EPSILON && pawnX > LEFT_LIMIT) {
+            pawnX -= pawnStepSize; // Ruch w lewo
+        }
+        // Jeśli pionek znajduje się po lewej i porusza się w dół
+        else if (std::abs(pawnX - LEFT_LIMIT) < EPSILON && pawnY > BOTTOM_LIMIT) {
+            pawnY -= pawnStepSize; // Ruch w dół
         }
 
-        // Зменшити кількість залишкових кроків
+        // Zmniejszenie liczby pozostałych kroków
         pawnStepsRemaining--;
         std::cout << "[DEBUG] Moving: Pawn X = " << pawnX
             << ", Pawn Y = " << pawnY
             << ", Steps left = " << pawnStepsRemaining << std::endl;
     }
 
-    // Завершення руху
+    // Zakończenie ruchu
     if (pawnStepsRemaining == 0) {
         isPawnMoving = false;
         std::cout << "[DEBUG] Pawn movement completed!" << std::endl;

@@ -12,6 +12,8 @@ int main(int argc, char** argv) {
     const std::string texture6Path = "images/5.png";
     const std::string texture7Path = "images/6.png";
     const std::string texture_pionek = "images/pionek.png";
+    
+    int frameRate = 60;
 
     Engine gameEngine(800, 600, "Game Engine");
 
@@ -33,6 +35,7 @@ int main(int argc, char** argv) {
         std::cerr << "Nie udało się załadować tekstury dla sześcianu!" << std::endl;
         return -1;
     }
+    gameEngine.setFrameRate(frameRate); // Bez ograniczeń
     gameEngine.run();
 
    //gameEngine.cleanup();

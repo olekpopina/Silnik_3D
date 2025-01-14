@@ -11,6 +11,7 @@
 #include "BitmapHandler.h"
 #include <SFML/Graphics.hpp>
 #include <random>
+#include <chrono>
 
 class Engine {
 public:
@@ -32,22 +33,19 @@ public:
     void updatePawnPosition();
     void onMouseWheel(int wheel, int direction, int x, int y);
     static void setInstance(Engine* engineInstance);
-
-
-   
-
-
-
+   static void timer(int value);
+   void handleTimer();
+   int frameRate;
 private:
     Triangle triangle;
     TransformableObject transformable;
     Player player;
     PrimitiveDrawer drawer;
     BitmapHandler bitmapHandler;  // Tekstura obiektu
-
+  
     int windowWidth, windowHeight;
     const char* windowTitle;
-    int frameRate;
+    
     float clearColor[4];
     float deltaTime = 0.0f;
     int lastTime;
@@ -55,7 +53,6 @@ private:
 
     bool isRotating = false;   
 
-    
     int lastMouseX, lastMouseY; 
  
     bool isDragging; 
@@ -102,10 +99,9 @@ private:
     static void reshapeCallback(int width, int height);
     static void specialKeyboardCallback(int key, int x, int y);
    
-
-
     static Engine* instance;
-
+    std::chrono::time_point<std::chrono::high_resolution_clock> lastFrameTime;
+  
 };
 
 #endif // ENGINE_H

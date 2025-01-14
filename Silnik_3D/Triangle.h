@@ -27,7 +27,6 @@ public:
     void setRotation(bool rotate);
     void updateRotation(float deltaTime);
     void setPosition(float x, float y);
-    void updatePosition();
     void scale_Up();
     void scale_Down();
     float getPositionX() const { return posX; }

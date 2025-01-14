@@ -1,7 +1,5 @@
 ﻿#include "Cube.h"
 
-
-
 Cube::Cube() : vertices{
     -0.5f, -0.5f, -0.5f,  0.5f, -0.5f, -0.5f,  0.5f,  0.5f, -0.5f, -0.5f,  0.5f, -0.5f,
     -0.5f, -0.5f,  0.5f,  0.5f, -0.5f,  0.5f,  0.5f,  0.5f,  0.5f, -0.5f,  0.5f,  0.5f
@@ -18,12 +16,10 @@ Cube::Cube() : vertices{
 }, colors{
     1.0f, 0.0f, 0.0f,  0.0f, 1.0f, 0.0f,  0.0f, 0.0f, 1.0f,  1.0f, 1.0f, 0.0f,
     1.0f, 0.0f, 1.0f,  0.0f, 1.0f, 1.0f,  0.5f, 0.5f, 0.5f,  1.0f, 1.0f, 1.0f
-}, scale(1.0f),offsetX(0.0f), offsetY(0.0f), offsetX2(0.8f), offsetY2(0.8f) {}
+}, scale(1.0f),offsetX(0.0f), offsetY(0.0f) {}
 
 void Cube::draw() {
     glPushMatrix(); 
-   // glTranslatef(offsetX, offsetY, 0.0f); 
-
 
     if (isRotating) {
         glRotatef(rotationAngle, 0.0f, 1.0f, 0.0f); 
@@ -34,13 +30,7 @@ void Cube::draw() {
     PrimitiveDrawer::setShadingMode(PrimitiveDrawer::GOURAUD);
     PrimitiveDrawer::setShadingMode(PrimitiveDrawer::PHONG);
     glPopMatrix(); 
-
 }
-void Cube::drawNew() {
-    // Wywołanie nowej funkcji rysującej z PrimitiveDrawer
-   // PrimitiveDrawer::drawCubeNew(scale, offsetX2, offsetY2, bitmapHandler);
-}
-
 
 void Cube::scaleUp() {
    
@@ -71,8 +61,10 @@ void Cube::updateRotationC(float deltaTime)
 {
     if (isRotating) {
         rotationAngle += rotationSpeed * deltaTime;
+        
         if (rotationAngle > 360.0f) {
             rotationAngle -= 360.0f;
         }
+        
     }
 }

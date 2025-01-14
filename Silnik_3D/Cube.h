@@ -10,7 +10,6 @@ class Cube : public PrimitiveDrawer {
 public:
     Cube();
     void draw();
-    void drawNew();
     void scaleUp();    
     void scaleDown();  
     void move(float dx, float dy); 
@@ -22,11 +21,11 @@ public:
     float normals[24];
     float colors[24];
     float scale;
-    float offsetX, offsetY, offsetX2, offsetY2;
+    float offsetX, offsetY;
     int shadingMode;
     bool isRotating = false; 
     float rotationAngle = 0.0f; 
-    float rotationSpeed = 0.8f; 
+    float rotationSpeed = 0.4f; 
     BitmapHandler bitmapHandler;
 };
 

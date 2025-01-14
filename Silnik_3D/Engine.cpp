@@ -3,13 +3,13 @@
 #include "Triangle.h"
 
 
+
 Cube cube;
 Engine* Engine::instance = nullptr;
 
 
 Engine::Engine(int width, int height, const char* title)
-    : windowWidth(width), windowHeight(height), windowTitle(title),
-    frameRate(60), clearColor{ 0.0f, 0.0f, 0.0f, 1.0f },
+    : windowWidth(width), windowHeight(height), windowTitle(title),clearColor{ 0.0f, 0.0f, 0.0f, 1.0f },
     lastMouseX(0), lastMouseY(0), lastTime(0),
     isDragging(false), cameraZ(5.0f), player(&triangle, &cube, &drawer), 
     pointX(0.5f), pointY(0.5f), pointZ(0.5f),
@@ -58,11 +58,49 @@ void Engine::setClearColor(float r, float g, float b, float a) {
 }
 
 void Engine::setFrameRate(int fps) {
-    frameRate = fps;
+    if (fps <= 0) {
+        frameRate = 1; // Minimalny FPS to 1
+        std::cerr << "Frame rate must be greater than 0. Setting to minimum (1 FPS)." << std::endl;
+    }
+    else {
+        frameRate = fps;
+    }
+}
+
+void Engine::handleTimer()
+{
+    glutPostRedisplay(); // Wymuszenie renderowania
+    glutTimerFunc(1000 / frameRate, timer, 0); // Rejestracja nowego zdarzenia
+}
+
+void Engine::timer(int value) {
+    if (instance) {
+        instance->render();
+    }
+
+    // Jeśli frameRate = 0, renderujemy bez ograniczeń
+    int interval = (instance->frameRate > 0) ? 1000 / instance->frameRate : 0;
+
+    if (interval > 0) {
+        glutTimerFunc(interval, timer, 0);
+    }
+    else {
+        // Bez ograniczeń wywołujemy render bezpośrednio
+        glutPostRedisplay();
+    }
 }
 
 void Engine::run() {
+   
+    instance = this; // Ustawienie wskaźnika na obiekt
+
+    if (frameRate > 0) {
+        glutTimerFunc(1000 / frameRate, timer, 0); // Rozpoczęcie pętli czasowej
+    }
+
     lastTime = glutGet(GLUT_ELAPSED_TIME);
+    lastFrameTime = std::chrono::high_resolution_clock::now();
+
     glutMainLoop();
 }
 
@@ -81,6 +119,22 @@ void Engine::setTextures(const std::string& backgroundPath, const std::string& c
 
 
 void Engine::render() {
+
+    auto currentFrameTime = std::chrono::high_resolution_clock::now();
+
+    if (frameRate > 0) {
+        std::chrono::duration<float> elapsedTime = currentFrameTime - lastFrameTime;
+        float frameDuration = 1.0f / frameRate;
+
+        // Pomijanie renderowania, jeśli czas ramki jeszcze nie upłynął
+        if (elapsedTime.count() < frameDuration) {
+            return;
+        }
+    }
+
+    lastFrameTime = currentFrameTime;
+
+
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glLoadIdentity();
 
@@ -119,7 +173,7 @@ void Engine::render() {
         float elapsedTime = currentTime - pawnLastMoveTime;
 
         if (elapsedTime >= 0.1f && pawnStepsRemaining > 0) {
-            updatePawnPosition(); // Оновлення позиції пішака
+            updatePawnPosition();
             pawnLastMoveTime = currentTime;
         }
 
@@ -132,7 +186,6 @@ void Engine::render() {
 
     glPushMatrix();
     triangle.updateRotation(deltaTime);
-    triangle.updatePosition();
     triangle.draw();
     glPopMatrix();
 
@@ -318,26 +371,10 @@ void Engine::onMouseMove(int x, int y) {
     }
     */
 }
-/*
-void Engine::idleCallback() {
-    float currentTime = glutGet(GLUT_ELAPSED_TIME) / 1000.0f; 
-    float deltaTime = currentTime - instance->lastTime;     
-    instance->lastTime = currentTime;
 
-   
-
-
-    if (instance->isCubeRotating) {
-        glutPostRedisplay(); // Odświeżanie podczas obrotu
-    }
-
-    instance->player.update(deltaTime); 
-    glutPostRedisplay();               
-}
-*/
 void Engine::idleCallback() {
     if (instance) {
-        float currentTime = glutGet(GLUT_ELAPSED_TIME) / 1000.0f;
+        float currentTime = glutGet(GLUT_ELAPSED_TIME);
         float elapsedTime = currentTime - instance->lastTime;
 
         instance->lastTime = currentTime;

@@ -68,10 +68,3 @@ void Triangle::updateRotation(float deltaTime) {
     }
 }
 
-void Triangle::updatePosition() {
-    //jeszcze nie dodalem
-}
-
-
-
-

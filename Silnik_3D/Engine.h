@@ -22,15 +22,15 @@ public:
     void setFrameRate(int fps);
     void run();
     void stop();
-    void setTextures(const std::string& backgroundPath, const std::string& cubePath2, const std::string& cubePath3, const std::string& cubePath4, const std::string& cubePath5, const std::string& cubePath6, const std::string& cubePath7, const std::string& pionek);
+    void setTextures(const std::string& backgroundPath, const std::string& cubePath2, const std::string& cubePath3, const std::string& cubePath4, const std::string& cubePath5, const std::string& cubePath6, const std::string& cubePath7, const std::string& pionek, const std::string& pionek2);
     void render();
     void onKeyboard(unsigned char key, int x, int y);
     void onMouse(int button, int state, int x, int y);
 
     void onMouseMove(int x, int y);
-    void cleanup();
     void onSpecialKeyboard(int key, int x, int y);
     void updatePawnPosition();
+    void updatePawnPosition2();
     void onMouseWheel(int wheel, int direction, int x, int y);
     static void setInstance(Engine* engineInstance);
    static void timer(int value);
@@ -78,16 +78,26 @@ private:
     std::uniform_int_distribution<int> dist; // Rozk³ad liczb losowych
     int previousSide = -1; // Ostatnia wylosowana strona, -1 oznacza brak pocz¹tkowej strony
 
+
+    float rotationStartAngle = 0.0f; // K¹t pocz¹tkowy
+    float rotationCurrentAngle = 0.0f; // Obecny k¹t
+    float rotationTargetAngle = 180.0f; // Docelowy k¹t
+    bool rotationDuration = 2.0f;
     bool isPawnMoving = false;
+    bool isPawnMoving2 = false;
     int pawnStepsRemaining = 0;
+    int pawnStepsRemaining2 = 0;
     float pawnStepSize = 0.05f;
+    float pawnStepSize2 = 0.05f;
     float pawnX = 0.1f, pawnY = 0.1f;
+    float pawnX2 = 0.1f, pawnY2 = 0.1f;
     float pawnTargetX = 0.3f, pawnTargetY = 0.3f;
     float pawnMoveDelay = 0.5f;
     float pawnLastMoveTime = 0.0f;
+    float pawnLastMoveTime2 = 0.0f;
     bool movePawnAfterRotation = false;
     int targetSide = 2;
-  
+    bool isMyTurn;
     int textureSet = -1;
     Line line;
 

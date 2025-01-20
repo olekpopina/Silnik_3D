@@ -109,8 +109,8 @@ void Engine::stop() {
     glutLeaveMainLoop();
 }
 
-void Engine::setTextures(const std::string& backgroundPath, const std::string& cubePath2, const std::string& cubePath3, const std::string& cubePath4, const std::string& cubePath5, const std::string& cubePath6, const std::string& cubePath7, const std::string& pionek) {
-    if (!bitmapHandler.loadTextures(backgroundPath, cubePath2, cubePath3, cubePath4, cubePath5, cubePath6, cubePath7, pionek)) {
+void Engine::setTextures(const std::string& backgroundPath, const std::string& cubePath2, const std::string& cubePath3, const std::string& cubePath4, const std::string& cubePath5, const std::string& cubePath6, const std::string& cubePath7, const std::string& pionek, const std::string& pionek2) {
+    if (!bitmapHandler.loadTextures(backgroundPath, cubePath2, cubePath3, cubePath4, cubePath5, cubePath6, cubePath7, pionek, pionek2)) {
         std::cerr << "Nie udało się załadować tekstur!" << std::endl;
     }
 }
@@ -153,10 +153,15 @@ void Engine::render() {
           
             isCubeRotating = false; // Завершення обертання
             isPawnMoving = true;    // Початок руху пішака
+            isPawnMoving2 = true;
             pawnLastMoveTime = currentTime;
+            pawnLastMoveTime2 = currentTime;
+            isMyTurn = !isMyTurn;
+            std::cout << "[DEBUG] Tura gracza: " << (isMyTurn ? "1" : "2") << std::endl;
         }
     }
     
+  
     // Обертання кубика
     glPushMatrix();
     cube.draw();
@@ -180,9 +185,26 @@ void Engine::render() {
         if (pawnStepsRemaining == 0) {
             isPawnMoving = false;
         }
+      
+    }
+    bitmapHandler.drawPionek(pawnX, pawnY, 0.1f, 0.1f);
+    // Рух пішака
+    if (isPawnMoving2) {
+        float currentTime2 = glutGet(GLUT_ELAPSED_TIME) / 1000.0f;
+        float elapsedTime2 = currentTime2 - pawnLastMoveTime2;
+
+        if (elapsedTime2 >= 0.1f && pawnStepsRemaining2 > 0) {
+            updatePawnPosition2();
+            pawnLastMoveTime2 = currentTime2;
+        }
+
+        if (pawnStepsRemaining2 == 0) {
+            isPawnMoving2 = false;
+        }
     }
 
-    bitmapHandler.drawPionek(pawnX, pawnY, 0.1f, 0.1f);
+    //bitmapHandler.drawPionek(pawnX, pawnY, 0.1f, 0.1f);
+    bitmapHandler.drawPionek2(pawnX2, pawnY2, 0.1f, 0.1f);
 
     glPushMatrix();
     triangle.updateRotation(deltaTime);
@@ -296,9 +318,53 @@ void Engine::updatePawnPosition() {
     }
 }
 
+void Engine::updatePawnPosition2() {
+    const float LEFT_LIMIT = 0.1f;   // Lewa granica
+    const float RIGHT_LIMIT = 0.85f; // Prawa granica
+    const float BOTTOM_LIMIT = 0.1f; // Dolna granica
+    const float TOP_LIMIT = 0.85f;   // Górna granica
+    const float EPSILON = 0.01f;     // Tolerancja błędu dla porównań
+
+    if (pawnStepsRemaining2 > 0) {
+        // Jeśli pionek znajduje się w lewym górnym rogu, zaczyna poruszać się w dół
+        if (std::abs(pawnX2 - LEFT_LIMIT) < EPSILON && std::abs(pawnY2 - TOP_LIMIT) < EPSILON) {
+            pawnY2 -= pawnStepSize2; // Ruch w dół
+        }
+        // Jeśli pionek znajduje się na dole i porusza się w prawo
+        else if (std::abs(pawnY2 - BOTTOM_LIMIT) < EPSILON && pawnX2 < RIGHT_LIMIT) {
+            pawnX2 += pawnStepSize2; // Ruch w prawo
+        }
+        // Jeśli pionek znajduje się po prawej i porusza się w górę
+        else if (std::abs(pawnX2 - RIGHT_LIMIT) < EPSILON && pawnY2 < TOP_LIMIT) {
+            pawnY2 += pawnStepSize2; // Ruch w górę
+        }
+        // Jeśli pionek znajduje się na górze i porusza się w lewo
+        else if (std::abs(pawnY2 - TOP_LIMIT) < EPSILON && pawnX2 > LEFT_LIMIT) {
+            pawnX2 -= pawnStepSize2; // Ruch w lewo
+        }
+        // Jeśli pionek znajduje się po lewej i porusza się w dół
+        else if (std::abs(pawnX2 - LEFT_LIMIT) < EPSILON && pawnY2 > BOTTOM_LIMIT) {
+            pawnY2 -= pawnStepSize2; // Ruch w dół
+        }
+
+        // Zmniejszenie liczby pozostałych kroków
+        pawnStepsRemaining2--;
+        std::cout << "[DEBUG] Moving: Pawn X2 = " << pawnX2
+            << ", Pawn Y = " << pawnY2
+            << ", Steps left = " << pawnStepsRemaining2 << std::endl;
+    }
+
+    // Zakończenie ruchu
+    if (pawnStepsRemaining2 == 0) {
+        isPawnMoving2 = false;
+        std::cout << "[DEBUG] Pawn movement completed!" << std::endl;
+    }
+}
 
 void Engine::onMouse(int button, int state, int x, int y) {
-    if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN && !isCubeRotating && !isPawnMoving) {
+    if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN && !isCubeRotating && !isPawnMoving && !isPawnMoving2) {
+       
+      
         // Початок обертання кубика
         isCubeRotating = true;
         rotationStartTime = glutGet(GLUT_ELAPSED_TIME) / 1000.0f;
@@ -306,11 +372,25 @@ void Engine::onMouse(int button, int state, int x, int y) {
         // Генерація випадкової кількості кроків для пішака
         srand(static_cast<unsigned int>(time(nullptr)));
         int steps = (rand() % 6) + 1;
-        pawnStepsRemaining = steps;
+        //pawnStepsRemaining = steps;
+        //pawnStepsRemaining2 = steps;
 
-        std::cout << "[DEBUG] Wylosowano: " << steps << std::endl;
+        if (isMyTurn) {
+            pawnStepsRemaining = steps;
+            std::cout << "[DEBUG] Wylosowano dla pionka 1: " << steps << std::endl;
+            //isPawnMoving = true;
 
-        //BitmapHandler::bindTextureForCube(steps);
+       
+        }
+        else {
+            pawnStepsRemaining2 = steps;
+            std::cout << "[DEBUG] Wylosowano dla pionka 2: " << steps << std::endl;
+            //isPawnMoving2 = true;
+        }
+
+        //std::cout << "[DEBUG] Wylosowano: " << steps << std::endl;
+
+
         
        
         if (steps == 1) {
@@ -339,8 +419,8 @@ void Engine::onMouse(int button, int state, int x, int y) {
         rotationAxisZ = (rotationAxisX == 0 && rotationAxisY == 0) ? 1.0f : 0.0f;
 
         // Встановлення цільового кута 
-
         targetRotationAngle = 180.0f;
+       
     }
 }
 
@@ -379,10 +459,6 @@ void Engine::idleCallback() {
 
         instance->lastTime = currentTime;
 
-        if (instance->isCubeRotating || instance->isPawnMoving) {
-        
-            
-        }
         instance->player.update(elapsedTime);
         glutPostRedisplay(); // Оновлення екрану, якщо є активний рух
     }
@@ -399,10 +475,6 @@ void Engine::renderCallback() {
     if (instance) {
         instance->render();
     }
-}
-
-void Engine::cleanup() {
-    std::cout << "Engine shutting down.\n";
 }
 
 void Engine::keyboardCallback(unsigned char key, int x, int y) {

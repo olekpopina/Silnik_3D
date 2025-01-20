@@ -14,6 +14,8 @@ public:
     void drawBackground();
     void bindTextureForCube();
     void drawPionek(float x, float y, float width, float height);
+
+    void drawPionek2(float x, float y, float width, float height);
     
     GLuint numberTextures[6];
     GLuint texture1;           
@@ -32,8 +34,10 @@ public:
     bool isTextureLoaded_7;
     GLuint texture_pionek;
     bool isTextureLoaded_pionek;
+    GLuint texture_pionek2;
+    bool isTextureLoaded_pionek2;
     GLuint loadSingleTexture(const std::string& filePath);
-    bool loadTextures(const std::string& filePath1, const std::string& filePath2, const std::string& filePath3, const std::string& filePath4, const std::string& filePath5, const std::string& filePath6, const std::string& filePath7, const std::string& pionek);
+    bool loadTextures(const std::string& filePath1, const std::string& filePath2, const std::string& filePath3, const std::string& filePath4, const std::string& filePath5, const std::string& filePath6, const std::string& filePath7, const std::string& pionek, const std::string& pionek2);
 
 private:
    

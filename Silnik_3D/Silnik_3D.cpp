@@ -12,7 +12,7 @@ int main(int argc, char** argv) {
     const std::string texture6Path = "images/5.png";
     const std::string texture7Path = "images/6.png";
     const std::string texture_pionek = "images/pionek.png";
-    
+    const std::string texture_pionek2 = "images/pionek2.png";
     int frameRate = 60;
 
     Engine gameEngine(800, 600, "Game Engine");
@@ -20,7 +20,7 @@ int main(int argc, char** argv) {
     Engine::setInstance(&gameEngine);
     
     BitmapHandler bitmapHandler;
-    if (!bitmapHandler.loadTextures(texture1Path, texture2Path, texture3Path, texture4Path, texture5Path, texture6Path, texture7Path, texture_pionek)) {
+    if (!bitmapHandler.loadTextures(texture1Path, texture2Path, texture3Path, texture4Path, texture5Path, texture6Path, texture7Path, texture_pionek, texture_pionek2)) {
         std::cerr << "Nie udało się załadować tekstury tła!" << std::endl;
         return -1;
     }
@@ -28,17 +28,16 @@ int main(int argc, char** argv) {
     gameEngine.setClearColor(0.2f, 0.3f, 0.4f);
     gameEngine.setFrameRate(60);
 
-    gameEngine.setTextures(texture1Path, texture2Path, texture3Path, texture4Path, texture5Path, texture6Path, texture7Path, texture_pionek);
+    gameEngine.setTextures(texture1Path, texture2Path, texture3Path, texture4Path, texture5Path, texture6Path, texture7Path, texture_pionek, texture_pionek2);
 
     BitmapHandler cubeBitmapHandler;
-    if (!cubeBitmapHandler.loadTextures(texture2Path, texture3Path, texture4Path, texture5Path, texture6Path, texture7Path, texture1Path, texture_pionek)) {
+    if (!cubeBitmapHandler.loadTextures(texture2Path, texture3Path, texture4Path, texture5Path, texture6Path, texture7Path, texture1Path, texture_pionek, texture_pionek2)) {
         std::cerr << "Nie udało się załadować tekstury dla sześcianu!" << std::endl;
         return -1;
     }
     gameEngine.setFrameRate(frameRate); // Bez ograniczeń
     gameEngine.run();
 
-   //gameEngine.cleanup();
     return 0;
 }
 

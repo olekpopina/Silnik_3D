@@ -1,8 +1,8 @@
 #include "BitmapHandler.h"
 
 BitmapHandler::BitmapHandler()
-    : texture1(0), texture2(0), texture3(0), texture4(0), texture5(0), texture6(0), texture7(0), texture_pionek(0), textureWidth(0), textureHeight(0), 
-    isTextureLoaded_1(false), isTextureLoaded_2(false), isTextureLoaded_3(false), isTextureLoaded_4(false), isTextureLoaded_5(false), isTextureLoaded_6(false), isTextureLoaded_7(false), isTextureLoaded_pionek(false) {
+    : texture1(0), texture2(0), texture3(0), texture4(0), texture5(0), texture6(0), texture7(0), texture_pionek(0), texture_pionek2(0), textureWidth(0), textureHeight(0),
+    isTextureLoaded_1(false), isTextureLoaded_2(false), isTextureLoaded_3(false), isTextureLoaded_4(false), isTextureLoaded_5(false), isTextureLoaded_6(false), isTextureLoaded_7(false), isTextureLoaded_pionek(false), isTextureLoaded_pionek2(false) {
    
 }
 
@@ -30,6 +30,9 @@ BitmapHandler::~BitmapHandler() {
     }
     if (isTextureLoaded_pionek) {
         glDeleteTextures(1, &texture_pionek);
+    }
+    if (isTextureLoaded_pionek2) {
+        glDeleteTextures(1, &texture_pionek2);
     }
  
 }
@@ -252,7 +255,7 @@ void BitmapHandler::drawPionek2(float x, float y, float width, float height) {
 
     glDisable(GL_DEPTH_TEST);
     glEnable(GL_TEXTURE_2D);
-    glBindTexture(GL_TEXTURE_2D, texture_pionek);
+    glBindTexture(GL_TEXTURE_2D, texture_pionek2);
 
     // Rysowanie samej tekstury pionka
     glBegin(GL_QUADS);

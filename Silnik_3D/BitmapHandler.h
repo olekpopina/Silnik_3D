@@ -13,6 +13,7 @@ public:
     // Rysowanie obrazu jako t³a
     void drawBackground();
     void bindTextureForCube();
+    void drawPionekGeneric(float x, float y, float width, float height, GLuint texture);
     void drawPionek(float x, float y, float width, float height);
 
     void drawPionek2(float x, float y, float width, float height);

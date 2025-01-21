@@ -154,31 +154,25 @@ void BitmapHandler::bindTextureForCube() {
     glBindTexture(GL_TEXTURE_2D, texture2);
 }
 
-void BitmapHandler::drawPionek(float x, float y, float width, float height) {
-    // Ograniczamy wspó³rzêdne i wymiary pionka
-    const float MAX_X = 750.0f;  // Maksymalna wartoœæ x (czyli 800 - szerokoœæ pionka)
-    const float MAX_Y = 550.0f;  // Maksymalna wartoœæ y (czyli 600 - wysokoœæ pionka)
-    const float MIN_X = 0.0f;    // Minimalna wartoœæ x
-    const float MIN_Y = 0.0f;    // Minimalna wartoœæ y
+void BitmapHandler::drawPionekGeneric(float x, float y, float width, float height, GLuint texture) {
+    const float MAX_X = 750.0f;
+    const float MAX_Y = 550.0f;
+    const float MIN_X = 0.0f;
+    const float MIN_Y = 0.0f;
 
-    // Ograniczamy pozycjê pionka w poziomie (x)
     if (x < MIN_X) x = MIN_X;
     if (x > MAX_X) x = MAX_X;
-
-    // Ograniczamy pozycjê pionka w pionie (y)
     if (y < MIN_Y) y = MIN_Y;
     if (y > MAX_Y) y = MAX_Y;
 
-    // Ograniczamy szerokoœæ i wysokoœæ pionka, by nie wychodzi³ poza granice
     if (width + x > MAX_X) width = MAX_X - x;
     if (height + y > MAX_Y) height = MAX_Y - y;
 
-    if (!isTextureLoaded_pionek) {
-        std::cerr << "Tekstura pionka nie zosta³a za³adowana!" << std::endl;
+    if (!texture) {
+        std::cerr << "Texture not loaded!" << std::endl;
         return;
     }
 
-    // W³¹cz blending (przezroczystoœæ)
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
@@ -193,14 +187,13 @@ void BitmapHandler::drawPionek(float x, float y, float width, float height) {
 
     glDisable(GL_DEPTH_TEST);
     glEnable(GL_TEXTURE_2D);
-    glBindTexture(GL_TEXTURE_2D, texture_pionek);
+    glBindTexture(GL_TEXTURE_2D, texture);
 
-    // Rysowanie samej tekstury pionka
     glBegin(GL_QUADS);
-    glTexCoord2f(0.0f, 1.0f); glVertex2f(x, y);                     // Górny lewy róg tekstury
-    glTexCoord2f(1.0f, 1.0f); glVertex2f(x + width, y);             // Górny prawy róg tekstury
-    glTexCoord2f(1.0f, 0.0f); glVertex2f(x + width, y + height);    // Dolny prawy róg tekstury
-    glTexCoord2f(0.0f, 0.0f); glVertex2f(x, y + height);            // Dolny lewy róg tekstury
+    glTexCoord2f(0.0f, 1.0f); glVertex2f(x, y);
+    glTexCoord2f(1.0f, 1.0f); glVertex2f(x + width, y);
+    glTexCoord2f(1.0f, 0.0f); glVertex2f(x + width, y + height);
+    glTexCoord2f(0.0f, 0.0f); glVertex2f(x, y + height);
     glEnd();
 
     glBindTexture(GL_TEXTURE_2D, 0);
@@ -212,69 +205,14 @@ void BitmapHandler::drawPionek(float x, float y, float width, float height) {
     glMatrixMode(GL_MODELVIEW);
     glPopMatrix();
 
-    // Wy³¹cz blending po rysowaniu
     glDisable(GL_BLEND);
 }
 
+void BitmapHandler::drawPionek(float x, float y, float width, float height) {
+    drawPionekGeneric(x, y, width, height, texture_pionek);
+}
+
 void BitmapHandler::drawPionek2(float x, float y, float width, float height) {
-    // Ograniczamy wspó³rzêdne i wymiary pionka
-    const float MAX_X = 750.0f;  // Maksymalna wartoœæ x (czyli 800 - szerokoœæ pionka)
-    const float MAX_Y = 550.0f;  // Maksymalna wartoœæ y (czyli 600 - wysokoœæ pionka)
-    const float MIN_X = 0.0f;    // Minimalna wartoœæ x
-    const float MIN_Y = 0.0f;    // Minimalna wartoœæ y
-
-    // Ograniczamy pozycjê pionka w poziomie (x)
-    if (x < MIN_X) x = MIN_X;
-    if (x > MAX_X) x = MAX_X;
-
-    // Ograniczamy pozycjê pionka w pionie (y)
-    if (y < MIN_Y) y = MIN_Y;
-    if (y > MAX_Y) y = MAX_Y;
-
-    // Ograniczamy szerokoœæ i wysokoœæ pionka, by nie wychodzi³ poza granice
-    if (width + x > MAX_X) width = MAX_X - x;
-    if (height + y > MAX_Y) height = MAX_Y - y;
-
-    if (!isTextureLoaded_pionek2) {
-        std::cerr << "Tekstura pionka nie zosta³a za³adowana!" << std::endl;
-        return;
-    }
-
-    // W³¹cz blending (przezroczystoœæ)
-    glEnable(GL_BLEND);
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
-    glMatrixMode(GL_PROJECTION);
-    glPushMatrix();
-    glLoadIdentity();
-    gluOrtho2D(0.0, 1.0, 0.0, 1.0);
-
-    glMatrixMode(GL_MODELVIEW);
-    glPushMatrix();
-    glLoadIdentity();
-
-    glDisable(GL_DEPTH_TEST);
-    glEnable(GL_TEXTURE_2D);
-    glBindTexture(GL_TEXTURE_2D, texture_pionek2);
-
-    // Rysowanie samej tekstury pionka
-    glBegin(GL_QUADS);
-    glTexCoord2f(0.0f, 1.0f); glVertex2f(x, y);                     // Górny lewy róg tekstury
-    glTexCoord2f(1.0f, 1.0f); glVertex2f(x + width, y);             // Górny prawy róg tekstury
-    glTexCoord2f(1.0f, 0.0f); glVertex2f(x + width, y + height);    // Dolny prawy róg tekstury
-    glTexCoord2f(0.0f, 0.0f); glVertex2f(x, y + height);            // Dolny lewy róg tekstury
-    glEnd();
-
-    glBindTexture(GL_TEXTURE_2D, 0);
-    glDisable(GL_TEXTURE_2D);
-    glEnable(GL_DEPTH_TEST);
-
-    glMatrixMode(GL_PROJECTION);
-    glPopMatrix();
-    glMatrixMode(GL_MODELVIEW);
-    glPopMatrix();
-
-    // Wy³¹cz blending po rysowaniu
-    glDisable(GL_BLEND);
+    drawPionekGeneric(x, y, width, height, texture_pionek2);
 }
 

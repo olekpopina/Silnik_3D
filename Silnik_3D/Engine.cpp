@@ -364,6 +364,7 @@ void Engine::updatePawnPosition2() {
 void Engine::onMouse(int button, int state, int x, int y) {
     if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN && !isCubeRotating && !isPawnMoving && !isPawnMoving2) {
 
+        isDragging = true;
 
         // Початок обертання кубика
         isCubeRotating = true;
@@ -423,12 +424,6 @@ void Engine::onMouse(int button, int state, int x, int y) {
 
     }
   
-    if (button == GLUT_RIGHT_BUTTON) {
-        if (state == GLUT_DOWN) {
-            isDragging = true;
-        }
-    }
-    
 
 }
 

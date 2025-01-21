@@ -26,7 +26,7 @@ public:
     void render();
     void onKeyboard(unsigned char key, int x, int y);
     void onMouse(int button, int state, int x, int y);
-
+    void onMouseMotion(int x, int y);
     void onMouseMove(int x, int y);
     void onSpecialKeyboard(int key, int x, int y);
     void updatePawnPosition();
@@ -53,9 +53,17 @@ private:
 
     bool isRotating = false;   
 
-    int lastMouseX, lastMouseY; 
+   // int lastMouseX, lastMouseY; 
  
     bool isDragging; 
+
+    bool isSettingEnd = false;
+    float startX, startY, startZ = 0.0f; // Pocz¹tek linii
+    float endX, endY, endZ = 0.0f;       // Koniec linii
+    float lastMouseX, lastMouseY;
+
+
+
     bool isPointNearLine(float px, float py, float x1, float y1, float x2, float y2, float threshold);
     float trianglePosX = 0.0f; 
     float trianglePosY = 0.0f; 
@@ -100,6 +108,9 @@ private:
     bool isMyTurn;
     int textureSet = -1;
     Line line;
+    static bool initialized;
+
+    float x,  y, z;
 
     static void renderCallback();
     static void idleCallback();

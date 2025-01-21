@@ -214,7 +214,7 @@ void Engine::render() {
     glPushMatrix();
     glTranslatef(linePosX, linePosY, 0.0f);
     line.draw();
-    PrimitiveDrawer::drawPoint(pointX, pointY, pointZ, 5.0f);
+    PrimitiveDrawer::drawPoint(pointX, pointY, pointZ, 8.0f);
     glPopMatrix();
 
     gluLookAt(3.0, 3.0, cameraZ, 5.0, 0.0, 0.0, 0.0, 3.0, 2.0);
@@ -363,8 +363,8 @@ void Engine::updatePawnPosition2() {
 
 void Engine::onMouse(int button, int state, int x, int y) {
     if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN && !isCubeRotating && !isPawnMoving && !isPawnMoving2) {
-       
-      
+
+
         // Початок обертання кубика
         isCubeRotating = true;
         rotationStartTime = glutGet(GLUT_ELAPSED_TIME) / 1000.0f;
@@ -380,7 +380,7 @@ void Engine::onMouse(int button, int state, int x, int y) {
             std::cout << "[DEBUG] Wylosowano dla pionka 1: " << steps << std::endl;
             //isPawnMoving = true;
 
-       
+
         }
         else {
             pawnStepsRemaining2 = steps;
@@ -391,11 +391,11 @@ void Engine::onMouse(int button, int state, int x, int y) {
         //std::cout << "[DEBUG] Wylosowano: " << steps << std::endl;
 
 
-        
-       
+
+
         if (steps == 1) {
-            drawer.textureSet = 1;  
-           
+            drawer.textureSet = 1;
+
         }
         else if (steps == 2) {
             drawer.textureSet = 2;
@@ -420,15 +420,23 @@ void Engine::onMouse(int button, int state, int x, int y) {
 
         // Встановлення цільового кута 
         targetRotationAngle = 180.0f;
-       
+
     }
+  
+    if (button == GLUT_RIGHT_BUTTON) {
+        if (state == GLUT_DOWN) {
+            isDragging = true;
+        }
+    }
+    
+
 }
 
 
 
 
 void Engine::onMouseMove(int x, int y) {
-    /*
+   
     if (isDragging) {
     
         float dx = (x - lastMouseX) * 0.01f;
@@ -449,8 +457,9 @@ void Engine::onMouseMove(int x, int y) {
 
         glutPostRedisplay();
     }
-    */
+   
 }
+
 
 void Engine::idleCallback() {
     if (instance) {

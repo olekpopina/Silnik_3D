@@ -15,7 +15,7 @@ public:
     void getEnd(float& x, float& y, float& z) const;
 
     void draw();
-
+   
 private:
     float start[3];  
     float end[3];   

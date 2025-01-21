@@ -4,15 +4,15 @@
 
 
 int main(int argc, char** argv) {
-    const std::string texture1Path = "images/tlowin.png";
+    const std::string texture1Path = "images/tlo.png";
     const std::string texture2Path = "images/1.png";
     const std::string texture3Path = "images/2.png";
     const std::string texture4Path = "images/3.png";
     const std::string texture5Path = "images/4.png";
     const std::string texture6Path = "images/5.png";
     const std::string texture7Path = "images/6.png";
-    const std::string texture_pionek = "images/pionek.png";
-    const std::string texture_pionek2 = "images/pionek2.png";
+    const std::string texture_pionek = "images/pionek2.png";
+    const std::string texture_pionek2 = "images/pionek.png";
     int frameRate = 60;
 
     Engine gameEngine(800, 600, "Game Engine");

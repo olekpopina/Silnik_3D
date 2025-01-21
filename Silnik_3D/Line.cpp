@@ -40,5 +40,5 @@ void Line::getEnd(float& x, float& y, float& z) const {
 }
 
 void Line::draw() {
-    PrimitiveDrawer::drawLine(start[0], start[1], start[2], end[0], end[1], end[2], 2.0f);
+    PrimitiveDrawer::drawLine(start[0], start[1], start[2], end[0], end[1], end[2], 5.0f);
 }

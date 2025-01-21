@@ -15,17 +15,21 @@ void PrimitiveDrawer::setShadingMode(ShadingMode mode) {
 
 void PrimitiveDrawer::drawPoint(float x, float y, float z, float size) {
     glPointSize(size);
+    glColor3f(1.0f, 0.0f, 0.0f);
     glBegin(GL_POINTS);
     glVertex3f(x, y, z);
     glEnd();
+    glColor3f(1.0f, 1.0f, 1.0f);
 }
 
 void PrimitiveDrawer::drawLine(float x1, float y1, float z1, float x2, float y2, float z2, float width) {
     glLineWidth(width);
+    glColor3f(0.0f, 0.0f, 1.0f);
     glBegin(GL_LINES);
     glVertex3f(x1, y1, z1);
     glVertex3f(x2, y2, z2);
     glEnd();
+    glColor3f(1.0f, 1.0f, 1.0f);
 }
 
 void PrimitiveDrawer::drawTriangle(float vertices1[9], float vertices2[9], float vertices3[9], float colors[9], float posX, float posY, float scale, float rotationAngle) {

@@ -68,10 +68,33 @@ void Engine::showWinnerMessage(const std::string& winner) {
         std::cout << "[INFO] Wyświetlono komunikat: " << winner << " wygrywa!" << std::endl;
     }
 
-    // Zatrzymanie pętli gry
-    stop();
+  
+    reset();
+}
+void Engine::reset() {
+
+    clear();           
+
+    isGameRunning = true;    
+    std::cout << "[INFO] Gra została zresetowana do stanu początkowego." << std::endl;
 }
 
+void Engine::clear() {
+    
+    pawnX = 0.1f;
+    pawnY = 0.1f;
+    pawnX2 = 0.1f;
+    pawnY2 = 0.1f;
+    pawnStepsRemaining = 0;
+    pawnStepsRemaining2 = 0;
+    isPawnMoving = false;
+    isPawnMoving2 = false;
+
+    isCubeRotating = false;
+    cubeRotationAngle = 0.0f;
+
+    
+}
 
 void Engine::setClearColor(float r, float g, float b, float a) {
     clearColor[0] = r;
@@ -115,17 +138,18 @@ void Engine::timer(int value) {
 }
 
 void Engine::run() {
-   
-    instance = this; // Ustawienie wskaźnika na obiekt
 
-    if (frameRate > 0) {
-        glutTimerFunc(1000 / frameRate, timer, 0); // Rozpoczęcie pętli czasowej
-    }
+        instance = this; // Ustawienie wskaźnika na obiekt
 
-    lastTime = glutGet(GLUT_ELAPSED_TIME);
-    lastFrameTime = std::chrono::high_resolution_clock::now();
+        if (frameRate > 0) {
+            glutTimerFunc(1000 / frameRate, timer, 0); // Rozpoczęcie pętli czasowej
+        }
 
-    glutMainLoop();
+        lastTime = glutGet(GLUT_ELAPSED_TIME);
+        lastFrameTime = std::chrono::high_resolution_clock::now();
+       
+        glutMainLoop();
+    
 }
 
 void Engine::stop() {

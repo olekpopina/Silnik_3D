@@ -21,6 +21,7 @@ public:
 
     void init(int argc, char** argv);
     void showWinnerMessage(const std::string& winner);
+    void reset();
     void setClearColor(float r, float g, float b, float a = 1.0f);
     void setFrameRate(int fps);
     void run();
@@ -29,7 +30,7 @@ public:
     void render();
     void onKeyboard(unsigned char key, int x, int y);
     void onMouse(int button, int state, int x, int y);
-
+    void clear();
     void onMouseMove(int x, int y);
     void onSpecialKeyboard(int key, int x, int y);
     void updatePawnPosition();
@@ -56,7 +57,7 @@ private:
 
     bool isRotating = false;   
 
-   // int lastMouseX, lastMouseY; 
+    bool isGameRunning = false;
  
     bool isDragging; 
 

@@ -1,7 +1,7 @@
 #include "BitmapHandler.h"
 
 BitmapHandler::BitmapHandler()
-    : texture1(0), texture2(0), texture3(0), texture4(0), texture5(0), texture6(0), texture7(0), texture_pionek(0), texture_pionek2(0), textureWidth(0), textureHeight(0),
+    : texture1(0), texture2(1), texture3(2), texture4(3), texture5(4), texture6(5), texture7(6), texture_pionek(7), texture_pionek2(8), textureWidth(9), textureHeight(10),
     isTextureLoaded_1(false), isTextureLoaded_2(false), isTextureLoaded_3(false), isTextureLoaded_4(false), isTextureLoaded_5(false), isTextureLoaded_6(false), isTextureLoaded_7(false), isTextureLoaded_pionek(false), isTextureLoaded_pionek2(false) {
    
 }

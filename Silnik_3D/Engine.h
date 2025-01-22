@@ -12,12 +12,15 @@
 #include <SFML/Graphics.hpp>
 #include <random>
 #include <chrono>
+#include <string>
+#include <windows.h>
 
 class Engine {
 public:
     Engine(int width, int height, const char* title);
 
     void init(int argc, char** argv);
+    void showWinnerMessage(const std::string& winner);
     void setClearColor(float r, float g, float b, float a = 1.0f);
     void setFrameRate(int fps);
     void run();
@@ -26,7 +29,7 @@ public:
     void render();
     void onKeyboard(unsigned char key, int x, int y);
     void onMouse(int button, int state, int x, int y);
-    void onMouseMotion(int x, int y);
+
     void onMouseMove(int x, int y);
     void onSpecialKeyboard(int key, int x, int y);
     void updatePawnPosition();

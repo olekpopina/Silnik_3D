@@ -47,6 +47,30 @@ void Engine::init(int argc, char** argv) {
 
    
 }
+void Engine::showWinnerMessage(const std::string& winner) {
+    // Konwersja napisu na szerokie znaki
+    std::wstring wideWinner(winner.begin(), winner.end());
+    std::wstring message = wideWinner + L" wygrywa!";
+
+    // Wyświetlenie okna dialogowego
+    int result = MessageBoxW(
+        nullptr,               // Brak okna nadrzędnego
+        message.c_str(),       // Treść komunikatu
+        L"Koniec gry",         // Tytuł okna
+        MB_OK | MB_ICONINFORMATION // Styl okna
+    );
+
+    // Sprawdzenie, czy okno zostało wyświetlone poprawnie
+    if (result == 0) {
+        std::cerr << "[ERROR] Nie udało się wyświetlić okna dialogowego!" << std::endl;
+    }
+    else {
+        std::cout << "[INFO] Wyświetlono komunikat: " << winner << " wygrywa!" << std::endl;
+    }
+
+    // Zatrzymanie pętli gry
+    stop();
+}
 
 
 void Engine::setClearColor(float r, float g, float b, float a) {
@@ -281,6 +305,8 @@ void Engine::updatePawnPosition() {
     const float BOTTOM_LIMIT = 0.1f; // Dolna granica
     const float TOP_LIMIT = 0.85f;   // Górna granica
     const float EPSILON = 0.01f;     // Tolerancja błędu dla porównań
+    const float START_X = 0.1f;  // Punkt początkowy X
+    const float START_Y = 0.85f; // Punkt początkowy Y
 
     if (pawnStepsRemaining > 0) {
         // Jeśli pionek znajduje się w lewym górnym rogu, zaczyna poruszać się w dół
@@ -302,6 +328,7 @@ void Engine::updatePawnPosition() {
         // Jeśli pionek znajduje się po lewej i porusza się w dół
         else if (std::abs(pawnX - LEFT_LIMIT) < EPSILON && pawnY > BOTTOM_LIMIT) {
             pawnY -= pawnStepSize; // Ruch w dół
+            showWinnerMessage("Pionek czerwony");
         }
 
         // Zmniejszenie liczby pozostałych kroków
@@ -310,7 +337,7 @@ void Engine::updatePawnPosition() {
             << ", Pawn Y = " << pawnY
             << ", Steps left = " << pawnStepsRemaining << std::endl;
     }
-
+    
     // Zakończenie ruchu
     if (pawnStepsRemaining == 0) {
         isPawnMoving = false;
@@ -324,6 +351,8 @@ void Engine::updatePawnPosition2() {
     const float BOTTOM_LIMIT = 0.1f; // Dolna granica
     const float TOP_LIMIT = 0.85f;   // Górna granica
     const float EPSILON = 0.01f;     // Tolerancja błędu dla porównań
+    const float START_X = 0.1f;  // Punkt początkowy X
+    const float START_Y = 0.85f; // Punkt początkowy Y
 
     if (pawnStepsRemaining2 > 0) {
         // Jeśli pionek znajduje się w lewym górnym rogu, zaczyna poruszać się w dół
@@ -345,6 +374,7 @@ void Engine::updatePawnPosition2() {
         // Jeśli pionek znajduje się po lewej i porusza się w dół
         else if (std::abs(pawnX2 - LEFT_LIMIT) < EPSILON && pawnY2 > BOTTOM_LIMIT) {
             pawnY2 -= pawnStepSize2; // Ruch w dół
+            showWinnerMessage("Pionek niebieski");
         }
 
         // Zmniejszenie liczby pozostałych kroków
@@ -353,7 +383,7 @@ void Engine::updatePawnPosition2() {
             << ", Pawn Y = " << pawnY2
             << ", Steps left = " << pawnStepsRemaining2 << std::endl;
     }
-
+    
     // Zakończenie ruchu
     if (pawnStepsRemaining2 == 0) {
         isPawnMoving2 = false;

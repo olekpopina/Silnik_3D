@@ -199,7 +199,7 @@ void Engine::render() {
     cube.draw();
     glRotatef(cubeRotationAngle, rotationAxisX, rotationAxisY, rotationAxisZ);
   
-        PrimitiveDrawer::drawCubeNew(1.0f, 0.0f, 0.0f, bitmapHandler);
+    PrimitiveDrawer::drawCubeNew(1.0f, 0.0f, 0.0f, bitmapHandler);
     
     glPopMatrix();
     // Рух пішака

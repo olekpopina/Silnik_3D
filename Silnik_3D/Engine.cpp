@@ -2,11 +2,8 @@
 #include "Cube.h"
 #include "Triangle.h"
 
-
-
 Cube cube;
 Engine* Engine::instance = nullptr;
-
 
 Engine::Engine(int width, int height, const char* title)
     : windowWidth(width), windowHeight(height), windowTitle(title),clearColor{ 0.0f, 0.0f, 0.0f, 1.0f },
@@ -14,8 +11,6 @@ Engine::Engine(int width, int height, const char* title)
     isDragging(false), cameraZ(5.0f), player(&triangle, &cube, &drawer), 
     pointX(0.5f), pointY(0.5f), pointZ(0.5f),
     line(0.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f), rng(std::random_device{}()), dist(0, 5) {
-
-   
 }
 
 void Engine::init(int argc, char** argv) {
@@ -37,15 +32,12 @@ void Engine::init(int argc, char** argv) {
 
     glutIdleFunc(idleCallback);
     glutSpecialFunc(specialKeyboardCallback);
-    
+
     glutMouseWheelFunc([](int wheel, int direction, int x, int y) {
         if (instance) {
             instance->onMouseWheel(wheel, direction, x, y);
         }
         });
-   
-
-   
 }
 void Engine::showWinnerMessage(const std::string& winner) {
     // Konwersja napisu na szerokie znaki
@@ -91,9 +83,7 @@ void Engine::clear() {
     isPawnMoving2 = false;
 
     isCubeRotating = false;
-    cubeRotationAngle = 0.0f;
-
-    
+    cubeRotationAngle = 0.0f;   
 }
 
 void Engine::setClearColor(float r, float g, float b, float a) {
@@ -163,13 +153,9 @@ void Engine::setTextures(const std::string& backgroundPath, const std::string& c
     }
 }
 
-
-
-
 void Engine::render() {
 
     auto currentFrameTime = std::chrono::high_resolution_clock::now();
-
     if (frameRate > 0) {
         std::chrono::duration<float> elapsedTime = currentFrameTime - lastFrameTime;
         float frameDuration = 1.0f / frameRate;
@@ -181,7 +167,6 @@ void Engine::render() {
     }
 
     lastFrameTime = currentFrameTime;
-
 
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glLoadIdentity();
@@ -209,17 +194,14 @@ void Engine::render() {
         }
     }
     
-  
     // Обертання кубика
     glPushMatrix();
     cube.draw();
     glRotatef(cubeRotationAngle, rotationAxisX, rotationAxisY, rotationAxisZ);
   
-   
         PrimitiveDrawer::drawCubeNew(1.0f, 0.0f, 0.0f, bitmapHandler);
     
     glPopMatrix();
-
     // Рух пішака
     if (isPawnMoving) {
         float currentTime = glutGet(GLUT_ELAPSED_TIME) / 1000.0f;
@@ -270,10 +252,6 @@ void Engine::render() {
     glutSwapBuffers();
 }
 
-
-
-
-
 bool Engine::isPointNearLine(float px, float py, float x1, float y1, float x2, float y2, float threshold) {
     float dx = x2 - x1;
     float dy = y2 - y1;
@@ -283,7 +261,6 @@ bool Engine::isPointNearLine(float px, float py, float x1, float y1, float x2, f
     if (projection < 0.0f || projection > 1.0f) {
         return false; 
     }
-
     float closestX = x1 + projection * dx;
     float closestY = y1 + projection * dy;
 
@@ -292,11 +269,11 @@ bool Engine::isPointNearLine(float px, float py, float x1, float y1, float x2, f
 }
 
 void Engine::onKeyboard(unsigned char key, int x, int y) {
-    if (key == 27) { 
+    if (key == 27) {
         stop();
     }
     player.handleInput(key);
-    glutPostRedisplay(); 
+    glutPostRedisplay();
 }
 
 void Engine::specialKeyboardCallback(int key, int x, int y) {
@@ -352,16 +329,15 @@ void Engine::updatePawnPosition() {
         // Jeśli pionek znajduje się po lewej i porusza się w dół
         else if (std::abs(pawnX - LEFT_LIMIT) < EPSILON && pawnY > BOTTOM_LIMIT) {
             pawnY -= pawnStepSize; // Ruch w dół
-            showWinnerMessage("Pionek czerwony");
+           //showWinnerMessage("Pionek czerwony");
         }
-
+        
         // Zmniejszenie liczby pozostałych kroków
         pawnStepsRemaining--;
         std::cout << "[DEBUG] Moving: Pawn X = " << pawnX
             << ", Pawn Y = " << pawnY
             << ", Steps left = " << pawnStepsRemaining << std::endl;
     }
-    
     // Zakończenie ruchu
     if (pawnStepsRemaining == 0) {
         isPawnMoving = false;
@@ -377,6 +353,7 @@ void Engine::updatePawnPosition2() {
     const float EPSILON = 0.01f;     // Tolerancja błędu dla porównań
     const float START_X = 0.1f;  // Punkt początkowy X
     const float START_Y = 0.85f; // Punkt początkowy Y
+    static bool crossedBottomBoundary = false;
 
     if (pawnStepsRemaining2 > 0) {
         // Jeśli pionek znajduje się w lewym górnym rogu, zaczyna poruszać się w dół
@@ -398,6 +375,17 @@ void Engine::updatePawnPosition2() {
         // Jeśli pionek znajduje się po lewej i porusza się w dół
         else if (std::abs(pawnX2 - LEFT_LIMIT) < EPSILON && pawnY2 > BOTTOM_LIMIT) {
             pawnY2 -= pawnStepSize2; // Ruch w dół
+           //showWinnerMessage("Pionek niebieski");
+        } 
+        // Sprawdzenie, czy pionek przeszedł przez dolną granicę
+        if (std::abs(pawnY2 - BOTTOM_LIMIT) < EPSILON) {
+            crossedBottomBoundary = true; // Zaznacz, że dolna granica została przekroczona
+        }
+
+        // Sprawdzenie, czy pionek wrócił na start
+        if (crossedBottomBoundary &&
+            std::abs(pawnX2 - START_X) < EPSILON &&
+            std::abs(pawnY2 - START_Y) < EPSILON) {
             showWinnerMessage("Pionek niebieski");
         }
 
@@ -407,7 +395,6 @@ void Engine::updatePawnPosition2() {
             << ", Pawn Y = " << pawnY2
             << ", Steps left = " << pawnStepsRemaining2 << std::endl;
     }
-    
     // Zakończenie ruchu
     if (pawnStepsRemaining2 == 0) {
         isPawnMoving2 = false;
@@ -433,24 +420,14 @@ void Engine::onMouse(int button, int state, int x, int y) {
         if (isMyTurn) {
             pawnStepsRemaining = steps;
             std::cout << "[DEBUG] Wylosowano dla pionka 1: " << steps << std::endl;
-            //isPawnMoving = true;
-
-
         }
         else {
             pawnStepsRemaining2 = steps;
             std::cout << "[DEBUG] Wylosowano dla pionka 2: " << steps << std::endl;
-            //isPawnMoving2 = true;
         }
-
-        //std::cout << "[DEBUG] Wylosowano: " << steps << std::endl;
-
-
-
 
         if (steps == 1) {
             drawer.textureSet = 1;
-
         }
         else if (steps == 2) {
             drawer.textureSet = 2;
@@ -467,7 +444,6 @@ void Engine::onMouse(int button, int state, int x, int y) {
         else if (steps == 6) {
             drawer.textureSet = 6;
         }
-
         // Встановлення осей для обертання кубика
         rotationAxisX = static_cast<float>(rand() % 2);
         rotationAxisY = static_cast<float>(rand() % 2);
@@ -477,12 +453,7 @@ void Engine::onMouse(int button, int state, int x, int y) {
         targetRotationAngle = 180.0f;
 
     }
-  
-
 }
-
-
-
 
 void Engine::onMouseMove(int x, int y) {
    
@@ -505,10 +476,8 @@ void Engine::onMouseMove(int x, int y) {
         lastMouseY = y;
 
         glutPostRedisplay();
-    }
-   
+    }  
 }
-
 
 void Engine::idleCallback() {
     if (instance) {
@@ -520,14 +489,7 @@ void Engine::idleCallback() {
         instance->player.update(elapsedTime);
         glutPostRedisplay(); // Оновлення екрану, якщо є активний рух
     }
-
 }
-
-
-
-
-    
-
 
 void Engine::renderCallback() {
     if (instance) {
@@ -582,4 +544,3 @@ void Engine::onMouseWheel(int wheel, int direction, int x, int y) {
 
     glutPostRedisplay(); 
 }
-

@@ -31,12 +31,23 @@ public:
     void onKeyboard(unsigned char key, int x, int y);
     void onMouse(int button, int state, int x, int y);
     void clear();
-    void onMouseMove(int x, int y);
     void onSpecialKeyboard(int key, int x, int y);
     void updatePawnPosition();
     void resetGame();
     bool crossedBottomBoundary1 = false; 
     bool crossedBottomBoundary2 = false; 
+    // Flagi i zmienne dla obs³ugi przesuwania linii
+    bool isDraggingLine = false;        // Czy linia jest przesuwana
+    float mouseStartX = 0.0f;           // Pocz¹tkowa wspó³rzêdna X myszki
+    float mouseStartY = 0.0f;           // Pocz¹tkowa wspó³rzêdna Y myszki
+    float lineStartPosX = 0.0f;         // Pocz¹tkowa pozycja X linii
+    float lineStartPosY = 0.0f;         // Pocz¹tkowa pozycja Y linii
+
+    // Funkcje do obs³ugi klikniêæ i ruchu myszki
+    void handleMouseClick(int button, int state, int x, int y); // Klikniêcie myszk¹
+    void handleMouseMotion(int x, int y); // Ruch myszk¹
+
+
 
     void onMouseWheel(int wheel, int direction, int x, int y);
     static void setInstance(Engine* engineInstance);
@@ -125,6 +136,7 @@ private:
     static void mouseCallback(int button, int state, int x, int y);
     static void motionCallback(int x, int y);
     static void reshapeCallback(int width, int height);
+    bool isClickOnCube(int mouseX, int mouseY);
     static void specialKeyboardCallback(int key, int x, int y);
    
     static Engine* instance;

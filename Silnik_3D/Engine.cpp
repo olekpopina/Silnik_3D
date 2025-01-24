@@ -23,23 +23,21 @@ void Engine::init(int argc, char** argv) {
     glEnable(GL_DEPTH_TEST);
     glClearColor(clearColor[0], clearColor[1], clearColor[2], clearColor[3]);
 
-
     glutDisplayFunc(renderCallback);
     glutIdleFunc(idleCallback);
     glutKeyboardFunc(keyboardCallback);
-    glutMouseFunc(mouseCallback);
-    glutMotionFunc(motionCallback);
+    glutSpecialFunc(specialKeyboardCallback);
     glutReshapeFunc(reshapeCallback);
 
-    glutIdleFunc(idleCallback);
-    glutSpecialFunc(specialKeyboardCallback);
-
+    glutMouseFunc(mouseCallback);   
+    glutMotionFunc(motionCallback); 
     glutMouseWheelFunc([](int wheel, int direction, int x, int y) {
         if (instance) {
             instance->onMouseWheel(wheel, direction, x, y);
         }
         });
 }
+
 void Engine::showWinnerMessage(const std::string& winner) {
     // Konwersja napisu na szerokie znaki
     std::wstring wideWinner(winner.begin(), winner.end());
@@ -407,81 +405,87 @@ void Engine::resetGame() {
 
 
 
+// Funkcja obsługująca kliknięcie myszką
 void Engine::onMouse(int button, int state, int x, int y) {
-    if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN && !isCubeRotating && !isPawnMoving && !isPawnMoving2) {
+    if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
+        // Sprawdzenie, czy kliknięto na kostkę
+        if (isClickOnCube(x, y) && !isCubeRotating && !isPawnMoving && !isPawnMoving2) {
+            isDragging = true;
 
-        isDragging = true;
+            // Rozpoczęcie obrotu kostki
+            isCubeRotating = true;
+            rotationStartTime = glutGet(GLUT_ELAPSED_TIME) / 1000.0f; // Czas początkowy obrotu
 
-        // Початок обертання кубика
-        isCubeRotating = true;
-        rotationStartTime = glutGet(GLUT_ELAPSED_TIME) / 1000.0f;
+            // Generowanie losowej liczby kroków dla pionka
+            srand(static_cast<unsigned int>(time(nullptr)));
+            int steps = (rand() % 6) + 1;
 
-        // Генерація випадкової кількості кроків для пішака
-        srand(static_cast<unsigned int>(time(nullptr)));
-        int steps = (rand() % 6) + 1;
-        //pawnStepsRemaining = steps;
-        //pawnStepsRemaining2 = steps;
+            if (isMyTurn) {
+                pawnStepsRemaining = steps;
+                std::cout << "[DEBUG] Wylosowano dla pionka 1: " << steps << std::endl;
+            }
+            else {
+                pawnStepsRemaining2 = steps;
+                std::cout << "[DEBUG] Wylosowano dla pionka 2: " << steps << std::endl;
+            }
 
-        if (isMyTurn) {
-            pawnStepsRemaining = steps;
-            std::cout << "[DEBUG] Wylosowano dla pionka 1: " << steps << std::endl;
-        }
-        else {
-            pawnStepsRemaining2 = steps;
-            std::cout << "[DEBUG] Wylosowano dla pionka 2: " << steps << std::endl;
-        }
+            // Ustawianie tekstury kostki w zależności od liczby kroków
+            drawer.textureSet = steps;
 
-        if (steps == 1) {
-            drawer.textureSet = 1;
-        }
-        else if (steps == 2) {
-            drawer.textureSet = 2;
-        }
-        else if (steps == 3) {
-            drawer.textureSet = 3;
-        }
-        else if (steps == 4) {
-            drawer.textureSet = 4;
-        }
-        else if (steps == 5) {
-            drawer.textureSet = 5;
-        }
-        else if (steps == 6) {
-            drawer.textureSet = 6;
-        }
-        // Встановлення осей для обертання кубика
-        rotationAxisX = static_cast<float>(rand() % 2);
-        rotationAxisY = static_cast<float>(rand() % 2);
-        rotationAxisZ = (rotationAxisX == 0 && rotationAxisY == 0) ? 1.0f : 0.0f;
+            // Ustawianie osi obrotu kostki
+            rotationAxisX = static_cast<float>(rand() % 2);
+            rotationAxisY = static_cast<float>(rand() % 2);
+            rotationAxisZ = (rotationAxisX == 0 && rotationAxisY == 0) ? 1.0f : 0.0f;
 
-        // Встановлення цільового кута 
-        targetRotationAngle = 180.0f;
-
+            // Ustawienie docelowego kąta obrotu
+            targetRotationAngle = 180.0f;
+        }
     }
 }
 
-void Engine::onMouseMove(int x, int y) {
-   
-    if (isDragging) {
-    
-        float dx = (x - lastMouseX) * 0.01f;
-        float dy = -(y - lastMouseY) * 0.01f;
 
-        float lineStartX, lineStartY, lineStartZ, lineEndX, lineEndY, lineEndZ;
-        line.getStart(lineStartX, lineStartY, lineStartZ);
-        line.getEnd(lineEndX, lineEndY, lineEndZ);
+// Obsługa kliknięcia myszką
+void Engine::handleMouseClick(int button, int state, int x, int y) {
+    if (button == GLUT_LEFT_BUTTON) { // Kliknięcie lewym przyciskiem myszy
+        if (state == GLUT_DOWN) { // Jeśli przycisk został naciśnięty
+            // Przekształcenie współrzędnych ekranu na współrzędne OpenGL
+            float mouseWorldX = (float)x / glutGet(GLUT_WINDOW_WIDTH);
+            float mouseWorldY = 1.0f - (float)y / glutGet(GLUT_WINDOW_HEIGHT);
 
-        pointX += dx;
-        pointY += dy;
+            // Sprawdzenie, czy kliknięto w punkt na środku linii
+            float centerX = linePosX; // Współrzędna X punktu
+            float centerY = linePosY; // Współrzędna Y punktu
+            const float CLICK_RADIUS = 0.05f; // Promień tolerancji dla kliknięcia
 
-        line.setStart(lineStartX + dx, lineStartY + dy, lineStartZ);
-        line.setEnd(lineEndX + dx, lineEndY + dy, lineEndZ);
+            if (std::abs(mouseWorldX - centerX) < CLICK_RADIUS &&
+                std::abs(mouseWorldY - centerY) < CLICK_RADIUS) {
+                isDraggingLine = true; // Aktywacja trybu przesuwania linii
+                mouseStartX = mouseWorldX;
+                mouseStartY = mouseWorldY;
+                lineStartPosX = linePosX;
+                lineStartPosY = linePosY;
+            }
+        }
+        else if (state == GLUT_UP) { // Jeśli przycisk został puszczony
+            isDraggingLine = false; // Wyłączenie trybu przesuwania
+        }
+    }
+}
 
-        lastMouseX = x;
-        lastMouseY = y;
+// Obsługa ruchu myszką
+void Engine::handleMouseMotion(int x, int y) {
+    if (isDraggingLine) {
+        // Przekształcenie współrzędnych ekranu na współrzędne OpenGL
+        float mouseWorldX = (float)x / glutGet(GLUT_WINDOW_WIDTH);
+        float mouseWorldY = 1.0f - (float)y / glutGet(GLUT_WINDOW_HEIGHT);
 
+        // Aktualizacja pozycji linii
+        linePosX = lineStartPosX + (mouseWorldX - mouseStartX);
+        linePosY = lineStartPosY + (mouseWorldY - mouseStartY);
+
+        // Odświeżenie okna w celu przerysowania sceny
         glutPostRedisplay();
-    }  
+    }
 }
 
 void Engine::idleCallback() {
@@ -507,11 +511,15 @@ void Engine::keyboardCallback(unsigned char key, int x, int y) {
 }
 
 void Engine::mouseCallback(int button, int state, int x, int y) {
-    instance->onMouse(button, state, x, y);
+    if (instance) {
+        instance->onMouse(button, state, x, y);
+    }
 }
 
 void Engine::motionCallback(int x, int y) {
-    instance->onMouseMove(x, y);
+    if (instance) {
+        instance->handleMouseMotion(x, y);
+    }
 }
 
 void Engine::reshapeCallback(int width, int height) {
@@ -526,6 +534,25 @@ void Engine::reshapeCallback(int width, int height) {
     if (error != GL_NO_ERROR) {
         std::cerr << "OpenGL error during reshape: " << gluErrorString(error) << std::endl;
     }
+}
+
+
+// Funkcja sprawdzająca, czy kliknięcie było na kostce
+bool Engine::isClickOnCube(int mouseX, int mouseY) {
+    // Przekształcenie współrzędnych ekranu na współrzędne OpenGL
+    float normalizedX = (float)mouseX / glutGet(GLUT_WINDOW_WIDTH) * 2.0f - 1.0f; // Normalizacja do [-1, 1]
+    float normalizedY = 1.0f - (float)mouseY / glutGet(GLUT_WINDOW_HEIGHT) * 2.0f; // Normalizacja do [-1, 1]
+
+    // Określenie granic kostki w przestrzeni
+    float cubeSize = 1.0f;              // Rozmiar kostki
+    float cubeMinX = -0.5f * cubeSize;  // Minimalna współrzędna X kostki
+    float cubeMaxX = 0.5f * cubeSize;   // Maksymalna współrzędna X kostki
+    float cubeMinY = -0.5f * cubeSize;  // Minimalna współrzędna Y kostki
+    float cubeMaxY = 0.5f * cubeSize;   // Maksymalna współrzędna Y kostki
+
+    // Sprawdzenie, czy kliknięcie znajduje się w granicach kostki
+    return (normalizedX >= cubeMinX && normalizedX <= cubeMaxX &&
+        normalizedY >= cubeMinY && normalizedY <= cubeMaxY);
 }
 
 void Engine::setInstance(Engine* engineInstance) {

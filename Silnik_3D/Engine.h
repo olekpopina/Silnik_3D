@@ -34,7 +34,10 @@ public:
     void onMouseMove(int x, int y);
     void onSpecialKeyboard(int key, int x, int y);
     void updatePawnPosition();
-    void updatePawnPosition2();
+    void resetGame();
+    bool crossedBottomBoundary1 = false; 
+    bool crossedBottomBoundary2 = false; 
+
     void onMouseWheel(int wheel, int direction, int x, int y);
     static void setInstance(Engine* engineInstance);
    static void timer(int value);

@@ -1,6 +1,7 @@
 ﻿#include "Engine.h"
 #include "Cube.h"
 #include "Triangle.h"
+#include <array>
 
 Cube cube;
 Engine* Engine::instance = nullptr;
@@ -154,7 +155,7 @@ void Engine::setTextures(const std::vector<std::string>& texturePaths) {
 }
 
 void Engine::render() {
-
+    // Obliczanie czasu ramki
     auto currentFrameTime = std::chrono::high_resolution_clock::now();
     if (frameRate > 0) {
         std::chrono::duration<float> elapsedTime = currentFrameTime - lastFrameTime;
@@ -165,91 +166,100 @@ void Engine::render() {
             return;
         }
     }
-
     lastFrameTime = currentFrameTime;
 
+    // Czyszczenie buforów
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glLoadIdentity();
 
+    // Ustawienie kamery
     gluLookAt(1.5, 1.5, cameraZ, 0.0, 0.0, 0.0, 0.0, 8.0, 0.0);
 
+    // Rysowanie tła
     bitmapHandler.drawBackground();
-    
-    if (isCubeRotating) {
-       float currentTime = glutGet(GLUT_ELAPSED_TIME) / 1000.0f;
-       float elapsedTime = currentTime - rotationStartTime;
 
+    // Obracanie kostki
+    if (isCubeRotating) {
+        float currentTime = glutGet(GLUT_ELAPSED_TIME) / 1000.0f;
+        float elapsedTime = currentTime - rotationStartTime;
+
+        // Kontrola czasu obrotu kostki
         if (elapsedTime < 2.0f) {
-            cubeRotationAngle = elapsedTime * 180.0f; // Обертання кубика
+            cubeRotationAngle = elapsedTime * 180.0f; // Obrót kostki
         }
         else {
-          
-            isCubeRotating = false; // Завершення обертання
-            isPawnMoving = true;    // Початок руху пішака
-            isPawnMoving2 = true;
+            isCubeRotating = false;    // Zakończenie obrotu kostki
+            isPawnMoving = true;       // Rozpoczęcie ruchu pierwszego pionka
+            isPawnMoving2 = true;      // Rozpoczęcie ruchu drugiego pionka
             pawnLastMoveTime = currentTime;
             pawnLastMoveTime2 = currentTime;
-            isMyTurn = !isMyTurn;
+            isMyTurn = !isMyTurn;      // Zmiana tury gracza
             std::cout << "[DEBUG] Tura gracza: " << (isMyTurn ? "1" : "2") << std::endl;
         }
     }
-    
-    // Обертання кубика
+
+    // Rysowanie kostki z obrotem
     glPushMatrix();
     cube.draw();
     glRotatef(cubeRotationAngle, rotationAxisX, rotationAxisY, rotationAxisZ);
-  
     PrimitiveDrawer::drawCubeNew(1.0f, 0.0f, 0.0f, bitmapHandler);
-    
     glPopMatrix();
-    // Рух пішака
-    if (isPawnMoving) {
+
+    // Aktualizacja i rysowanie pionków
+    if (isPawnMoving || isPawnMoving2) {
         float currentTime = glutGet(GLUT_ELAPSED_TIME) / 1000.0f;
-        float elapsedTime = currentTime - pawnLastMoveTime;
 
-        if (elapsedTime >= 0.1f && pawnStepsRemaining > 0) {
-            updatePawnPosition();
-            pawnLastMoveTime = currentTime;
+        // Ruch pierwszego pionka
+        if (isPawnMoving) {
+            float elapsedTime = currentTime - pawnLastMoveTime;
+            if (elapsedTime >= 0.1f && pawnStepsRemaining > 0) {
+                updatePawnPosition(); // Aktualizacja pozycji pionków
+                pawnLastMoveTime = currentTime;
+            }
+            if (pawnStepsRemaining == 0) {
+                isPawnMoving = false;
+            }
         }
 
-        if (pawnStepsRemaining == 0) {
-            isPawnMoving = false;
+        // Ruch drugiego pionka
+        if (isPawnMoving2) {
+            float elapsedTime2 = currentTime - pawnLastMoveTime2;
+            if (elapsedTime2 >= 0.1f && pawnStepsRemaining2 > 0) {
+                updatePawnPosition(); // Wykorzystanie jednej funkcji
+                pawnLastMoveTime2 = currentTime;
+            }
+            if (pawnStepsRemaining2 == 0) {
+                isPawnMoving2 = false;
+            }
         }
-      
     }
+
+    // Rysowanie pierwszego pionka
     bitmapHandler.drawPionek(pawnX, pawnY, 0.1f, 0.1f, bitmapHandler.texture_pionek);
-    // Рух пішака
-    if (isPawnMoving2) {
-        float currentTime2 = glutGet(GLUT_ELAPSED_TIME) / 1000.0f;
-        float elapsedTime2 = currentTime2 - pawnLastMoveTime2;
 
-        if (elapsedTime2 >= 0.1f && pawnStepsRemaining2 > 0) {
-            updatePawnPosition2();
-            pawnLastMoveTime2 = currentTime2;
-        }
-
-        if (pawnStepsRemaining2 == 0) {
-            isPawnMoving2 = false;
-        }
-    }
-
+    // Rysowanie drugiego pionka
     bitmapHandler.drawPionek(pawnX2, pawnY2, 0.1f, 0.1f, bitmapHandler.texture_pionek2);
 
+    // Rysowanie trójkąta
     glPushMatrix();
     triangle.updateRotation(deltaTime);
     triangle.draw();
     glPopMatrix();
 
+    // Rysowanie linii i punktu
     glPushMatrix();
     glTranslatef(linePosX, linePosY, 0.0f);
     line.draw();
     PrimitiveDrawer::drawPoint(pointX, pointY, pointZ, 8.0f);
     glPopMatrix();
 
+    // Ustawienie drugiej kamery
     gluLookAt(3.0, 3.0, cameraZ, 5.0, 0.0, 0.0, 0.0, 3.0, 2.0);
 
+    // Wymiana buforów
     glutSwapBuffers();
 }
+
 
 bool Engine::isPointNearLine(float px, float py, float x1, float y1, float x2, float y2, float threshold) {
     float dx = x2 - x1;
@@ -300,106 +310,102 @@ void Engine::onSpecialKeyboard(int key, int x, int y) {
 }
 
 void Engine::updatePawnPosition() {
-    const float LEFT_LIMIT = 0.1f;   // Lewa granica
-    const float RIGHT_LIMIT = 0.85f; // Prawa granica
-    const float BOTTOM_LIMIT = 0.1f; // Dolna granica
-    const float TOP_LIMIT = 0.85f;   // Górna granica
-    const float EPSILON = 0.01f;     // Tolerancja błędu dla porównań
-    const float START_X = 0.1f;  // Punkt początkowy X
-    const float START_Y = 0.85f; // Punkt początkowy Y
+    // Struktura zawierająca dane każdego pionka
+    struct PawnData {
+        float& pawnX;                 // Współrzędna X pionka
+        float& pawnY;                 // Współrzędna Y pionka
+        int& pawnStepsRemaining;      // Liczba pozostałych kroków
+        float pawnStepSize;           // Rozmiar jednego kroku
+        GLuint texture;               // Tekstura pionka
+        bool& isMoving;               // Flaga wskazująca, czy pionek się porusza
+        const std::string winnerName; // Nazwa gracza
+        bool& crossedBottomBoundary;  // Czy pionek przekroczył dolną granicę
+    };
 
-    if (pawnStepsRemaining > 0) {
-        // Jeśli pionek znajduje się w lewym górnym rogu, zaczyna poruszać się w dół
-        if (std::abs(pawnX - LEFT_LIMIT) < EPSILON && std::abs(pawnY - TOP_LIMIT) < EPSILON) {
-            pawnY -= pawnStepSize; // Ruch w dół
-        }
-        // Jeśli pionek znajduje się na dole i porusza się w prawo
-        else if (std::abs(pawnY - BOTTOM_LIMIT) < EPSILON && pawnX < RIGHT_LIMIT) {
-            pawnX += pawnStepSize; // Ruch w prawo
-        }
-        // Jeśli pionek znajduje się po prawej i porusza się w górę
-        else if (std::abs(pawnX - RIGHT_LIMIT) < EPSILON && pawnY < TOP_LIMIT) {
-            pawnY += pawnStepSize; // Ruch w górę
-        }
-        // Jeśli pionek znajduje się na górze i porusza się w lewo
-        else if (std::abs(pawnY - TOP_LIMIT) < EPSILON && pawnX > LEFT_LIMIT) {
-            pawnX -= pawnStepSize; // Ruch w lewo
-        }
-        // Jeśli pionek znajduje się po lewej i porusza się w dół
-        else if (std::abs(pawnX - LEFT_LIMIT) < EPSILON && pawnY > BOTTOM_LIMIT) {
-            pawnY -= pawnStepSize; // Ruch w dół
-           //showWinnerMessage("Pionek czerwony");
-        }
-        
-        // Zmniejszenie liczby pozostałych kroków
-        pawnStepsRemaining--;
-        std::cout << "[DEBUG] Moving: Pawn X = " << pawnX
-            << ", Pawn Y = " << pawnY
-            << ", Steps left = " << pawnStepsRemaining << std::endl;
-    }
-    // Zakończenie ruchu
-    if (pawnStepsRemaining == 0) {
-        isPawnMoving = false;
-        std::cout << "[DEBUG] Pawn movement completed!" << std::endl;
-    }
-}
+    // Konfiguracja dwóch pionków
+    std::array<PawnData, 2> pawns = { {
+        {pawnX, pawnY, pawnStepsRemaining, pawnStepSize, bitmapHandler.texture_pionek, isPawnMoving, "Pionek czerwony", crossedBottomBoundary1},
+        {pawnX2, pawnY2, pawnStepsRemaining2, pawnStepSize2, bitmapHandler.texture_pionek2, isPawnMoving2, "Pionek niebieski", crossedBottomBoundary2}
+    } };
 
-void Engine::updatePawnPosition2() {
-    const float LEFT_LIMIT = 0.1f;   // Lewa granica
-    const float RIGHT_LIMIT = 0.85f; // Prawa granica
-    const float BOTTOM_LIMIT = 0.1f; // Dolna granica
-    const float TOP_LIMIT = 0.85f;   // Górna granica
-    const float EPSILON = 0.01f;     // Tolerancja błędu dla porównań
-    const float START_X = 0.1f;  // Punkt początkowy X
-    const float START_Y = 0.85f; // Punkt początkowy Y
-    static bool crossedBottomBoundary = false;
+    // Stałe granice planszy
+    const float LEFT_LIMIT = 0.1f;     // Lewa granica planszy
+    const float RIGHT_LIMIT = 0.85f;   // Prawa granica planszy
+    const float BOTTOM_LIMIT = 0.1f;   // Dolna granica planszy
+    const float TOP_LIMIT = 0.85f;     // Górna granica planszy
+    const float START_X = 0.1f;        // Początkowa współrzędna X
+    const float START_Y = 0.1f;        // Początkowa współrzędna Y
+    const float EPSILON = 0.01f;       // Tolerancja dla błędów obliczeń zmiennoprzecinkowych
 
-    if (pawnStepsRemaining2 > 0) {
-        // Jeśli pionek znajduje się w lewym górnym rogu, zaczyna poruszać się w dół
-        if (std::abs(pawnX2 - LEFT_LIMIT) < EPSILON && std::abs(pawnY2 - TOP_LIMIT) < EPSILON) {
-            pawnY2 -= pawnStepSize2; // Ruch w dół
-        }
-        // Jeśli pionek znajduje się na dole i porusza się w prawo
-        else if (std::abs(pawnY2 - BOTTOM_LIMIT) < EPSILON && pawnX2 < RIGHT_LIMIT) {
-            pawnX2 += pawnStepSize2; // Ruch w prawo
-        }
-        // Jeśli pionek znajduje się po prawej i porusza się w górę
-        else if (std::abs(pawnX2 - RIGHT_LIMIT) < EPSILON && pawnY2 < TOP_LIMIT) {
-            pawnY2 += pawnStepSize2; // Ruch w górę
-        }
-        // Jeśli pionek znajduje się na górze i porusza się w lewo
-        else if (std::abs(pawnY2 - TOP_LIMIT) < EPSILON && pawnX2 > LEFT_LIMIT) {
-            pawnX2 -= pawnStepSize2; // Ruch w lewo
-        }
-        // Jeśli pionek znajduje się po lewej i porusza się w dół
-        else if (std::abs(pawnX2 - LEFT_LIMIT) < EPSILON && pawnY2 > BOTTOM_LIMIT) {
-            pawnY2 -= pawnStepSize2; // Ruch w dół
-           //showWinnerMessage("Pionek niebieski");
-        } 
-        // Sprawdzenie, czy pionek przeszedł przez dolną granicę
-        if (std::abs(pawnY2 - BOTTOM_LIMIT) < EPSILON) {
-            crossedBottomBoundary = true; // Zaznacz, że dolna granica została przekroczona
+    // Iteracja przez wszystkie pionki
+    for (auto& pawn : pawns) {
+        if (pawn.pawnStepsRemaining > 0) {
+            // Logika poruszania się pionka po granicach planszy
+            if (std::abs(pawn.pawnX - LEFT_LIMIT) < EPSILON && pawn.pawnY > BOTTOM_LIMIT) {
+                pawn.pawnY -= pawn.pawnStepSize; // Ruch w dół
+                if (pawn.pawnY < BOTTOM_LIMIT) pawn.pawnY = BOTTOM_LIMIT; // Zapobieganie wyjściu poza granicę
+            }
+            else if (std::abs(pawn.pawnY - BOTTOM_LIMIT) < EPSILON && pawn.pawnX < RIGHT_LIMIT) {
+                pawn.pawnX += pawn.pawnStepSize; // Ruch w prawo
+                if (pawn.pawnX > RIGHT_LIMIT) pawn.pawnX = RIGHT_LIMIT; // Zapobieganie wyjściu poza granicę
+            }
+            else if (std::abs(pawn.pawnX - RIGHT_LIMIT) < EPSILON && pawn.pawnY < TOP_LIMIT) {
+                pawn.pawnY += pawn.pawnStepSize; // Ruch w górę
+                if (pawn.pawnY > TOP_LIMIT) pawn.pawnY = TOP_LIMIT; // Zapobieganie wyjściu poza granicę
+            }
+            else if (std::abs(pawn.pawnY - TOP_LIMIT) < EPSILON && pawn.pawnX > LEFT_LIMIT) {
+                pawn.pawnX -= pawn.pawnStepSize; // Ruch w lewo
+                if (pawn.pawnX < LEFT_LIMIT) pawn.pawnX = LEFT_LIMIT; // Zapobieganie wyjściu poza granicę
+            }
+
+            // Sprawdzenie, czy pionek przekroczył dolną granicę
+            if (std::abs(pawn.pawnY - BOTTOM_LIMIT) < EPSILON) {
+                pawn.crossedBottomBoundary = true;
+            }
+
+            // Sprawdzenie, czy pionek wrócił na pozycję początkową (X = 0.1, Y = 0.1)
+            if (pawn.crossedBottomBoundary &&
+                std::abs(pawn.pawnX - START_X) < EPSILON &&
+                std::abs(pawn.pawnY - START_Y) < EPSILON) {
+                showWinnerMessage(pawn.winnerName); // Wyświetlenie komunikatu o zwycięstwie
+                resetGame(); // Reset gry
+                return;
+            }
+
+            pawn.pawnStepsRemaining--; // Zmniejszenie liczby pozostałych kroków
         }
 
-        // Sprawdzenie, czy pionek wrócił na start
-        if (crossedBottomBoundary &&
-            std::abs(pawnX2 - START_X) < EPSILON &&
-            std::abs(pawnY2 - START_Y) < EPSILON) {
-            showWinnerMessage("Pionek niebieski");
+        // Zatrzymanie ruchu, jeśli pionek zakończył wszystkie kroki
+        if (pawn.pawnStepsRemaining == 0) {
+            pawn.isMoving = false;
         }
-
-        // Zmniejszenie liczby pozostałych kroków
-        pawnStepsRemaining2--;
-        std::cout << "[DEBUG] Moving: Pawn X2 = " << pawnX2
-            << ", Pawn Y = " << pawnY2
-            << ", Steps left = " << pawnStepsRemaining2 << std::endl;
-    }
-    // Zakończenie ruchu
-    if (pawnStepsRemaining2 == 0) {
-        isPawnMoving2 = false;
-        std::cout << "[DEBUG] Pawn movement completed!" << std::endl;
     }
 }
+
+void Engine::resetGame() {
+    // Resetowanie pozycji pionków do początkowych współrzędnych
+    pawnX = 0.1f;
+    pawnY = 0.1f;  // Reset do pozycji startowej (0.1, 0.1)
+    pawnX2 = 0.1f;
+    pawnY2 = 0.1f; // Reset do pozycji startowej (0.1, 0.1)
+
+    // Resetowanie liczby kroków
+    pawnStepsRemaining = 0;
+    pawnStepsRemaining2 = 0;
+
+    // Zatrzymanie ruchu pionków
+    isPawnMoving = false;
+    isPawnMoving2 = false;
+
+    // Resetowanie flag przekroczenia dolnej granicy
+    crossedBottomBoundary1 = false;
+    crossedBottomBoundary2 = false;
+
+    std::cout << "[DEBUG] Gra została zresetowana. Można grać ponownie." << std::endl;
+}
+
+
+
 
 void Engine::onMouse(int button, int state, int x, int y) {
     if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN && !isCubeRotating && !isPawnMoving && !isPawnMoving2) {

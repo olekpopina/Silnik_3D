@@ -4,47 +4,33 @@
 #include <SFML/Graphics.hpp>
 #include <GL/freeglut.h>
 #include <iostream>
+#include <vector>
+#include <string>
 
 class BitmapHandler {
 public:
     BitmapHandler();
     ~BitmapHandler();
 
-    // Rysowanie obrazu jako t³a
-    void drawBackground();
-    void bindTextureForCube();
-    void drawPionekGeneric(float x, float y, float width, float height, GLuint texture);
-    void drawPionek(float x, float y, float width, float height);
+    bool loadTextures(const std::vector<std::string>& texturePaths); // £adowanie tekstur
+    void deleteTexture(GLuint& texture, bool& isLoaded); // Usuwanie tekstur
+    void drawBackground(); // Rysowanie t³a
+    void drawPionek(float x, float y, float width, float height, GLuint texture);
+    void bindCubeTexture(int faceIndex); // Przypisanie tekstury do œciany kostki
+    bool isTextureLoaded(GLuint texture); // Sprawdzenie, czy tekstura zosta³a za³adowana
+    GLuint texture2, texture3, texture4, texture5, texture6, texture7; // Tekstury œcian kostki
 
-    void drawPionek2(float x, float y, float width, float height);
-    
-    GLuint numberTextures[6];
-    GLuint texture1;           
-    bool isTextureLoaded_1;      
-    GLuint texture2;           
-    bool isTextureLoaded_2;       
-    GLuint texture3;
-    bool isTextureLoaded_3;
-    GLuint texture4;
-    bool isTextureLoaded_4;
-    GLuint texture5;
-    bool isTextureLoaded_5;
-    GLuint texture6;
-    bool isTextureLoaded_6;
-    GLuint texture7;
-    bool isTextureLoaded_7;
-    GLuint texture_pionek;
-    bool isTextureLoaded_pionek;
-    GLuint texture_pionek2;
-    bool isTextureLoaded_pionek2;
-    GLuint loadSingleTexture(const std::string& filePath);
-    bool loadTextures(const std::string& filePath1, const std::string& filePath2, const std::string& filePath3, const std::string& filePath4, const std::string& filePath5, const std::string& filePath6, const std::string& filePath7, const std::string& pionek, const std::string& pionek2);
+    GLuint texture1; // Tekstura t³a
+    GLuint texture_pionek; // Tekstura dla pionka 1
+    GLuint texture_pionek2; // Tekstura dla pionka 2
 
 private:
-   
-    int textureWidth;           // Szerokoœæ tekstury
-    int textureHeight;          // Wysokoœæ tekstury
     
+    bool isTextureLoaded_1, isTextureLoaded_2, isTextureLoaded_3, isTextureLoaded_4;
+    bool isTextureLoaded_5, isTextureLoaded_6, isTextureLoaded_7;
+    bool isTextureLoaded_pionek, isTextureLoaded_pionek2;
+
+    GLuint loadSingleTexture(const std::string& filePath); // £adowanie pojedynczej tekstury
 };
 
 #endif // BITMAPHANDLER_H

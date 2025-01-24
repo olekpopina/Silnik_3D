@@ -1,40 +1,22 @@
 #include "BitmapHandler.h"
 
 BitmapHandler::BitmapHandler()
-    : texture1(0), texture2(1), texture3(2), texture4(3), texture5(4), texture6(5), texture7(6), texture_pionek(7), texture_pionek2(8), textureWidth(9), textureHeight(10),
-    isTextureLoaded_1(false), isTextureLoaded_2(false), isTextureLoaded_3(false), isTextureLoaded_4(false), isTextureLoaded_5(false), isTextureLoaded_6(false), isTextureLoaded_7(false), isTextureLoaded_pionek(false), isTextureLoaded_pionek2(false) {
-   
-}
+    : texture1(0), texture2(0), texture3(0), texture4(0), texture5(0), texture6(0), texture7(0),
+    texture_pionek(0), texture_pionek2(0),
+    isTextureLoaded_1(false), isTextureLoaded_2(false), isTextureLoaded_3(false),
+    isTextureLoaded_4(false), isTextureLoaded_5(false), isTextureLoaded_6(false),
+    isTextureLoaded_7(false), isTextureLoaded_pionek(false), isTextureLoaded_pionek2(false) {}
 
 BitmapHandler::~BitmapHandler() {
-    if (isTextureLoaded_1) {
-        glDeleteTextures(1, &texture1);
-    }
-    if (isTextureLoaded_2) {
-        glDeleteTextures(1, &texture2);
-    }
-    if (isTextureLoaded_3) {
-        glDeleteTextures(1, &texture3);
-    }
-    if (isTextureLoaded_4) {
-        glDeleteTextures(1, &texture4);
-    }
-    if (isTextureLoaded_5) {
-        glDeleteTextures(1, &texture5);
-    }
-    if (isTextureLoaded_6) {
-        glDeleteTextures(1, &texture6);
-    }
-    if (isTextureLoaded_7) {
-        glDeleteTextures(1, &texture7);
-    }
-    if (isTextureLoaded_pionek) {
-        glDeleteTextures(1, &texture_pionek);
-    }
-    if (isTextureLoaded_pionek2) {
-        glDeleteTextures(1, &texture_pionek2);
-    }
- 
+    deleteTexture(texture1, isTextureLoaded_1);
+    deleteTexture(texture2, isTextureLoaded_2);
+    deleteTexture(texture3, isTextureLoaded_3);
+    deleteTexture(texture4, isTextureLoaded_4);
+    deleteTexture(texture5, isTextureLoaded_5);
+    deleteTexture(texture6, isTextureLoaded_6);
+    deleteTexture(texture7, isTextureLoaded_7);
+    deleteTexture(texture_pionek, isTextureLoaded_pionek);
+    deleteTexture(texture_pionek2, isTextureLoaded_pionek2);
 }
 
 GLuint BitmapHandler::loadSingleTexture(const std::string& filePath) {
@@ -56,66 +38,73 @@ GLuint BitmapHandler::loadSingleTexture(const std::string& filePath) {
     return textureId;
 }
 
-bool BitmapHandler::loadTextures(const std::string& filePath1, const std::string& filePath2, const std::string& filePath3, const std::string& filePath4, const std::string& filePath5, const std::string& filePath6, const std::string& filePath7, const std::string& pionek, const std::string& pionek2) {
-    texture1 = loadSingleTexture(filePath1);
-    isTextureLoaded_1 = (texture1 != 0);
+bool BitmapHandler::loadTextures(const std::vector<std::string>& texturePaths) {
+    std::vector<GLuint*> textures = {
+        &texture1, &texture2, &texture3, &texture4, &texture5, &texture6, &texture7, &texture_pionek, &texture_pionek2
+    };
 
-    texture2 = loadSingleTexture(filePath2);
-    isTextureLoaded_2 = (texture2 != 0);
+    if (texturePaths.size() != textures.size()) {
+        std::cerr << "B³êdna liczba œcie¿ek do tekstur!" << std::endl;
+        return false;
+    }
 
-    texture3 = loadSingleTexture(filePath3);
-    isTextureLoaded_3 = (texture3 != 0);
+    bool allLoaded = true;
+    for (size_t i = 0; i < texturePaths.size(); ++i) {
+        *textures[i] = loadSingleTexture(texturePaths[i]);
+        bool isLoaded = (*textures[i] != 0);
+        if (!isLoaded) {
+            std::cerr << "Nie uda³o siê za³adowaæ tekstury: " << texturePaths[i] << std::endl;
+            allLoaded = false;
+        }
+    }
+    return allLoaded;
+}
 
-    texture4 = loadSingleTexture(filePath4);
-    isTextureLoaded_4 = (texture4 != 0);
+void BitmapHandler::deleteTexture(GLuint& texture, bool& isLoaded) {
+    if (isLoaded) {
+        glDeleteTextures(1, &texture);
+        isLoaded = false;
+    }
+}
 
-    texture5 = loadSingleTexture(filePath5);
-    isTextureLoaded_5 = (texture5 != 0);
+bool BitmapHandler::isTextureLoaded(GLuint texture) {
+    return glIsTexture(texture) == GL_TRUE;
+}
 
-    texture6 = loadSingleTexture(filePath6);
-    isTextureLoaded_6 = (texture6 != 0);
+void BitmapHandler::bindCubeTexture(int faceIndex) {
+    std::vector<GLuint> cubeTextures = { texture2, texture3, texture4, texture5, texture6, texture7 };
 
-    texture7 = loadSingleTexture(filePath7);
-    isTextureLoaded_7 = (texture7 != 0);
-
-    texture_pionek = loadSingleTexture(pionek);
-    isTextureLoaded_pionek = (texture_pionek != 0);
-
-    texture_pionek2 = loadSingleTexture(pionek2);
-    isTextureLoaded_pionek2 = (texture_pionek2 != 0);
-
-   
-    
-    return isTextureLoaded_1 && isTextureLoaded_2 && isTextureLoaded_3 && isTextureLoaded_4 && isTextureLoaded_5 && isTextureLoaded_6 && isTextureLoaded_7 && isTextureLoaded_pionek && isTextureLoaded_pionek2;
+    if (faceIndex >= 0 && faceIndex < cubeTextures.size() && isTextureLoaded(cubeTextures[faceIndex])) {
+        glBindTexture(GL_TEXTURE_2D, cubeTextures[faceIndex]);
+    }
+    else {
+        std::cerr << "Nieprawid³owy indeks tekstury lub tekstura nieza³adowana!" << std::endl;
+    }
 }
 
 void BitmapHandler::drawBackground() {
-    if (!isTextureLoaded_1) return;
+    if (!isTextureLoaded(texture1)) return;
 
-    // Save the current projection and modelview matrices
     glMatrixMode(GL_PROJECTION);
     glPushMatrix();
     glLoadIdentity();
-    gluOrtho2D(0.0, 1.0, 0.0, 1.0); // Orthographic projection for 2D drawing
+    gluOrtho2D(0.0, 1.0, 0.0, 1.0);
 
     glMatrixMode(GL_MODELVIEW);
     glPushMatrix();
     glLoadIdentity();
 
-    // Disable depth test and enable textures
     glDisable(GL_DEPTH_TEST);
     glEnable(GL_TEXTURE_2D);
     glBindTexture(GL_TEXTURE_2D, texture1);
 
-    // Draw a fullscreen quad
     glBegin(GL_QUADS);
-    glTexCoord2f(0.0f, 0.0f); glVertex2f(0.0f, 0.0f); // Bottom-left
-    glTexCoord2f(1.0f, 0.0f); glVertex2f(1.0f, 0.0f); // Bottom-right
-    glTexCoord2f(1.0f, 1.0f); glVertex2f(1.0f, 1.0f); // Top-right
-    glTexCoord2f(0.0f, 1.0f); glVertex2f(0.0f, 1.0f); // Top-left
+    glTexCoord2f(0.0f, 0.0f); glVertex2f(0.0f, 0.0f);
+    glTexCoord2f(1.0f, 0.0f); glVertex2f(1.0f, 0.0f);
+    glTexCoord2f(1.0f, 1.0f); glVertex2f(1.0f, 1.0f);
+    glTexCoord2f(0.0f, 1.0f); glVertex2f(0.0f, 1.0f);
     glEnd();
 
-    // Restore previous settings
     glBindTexture(GL_TEXTURE_2D, 0);
     glEnable(GL_DEPTH_TEST);
 
@@ -124,37 +113,8 @@ void BitmapHandler::drawBackground() {
     glMatrixMode(GL_MODELVIEW);
     glPopMatrix();
 }
-void BitmapHandler::bindTextureForCube() {
-    
-    if (!isTextureLoaded_2) {
-        std::cerr << "Tekstura kostki nie zosta³a za³adowana!" << std::endl;
-        return;
-    }
-    if (!isTextureLoaded_3) {
-        std::cerr << "Tekstura kostki nie zosta³a za³adowana!" << std::endl;
-        return;
-    }
-    if (!isTextureLoaded_4) {
-        std::cerr << "Tekstura kostki nie zosta³a za³adowana!" << std::endl;
-        return;
-    }
-    if (!isTextureLoaded_5) {
-        std::cerr << "Tekstura kostki nie zosta³a za³adowana!" << std::endl;
-        return;
-    }
-    if (!isTextureLoaded_6) {
-        std::cerr << "Tekstura kostki nie zosta³a za³adowana!" << std::endl;
-        return;
-    }
-    if (!isTextureLoaded_7) {
-        std::cerr << "Tekstura kostki nie zosta³a za³adowana!" << std::endl;
-        return;
-    }
 
-    glBindTexture(GL_TEXTURE_2D, texture2);
-}
-
-void BitmapHandler::drawPionekGeneric(float x, float y, float width, float height, GLuint texture) {
+void BitmapHandler::drawPionek(float x, float y, float width, float height, GLuint texture) {
     const float MAX_X = 750.0f;
     const float MAX_Y = 550.0f;
     const float MIN_X = 0.0f;
@@ -169,7 +129,7 @@ void BitmapHandler::drawPionekGeneric(float x, float y, float width, float heigh
     if (height + y > MAX_Y) height = MAX_Y - y;
 
     if (!texture) {
-        std::cerr << "Texture not loaded!" << std::endl;
+        std::cerr << "Tekstura nieza³adowana!" << std::endl;
         return;
     }
 
@@ -207,12 +167,3 @@ void BitmapHandler::drawPionekGeneric(float x, float y, float width, float heigh
 
     glDisable(GL_BLEND);
 }
-
-void BitmapHandler::drawPionek(float x, float y, float width, float height) {
-    drawPionekGeneric(x, y, width, height, texture_pionek);
-}
-
-void BitmapHandler::drawPionek2(float x, float y, float width, float height) {
-    drawPionekGeneric(x, y, width, height, texture_pionek2);
-}
-

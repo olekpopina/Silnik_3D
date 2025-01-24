@@ -147,8 +147,8 @@ void Engine::stop() {
     glutLeaveMainLoop();
 }
 
-void Engine::setTextures(const std::string& backgroundPath, const std::string& cubePath2, const std::string& cubePath3, const std::string& cubePath4, const std::string& cubePath5, const std::string& cubePath6, const std::string& cubePath7, const std::string& pionek, const std::string& pionek2) {
-    if (!bitmapHandler.loadTextures(backgroundPath, cubePath2, cubePath3, cubePath4, cubePath5, cubePath6, cubePath7, pionek, pionek2)) {
+void Engine::setTextures(const std::vector<std::string>& texturePaths) {
+    if (!bitmapHandler.loadTextures(texturePaths)) {
         std::cerr << "Nie udało się załadować tekstur!" << std::endl;
     }
 }
@@ -217,7 +217,7 @@ void Engine::render() {
         }
       
     }
-    bitmapHandler.drawPionek(pawnX, pawnY, 0.1f, 0.1f);
+    bitmapHandler.drawPionek(pawnX, pawnY, 0.1f, 0.1f, bitmapHandler.texture_pionek);
     // Рух пішака
     if (isPawnMoving2) {
         float currentTime2 = glutGet(GLUT_ELAPSED_TIME) / 1000.0f;
@@ -233,8 +233,7 @@ void Engine::render() {
         }
     }
 
-    //bitmapHandler.drawPionek(pawnX, pawnY, 0.1f, 0.1f);
-    bitmapHandler.drawPionek2(pawnX2, pawnY2, 0.1f, 0.1f);
+    bitmapHandler.drawPionek(pawnX2, pawnY2, 0.1f, 0.1f, bitmapHandler.texture_pionek2);
 
     glPushMatrix();
     triangle.updateRotation(deltaTime);

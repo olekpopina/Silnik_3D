@@ -474,7 +474,7 @@ void Engine::handleMouseClick(int button, int state, int x, int y) {
             }
 
             std::cout << "Klikniety lewy przycisk myszy Line: " << button << std::endl;
-            std::cout << "Pozycja X: " << linePosX << " Pozycja Y: " << linePosY << std::endl;
+            std::cout << "Pozycja X: " << mouseWorldX << " Pozycja Y: " << mouseWorldY << std::endl;
         }
         else if (state == GLUT_UP) { // Jeśli przycisk został puszczony
             isDraggingLine = false; // Wyłączenie trybu przesuwania

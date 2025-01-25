@@ -64,19 +64,16 @@ private:
     
     float clearColor[4];
     float deltaTime = 0.0f;
-    int lastTime;
+    int lastTime = 0;
     float cameraZ;
 
     bool isRotating = false;   
 
     bool isGameRunning = false;
  
-    bool isDragging; 
+    bool isDragging = false;
 
     bool isSettingEnd = false;
-    float startX, startY, startZ = 0.0f; // Pocz¹tek linii
-    float endX, endY, endZ = 0.0f;       // Koniec linii
-    float lastMouseX, lastMouseY;
 
 
 

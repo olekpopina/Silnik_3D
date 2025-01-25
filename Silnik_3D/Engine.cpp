@@ -8,9 +8,7 @@ Engine* Engine::instance = nullptr;
 
 Engine::Engine(int width, int height, const char* title)
     : windowWidth(width), windowHeight(height), windowTitle(title),clearColor{ 0.0f, 0.0f, 0.0f, 1.0f },
-    lastMouseX(0), lastMouseY(0), lastTime(0),
-    isDragging(false), cameraZ(5.0f), player(&triangle, &cube, &drawer), 
-    pointX(0.5f), pointY(0.5f), pointZ(0.5f),
+    cameraZ(5.0f), player(&triangle, &cube, &drawer), 
     line(0.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f), rng(std::random_device{}()), dist(0, 5) {
 }
 
@@ -248,7 +246,7 @@ void Engine::render() {
     glPushMatrix();
     glTranslatef(linePosX, linePosY, 0.0f);
     line.draw();
-    PrimitiveDrawer::drawPoint(pointX, pointY, pointZ, 8.0f);
+    /*PrimitiveDrawer::drawPoint(pointX, pointY, pointZ, 8.0f);*/
     glPopMatrix();
 
     // Ustawienie drugiej kamery

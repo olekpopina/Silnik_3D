@@ -39,6 +39,30 @@ void Line::getEnd(float& x, float& y, float& z) const {
     z = end[2];
 }
 
+float Line::getStartX() const {
+    return start[0];
+}
+
+float Line::getStartY() const {
+    return start[1];
+}
+
+float Line::getStartZ() const {
+    return start[2];
+}
+
+float Line::getEndX() const {
+    return end[0];
+}
+
+float Line::getEndY() const {
+    return end[1];
+}
+
+float Line::getEndZ() const {
+    return end[2];
+}
+
 void Line::draw() const {
     glPushMatrix();
     glTranslatef(posX, posY, posZ); // Позиція

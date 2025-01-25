@@ -7,6 +7,7 @@
 #include "Triangle.h"
 #include "Player.h"
 #include "Line.h"
+#include "Point.h"
 #include "BitmapHandler.h"
 #include <SFML/Graphics.hpp>
 #include <random>
@@ -58,6 +59,8 @@ private:
     Player player;
     PrimitiveDrawer drawer;
     BitmapHandler bitmapHandler;  // Tekstura obiektu
+    Line line;
+    Point point;
   
     int windowWidth, windowHeight;
     const char* windowTitle;
@@ -78,15 +81,9 @@ private:
 
 
     bool isPointNearLine(float px, float py, float x1, float y1, float x2, float y2, float threshold);
-    float trianglePosX = 0.0f; 
-    float trianglePosY = 0.0f; 
-    float linePosX = 2.0f; 
-    float linePosY = 0.10f; 
-    float pointX, pointY, pointZ;
     float minCameraZ = 2.0f; 
     float maxCameraZ = 20.0f;
 
-    bool isCubeRotating_old = false; // Czy kostka siê obraca
     bool isCubeRotating = false;
     float rotationStartTime = 0.0f; // Czas rozpoczêcia obrotu
     float cubeRotationAngle = 0.0f; // Aktualny k¹t obrotu kostki
@@ -97,13 +94,7 @@ private:
     bool rotationDirection = true; // true = zgodnie z ruchem wskazówek zegara
     std::mt19937 rng; // Generator liczb losowych
     std::uniform_int_distribution<int> dist; // Rozk³ad liczb losowych
-    int previousSide = -1; // Ostatnia wylosowana strona, -1 oznacza brak pocz¹tkowej strony
 
-
-    float rotationStartAngle = 0.0f; // K¹t pocz¹tkowy
-    float rotationCurrentAngle = 0.0f; // Obecny k¹t
-    float rotationTargetAngle = 180.0f; // Docelowy k¹t
-    bool rotationDuration = 2.0f;
     bool isPawnMoving = false;
     bool isPawnMoving2 = false;
     int pawnStepsRemaining = 0;
@@ -112,18 +103,10 @@ private:
     float pawnStepSize2 = 0.05f;
     float pawnX = 0.1f, pawnY = 0.1f;
     float pawnX2 = 0.1f, pawnY2 = 0.1f;
-    float pawnTargetX = 0.3f, pawnTargetY = 0.3f;
-    float pawnMoveDelay = 0.5f;
     float pawnLastMoveTime = 0.0f;
     float pawnLastMoveTime2 = 0.0f;
-    bool movePawnAfterRotation = false;
-    int targetSide = 2;
     bool isMyTurn;
-    int textureSet = -1;
-    Line line;
-    static bool initialized;
-
-    float x,  y, z;
+    
 
     static void renderCallback();
     static void idleCallback();

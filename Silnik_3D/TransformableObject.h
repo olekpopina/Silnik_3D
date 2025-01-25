@@ -3,6 +3,7 @@
 
 #include "Drawable.h"
 #include <GL/freeglut.h>
+#include "PrimitiveDrawer.h"
 
 class TransformableObject : public Drawable {
 protected:

@@ -13,6 +13,13 @@ public:
 
     void getStart(float& x, float& y, float& z) const;
     void getEnd(float& x, float& y, float& z) const;
+    float getStartX() const;
+    float getStartY() const;
+    float getStartZ() const;
+
+    float getEndX() const;
+    float getEndY() const;
+    float getEndZ() const;
 
     void draw() const override; 
 

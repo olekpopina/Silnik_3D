@@ -9,7 +9,12 @@ Engine* Engine::instance = nullptr;
 Engine::Engine(int width, int height, const char* title)
     : windowWidth(width), windowHeight(height), windowTitle(title),clearColor{ 0.0f, 0.0f, 0.0f, 1.0f },
     cameraZ(5.0f), player(&triangle, &cube, &drawer), 
-    line(0.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f), rng(std::random_device{}()), dist(0, 5) {
+    line(1.5f, 0.2f, 1.0f, 1.5f, 2.0f, 1.0f), rng(std::random_device{}()), dist(0, 5) {
+    point.set(
+        (line.getEndX() + line.getStartX()) / 2,
+        (line.getEndY() - line.getStartY()) / 2 ,
+        (line.getEndZ() - line.getStartZ()) / 2
+    );
 }
 
 void Engine::init(int argc, char** argv) {
@@ -244,9 +249,8 @@ void Engine::render() {
 
     // Rysowanie linii i punktu
     glPushMatrix();
-    glTranslatef(linePosX, linePosY, 0.0f);
     line.draw();
-    /*PrimitiveDrawer::drawPoint(pointX, pointY, pointZ, 8.0f);*/
+    point.draw();
     glPopMatrix();
 
     // Ustawienie drugiej kamery
@@ -456,8 +460,10 @@ void Engine::handleMouseClick(int button, int state, int x, int y) {
             std::cout << "Przeksztalcone wspolrzedne myszy - X: " << mouseWorldX << ", Y: " << mouseWorldY << std::endl;
 
             // Sprawdzenie, czy kliknięto w punkt na środku linii
-            float centerX = linePosX; // Współrzędna X punktu
-            float centerY = linePosY; // Współrzędna Y punktu
+            float x, y, z; // Змінні для збереження координат
+            line.getStart(x, y, z); // Виклик методу
+            float centerX = x; // Współrzędna X punktu
+            float centerY = y; // Współrzędna Y punktu
             const float CLICK_RADIUS = 0.05f; // Promień tolerancji dla kliknięcia
 
             std::cout << "Sprawdzanie klikniecia w punkt - X: " << centerX << ", Y: " << centerY << ", Promien: " << CLICK_RADIUS << std::endl;
@@ -467,8 +473,8 @@ void Engine::handleMouseClick(int button, int state, int x, int y) {
                 isDraggingLine = true; // Aktywacja trybu przesuwania linii
                 mouseStartX = mouseWorldX;
                 mouseStartY = mouseWorldY;
-                lineStartPosX = linePosX;
-                lineStartPosY = linePosY;
+                lineStartPosX = x;
+                lineStartPosY = y;
 
                 std::cout << "Klikniecie w obrebie linii, tryb przesuwania aktywowany." << std::endl;
             }
@@ -492,8 +498,8 @@ void Engine::handleMouseMotion(int x, int y) {
         float mouseWorldY = 1.0f - (float)y / glutGet(GLUT_WINDOW_HEIGHT);
 
         // Aktualizacja pozycji linii
-        linePosX = lineStartPosX + (mouseWorldX - mouseStartX);
-        linePosY = lineStartPosY + (mouseWorldY - mouseStartY);
+        /*linePosX = lineStartPosX + (mouseWorldX - mouseStartX);
+        linePosY = lineStartPosY + (mouseWorldY - mouseStartY);*/
 
         // Odświeżenie okna w celu przerysowania sceny
         glutPostRedisplay();

@@ -4,7 +4,7 @@
 #include <GL/freeglut.h>
 #include "TransformableObject.h"
 #include "BitmapHandler.h"
-#include "PrimitiveDrawer.h"
+
 
 class Cube : public TransformableObject {
 public:

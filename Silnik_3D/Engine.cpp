@@ -445,6 +445,7 @@ void Engine::onMouse(int button, int state, int x, int y) {
 // Obsługa kliknięcia myszką
 void Engine::handleMouseClick(int button, int state, int x, int y) {
     if (button == GLUT_LEFT_BUTTON) { // Kliknięcie lewym przyciskiem myszy
+
         if (state == GLUT_DOWN) { // Jeśli przycisk został naciśnięty
             // Przekształcenie współrzędnych ekranu na współrzędne OpenGL
             float mouseWorldX = (float)x / glutGet(GLUT_WINDOW_WIDTH);
@@ -463,6 +464,8 @@ void Engine::handleMouseClick(int button, int state, int x, int y) {
                 lineStartPosX = linePosX;
                 lineStartPosY = linePosY;
             }
+            std::cout << "Klikniety lewy przycisk myszy Line: " << button << std::endl;
+            std::cout << "Pozycja X: " << linePosX << " Pozycja Y: " << linePosY << std::endl;
         }
         else if (state == GLUT_UP) { // Jeśli przycisk został puszczony
             isDraggingLine = false; // Wyłączenie trybu przesuwania
@@ -511,6 +514,7 @@ void Engine::keyboardCallback(unsigned char key, int x, int y) {
 void Engine::mouseCallback(int button, int state, int x, int y) {
     if (instance) {
         instance->onMouse(button, state, x, y);
+        instance->handleMouseClick(button, state, x, y);
     }
 }
 

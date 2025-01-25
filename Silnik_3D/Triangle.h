@@ -6,11 +6,11 @@
 #include "TransformableObject.h"
 
 
-class Triangle : public PrimitiveDrawer { 
+class Triangle : public TransformableObject {
 public:
     Triangle();
   
-    void draw(); 
+    void draw() const override; 
 
 private:
     float vertices1[9];
@@ -21,14 +21,11 @@ private:
     bool isRotating = false;
     float rotationAngle = 0.0f; 
     float rotationSpeed = 1.0f; 
-    float scale;
 
 public:
     void setRotation(bool rotate);
     void updateRotation(float deltaTime);
     void setPosition(float x, float y);
-    void scale_Up();
-    void scale_Down();
     float getPositionX() const { return posX; }
     float getPositionY() const { return posY; }
 

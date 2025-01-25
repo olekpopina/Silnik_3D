@@ -7,7 +7,6 @@
 #include "Triangle.h"
 #include "Player.h"
 #include "Line.h"
-#include "TransformableObject.h"
 #include "BitmapHandler.h"
 #include <SFML/Graphics.hpp>
 #include <random>
@@ -56,7 +55,6 @@ public:
    int frameRate;
 private:
     Triangle triangle;
-    TransformableObject transformable;
     Player player;
     PrimitiveDrawer drawer;
     BitmapHandler bitmapHandler;  // Tekstura obiektu

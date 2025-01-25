@@ -22,16 +22,16 @@ void Player::handleInput(unsigned char key) {
         triangle->setPosition(triangle->getPositionX() + 0.1f, triangle->getPositionY());
     }
     else if (key == '+') {  
-        cube->scaleUp();
+        cube->scale(1.1f);
     }
     else if (key == '-') {  
-        cube->scaleDown();
+        cube->scale(0.9f);
     }
     else if (key == 'm') {  
-        triangle->scale_Up();
+        triangle->scale(1.1f);
     }
     else if (key == 'n') { 
-        triangle->scale_Down();
+        triangle->scale(0.9f);
     }
  else if (key == 'U') { 
      cube->move(0.0f, 0.1f);

@@ -6,12 +6,10 @@
 #include "BitmapHandler.h"
 #include "PrimitiveDrawer.h"
 
-class Cube : public PrimitiveDrawer {
+class Cube : public TransformableObject {
 public:
     Cube();
-    void draw();
-    void scaleUp();    
-    void scaleDown();  
+    void draw() const override;
     void move(float dx, float dy); 
     void setShadingMode(int mode);
     void setRotationC(bool rotating);
@@ -20,7 +18,6 @@ public:
     unsigned int indices[36];
     float normals[24];
     float colors[24];
-    float scale;
     float offsetX, offsetY;
     int shadingMode;
     bool isRotating = false; 

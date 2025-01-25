@@ -3,7 +3,7 @@
 
 
 
-Triangle::Triangle() : posX(0.0f), posY(0.0f), rotationAngle(0.0f), scale(1.0f), isRotating(false) {
+Triangle::Triangle() : posX(0.0f), posY(0.0f), rotationAngle(0.0f), isRotating(false) {
 
     float initialColors[] = {
         1.0f, 0.0f, 0.0f,  // Czerwony
@@ -36,17 +36,8 @@ Triangle::Triangle() : posX(0.0f), posY(0.0f), rotationAngle(0.0f), scale(1.0f),
 
 }
 
-void Triangle::draw() {
-    PrimitiveDrawer::drawTriangle(vertices1, vertices2, vertices3, colors, posX, posY, scale, rotationAngle );
-}
-
-void Triangle::scale_Up() {
-    TransformableObject::scaleUp_Triangle(scale);
-}
-
-void Triangle::scale_Down() {
-
-    TransformableObject::scaleDown_Triangle(scale);
+void Triangle::draw() const {
+    PrimitiveDrawer::drawTriangle(vertices1, vertices2, vertices3, colors, posX, posY, scaleFactor, rotationAngle );
 }
 
 

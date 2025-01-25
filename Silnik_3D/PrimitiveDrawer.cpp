@@ -32,7 +32,9 @@ void PrimitiveDrawer::drawLine(float x1, float y1, float z1, float x2, float y2,
     glColor3f(1.0f, 1.0f, 1.0f);
 }
 
-void PrimitiveDrawer::drawTriangle(float vertices1[9], float vertices2[9], float vertices3[9], float colors[9], float posX, float posY, float scale, float rotationAngle) {
+void PrimitiveDrawer::drawTriangle(const float vertices1[9], const float vertices2[9],
+    const float vertices3[9], const float colors[9],
+    float posX, float posY, float scale, float rotationAngle) {
     // Konfiguracja œwiat³a
     GLfloat lightPos[] = { 0.0f, 0.0f, 5.0f, 1.0f };
     GLfloat lightAmbient[] = { 0.2f, 0.2f, 0.2f, 1.0f };
@@ -107,7 +109,9 @@ void PrimitiveDrawer::configureLight(GLenum light, const GLfloat* position, cons
 }
 
 
-void PrimitiveDrawer::drawCube(float scale, float offsetX, float offsetY, float vertices[24], unsigned int indices[36], float normals[24], float colors[24]) {
+void PrimitiveDrawer::drawCube(float scale, float offsetX, float offsetY,
+    const float* vertices, const unsigned int* indices,
+    const float* normals, const float* colors) {
     // Konfiguracja œwiat³a
     GLfloat lightPos[] = { 1.0f, 1.0f, 5.0f, 1.0f };
     GLfloat lightAmbient[] = { 0.2f, 0.2f, 0.2f, 1.0f };

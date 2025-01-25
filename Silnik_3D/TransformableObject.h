@@ -1,18 +1,28 @@
-#ifndef TRANSFORMABLEOBJECT_H
+﻿#ifndef TRANSFORMABLEOBJECT_H
 #define TRANSFORMABLEOBJECT_H
-#include "Triangle.h"
-#include "Cube.h"
+
+#include "Drawable.h"
 #include <GL/freeglut.h>
 
-class TransformableObject  {
-	
+class TransformableObject : public Drawable {
+protected:
+    float scaleFactor;  // Масштаб
+    float posX, posY, posZ; // Позиція
+    float rotationAngle; // Кут обертання
+
 public:
-	static void scaleUp_Cube(float& scale);
-	static void scaleDown_Cube(float& scale);
-	static void scaleUp_Triangle(float& scale);
-	static void scaleDown_Triangle(float& scale);
+    TransformableObject();
+    virtual ~TransformableObject() = default;
+
+    // Методи трансформації
+    void scale(float factor); // Єдиний метод для масштабування
+    void setPosition(float x, float y, float z);
+    void rotate(float angle);
+
+    // Геттери
+    float getScale() const;
+    void getPosition(float& x, float& y, float& z) const;
+    float getRotation() const;
 };
 
-
-
-#endif
+#endif // TRANSFORMABLEOBJECT_H

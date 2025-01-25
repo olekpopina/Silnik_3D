@@ -1,6 +1,6 @@
 ﻿#include "Cube.h"
 
-Cube::Cube() : vertices{
+Cube::Cube() : vertices {
     -0.5f, -0.5f, -0.5f,  0.5f, -0.5f, -0.5f,  0.5f,  0.5f, -0.5f, -0.5f,  0.5f, -0.5f,
     -0.5f, -0.5f,  0.5f,  0.5f, -0.5f,  0.5f,  0.5f,  0.5f,  0.5f, -0.5f,  0.5f,  0.5f
 }, indices{
@@ -16,30 +16,20 @@ Cube::Cube() : vertices{
 }, colors{
     1.0f, 0.0f, 0.0f,  0.0f, 1.0f, 0.0f,  0.0f, 0.0f, 1.0f,  1.0f, 1.0f, 0.0f,
     1.0f, 0.0f, 1.0f,  0.0f, 1.0f, 1.0f,  0.5f, 0.5f, 0.5f,  1.0f, 1.0f, 1.0f
-}, scale(1.0f),offsetX(0.0f), offsetY(0.0f) {}
+},offsetX(0.0f), offsetY(0.0f) {}
 
-void Cube::draw() {
-    glPushMatrix(); 
+void Cube::draw() const {
+    glPushMatrix();
+    glTranslatef(posX, posY, posZ); // Позиція
+    glScalef(scaleFactor, scaleFactor, scaleFactor); // Масштаб
+    glRotatef(rotationAngle, 0.0f, 1.0f, 0.0f); // Обертання
 
-    if (isRotating) {
-        glRotatef(rotationAngle, 0.0f, 1.0f, 0.0f); 
-    }
 
-    PrimitiveDrawer::drawCube(scale, offsetX, offsetY, vertices, indices, normals, colors);
+    PrimitiveDrawer::drawCube(scaleFactor, offsetX, offsetY, vertices, indices, normals, colors);
     PrimitiveDrawer::setShadingMode(PrimitiveDrawer::FLAT); 
     PrimitiveDrawer::setShadingMode(PrimitiveDrawer::GOURAUD);
     PrimitiveDrawer::setShadingMode(PrimitiveDrawer::PHONG);
-    glPopMatrix(); 
-}
-
-void Cube::scaleUp() {
-   
-    TransformableObject::scaleUp_Cube(scale);
-}
-
-void Cube::scaleDown() {
-   
-    TransformableObject::scaleDown_Cube(scale);
+    glPopMatrix();
 }
 
 void Cube::move(float dx, float dy) {

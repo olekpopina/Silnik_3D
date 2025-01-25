@@ -442,19 +442,25 @@ void Engine::onMouse(int button, int state, int x, int y) {
 }
 
 
-// Obsługa kliknięcia myszką
 void Engine::handleMouseClick(int button, int state, int x, int y) {
+    std::cout << "Klikniecie myszy - Przycisk: " << button << ", Stan: " << state << ", X: " << x << ", Y: " << y << std::endl;
+
     if (button == GLUT_LEFT_BUTTON) { // Kliknięcie lewym przyciskiem myszy
+        std::cout << "Kliknieto lewym przyciskiem myszy." << std::endl;
 
         if (state == GLUT_DOWN) { // Jeśli przycisk został naciśnięty
             // Przekształcenie współrzędnych ekranu na współrzędne OpenGL
             float mouseWorldX = (float)x / glutGet(GLUT_WINDOW_WIDTH);
             float mouseWorldY = 1.0f - (float)y / glutGet(GLUT_WINDOW_HEIGHT);
 
+            std::cout << "Przeksztalcone wspolrzedne myszy - X: " << mouseWorldX << ", Y: " << mouseWorldY << std::endl;
+
             // Sprawdzenie, czy kliknięto w punkt na środku linii
             float centerX = linePosX; // Współrzędna X punktu
             float centerY = linePosY; // Współrzędna Y punktu
             const float CLICK_RADIUS = 0.05f; // Promień tolerancji dla kliknięcia
+
+            std::cout << "Sprawdzanie klikniecia w punkt - X: " << centerX << ", Y: " << centerY << ", Promien: " << CLICK_RADIUS << std::endl;
 
             if (std::abs(mouseWorldX - centerX) < CLICK_RADIUS &&
                 std::abs(mouseWorldY - centerY) < CLICK_RADIUS) {
@@ -463,15 +469,20 @@ void Engine::handleMouseClick(int button, int state, int x, int y) {
                 mouseStartY = mouseWorldY;
                 lineStartPosX = linePosX;
                 lineStartPosY = linePosY;
+
+                std::cout << "Klikniecie w obrebie linii, tryb przesuwania aktywowany." << std::endl;
             }
+
             std::cout << "Klikniety lewy przycisk myszy Line: " << button << std::endl;
             std::cout << "Pozycja X: " << linePosX << " Pozycja Y: " << linePosY << std::endl;
         }
         else if (state == GLUT_UP) { // Jeśli przycisk został puszczony
             isDraggingLine = false; // Wyłączenie trybu przesuwania
+            std::cout << "Przycisk puszczony, wylaczono tryb przesuwania." << std::endl;
         }
     }
 }
+
 
 // Obsługa ruchu myszką
 void Engine::handleMouseMotion(int x, int y) {

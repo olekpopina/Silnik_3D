@@ -1,4 +1,4 @@
-#include "Line.h"
+﻿#include "Line.h"
 #include "PrimitiveDrawer.h"
 
 Line::Line() {
@@ -39,6 +39,13 @@ void Line::getEnd(float& x, float& y, float& z) const {
     z = end[2];
 }
 
-void Line::draw() {
+void Line::draw() const {
+    glPushMatrix();
+    glTranslatef(posX, posY, posZ); // Позиція
+    glScalef(scaleFactor, scaleFactor, scaleFactor); // Масштаб
+    glRotatef(rotationAngle, 0.0f, 1.0f, 0.0f); // Обертання
+
     PrimitiveDrawer::drawLine(start[0], start[1], start[2], end[0], end[1], end[2], 5.0f);
+
+    glPopMatrix();
 }

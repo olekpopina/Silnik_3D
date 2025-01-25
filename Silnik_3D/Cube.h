@@ -10,19 +10,18 @@ class Cube : public TransformableObject {
 public:
     Cube();
     void draw() const override;
-    void move(float dx, float dy); 
     void setShadingMode(int mode);
     void setRotationC(bool rotating);
     void updateRotationC(float deltaTime);
+
     float vertices[24];
     unsigned int indices[36];
     float normals[24];
     float colors[24];
-    float offsetX, offsetY;
     int shadingMode;
-    bool isRotating = false; 
-    float rotationAngle = 0.0f; 
-    float rotationSpeed = 0.4f; 
+    bool isRotating = false;
+    float rotationAngle = 0.0f;
+    float rotationSpeed = 0.4f;
     BitmapHandler bitmapHandler;
 };
 

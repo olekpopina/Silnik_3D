@@ -15,8 +15,9 @@ public:
     virtual ~TransformableObject() = default;
 
     // Методи трансформації
-    void scale(float factor); // Єдиний метод для масштабування
+    void scale(float factor); // Масштабування
     void setPosition(float x, float y, float z);
+    void move(float dx, float dy); // Новий метод для переміщення
     void rotate(float angle);
 
     // Геттери

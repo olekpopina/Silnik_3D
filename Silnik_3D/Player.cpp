@@ -9,17 +9,17 @@ void Player::handleInput(unsigned char key) {
         triangle->setRotation(isRotating);
         std::cout << key;
     }
-    else if (key == 'w' || key == 'W') { 
-        triangle->setPosition(triangle->getPositionX(), triangle->getPositionY() + 0.1f);
+    else if (key == 'w' || key == 'W') {
+        triangle->move(0.0f, 0.1f);
     }
     else if (key == 's' || key == 'S') {
-        triangle->setPosition(triangle->getPositionX(), triangle->getPositionY() - 0.1f);
+        triangle->move(0.0f, -0.1f);
     }
-    else if (key == 'a' || key == 'A') { 
-        triangle->setPosition(triangle->getPositionX() - 0.1f, triangle->getPositionY());
+    else if (key == 'a' || key == 'A') {
+        triangle->move(-0.1f, 0.0f);
     }
-    else if (key == 'd' || key == 'D') { 
-        triangle->setPosition(triangle->getPositionX() + 0.1f, triangle->getPositionY());
+    else if (key == 'd' || key == 'D') {
+        triangle->move(0.1f, 0.0f);
     }
     else if (key == '+') {  
         cube->scale(1.1f);

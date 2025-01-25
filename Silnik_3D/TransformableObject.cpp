@@ -13,6 +13,11 @@ void TransformableObject::setPosition(float x, float y, float z) {
     posZ = z;
 }
 
+void TransformableObject::move(float dx, float dy) {
+    posX += dx;
+    posY += dy;
+}
+
 void TransformableObject::rotate(float angle) {
     rotationAngle += angle;
     if (rotationAngle >= 360.0f) {

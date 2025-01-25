@@ -3,7 +3,7 @@
 
 
 
-Triangle::Triangle() : posX(0.0f), posY(0.0f), rotationAngle(0.0f), isRotating(false) {
+Triangle::Triangle() : rotationAngle(0.0f), isRotating(false) {
 
     float initialColors[] = {
         1.0f, 0.0f, 0.0f,  // Czerwony

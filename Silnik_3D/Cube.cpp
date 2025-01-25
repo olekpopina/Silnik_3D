@@ -16,7 +16,7 @@ Cube::Cube() : vertices {
 }, colors{
     1.0f, 0.0f, 0.0f,  0.0f, 1.0f, 0.0f,  0.0f, 0.0f, 1.0f,  1.0f, 1.0f, 0.0f,
     1.0f, 0.0f, 1.0f,  0.0f, 1.0f, 1.0f,  0.5f, 0.5f, 0.5f,  1.0f, 1.0f, 1.0f
-},offsetX(0.0f), offsetY(0.0f) {}
+} {}
 
 void Cube::draw() const {
     glPushMatrix();
@@ -25,16 +25,11 @@ void Cube::draw() const {
     glRotatef(rotationAngle, 0.0f, 1.0f, 0.0f); // Обертання
 
 
-    PrimitiveDrawer::drawCube(scaleFactor, offsetX, offsetY, vertices, indices, normals, colors);
+    PrimitiveDrawer::drawCube(scaleFactor, posX, posY, vertices, indices, normals, colors);
     PrimitiveDrawer::setShadingMode(PrimitiveDrawer::FLAT); 
     PrimitiveDrawer::setShadingMode(PrimitiveDrawer::GOURAUD);
     PrimitiveDrawer::setShadingMode(PrimitiveDrawer::PHONG);
     glPopMatrix();
-}
-
-void Cube::move(float dx, float dy) {
-    offsetX += dx;
-    offsetY += dy;
 }
 
 void Cube::setShadingMode(int mode)

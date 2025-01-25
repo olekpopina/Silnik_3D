@@ -17,7 +17,6 @@ private:
     float vertices2[9];
     float vertices3[9];
     float colors[9];
-    float posX, posY;    
     bool isRotating = false;
     float rotationAngle = 0.0f; 
     float rotationSpeed = 1.0f; 

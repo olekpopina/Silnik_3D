@@ -51,7 +51,6 @@ public:
     void onMouseWheel(int wheel, int direction, int x, int y);
     static void setInstance(Engine* engineInstance);
    static void timer(int value);
-   void handleTimer();
    int frameRate;
 private:
     Triangle triangle;

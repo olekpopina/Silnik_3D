@@ -82,12 +82,6 @@ void Engine::setFrameRate(int fps) {
     }
 }
 
-void Engine::handleTimer()
-{
-    glutPostRedisplay(); // Wymuszenie renderowania
-    glutTimerFunc(1000 / frameRate, timer, 0); // Rejestracja nowego zdarzenia
-}
-
 void Engine::timer(int value) {
     if (instance) {
         instance->render();

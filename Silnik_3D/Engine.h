@@ -21,7 +21,6 @@ public:
 
     void init(int argc, char** argv);
     void showWinnerMessage(const std::string& winner);
-    void reset();
     void setClearColor(float r, float g, float b, float a = 1.0f);
     void setFrameRate(int fps);
     void run();
@@ -66,18 +65,12 @@ private:
     const char* windowTitle;
     
     float clearColor[4];
-    float deltaTime = 0.0f;
     int lastTime = 0;
     float cameraZ;
-
-    bool isRotating = false;   
 
     bool isGameRunning = false;
  
     bool isDragging = false;
-
-    bool isSettingEnd = false;
-
 
 
     bool isPointNearLine(float px, float py, float x1, float y1, float x2, float y2, float threshold);
@@ -87,11 +80,9 @@ private:
     bool isCubeRotating = false;
     float rotationStartTime = 0.0f; // Czas rozpoczêcia obrotu
     float cubeRotationAngle = 0.0f; // Aktualny k¹t obrotu kostki
-    float targetRotationAngle = 0.0f; // Docelowy k¹t obrotu po losowaniu
     float rotationAxisX = 1.0f;
     float rotationAxisY = 0.0f;
     float rotationAxisZ = 0.0f;
-    bool rotationDirection = true; // true = zgodnie z ruchem wskazówek zegara
     std::mt19937 rng; // Generator liczb losowych
     std::uniform_int_distribution<int> dist; // Rozk³ad liczb losowych
 

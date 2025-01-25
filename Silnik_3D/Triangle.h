@@ -22,7 +22,7 @@ private:
 
 public:
     void setRotation(bool rotate);
-    void updateRotation(float deltaTime);
+    void updateRotation(float deltaTime = 0.0f);
     void setPosition(float x, float y);
     float getPositionX() const { return posX; }
     float getPositionY() const { return posY; }

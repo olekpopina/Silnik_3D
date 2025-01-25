@@ -61,32 +61,8 @@ void Engine::showWinnerMessage(const std::string& winner) {
     else {
         std::cout << "[INFO] Wyświetlono komunikat: " << winner << " wygrywa!" << std::endl;
     }
-
-  
-    reset();
-}
-void Engine::reset() {
-
-    clear();           
-
-    isGameRunning = true;    
-    std::cout << "[INFO] Gra została zresetowana do stanu początkowego." << std::endl;
 }
 
-void Engine::clear() {
-    
-    pawnX = 0.1f;
-    pawnY = 0.1f;
-    pawnX2 = 0.1f;
-    pawnY2 = 0.1f;
-    pawnStepsRemaining = 0;
-    pawnStepsRemaining2 = 0;
-    isPawnMoving = false;
-    isPawnMoving2 = false;
-
-    isCubeRotating = false;
-    cubeRotationAngle = 0.0f;   
-}
 
 void Engine::setClearColor(float r, float g, float b, float a) {
     clearColor[0] = r;
@@ -202,7 +178,7 @@ void Engine::render() {
     // Rysowanie kostki z obrotem
     glPushMatrix();
     cube.draw();
-    glRotatef(cubeRotationAngle, rotationAxisX, rotationAxisY, rotationAxisZ);
+    glRotatef(cubeRotationAngle, rotationAxisX, rotationAxisY, rotationAxisZ);  
     PrimitiveDrawer::drawCubeNew(1.0f, 0.0f, 0.0f, bitmapHandler);
     glPopMatrix();
 
@@ -243,7 +219,7 @@ void Engine::render() {
 
     // Rysowanie trójkąta
     glPushMatrix();
-    triangle.updateRotation(deltaTime);
+    triangle.updateRotation();
     triangle.draw();
     glPopMatrix();
 
@@ -438,10 +414,7 @@ void Engine::onMouse(int button, int state, int x, int y) {
             rotationAxisX = static_cast<float>(rand() % 2);
             rotationAxisY = static_cast<float>(rand() % 2);
             rotationAxisZ = (rotationAxisX == 0 && rotationAxisY == 0) ? 1.0f : 0.0f;
-
-            // Ustawienie docelowego kąta obrotu
-            targetRotationAngle = 180.0f;
-}
+        }
     }
 }
 
@@ -504,8 +477,8 @@ void Engine::handleMouseMotion(int x, int y) {
         // Update the center point
         point.set((line.getStartX() + line.getEndX()) / 2.0f,
             (line.getStartY() + line.getEndY()) / 2.0f,
-            (line.getStartZ() + line.getEndZ()) / 2.0f);
-            //point.getZ());
+            //(line.getStartZ() + line.getEndZ()) / 2.0f);
+            point.getZ());
 
         // Redraw the scene
         glutPostRedisplay();
@@ -564,20 +537,28 @@ void Engine::reshapeCallback(int width, int height) {
 
 // Funkcja sprawdzająca, czy kliknięcie było na kostce
 bool Engine::isClickOnCube(int mouseX, int mouseY) {
-    // Przekształcenie współrzędnych ekranu na współrzędne OpenGL
-    float normalizedX = (float)mouseX / glutGet(GLUT_WINDOW_WIDTH) * 2.0f - 1.0f; // Normalizacja do [-1, 1]
-    float normalizedY = 1.0f - (float)mouseY / glutGet(GLUT_WINDOW_HEIGHT) * 2.0f; // Normalizacja do [-1, 1]
+    // Convert mouse coordinates to normalized OpenGL coordinates [-1, 1]
+    float normalizedX = (float)mouseX / glutGet(GLUT_WINDOW_WIDTH) * 2.0f - 1.0f;
+    float normalizedY = 1.0f - (float)mouseY / glutGet(GLUT_WINDOW_HEIGHT) * 2.0f;
 
-    // Określenie granic kostki w przestrzeni
-    float cubeSize = 1.0f;              // Rozmiar kostki
-    float cubeMinX = -0.5f * cubeSize;  // Minimalna współrzędna X kostki
-    float cubeMaxX = 0.5f * cubeSize;   // Maksymalna współrzędna X kostki
-    float cubeMinY = -0.5f * cubeSize;  // Minimalna współrzędna Y kostki
-    float cubeMaxY = 0.5f * cubeSize;   // Maksymalna współrzędna Y kostki
+    // Adjust normalized coordinates for the zoom level (cameraZ)
+    float worldX = normalizedX * cameraZ;
+    float worldY = normalizedY * cameraZ;
 
-    // Sprawdzenie, czy kliknięcie znajduje się w granicach kostki
-    return (normalizedX >= cubeMinX && normalizedX <= cubeMaxX &&
-        normalizedY >= cubeMinY && normalizedY <= cubeMaxY);
+    // Cube's size and position relative to the world space
+    float cubeSize = 1.0f * cameraZ; // Adjust cube size based on zoom
+    float cubeCenterX = 0.0f;        // Cube's center in world space X
+    float cubeCenterY = 0.0f;        // Cube's center in world space Y
+
+    // Calculate cube boundaries in world space
+    float cubeMinX = cubeCenterX - 0.5f * cubeSize;
+    float cubeMaxX = cubeCenterX + 0.5f * cubeSize;
+    float cubeMinY = cubeCenterY - 0.5f * cubeSize;
+    float cubeMaxY = cubeCenterY + 0.5f * cubeSize;
+
+    // Check if the click is inside the cube's boundaries
+    return (worldX >= cubeMinX && worldX <= cubeMaxX &&
+        worldY >= cubeMinY && worldY <= cubeMaxY);
 }
 
 void Engine::setInstance(Engine* engineInstance) {

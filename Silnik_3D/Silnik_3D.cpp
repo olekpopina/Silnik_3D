@@ -8,7 +8,7 @@ int main(int argc, char** argv) {
     "images/tlo.png", "images/1.png", "images/2.png", "images/3.png",
     "images/4.png", "images/5.png", "images/6.png", "images/pionek2.png", "images/pionek.png"
     };
-    int frameRate = 60;
+    int frameRate = 30;
 
     Engine gameEngine(800, 600, "Game Engine");
 
@@ -21,7 +21,6 @@ int main(int argc, char** argv) {
     }
     gameEngine.init(argc, argv);
     gameEngine.setClearColor(0.2f, 0.3f, 0.4f);
-    gameEngine.setFrameRate(60);
 
     gameEngine.setTextures(texturePaths);
 

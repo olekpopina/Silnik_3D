@@ -441,67 +441,73 @@ void Engine::onMouse(int button, int state, int x, int y) {
 
             // Ustawienie docelowego kąta obrotu
             targetRotationAngle = 180.0f;
-        }
+}
     }
 }
 
 
 void Engine::handleMouseClick(int button, int state, int x, int y) {
-    std::cout << "Klikniecie myszy - Przycisk: " << button << ", Stan: " << state << ", X: " << x << ", Y: " << y << std::endl;
+    if (button == GLUT_LEFT_BUTTON) { // Left mouse button
+        // Convert mouse coordinates to world space
+        float mouseWorldX = (float)x / glutGet(GLUT_WINDOW_WIDTH) * 2.0f - 1.0f;
+        float mouseWorldY = 1.0f - (float)y / glutGet(GLUT_WINDOW_HEIGHT) * 2.0f;
 
-    if (button == GLUT_LEFT_BUTTON) { // Kliknięcie lewym przyciskiem myszy
-        std::cout << "Kliknieto lewym przyciskiem myszy." << std::endl;
+        // Scale for zoom level
+        mouseWorldX *= cameraZ;
+        mouseWorldY *= cameraZ;
 
-        if (state == GLUT_DOWN) { // Jeśli przycisk został naciśnięty
-            // Przekształcenie współrzędnych ekranu na współrzędne OpenGL
-            float mouseWorldX = (float)x / glutGet(GLUT_WINDOW_WIDTH);
-            float mouseWorldY = 1.0f - (float)y / glutGet(GLUT_WINDOW_HEIGHT);
+        if (state == GLUT_DOWN) { // Button pressed
+            // Calculate the center of the line
+            float centerX = (line.getStartX() + line.getEndX()) / 2.0f;
+            float centerY = (line.getStartY() + line.getEndY()) / 2.0f;
 
-            std::cout << "Przeksztalcone wspolrzedne myszy - X: " << mouseWorldX << ", Y: " << mouseWorldY << std::endl;
-
-            // Sprawdzenie, czy kliknięto w punkt na środku linii
-            float x, y, z; // Змінні для збереження координат
-            line.getStart(x, y, z); // Виклик методу
-            float centerX = x; // Współrzędna X punktu
-            float centerY = y; // Współrzędna Y punktu
-            const float CLICK_RADIUS = 0.05f; // Promień tolerancji dla kliknięcia
-
-            std::cout << "Sprawdzanie klikniecia w punkt - X: " << centerX << ", Y: " << centerY << ", Promien: " << CLICK_RADIUS << std::endl;
-
+            // Check if the click is near the line's center
+            const float CLICK_RADIUS = 0.25f * cameraZ; // Tolerance based on zoom
             if (std::abs(mouseWorldX - centerX) < CLICK_RADIUS &&
                 std::abs(mouseWorldY - centerY) < CLICK_RADIUS) {
-                isDraggingLine = true; // Aktywacja trybu przesuwania linii
+                isDraggingLine = true; // Enable dragging
                 mouseStartX = mouseWorldX;
                 mouseStartY = mouseWorldY;
-                lineStartPosX = x;
-                lineStartPosY = y;
-
-                std::cout << "Klikniecie w obrebie linii, tryb przesuwania aktywowany." << std::endl;
+                lineStartPosX = centerX;
+                lineStartPosY = centerY;
             }
-
-            std::cout << "Klikniety lewy przycisk myszy Line: " << button << std::endl;
-            std::cout << "Pozycja X: " << mouseWorldX << " Pozycja Y: " << mouseWorldY << std::endl;
         }
-        else if (state == GLUT_UP) { // Jeśli przycisk został puszczony
-            isDraggingLine = false; // Wyłączenie trybu przesuwania
-            std::cout << "Przycisk puszczony, wylaczono tryb przesuwania." << std::endl;
+        else if (state == GLUT_UP) { // Button released
+            isDraggingLine = false; // Disable dragging
         }
     }
 }
 
-
 // Obsługa ruchu myszką
 void Engine::handleMouseMotion(int x, int y) {
-    if (isDraggingLine) {
-        // Przekształcenie współrzędnych ekranu na współrzędne OpenGL
-        float mouseWorldX = (float)x / glutGet(GLUT_WINDOW_WIDTH);
-        float mouseWorldY = 1.0f - (float)y / glutGet(GLUT_WINDOW_HEIGHT);
+    if (isDraggingLine) { // If dragging is active
+        // Convert mouse coordinates to world space
+        float mouseWorldX = (float)x / glutGet(GLUT_WINDOW_WIDTH) * 2.0f - 1.0f;
+        float mouseWorldY = 1.0f - (float)y / glutGet(GLUT_WINDOW_HEIGHT) * 2.0f;
 
-        // Aktualizacja pozycji linii
-        /*linePosX = lineStartPosX + (mouseWorldX - mouseStartX);
-        linePosY = lineStartPosY + (mouseWorldY - mouseStartY);*/
+        // Scale for zoom level
+        mouseWorldX *= cameraZ;
+        mouseWorldY *= cameraZ;
 
-        // Odświeżenie okna w celu przerysowania sceny
+        // Calculate the offset to keep the line center under the mouse
+        float deltaX = mouseWorldX - mouseStartX;
+        float deltaY = mouseWorldY - mouseStartY;
+
+        // Update mouse start position for continuous dragging
+        mouseStartX = mouseWorldX;
+        mouseStartY = mouseWorldY;
+
+        // Adjust the line's start and end points
+        line.setStart(line.getStartX() + deltaX, line.getStartY() + deltaY, line.getStartZ());
+        line.setEnd(line.getEndX() + deltaX, line.getEndY() + deltaY, line.getEndZ());
+
+        // Update the center point
+        point.set((line.getStartX() + line.getEndX()) / 2.0f,
+            (line.getStartY() + line.getEndY()) / 2.0f,
+            (line.getStartZ() + line.getEndZ()) / 2.0f);
+            //point.getZ());
+
+        // Redraw the scene
         glutPostRedisplay();
     }
 }

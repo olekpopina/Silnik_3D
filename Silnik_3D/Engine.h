@@ -14,6 +14,7 @@
 #include <chrono>
 #include <string>
 #include <windows.h>
+#include "ShadingMode.h"
 
 
 enum class LightingMode {
@@ -21,11 +22,6 @@ enum class LightingMode {
     POINT_LIGHT,
     DIRECTIONAL_LIGHT,
     SPOTLIGHT
-};
-
-enum class ShadingMode {
-    FLAT,
-    SMOOTH
 };
 
 class Engine {

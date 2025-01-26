@@ -15,6 +15,7 @@ Engine::Engine(int width, int height, const char* title, int fps)
         (line.getEndY() - line.getStartY()) / 2 ,
         (line.getEndZ() - line.getStartZ()) / 2
     );
+    PrimitiveDrawer::setShadingMode(currentShadingMode);
 }
 
 void Engine::init(int argc, char** argv) {
@@ -586,16 +587,16 @@ void Engine::onMouseWheel(int wheel, int direction, int x, int y) {
 }
 
 void Engine::switchShadingMode() {
-    // Перемикання між режимами затінення
     if (currentShadingMode == ShadingMode::FLAT) {
         currentShadingMode = ShadingMode::SMOOTH;
-        glShadeModel(GL_SMOOTH);
     }
     else {
         currentShadingMode = ShadingMode::FLAT;
-        glShadeModel(GL_FLAT);
     }
+
+    PrimitiveDrawer::setShadingMode(currentShadingMode);
 }
+
 
 void Engine::configureLighting() {
     glEnable(GL_LIGHTING); // Увімкнення освітлення

@@ -1,16 +1,22 @@
-
+Ôªø
 #include "PrimitiveDrawer.h"
 #include "Cube.h"
 #include <memory>
 
-PrimitiveDrawer::ShadingMode PrimitiveDrawer::currentShadingMode = PrimitiveDrawer::GOURAUD;
+ShadingMode PrimitiveDrawer::currentShadingMode = ShadingMode::SMOOTH;
 
 GLuint PrimitiveDrawer::textures[6];
 int PrimitiveDrawer::textureSet;
 
 void PrimitiveDrawer::setShadingMode(ShadingMode mode) {
-    
     currentShadingMode = mode;
+
+    if (mode == ShadingMode::FLAT) {
+        glShadeModel(GL_FLAT);
+    }
+    else {
+        glShadeModel(GL_SMOOTH);
+    }
 }
 
 void PrimitiveDrawer::drawPoint(float x, float y, float z, float size) {
@@ -35,40 +41,40 @@ void PrimitiveDrawer::drawLine(float x1, float y1, float z1, float x2, float y2,
 void PrimitiveDrawer::drawTriangle(const float vertices1[9], const float vertices2[9],
     const float vertices3[9], const float colors[9],
     float posX, float posY, float scale, float rotationAngle) {
-    // Konfiguracja úwiat≥a
+    // Konfiguracja ≈õwiat≈Ça
     GLfloat lightPos[] = { 0.0f, 0.0f, 5.0f, 1.0f };
     GLfloat lightAmbient[] = { 0.2f, 0.2f, 0.2f, 1.0f };
     GLfloat lightDiffuse[] = { 0.8f, 0.8f, 0.8f, 1.0f };
     GLfloat lightSpecular[] = { 1.0f, 1.0f, 1.0f, 1.0f };
     GLfloat spotDirection[] = { 0.0f, 0.0f, -1.0f };
 
-    // Ustawienie parametrÛw úwiat≥a za pomocπ funkcji configureLight
+    // Ustawienie parametr√≥w ≈õwiat≈Ça za pomocƒÖ funkcji configureLight
     configureLight(GL_LIGHT0, lightPos, lightAmbient, lightDiffuse, lightSpecular, spotDirection, 25.0f, 15.0f);
 
-    // Konfiguracja materia≥u
+    // Konfiguracja materia≈Çu
     GLfloat matAmbient[] = { 0.2f, 0.5f, 0.2f, 1.0f }; // Kolor otoczenia
     GLfloat matDiffuse[] = { 0.5f, 1.0f, 0.5f, 1.0f }; // Kolor rozproszony
     GLfloat matSpecular[] = { 1.0f, 1.0f, 1.0f, 1.0f }; // Kolor odbity
-    GLfloat matShininess = 30.0f; // Po≥ysk materia≥u
+    GLfloat matShininess = 30.0f; // Po≈Çysk materia≈Çu
 
     glMaterialfv(GL_FRONT, GL_AMBIENT, matAmbient);
     glMaterialfv(GL_FRONT, GL_DIFFUSE, matDiffuse);
     glMaterialfv(GL_FRONT, GL_SPECULAR, matSpecular);
     glMaterialf(GL_FRONT, GL_SHININESS, matShininess);
 
-    // Transformacje: przesuniÍcie, obrÛt, skalowanie
+    // Transformacje: przesuniƒôcie, obr√≥t, skalowanie
     glPushMatrix();
     glTranslatef(posX, posY, 0.0f);
     glRotatef(rotationAngle, 0.0f, 1.0f, 0.0f);
     glScalef(scale, scale, scale);
 
-    // Normalne dla wierzcho≥kÛw
+    // Normalne dla wierzcho≈Çk√≥w
     GLfloat normals[] = { 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f };
 
     glEnableClientState(GL_VERTEX_ARRAY);
     glEnableClientState(GL_NORMAL_ARRAY);
 
-    // Rysowanie trÛjkπtÛw
+    // Rysowanie tr√≥jkƒÖt√≥w
     glVertexPointer(3, GL_FLOAT, 0, vertices1);
     glNormalPointer(GL_FLOAT, 0, normals);
     glDrawArrays(GL_TRIANGLES, 0, 3);
@@ -86,7 +92,7 @@ void PrimitiveDrawer::drawTriangle(const float vertices1[9], const float vertice
 
     glPopMatrix();
 
-    // Wy≥πczenie úwiat≥a
+    // Wy≈ÇƒÖczenie ≈õwiat≈Ça
     glDisable(GL_LIGHT0);
     glDisable(GL_LIGHTING);
 }
@@ -112,39 +118,39 @@ void PrimitiveDrawer::configureLight(GLenum light, const GLfloat* position, cons
 void PrimitiveDrawer::drawCube(float scale, float offsetX, float offsetY,
     const float* vertices, const unsigned int* indices,
     const float* normals, const float* colors) {
-    // Konfiguracja úwiat≥a
+    // Konfiguracja ≈õwiat≈Ça
     GLfloat lightPos[] = { 1.0f, 1.0f, 5.0f, 1.0f };
     GLfloat lightAmbient[] = { 0.2f, 0.2f, 0.2f, 1.0f };
     GLfloat lightDiffuse[] = { 0.8f, 0.0f, 0.0f, 1.0f };
     GLfloat lightSpecular[] = { 1.0f, 1.0f, 1.0f, 1.0f };
 
-    // Ustawienie parametrÛw úwiat≥a za pomocπ funkcji configureLight
+    // Ustawienie parametr√≥w ≈õwiat≈Ça za pomocƒÖ funkcji configureLight
     configureLight(GL_LIGHT0, lightPos, lightAmbient, lightDiffuse, lightSpecular);
 
-    // Konfiguracja materia≥u
+    // Konfiguracja materia≈Çu
     GLfloat matAmbient[] = { 0.2f, 0.0f, 0.0f, 1.0f }; // Kolor otoczenia
     GLfloat matDiffuse[] = { 0.8f, 0.0f, 0.0f, 1.0f }; // Kolor rozproszony
     GLfloat matSpecular[] = { 1.0f, 1.0f, 1.0f, 1.0f }; // Kolor odbity
-    GLfloat matShininess = 50.0f; // Po≥ysk materia≥u
+    GLfloat matShininess = 50.0f; // Po≈Çysk materia≈Çu
 
     glMaterialfv(GL_FRONT, GL_AMBIENT, matAmbient);
     glMaterialfv(GL_FRONT, GL_DIFFUSE, matDiffuse);
     glMaterialfv(GL_FRONT, GL_SPECULAR, matSpecular);
     glMaterialf(GL_FRONT, GL_SHININESS, matShininess);
 
-    // Transformacje: przesuniÍcie i skalowanie
+    // Transformacje: przesuniƒôcie i skalowanie
     glPushMatrix();
     glTranslatef(offsetX, offsetY, 0.0f);
     glScalef(scale, scale, scale);
 
-    // W≥πczenie tablic wierzcho≥kÛw i normalnych
+    // W≈ÇƒÖczenie tablic wierzcho≈Çk√≥w i normalnych
     glEnableClientState(GL_VERTEX_ARRAY);
     glEnableClientState(GL_NORMAL_ARRAY);
 
     glVertexPointer(3, GL_FLOAT, 0, vertices);
     glNormalPointer(GL_FLOAT, 0, normals);
 
-    // Rysowanie elementÛw
+    // Rysowanie element√≥w
     glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, indices);
 
     glDisableClientState(GL_VERTEX_ARRAY);
@@ -152,7 +158,7 @@ void PrimitiveDrawer::drawCube(float scale, float offsetX, float offsetY,
 
     glPopMatrix();
 
-    // Wy≥πczenie úwiat≥a
+    // Wy≈ÇƒÖczenie ≈õwiat≈Ça
     glDisable(GL_LIGHT0);
     glDisable(GL_LIGHTING);
 }
@@ -168,7 +174,7 @@ void PrimitiveDrawer::drawCubeWithTexture(float scale, float offsetX, float offs
         textures[1] = bitmapHandler.texture2; // Tylna
         textures[2] = bitmapHandler.texture3; // Lewa
         textures[3] = bitmapHandler.texture4; // Prawa
-        textures[4] = bitmapHandler.texture5; // GÛrna
+        textures[4] = bitmapHandler.texture5; // G√≥rna
         textures[5] = bitmapHandler.texture6; // Dolna
         break;
     case 2: // Zestaw tekstur 2
@@ -176,7 +182,7 @@ void PrimitiveDrawer::drawCubeWithTexture(float scale, float offsetX, float offs
         textures[1] = bitmapHandler.texture3; // Tylna
         textures[2] = bitmapHandler.texture4; // Lewa
         textures[3] = bitmapHandler.texture5; // Prawa
-        textures[4] = bitmapHandler.texture6; // GÛrna
+        textures[4] = bitmapHandler.texture6; // G√≥rna
         textures[5] = bitmapHandler.texture1; // Dolna
         break;
     case 3: // Zestaw tekstur 2
@@ -184,7 +190,7 @@ void PrimitiveDrawer::drawCubeWithTexture(float scale, float offsetX, float offs
         textures[1] = bitmapHandler.texture2; // Tylna
         textures[2] = bitmapHandler.texture4; // Lewa
         textures[3] = bitmapHandler.texture5; // Prawa
-        textures[4] = bitmapHandler.texture6; // GÛrna
+        textures[4] = bitmapHandler.texture6; // G√≥rna
         textures[5] = bitmapHandler.texture1; // Dolna
         break;
     case 4: // Zestaw tekstur 2
@@ -192,7 +198,7 @@ void PrimitiveDrawer::drawCubeWithTexture(float scale, float offsetX, float offs
         textures[1] = bitmapHandler.texture3; // Tylna
         textures[2] = bitmapHandler.texture2; // Lewa
         textures[3] = bitmapHandler.texture5; // Prawa
-        textures[4] = bitmapHandler.texture6; // GÛrna
+        textures[4] = bitmapHandler.texture6; // G√≥rna
         textures[5] = bitmapHandler.texture1; // Dolna
         break;
     case 5: // Zestaw tekstur 2
@@ -200,7 +206,7 @@ void PrimitiveDrawer::drawCubeWithTexture(float scale, float offsetX, float offs
         textures[1] = bitmapHandler.texture2; // Tylna
         textures[2] = bitmapHandler.texture4; // Lewa
         textures[3] = bitmapHandler.texture3; // Prawa
-        textures[4] = bitmapHandler.texture6; // GÛrna
+        textures[4] = bitmapHandler.texture6; // G√≥rna
         textures[5] = bitmapHandler.texture1; // Dolna
         break;
     case 6: // Zestaw tekstur 2
@@ -208,10 +214,10 @@ void PrimitiveDrawer::drawCubeWithTexture(float scale, float offsetX, float offs
         textures[1] = bitmapHandler.texture2; // Tylna
         textures[2] = bitmapHandler.texture4; // Lewa
         textures[3] = bitmapHandler.texture5; // Prawa
-        textures[4] = bitmapHandler.texture3; // GÛrna
+        textures[4] = bitmapHandler.texture3; // G√≥rna
         textures[5] = bitmapHandler.texture1; // Dolna
         break;
-    default: // Domyúlny zestaw tekstur
+    default: // Domy≈õlny zestaw tekstur
         textures[0] = bitmapHandler.texture1;
         textures[1] = bitmapHandler.texture2;
         textures[2] = bitmapHandler.texture3;
@@ -224,7 +230,7 @@ void PrimitiveDrawer::drawCubeWithTexture(float scale, float offsetX, float offs
     glPushMatrix();
     glTranslatef(offsetX, offsetY, 0.0f);
     glScalef(scale, scale, scale);
-    // Przednia úciana
+    // Przednia ≈õciana
     glBindTexture(GL_TEXTURE_2D, textures[0]);
     glBegin(GL_QUADS);
     glTexCoord2f(0.0f, 0.0f); glVertex3f(-1.0f, -1.0f, 1.0f);
@@ -233,7 +239,7 @@ void PrimitiveDrawer::drawCubeWithTexture(float scale, float offsetX, float offs
     glTexCoord2f(0.0f, 1.0f); glVertex3f(-1.0f, 1.0f, 1.0f);
     glEnd();
    
-    // Tylna úciana
+    // Tylna ≈õciana
     glBindTexture(GL_TEXTURE_2D, textures[1]);
     glBegin(GL_QUADS);
     glTexCoord2f(0.0f, 0.0f); glVertex3f(-1.0f, -1.0f, -1.0f);
@@ -242,7 +248,7 @@ void PrimitiveDrawer::drawCubeWithTexture(float scale, float offsetX, float offs
     glTexCoord2f(0.0f, 1.0f); glVertex3f(-1.0f, 1.0f, -1.0f);
     glEnd();
 
-    // Lewa úciana
+    // Lewa ≈õciana
     glBindTexture(GL_TEXTURE_2D, textures[2]);
     glBegin(GL_QUADS);
     glTexCoord2f(0.0f, 0.0f); glVertex3f(-1.0f, -1.0f, -1.0f);
@@ -251,7 +257,7 @@ void PrimitiveDrawer::drawCubeWithTexture(float scale, float offsetX, float offs
     glTexCoord2f(0.0f, 1.0f); glVertex3f(-1.0f, 1.0f, -1.0f);
     glEnd();
 
-    // Prawa úciana
+    // Prawa ≈õciana
     glBindTexture(GL_TEXTURE_2D, textures[3]);
     glBegin(GL_QUADS);
     glTexCoord2f(0.0f, 0.0f); glVertex3f(1.0f, -1.0f, -1.0f);
@@ -260,7 +266,7 @@ void PrimitiveDrawer::drawCubeWithTexture(float scale, float offsetX, float offs
     glTexCoord2f(0.0f, 1.0f); glVertex3f(1.0f, 1.0f, -1.0f);
     glEnd();
 
-    // GÛrna úciana
+    // G√≥rna ≈õciana
     glBindTexture(GL_TEXTURE_2D, textures[4]);
     glBegin(GL_QUADS);
     glTexCoord2f(0.0f, 0.0f); glVertex3f(-1.0f, 1.0f, -1.0f);
@@ -269,7 +275,7 @@ void PrimitiveDrawer::drawCubeWithTexture(float scale, float offsetX, float offs
     glTexCoord2f(0.0f, 1.0f); glVertex3f(1.0f, 1.0f, -1.0f);
     glEnd();
 
-    // Dolna úciana
+    // Dolna ≈õciana
     glBindTexture(GL_TEXTURE_2D, textures[5]);
     glBegin(GL_QUADS);
     glTexCoord2f(0.0f, 0.0f); glVertex3f(-1.0f, -1.0f, -1.0f);

@@ -48,17 +48,6 @@ void Player::handleInput(unsigned char key) {
  else if (key == 'R') { 
      cube->move(0.1f, 0.0f);
     }
-    if (key == 'f') {
-        drawer->setShadingMode(PrimitiveDrawer::FLAT);  
-    }
-    else if (key == 'g') {
-        drawer->setShadingMode(PrimitiveDrawer::GOURAUD);  
-    }
-    else if (key == 'p') {
-        drawer->setShadingMode(PrimitiveDrawer::PHONG);  
-        currentShadingMode = PHONG;
-        std::cout << key;
-    }
     else if (key == 'q') { 
         isRotatingCube = !isRotatingCube;
         cube->setRotationC(isRotatingCube); 
@@ -73,17 +62,4 @@ void Player::update(float deltaTime) {
 
     cube->updateRotationC(deltaTime);
 
-    if (currentShadingMode == FLAT) {
-
-        cube->setShadingMode(PrimitiveDrawer::FLAT);
-    }
-    else if (currentShadingMode == GOURAUD) {
-
-        cube->setShadingMode(PrimitiveDrawer::GOURAUD);
-    }
-    else if (currentShadingMode == PHONG) {
-
-        cube->setShadingMode(PrimitiveDrawer::PHONG);
-        currentShadingMode = PHONG; 
-    }
 }

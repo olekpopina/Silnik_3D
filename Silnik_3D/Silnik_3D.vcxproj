@@ -154,6 +154,7 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="Point.h" />
     <ClInclude Include="PrimitiveDrawer.h" />
+    <ClInclude Include="ShadingMode.h" />
     <ClInclude Include="TransformableObject.h" />
     <ClInclude Include="Triangle.h" />
   </ItemGroup>

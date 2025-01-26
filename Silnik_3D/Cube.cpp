@@ -26,9 +26,6 @@ void Cube::draw() const {
 
 
     PrimitiveDrawer::drawCube(scaleFactor, posX, posY, vertices, indices, normals, colors);
-    PrimitiveDrawer::setShadingMode(PrimitiveDrawer::FLAT); 
-    PrimitiveDrawer::setShadingMode(PrimitiveDrawer::GOURAUD);
-    PrimitiveDrawer::setShadingMode(PrimitiveDrawer::PHONG);
     glPopMatrix();
 }
 

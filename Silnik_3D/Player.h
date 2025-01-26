@@ -20,12 +20,6 @@ private:
     bool isRotating;
    
     bool isRotatingCube; 
-    int currentShadingMode;
-    enum ShadingMode {
-        FLAT,
-        GOURAUD,
-        PHONG
-    };
 };
 
 #endif // PLAYER_H

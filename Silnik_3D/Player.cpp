@@ -3,7 +3,6 @@
 
 Player::Player(Triangle* triangle, Cube* cube, PrimitiveDrawer* drawer) : triangle(triangle), cube(cube), drawer(drawer), isRotating(false) {
     isRotatingCube = false;
-    currentShadingMode = FLAT;
 }
 
 void Player::handleInput(unsigned char key) {

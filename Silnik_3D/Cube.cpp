@@ -29,11 +29,6 @@ void Cube::draw() const {
     glPopMatrix();
 }
 
-void Cube::setShadingMode(int mode)
-{
-    shadingMode = mode;
-}
-
 void Cube::setRotationC(bool rotating)
 {
     isRotating = rotating;

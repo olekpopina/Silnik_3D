@@ -7,12 +7,14 @@ Cube cube;
 Engine* Engine::instance = nullptr;
 
 Engine::Engine(int width, int height, const char* title, int fps)
-    : windowWidth(width), windowHeight(height), windowTitle(title),clearColor{ 0.0f, 0.0f, 0.0f, 1.0f },
-    cameraZ(5.0f), player(&triangle, &cube, &drawer), 
-    line(1.5f, 0.2f, 1.0f, 1.5f, 2.0f, 1.0f), rng(std::random_device{}()), dist(0, 5), frameRate(fps) {
+    : windowWidth(width), windowHeight(height), windowTitle(title), clearColor{ 0.0f, 0.0f, 0.0f, 1.0f },
+    cameraZ(5.0f), player(&triangle, &cube, &drawer),
+    line(1.5f, 0.2f, 1.0f, 1.5f, 2.0f, 1.0f), rng(std::random_device{}()), dist(0, 5), frameRate(fps),
+    isMyTurn(false) 
+{
     point.set(
         (line.getEndX() + line.getStartX()) / 2,
-        (line.getEndY() - line.getStartY()) / 2 ,
+        (line.getEndY() - line.getStartY()) / 2,
         (line.getEndZ() - line.getStartZ()) / 2
     );
     PrimitiveDrawer::setShadingMode(currentShadingMode);
@@ -84,18 +86,16 @@ void Engine::setFrameRate(int fps) {
 }
 
 void Engine::timer(int value) {
-    if (instance) {
+    if (instance) {  
         instance->render();
     }
 
-    // Jeśli frameRate = 0, renderujemy bez ograniczeń
-    int interval = (instance->frameRate > 0) ? 1000 / instance->frameRate : 0;
+    int interval = (instance && instance->frameRate > 0) ? 1000 / instance->frameRate : 0;
 
     if (interval > 0) {
         glutTimerFunc(interval, timer, 0);
     }
     else {
-        // Bez ograniczeń wywołujemy render bezpośrednio
         glutPostRedisplay();
     }
 }
@@ -364,9 +364,9 @@ void Engine::updatePawnPosition() {
 void Engine::resetGame() {
     // Resetowanie pozycji pionków do początkowych współrzędnych
     pawnX = 0.1f;
-    pawnY = 0.1f;  // Reset do pozycji startowej (0.1, 0.1)
+    pawnY = 0.1f; 
     pawnX2 = 0.1f;
-    pawnY2 = 0.1f; // Reset do pozycji startowej (0.1, 0.1)
+    pawnY2 = 0.1f; 
 
     // Resetowanie liczby kroków
     pawnStepsRemaining = 0;
@@ -480,7 +480,6 @@ void Engine::handleMouseMotion(int x, int y) {
         // Update the center point
         point.set((line.getStartX() + line.getEndX()) / 2.0f,
             (line.getStartY() + line.getEndY()) / 2.0f,
-            //(line.getStartZ() + line.getEndZ()) / 2.0f);
             point.getZ());
 
         // Redraw the scene
@@ -490,13 +489,12 @@ void Engine::handleMouseMotion(int x, int y) {
 
 void Engine::idleCallback() {
     if (instance) {
-        float currentTime = glutGet(GLUT_ELAPSED_TIME);
+        float currentTime = static_cast<float>(glutGet(GLUT_ELAPSED_TIME));
         float elapsedTime = currentTime - instance->lastTime;
-
-        instance->lastTime = currentTime;
+        instance->lastTime = static_cast<int>(currentTime);
 
         instance->player.update(elapsedTime);
-        glutPostRedisplay(); // Оновлення екрану, якщо є активний рух
+        glutPostRedisplay(); 
     }
 }
 

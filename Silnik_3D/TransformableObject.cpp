@@ -1,12 +1,12 @@
-#include "TransformableObject.h"
+ï»¿#include "TransformableObject.h"
 
 /**
- * @brief Konstruktor domyœlny klasy TransformableObject.
+ * @brief Konstruktor domyÅ›lny klasy TransformableObject.
  *
- * Inicjalizuje obiekt klasy `TransformableObject` z domyœlnymi wartoœciami:
- * - wspó³czynnik skali ustawiony na 1.0,
+ * Inicjalizuje obiekt klasy `TransformableObject` z domyÅ›lnymi wartoÅ›ciami:
+ * - wspÃ³Å‚czynnik skali ustawiony na 1.0,
  * - pozycja (x, y, z) ustawiona na (0.0, 0.0, 0.0),
- * - k¹t obrotu ustawiony na 0.0.
+ * - kÄ…t obrotu ustawiony na 0.0.
  */
 TransformableObject::TransformableObject()
     : scaleFactor(1.0f), posX(0.0f), posY(0.0f), posZ(0.0f), rotationAngle(0.0f) {}
@@ -14,8 +14,8 @@ TransformableObject::TransformableObject()
 /**
  * @brief Skalowanie obiektu.
  *
- * Zmienia wspó³czynnik skali obiektu, mno¿¹c go przez podany parametr `factor`.
- * @param factor Wspó³czynnik skali, przez który zostanie pomno¿ony aktualny wspó³czynnik skali.
+ * Zmienia wspÃ³Å‚czynnik skali obiektu, mnoÅ¼Ä…c go przez podany parametr `factor`.
+ * @param factor WspÃ³Å‚czynnik skali, przez ktÃ³ry zostanie pomnoÅ¼ony aktualny wspÃ³Å‚czynnik skali.
  */
 void TransformableObject::scale(float factor) {
     scaleFactor *= factor;
@@ -24,10 +24,10 @@ void TransformableObject::scale(float factor) {
 /**
  * @brief Ustawienie pozycji obiektu.
  *
- * Zmienia pozycjê obiektu w przestrzeni 3D, przypisuj¹c wartoœci `x`, `y` i `z`.
- * @param x Wartoœæ wspó³rzêdnej X obiektu.
- * @param y Wartoœæ wspó³rzêdnej Y obiektu.
- * @param z Wartoœæ wspó³rzêdnej Z obiektu.
+ * Zmienia pozycjÄ™ obiektu w przestrzeni 3D, przypisujÄ…c wartoÅ›ci `x`, `y` i `z`.
+ * @param x WartoÅ›Ä‡ wspÃ³Å‚rzÄ™dnej X obiektu.
+ * @param y WartoÅ›Ä‡ wspÃ³Å‚rzÄ™dnej Y obiektu.
+ * @param z WartoÅ›Ä‡ wspÃ³Å‚rzÄ™dnej Z obiektu.
  */
 void TransformableObject::setPosition(float x, float y, float z) {
     posX = x;
@@ -38,7 +38,7 @@ void TransformableObject::setPosition(float x, float y, float z) {
 /**
  * @brief Przemieszczanie obiektu.
  *
- * Przemieszcza obiekt w przestrzeni 3D, dodaj¹c wartoœci `dx` i `dy` do wspó³rzêdnych `x` i `y`.
+ * Przemieszcza obiekt w przestrzeni 3D, dodajÄ…c wartoÅ›ci `dx` i `dy` do wspÃ³Å‚rzÄ™dnych `x` i `y`.
  * @param dx Zmiana pozycji w osi X.
  * @param dy Zmiana pozycji w osi Y.
  */
@@ -48,11 +48,11 @@ void TransformableObject::move(float dx, float dy) {
 }
 
 /**
- * @brief Obrót obiektu.
+ * @brief ObrÃ³t obiektu.
  *
- * Zmienia k¹t obrotu obiektu o zadany parametr `angle`. K¹t jest dodawany do aktualnego k¹ta,
- * a jeœli przekroczy 360 stopni, zostaje zredukowany do wartoœci w przedziale [0, 360).
- * @param angle K¹t obrotu w stopniach.
+ * Zmienia kÄ…t obrotu obiektu o zadany parametr `angle`. KÄ…t jest dodawany do aktualnego kÄ…ta,
+ * a jeÅ›li przekroczy 360 stopni, zostaje zredukowany do wartoÅ›ci w przedziale [0, 360).
+ * @param angle KÄ…t obrotu w stopniach.
  */
 void TransformableObject::rotate(float angle) {
     rotationAngle += angle;
@@ -64,8 +64,8 @@ void TransformableObject::rotate(float angle) {
 /**
  * @brief Pobranie skali obiektu.
  *
- * Zwraca aktualny wspó³czynnik skali obiektu.
- * @return Wspó³czynnik skali obiektu.
+ * Zwraca aktualny wspÃ³Å‚czynnik skali obiektu.
+ * @return WspÃ³Å‚czynnik skali obiektu.
  */
 float TransformableObject::getScale() const {
     return scaleFactor;
@@ -74,10 +74,10 @@ float TransformableObject::getScale() const {
 /**
  * @brief Pobranie pozycji obiektu.
  *
- * Zwraca wspó³rzêdne pozycji obiektu w przestrzeni 3D poprzez przekazywanie wartoœci do zmiennych `x`, `y`, `z`.
- * @param x Zmienna, do której zostanie przypisana wspó³rzêdna X obiektu.
- * @param y Zmienna, do której zostanie przypisana wspó³rzêdna Y obiektu.
- * @param z Zmienna, do której zostanie przypisana wspó³rzêdna Z obiektu.
+ * Zwraca wspÃ³Å‚rzÄ™dne pozycji obiektu w przestrzeni 3D poprzez przekazywanie wartoÅ›ci do zmiennych `x`, `y`, `z`.
+ * @param x Zmienna, do ktÃ³rej zostanie przypisana wspÃ³Å‚rzÄ™dna X obiektu.
+ * @param y Zmienna, do ktÃ³rej zostanie przypisana wspÃ³Å‚rzÄ™dna Y obiektu.
+ * @param z Zmienna, do ktÃ³rej zostanie przypisana wspÃ³Å‚rzÄ™dna Z obiektu.
  */
 void TransformableObject::getPosition(float& x, float& y, float& z) const {
     x = posX;
@@ -85,10 +85,10 @@ void TransformableObject::getPosition(float& x, float& y, float& z) const {
     z = posZ;
 }
 /**
- * @brief Pobranie k¹ta obrotu obiektu.
+ * @brief Pobranie kÄ…ta obrotu obiektu.
  *
- * Zwraca aktualny k¹t obrotu obiektu w stopniach.
- * @return K¹t obrotu obiektu w stopniach.
+ * Zwraca aktualny kÄ…t obrotu obiektu w stopniach.
+ * @return KÄ…t obrotu obiektu w stopniach.
  */
 float TransformableObject::getRotation() const {
     return rotationAngle;

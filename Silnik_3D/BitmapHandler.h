@@ -1,4 +1,4 @@
-#ifndef BITMAPHANDLER_H
+ï»¿#ifndef BITMAPHANDLER_H
 #define BITMAPHANDLER_H
 
 #include <SFML/Graphics.hpp>
@@ -10,10 +10,10 @@
 
 /**
  * @class BitmapHandler
- * @brief Klasa do obs³ugi tekstur w aplikacjach wykorzystuj¹cych OpenGL.
+ * @brief Klasa do obsÅ‚ugi tekstur w aplikacjach wykorzystujÄ…cych OpenGL.
  *
- * Klasa umo¿liwia ³adowanie tekstur z plików, ich rysowanie, usuwanie oraz przypisywanie tekstur do obiektów 3D,
- * takich jak t³o i kostki. Mo¿e równie¿ rysowaæ pionki przy u¿yciu tekstur.
+ * Klasa umoÅ¼liwia Å‚adowanie tekstur z plikÃ³w, ich rysowanie, usuwanie oraz przypisywanie tekstur do obiektÃ³w 3D,
+ * takich jak tÅ‚o i kostki. MoÅ¼e rÃ³wnieÅ¼ rysowaÄ‡ pionki przy uÅ¼yciu tekstur.
  */
 class BitmapHandler {
 public:
@@ -26,63 +26,63 @@ public:
     /**
        * @brief Destruktor klasy BitmapHandler.
        *
-       * Zwalnia zasoby zwi¹zane z teksturami.
+       * Zwalnia zasoby zwiÄ…zane z teksturami.
        */
     ~BitmapHandler(); // Destruktor
 
     /**
-    * @brief £aduje tekstury z podanych œcie¿ek.
+    * @brief Åaduje tekstury z podanych Å›cieÅ¼ek.
     *
-    * @param texturePaths Lista œcie¿ek do plików z teksturami.
-    * @return true, jeœli wszystkie tekstury zosta³y pomyœlnie za³adowane, w przeciwnym razie false.
+    * @param texturePaths Lista Å›cieÅ¼ek do plikÃ³w z teksturami.
+    * @return true, jeÅ›li wszystkie tekstury zostaÅ‚y pomyÅ›lnie zaÅ‚adowane, w przeciwnym razie false.
     */
     bool loadTextures(const std::vector<std::string>& texturePaths);
   
 
     /**
-     * @brief Usuwa teksturê.
+     * @brief Usuwa teksturÄ™.
      *
-     * @param texture Referencja do identyfikatora tekstury do usuniêcia.
+     * @param texture Referencja do identyfikatora tekstury do usuniÄ™cia.
      */
     void deleteTexture(GLuint& texture);
    
     /**
-     * @brief Rysuje t³o przy u¿yciu za³adowanej tekstury.
+     * @brief Rysuje tÅ‚o przy uÅ¼yciu zaÅ‚adowanej tekstury.
      */
     void drawBackground();
 
     /**
-     * @brief Rysuje pionek w zadanej pozycji i rozmiarze, u¿ywaj¹c tekstury.
+     * @brief Rysuje pionek w zadanej pozycji i rozmiarze, uÅ¼ywajÄ…c tekstury.
      *
-     * @param x Wspó³rzêdna X pozycji pionka.
-     * @param y Wspó³rzêdna Y pozycji pionka.
-     * @param width Szerokoœæ pionka.
-     * @param height Wysokoœæ pionka.
+     * @param x WspÃ³Å‚rzÄ™dna X pozycji pionka.
+     * @param y WspÃ³Å‚rzÄ™dna Y pozycji pionka.
+     * @param width SzerokoÅ›Ä‡ pionka.
+     * @param height WysokoÅ›Ä‡ pionka.
      * @param texture Tekstura do przypisania do pionka.
      */
     void drawPionek(float x, float y, float width, float height, GLuint texture);
 
     /**
-      * @brief Przypisuje teksturê do konkretnej œciany kostki.
+      * @brief Przypisuje teksturÄ™ do konkretnej Å›ciany kostki.
       *
-      * @param faceIndex Indeks œciany kostki (0-5).
+      * @param faceIndex Indeks Å›ciany kostki (0-5).
       */
     void bindCubeTexture(int faceIndex);
 
-    // Tekstura t³a
+    // Tekstura tÅ‚a
     GLuint textureBackground;
 
-    // Tekstury œcian kostki
+    // Tekstury Å›cian kostki
     GLuint texture1, texture2, texture3, texture4, texture5, texture6;
 
-    // Tekstury pionków
+    // Tekstury pionkÃ³w
     GLuint texture_pionek, texture_pionek2;
 
 private:
     /**
-     * @brief £aduje pojedyncz¹ teksturê z pliku.
+     * @brief Åaduje pojedynczÄ… teksturÄ™ z pliku.
      *
-     * @param filePath Œcie¿ka do pliku tekstury.
+     * @param filePath ÅšcieÅ¼ka do pliku tekstury.
      * @return Identyfikator tekstury.
      */
     GLuint loadSingleTexture(const std::string& filePath);

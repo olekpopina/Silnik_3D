@@ -1,4 +1,4 @@
-#include "BitmapHandler.h"
+ï»¿#include "BitmapHandler.h"
 
 // Konstruktor - inicjalizuje wszystkie tekstury jako niezainicjalizowane (0)
 /**
@@ -7,10 +7,10 @@
  */
 BitmapHandler::BitmapHandler() {}
 
-// Destruktor - usuwa wszystkie za³adowane tekstury
+// Destruktor - usuwa wszystkie zaÅ‚adowane tekstury
 /**
  * @brief Destruktor klasy BitmapHandler.
- * Usuwa wszystkie za³adowane tekstury, zwalniaj¹c zasoby.
+ * Usuwa wszystkie zaÅ‚adowane tekstury, zwalniajÄ…c zasoby.
  */
 BitmapHandler::~BitmapHandler() {
     deleteTexture(textureBackground);
@@ -24,20 +24,20 @@ BitmapHandler::~BitmapHandler() {
     deleteTexture(texture_pionek2);
 }
 
-// Funkcja ³aduj¹ca jedn¹ teksturê z podanej œcie¿ki
+// Funkcja Å‚adujÄ…ca jednÄ… teksturÄ™ z podanej Å›cieÅ¼ki
 /**
- * @brief £aduje pojedyncz¹ teksturê z pliku.
+ * @brief Åaduje pojedynczÄ… teksturÄ™ z pliku.
  *
- * @param filePath Œcie¿ka do pliku tekstury.
- * @return GLuint Identyfikator za³adowanej tekstury.
+ * @param filePath ÅšcieÅ¼ka do pliku tekstury.
+ * @return GLuint Identyfikator zaÅ‚adowanej tekstury.
  *
- * Funkcja ³aduje teksturê z podanej œcie¿ki, generuje identyfikator tekstury
- * w OpenGL, a nastêpnie ³aduje obrazek do tej tekstury.
+ * Funkcja Å‚aduje teksturÄ™ z podanej Å›cieÅ¼ki, generuje identyfikator tekstury
+ * w OpenGL, a nastÄ™pnie Å‚aduje obrazek do tej tekstury.
  */
 GLuint BitmapHandler::loadSingleTexture(const std::string& filePath) {
     sf::Image image;
     if (!image.loadFromFile(filePath)) {
-        std::cerr << "Nie mo¿na za³adowaæ tekstury: " << filePath << std::endl;
+        std::cerr << "Nie moÅ¼na zaÅ‚adowaÄ‡ tekstury: " << filePath << std::endl;
         return 0;
     }
 
@@ -49,21 +49,21 @@ GLuint BitmapHandler::loadSingleTexture(const std::string& filePath) {
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
-    glBindTexture(GL_TEXTURE_2D, 0); // Od³¹cz teksturê po za³adowaniu
+    glBindTexture(GL_TEXTURE_2D, 0); // OdÅ‚Ä…cz teksturÄ™ po zaÅ‚adowaniu
     return textureId;
 }
 
-// Funkcja ³aduj¹ca wszystkie tekstury z listy œcie¿ek
+// Funkcja Å‚adujÄ…ca wszystkie tekstury z listy Å›cieÅ¼ek
 /**
- * @brief £aduje tekstury z listy œcie¿ek.
+ * @brief Åaduje tekstury z listy Å›cieÅ¼ek.
  *
- * @param texturePaths Lista œcie¿ek do plików z teksturami.
- * @return true Jeœli wszystkie tekstury zosta³y pomyœlnie za³adowane.
- * @return false Jeœli przynajmniej jedna tekstura nie zosta³a za³adowana.
+ * @param texturePaths Lista Å›cieÅ¼ek do plikÃ³w z teksturami.
+ * @return true JeÅ›li wszystkie tekstury zostaÅ‚y pomyÅ›lnie zaÅ‚adowane.
+ * @return false JeÅ›li przynajmniej jedna tekstura nie zostaÅ‚a zaÅ‚adowana.
  *
- * Funkcja ³aduje wszystkie tekstury z listy œcie¿ek i przypisuje je
- * do odpowiednich zmiennych. Jeœli nie uda siê za³adowaæ którejkolwiek tekstury,
- * zwróci false.
+ * Funkcja Å‚aduje wszystkie tekstury z listy Å›cieÅ¼ek i przypisuje je
+ * do odpowiednich zmiennych. JeÅ›li nie uda siÄ™ zaÅ‚adowaÄ‡ ktÃ³rejkolwiek tekstury,
+ * zwrÃ³ci false.
  */
 bool BitmapHandler::loadTextures(const std::vector<std::string>& texturePaths) {
     std::vector<GLuint*> textures = {
@@ -71,45 +71,45 @@ bool BitmapHandler::loadTextures(const std::vector<std::string>& texturePaths) {
     };
 
     if (texturePaths.size() != textures.size()) {
-        std::cerr << "Niepoprawna liczba œcie¿ek do tekstur!" << std::endl;
+        std::cerr << "Niepoprawna liczba Å›cieÅ¼ek do tekstur!" << std::endl;
         return false;
     }
 
     bool allLoaded = true;
     for (size_t i = 0; i < texturePaths.size(); ++i) {
         *textures[i] = loadSingleTexture(texturePaths[i]);
-        if (!glIsTexture(*textures[i])) { // SprawdŸ, czy tekstura zosta³a poprawnie za³adowana
-            std::cerr << "Nie uda³o siê za³adowaæ tekstury: " << texturePaths[i] << std::endl;
+        if (!glIsTexture(*textures[i])) { // SprawdÅº, czy tekstura zostaÅ‚a poprawnie zaÅ‚adowana
+            std::cerr << "Nie udaÅ‚o siÄ™ zaÅ‚adowaÄ‡ tekstury: " << texturePaths[i] << std::endl;
             allLoaded = false;
         }
     }
     return allLoaded;
 }
 
-// Usuwa teksturê, jeœli jest za³adowana
+// Usuwa teksturÄ™, jeÅ›li jest zaÅ‚adowana
 /**
- * @brief Usuwa teksturê, jeœli jest za³adowana.
+ * @brief Usuwa teksturÄ™, jeÅ›li jest zaÅ‚adowana.
  *
- * @param texture Referencja do identyfikatora tekstury do usuniêcia.
+ * @param texture Referencja do identyfikatora tekstury do usuniÄ™cia.
  *
- * Funkcja sprawdza, czy tekstura jest za³adowana, a nastêpnie usuwa j¹,
- * zwalniaj¹c zasoby.
+ * Funkcja sprawdza, czy tekstura jest zaÅ‚adowana, a nastÄ™pnie usuwa jÄ…,
+ * zwalniajÄ…c zasoby.
  */
 void BitmapHandler::deleteTexture(GLuint& texture) {
-    if (glIsTexture(texture)) { // SprawdŸ, czy tekstura jest za³adowana
+    if (glIsTexture(texture)) { // SprawdÅº, czy tekstura jest zaÅ‚adowana
         glDeleteTextures(1, &texture);
         texture = 0;
     }
 }
 
-// Funkcja przypisuj¹ca teksturê do œciany kostki
+// Funkcja przypisujÄ…ca teksturÄ™ do Å›ciany kostki
 /**
- * @brief Przypisuje teksturê do jednej œciany kostki.
+ * @brief Przypisuje teksturÄ™ do jednej Å›ciany kostki.
  *
- * @param faceIndex Indeks œciany kostki (0-5).
+ * @param faceIndex Indeks Å›ciany kostki (0-5).
  *
- * Funkcja przypisuje odpowiedni¹ teksturê do danej œciany kostki na podstawie
- * indeksu. Sprawdza równie¿, czy tekstura jest za³adowana.
+ * Funkcja przypisuje odpowiedniÄ… teksturÄ™ do danej Å›ciany kostki na podstawie
+ * indeksu. Sprawdza rÃ³wnieÅ¼, czy tekstura jest zaÅ‚adowana.
  */
 void BitmapHandler::bindCubeTexture(int faceIndex) {
     std::vector<GLuint> cubeTextures = { texture1, texture2, texture3, texture4, texture5, texture6 };
@@ -118,42 +118,42 @@ void BitmapHandler::bindCubeTexture(int faceIndex) {
         glBindTexture(GL_TEXTURE_2D, cubeTextures[faceIndex]);
     }
     else {
-        std::cerr << "Nieprawid³owy indeks tekstury lub tekstura nieza³adowana!" << std::endl;
+        std::cerr << "NieprawidÅ‚owy indeks tekstury lub tekstura niezaÅ‚adowana!" << std::endl;
     }
 }
 
-// Rysowanie t³a w widoku 3D
+// Rysowanie tÅ‚a w widoku 3D
 /**
- * @brief Rysuje t³o w widoku 3D.
+ * @brief Rysuje tÅ‚o w widoku 3D.
  *
- * Funkcja rysuje t³o za pomoc¹ za³adowanej tekstury. Ustawia widok 3D,
- * wy³¹cza test g³êbokoœci oraz rysuje prostok¹t z tekstur¹ t³a.
+ * Funkcja rysuje tÅ‚o za pomocÄ… zaÅ‚adowanej tekstury. Ustawia widok 3D,
+ * wyÅ‚Ä…cza test gÅ‚Ä™bokoÅ›ci oraz rysuje prostokÄ…t z teksturÄ… tÅ‚a.
  */
 void BitmapHandler::drawBackground() {
-    if (!glIsTexture(textureBackground)) return; // SprawdŸ, czy tekstura jest za³adowana
+    if (!glIsTexture(textureBackground)) return; // SprawdÅº, czy tekstura jest zaÅ‚adowana
 
     glMatrixMode(GL_PROJECTION);
     glPushMatrix();
     glLoadIdentity();
-    gluOrtho2D(0.0, 1.0, 0.0, 1.0); // Ustaw uk³ad wspó³rzêdnych dla widoku 2D
+    gluOrtho2D(0.0, 1.0, 0.0, 1.0); // Ustaw ukÅ‚ad wspÃ³Å‚rzÄ™dnych dla widoku 2D
 
     glMatrixMode(GL_MODELVIEW);
     glPushMatrix();
     glLoadIdentity();
 
-    glDisable(GL_DEPTH_TEST); // Wy³¹cz test g³êbokoœci
+    glDisable(GL_DEPTH_TEST); // WyÅ‚Ä…cz test gÅ‚Ä™bokoÅ›ci
     glEnable(GL_TEXTURE_2D);
     glBindTexture(GL_TEXTURE_2D, textureBackground);
 
-    glBegin(GL_QUADS); // Rysowanie prostok¹ta z tekstur¹
+    glBegin(GL_QUADS); // Rysowanie prostokÄ…ta z teksturÄ…
     glTexCoord2f(0.0f, 0.0f); glVertex2f(0.0f, 0.0f);
     glTexCoord2f(1.0f, 0.0f); glVertex2f(1.0f, 0.0f);
     glTexCoord2f(1.0f, 1.0f); glVertex2f(1.0f, 1.0f);
     glTexCoord2f(0.0f, 1.0f); glVertex2f(0.0f, 1.0f);
     glEnd();
 
-    glBindTexture(GL_TEXTURE_2D, 0); // Od³¹cz teksturê
-    glEnable(GL_DEPTH_TEST); // W³¹cz test g³êbokoœci
+    glBindTexture(GL_TEXTURE_2D, 0); // OdÅ‚Ä…cz teksturÄ™
+    glEnable(GL_DEPTH_TEST); // WÅ‚Ä…cz test gÅ‚Ä™bokoÅ›ci
 
     glMatrixMode(GL_PROJECTION);
     glPopMatrix();
@@ -161,56 +161,56 @@ void BitmapHandler::drawBackground() {
     glPopMatrix();
 }
 
-// Rysowanie pionka z tekstur¹
+// Rysowanie pionka z teksturÄ…
 /**
- * @brief Rysuje pionka w zadanej pozycji z tekstur¹.
+ * @brief Rysuje pionka w zadanej pozycji z teksturÄ….
  *
- * @param x Wspó³rzêdna X pozycji pionka.
- * @param y Wspó³rzêdna Y pozycji pionka.
- * @param width Szerokoœæ pionka.
- * @param height Wysokoœæ pionka.
+ * @param x WspÃ³Å‚rzÄ™dna X pozycji pionka.
+ * @param y WspÃ³Å‚rzÄ™dna Y pozycji pionka.
+ * @param width SzerokoÅ›Ä‡ pionka.
+ * @param height WysokoÅ›Ä‡ pionka.
  * @param texture Tekstura do przypisania do pionka.
  *
- * Funkcja rysuje pionka w okreœlonym miejscu, wy³¹czaj¹c test g³êbokoœci i w³¹czaj¹c
- * blending dla przezroczystoœci.
+ * Funkcja rysuje pionka w okreÅ›lonym miejscu, wyÅ‚Ä…czajÄ…c test gÅ‚Ä™bokoÅ›ci i wÅ‚Ä…czajÄ…c
+ * blending dla przezroczystoÅ›ci.
  */
 void BitmapHandler::drawPionek(float x, float y, float width, float height, GLuint texture) {
-    if (!glIsTexture(texture)) { // SprawdŸ, czy tekstura jest za³adowana
-        std::cerr << "Tekstura nieza³adowana!" << std::endl;
+    if (!glIsTexture(texture)) { // SprawdÅº, czy tekstura jest zaÅ‚adowana
+        std::cerr << "Tekstura niezaÅ‚adowana!" << std::endl;
         return;
     }
 
-    glEnable(GL_BLEND); // W³¹cz blending dla przezroczystoœci
+    glEnable(GL_BLEND); // WÅ‚Ä…cz blending dla przezroczystoÅ›ci
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
     glMatrixMode(GL_PROJECTION);
     glPushMatrix();
     glLoadIdentity();
-    gluOrtho2D(0.0, 1.0, 0.0, 1.0); // Ustaw uk³ad wspó³rzêdnych dla widoku 2D
+    gluOrtho2D(0.0, 1.0, 0.0, 1.0); // Ustaw ukÅ‚ad wspÃ³Å‚rzÄ™dnych dla widoku 2D
 
     glMatrixMode(GL_MODELVIEW);
     glPushMatrix();
     glLoadIdentity();
 
-    glDisable(GL_DEPTH_TEST); // Wy³¹cz test g³êbokoœci
+    glDisable(GL_DEPTH_TEST); // WyÅ‚Ä…cz test gÅ‚Ä™bokoÅ›ci
     glEnable(GL_TEXTURE_2D);
     glBindTexture(GL_TEXTURE_2D, texture);
 
-    glBegin(GL_QUADS); // Rysowanie prostok¹ta z tekstur¹
+    glBegin(GL_QUADS); // Rysowanie prostokÄ…ta z teksturÄ…
     glTexCoord2f(0.0f, 1.0f); glVertex2f(x, y);
     glTexCoord2f(1.0f, 1.0f); glVertex2f(x + width, y);
     glTexCoord2f(1.0f, 0.0f); glVertex2f(x + width, y + height);
     glTexCoord2f(0.0f, 0.0f); glVertex2f(x, y + height);
     glEnd();
 
-    glBindTexture(GL_TEXTURE_2D, 0); // Od³¹cz teksturê
+    glBindTexture(GL_TEXTURE_2D, 0); // OdÅ‚Ä…cz teksturÄ™
     glDisable(GL_TEXTURE_2D);
-    glEnable(GL_DEPTH_TEST); // W³¹cz test g³êbokoœci
+    glEnable(GL_DEPTH_TEST); // WÅ‚Ä…cz test gÅ‚Ä™bokoÅ›ci
 
     glMatrixMode(GL_PROJECTION);
     glPopMatrix();
     glMatrixMode(GL_MODELVIEW);
     glPopMatrix();
 
-    glDisable(GL_BLEND); // Wy³¹cz blending
+    glDisable(GL_BLEND); // WyÅ‚Ä…cz blending
 }

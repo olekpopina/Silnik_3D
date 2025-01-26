@@ -1,127 +1,127 @@
-#ifndef LINE_H
+ï»¿#ifndef LINE_H
 #define LINE_H
 
 #include "TransformableObject.h"
 
 /**
  * @class Line
- * @brief Klasa reprezentuj¹ca liniê w przestrzeni 3D.
+ * @brief Klasa reprezentujÄ…ca liniÄ™ w przestrzeni 3D.
  *
- * Klasa dziedziczy po TransformableObject i zawiera wspó³rzêdne punktów pocz¹tkowego
- * i koñcowego. Umo¿liwia manipulacjê tymi punktami oraz rysowanie linii w przestrzeni 3D.
+ * Klasa dziedziczy po TransformableObject i zawiera wspÃ³Å‚rzÄ™dne punktÃ³w poczÄ…tkowego
+ * i koÅ„cowego. UmoÅ¼liwia manipulacjÄ™ tymi punktami oraz rysowanie linii w przestrzeni 3D.
  */
 class Line : public TransformableObject {
 public:
 
     /**
-     * @brief Konstruktor domyœlny.
+     * @brief Konstruktor domyÅ›lny.
      *
-     * Inicjalizuje liniê na (0, 0, 0) -> (0, 0, 0).
+     * Inicjalizuje liniÄ™ na (0, 0, 0) -> (0, 0, 0).
      */
     Line();
 
     /**
-     * @brief Konstruktor, który inicjalizuje liniê na podstawie punktów pocz¹tkowego i koñcowego.
+     * @brief Konstruktor, ktÃ³ry inicjalizuje liniÄ™ na podstawie punktÃ³w poczÄ…tkowego i koÅ„cowego.
      *
-     * @param startX Wspó³rzêdna X punktu pocz¹tkowego.
-     * @param startY Wspó³rzêdna Y punktu pocz¹tkowego.
-     * @param startZ Wspó³rzêdna Z punktu pocz¹tkowego.
-     * @param endX Wspó³rzêdna X punktu koñcowego.
-     * @param endY Wspó³rzêdna Y punktu koñcowego.
-     * @param endZ Wspó³rzêdna Z punktu koñcowego.
+     * @param startX WspÃ³Å‚rzÄ™dna X punktu poczÄ…tkowego.
+     * @param startY WspÃ³Å‚rzÄ™dna Y punktu poczÄ…tkowego.
+     * @param startZ WspÃ³Å‚rzÄ™dna Z punktu poczÄ…tkowego.
+     * @param endX WspÃ³Å‚rzÄ™dna X punktu koÅ„cowego.
+     * @param endY WspÃ³Å‚rzÄ™dna Y punktu koÅ„cowego.
+     * @param endZ WspÃ³Å‚rzÄ™dna Z punktu koÅ„cowego.
      */
     Line(float startX, float startY, float startZ, float endX, float endY, float endZ);
 
     /**
-     * @brief Ustawia wspó³rzêdne punktu pocz¹tkowego linii.
+     * @brief Ustawia wspÃ³Å‚rzÄ™dne punktu poczÄ…tkowego linii.
      *
-     * @param x Wspó³rzêdna X punktu pocz¹tkowego.
-     * @param y Wspó³rzêdna Y punktu pocz¹tkowego.
-     * @param z Wspó³rzêdna Z punktu pocz¹tkowego.
+     * @param x WspÃ³Å‚rzÄ™dna X punktu poczÄ…tkowego.
+     * @param y WspÃ³Å‚rzÄ™dna Y punktu poczÄ…tkowego.
+     * @param z WspÃ³Å‚rzÄ™dna Z punktu poczÄ…tkowego.
      */
     void setStart(float x, float y, float z);
     
     /**
-     * @brief Ustawia wspó³rzêdne punktu koñcowego linii.
+     * @brief Ustawia wspÃ³Å‚rzÄ™dne punktu koÅ„cowego linii.
      *
-     * @param x Wspó³rzêdna X punktu koñcowego.
-     * @param y Wspó³rzêdna Y punktu koñcowego.
-     * @param z Wspó³rzêdna Z punktu koñcowego.
+     * @param x WspÃ³Å‚rzÄ™dna X punktu koÅ„cowego.
+     * @param y WspÃ³Å‚rzÄ™dna Y punktu koÅ„cowego.
+     * @param z WspÃ³Å‚rzÄ™dna Z punktu koÅ„cowego.
      */
     void setEnd(float x, float y, float z);
 
     /**
-     * @brief Pobiera wspó³rzêdne punktu pocz¹tkowego linii.
+     * @brief Pobiera wspÃ³Å‚rzÄ™dne punktu poczÄ…tkowego linii.
      *
-     * @param x Wspó³rzêdna X punktu pocz¹tkowego.
-     * @param y Wspó³rzêdna Y punktu pocz¹tkowego.
-     * @param z Wspó³rzêdna Z punktu pocz¹tkowego.
+     * @param x WspÃ³Å‚rzÄ™dna X punktu poczÄ…tkowego.
+     * @param y WspÃ³Å‚rzÄ™dna Y punktu poczÄ…tkowego.
+     * @param z WspÃ³Å‚rzÄ™dna Z punktu poczÄ…tkowego.
      */
     void getStart(float& x, float& y, float& z) const;
     
     /**
-     * @brief Pobiera wspó³rzêdne punktu koñcowego linii.
+     * @brief Pobiera wspÃ³Å‚rzÄ™dne punktu koÅ„cowego linii.
      *
-     * @param x Wspó³rzêdna X punktu koñcowego.
-     * @param y Wspó³rzêdna Y punktu koñcowego.
-     * @param z Wspó³rzêdna Z punktu koñcowego.
+     * @param x WspÃ³Å‚rzÄ™dna X punktu koÅ„cowego.
+     * @param y WspÃ³Å‚rzÄ™dna Y punktu koÅ„cowego.
+     * @param z WspÃ³Å‚rzÄ™dna Z punktu koÅ„cowego.
      */
     void getEnd(float& x, float& y, float& z) const;
     
     /**
-     * @brief Pobiera wspó³rzêdn¹ X punktu pocz¹tkowego linii.
+     * @brief Pobiera wspÃ³Å‚rzÄ™dnÄ… X punktu poczÄ…tkowego linii.
      *
-     * @return Wspó³rzêdna X punktu pocz¹tkowego.
+     * @return WspÃ³Å‚rzÄ™dna X punktu poczÄ…tkowego.
      */
     float getStartX() const;
     
     /**
-    * @brief Pobiera wspó³rzêdn¹ Y punktu pocz¹tkowego linii.
+    * @brief Pobiera wspÃ³Å‚rzÄ™dnÄ… Y punktu poczÄ…tkowego linii.
     *
-    * @return Wspó³rzêdna Y punktu pocz¹tkowego.
+    * @return WspÃ³Å‚rzÄ™dna Y punktu poczÄ…tkowego.
     */
     float getStartY() const;
     
     /**
-     * @brief Pobiera wspó³rzêdn¹ Z punktu pocz¹tkowego linii.
+     * @brief Pobiera wspÃ³Å‚rzÄ™dnÄ… Z punktu poczÄ…tkowego linii.
      *
-     * @return Wspó³rzêdna Z punktu pocz¹tkowego.
+     * @return WspÃ³Å‚rzÄ™dna Z punktu poczÄ…tkowego.
      */
     float getStartZ() const;
 
     /**
-     * @brief Pobiera wspó³rzêdn¹ X punktu koñcowego linii.
+     * @brief Pobiera wspÃ³Å‚rzÄ™dnÄ… X punktu koÅ„cowego linii.
      *
-     * @return Wspó³rzêdna X punktu koñcowego.
+     * @return WspÃ³Å‚rzÄ™dna X punktu koÅ„cowego.
      */
     float getEndX() const;
    
     /**
-   * @brief Pobiera wspó³rzêdn¹ Y punktu koñcowego linii.
+   * @brief Pobiera wspÃ³Å‚rzÄ™dnÄ… Y punktu koÅ„cowego linii.
    *
-   * @return Wspó³rzêdna Y punktu koñcowego.
+   * @return WspÃ³Å‚rzÄ™dna Y punktu koÅ„cowego.
    */
     float getEndY() const;
    
     /**
-     * @brief Pobiera wspó³rzêdn¹ Z punktu koñcowego linii.
+     * @brief Pobiera wspÃ³Å‚rzÄ™dnÄ… Z punktu koÅ„cowego linii.
      *
-     * @return Wspó³rzêdna Z punktu koñcowego.
+     * @return WspÃ³Å‚rzÄ™dna Z punktu koÅ„cowego.
      */
     float getEndZ() const;
 
     /**
      * @brief Metoda do rysowania linii.
      *
-     * Przes³oniêcie metody z klasy bazowej TransformableObject. Odpowiada za rysowanie linii
+     * PrzesÅ‚oniÄ™cie metody z klasy bazowej TransformableObject. Odpowiada za rysowanie linii
      * na ekranie.
      */
     void draw() const override; 
 
 private:
-    // Tablice przechowuj¹ce wspó³rzêdne punktu pocz¹tkowego i koñcowego linii
-    float start[3]; ///< Wspó³rzêdne punktu pocz¹tkowego (X, Y, Z).
-    float end[3]; ///< Wspó³rzêdne punktu koñcowego (X, Y, Z).
+    // Tablice przechowujÄ…ce wspÃ³Å‚rzÄ™dne punktu poczÄ…tkowego i koÅ„cowego linii
+    float start[3]; ///< WspÃ³Å‚rzÄ™dne punktu poczÄ…tkowego (X, Y, Z).
+    float end[3]; ///< WspÃ³Å‚rzÄ™dne punktu koÅ„cowego (X, Y, Z).
 };
 
 #endif // LINE_H

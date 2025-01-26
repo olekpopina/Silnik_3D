@@ -1,4 +1,4 @@
-#ifndef PLAYER_H
+ï»¿#ifndef PLAYER_H
 #define PLAYER_H
 
 #include "Triangle.h"
@@ -7,48 +7,48 @@
 
 /**
  * @class Player
- * @brief Klasa reprezentuj¹ca gracza.
+ * @brief Klasa reprezentujÄ…ca gracza.
  *
- * Klasa zarz¹dza obiektami gracza, w tym rysowaniem, ruchem i rotacj¹ figur 3D (trójk¹t i szeœcian).
+ * Klasa zarzÄ…dza obiektami gracza, w tym rysowaniem, ruchem i rotacjÄ… figur 3D (trÃ³jkÄ…t i szeÅ›cian).
  */
 class Player {
 public:
     /**
      * @brief Konstruktor klasy Player.
      *
-     * Inicjalizuje obiekt gracza, przypisuj¹c odpowiednie obiekty (trójk¹t, szeœcian i rysownik).
+     * Inicjalizuje obiekt gracza, przypisujÄ…c odpowiednie obiekty (trÃ³jkÄ…t, szeÅ›cian i rysownik).
      *
-     * @param triangle WskaŸnik na obiekt typu Triangle reprezentuj¹cy trójk¹t gracza.
-     * @param cube WskaŸnik na obiekt typu Cube reprezentuj¹cy szeœcian gracza.
-     * @param drawer WskaŸnik na obiekt PrimitiveDrawer, który s³u¿y do rysowania obiektów.
+     * @param triangle WskaÅºnik na obiekt typu Triangle reprezentujÄ…cy trÃ³jkÄ…t gracza.
+     * @param cube WskaÅºnik na obiekt typu Cube reprezentujÄ…cy szeÅ›cian gracza.
+     * @param drawer WskaÅºnik na obiekt PrimitiveDrawer, ktÃ³ry sÅ‚uÅ¼y do rysowania obiektÃ³w.
      */
     Player(Triangle* triangle, Cube* cube, PrimitiveDrawer* drawer);
 
     /**
-     * @brief Obs³uguje wejœcie od u¿ytkownika (naciœniêcie klawisza).
+     * @brief ObsÅ‚uguje wejÅ›cie od uÅ¼ytkownika (naciÅ›niÄ™cie klawisza).
      *
-     * Metoda ta reaguje na naciœniêcie klawiszy i zmienia stan gracza, np. uruchamia rotacjê.
+     * Metoda ta reaguje na naciÅ›niÄ™cie klawiszy i zmienia stan gracza, np. uruchamia rotacjÄ™.
      *
-     * @param key Kod naciœniêtego klawisza.
+     * @param key Kod naciÅ›niÄ™tego klawisza.
      */
     void handleInput(unsigned char key);
 
     /**
-     * @brief Aktualizuje stan gracza na podstawie up³ywu czasu.
+     * @brief Aktualizuje stan gracza na podstawie upÅ‚ywu czasu.
      *
-     * Metoda ta jest wywo³ywana co klatkê i odpowiada za aktualizacjê animacji oraz rotacji.
+     * Metoda ta jest wywoÅ‚ywana co klatkÄ™ i odpowiada za aktualizacjÄ™ animacji oraz rotacji.
      *
-     * @param deltaTime Czas, który up³yn¹³ od ostatniej klatki (w sekundach).
+     * @param deltaTime Czas, ktÃ³ry upÅ‚ynÄ…Å‚ od ostatniej klatki (w sekundach).
      */
     void update(float deltaTime);
 
 private:
-    Triangle* triangle; ///< WskaŸnik na obiekt typu Triangle (trójk¹t) reprezentuj¹cy gracza.
-    Cube* cube; ///< WskaŸnik na obiekt typu Cube (szeœcian) reprezentuj¹cy gracza.
-    PrimitiveDrawer* drawer; ///< WskaŸnik na obiekt PrimitiveDrawer, który rysuje obiekty.
+    Triangle* triangle; ///< WskaÅºnik na obiekt typu Triangle (trÃ³jkÄ…t) reprezentujÄ…cy gracza.
+    Cube* cube; ///< WskaÅºnik na obiekt typu Cube (szeÅ›cian) reprezentujÄ…cy gracza.
+    PrimitiveDrawer* drawer; ///< WskaÅºnik na obiekt PrimitiveDrawer, ktÃ³ry rysuje obiekty.
 
-    bool isRotating; ///< Flaga informuj¹ca, czy gracz wykonuje rotacjê trójk¹ta.
-    bool isRotatingCube; ///< Flaga informuj¹ca, czy gracz wykonuje rotacjê szeœcianu.
+    bool isRotating; ///< Flaga informujÄ…ca, czy gracz wykonuje rotacjÄ™ trÃ³jkÄ…ta.
+    bool isRotatingCube; ///< Flaga informujÄ…ca, czy gracz wykonuje rotacjÄ™ szeÅ›cianu.
 };
 
 #endif // PLAYER_H

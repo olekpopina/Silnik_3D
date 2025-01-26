@@ -1,30 +1,30 @@
-#ifndef DRAWABLE_H
+ï»¿#ifndef DRAWABLE_H
 #define DRAWABLE_H
 
 /**
- * @brief Interfejs dla obiektów, które mog¹ byæ rysowane.
+ * @brief Interfejs dla obiektÃ³w, ktÃ³re mogÄ… byÄ‡ rysowane.
  *
- * Klasa ta definiuje podstawowy interfejs dla wszystkich obiektów, które wymagaj¹
- * funkcji rysuj¹cej. Ka¿da klasa, która chce byæ rysowana, musi implementowaæ
- * metodê `draw()`.
+ * Klasa ta definiuje podstawowy interfejs dla wszystkich obiektÃ³w, ktÃ³re wymagajÄ…
+ * funkcji rysujÄ…cej. KaÅ¼da klasa, ktÃ³ra chce byÄ‡ rysowana, musi implementowaÄ‡
+ * metodÄ™ `draw()`.
  */
 class Drawable {
 public:
     /**
-     * @brief Funkcja rysuj¹ca obiekt.
+     * @brief Funkcja rysujÄ…ca obiekt.
      *
-     * Wirtualna funkcja czysto wirtualna, która musi zostaæ zaimplementowana
-     * w ka¿dej klasie dziedzicz¹cej. Odpowiada za rysowanie obiektu na ekranie.
+     * Wirtualna funkcja czysto wirtualna, ktÃ³ra musi zostaÄ‡ zaimplementowana
+     * w kaÅ¼dej klasie dziedziczÄ…cej. Odpowiada za rysowanie obiektu na ekranie.
      */
     virtual void draw() const = 0;
 
     /**
      * @brief Wirtualny destruktor.
      *
-     * Wirtualny destruktor, zapewniaj¹cy prawid³owe usuwanie obiektów w hierarchii
-     * dziedziczenia, gdy s¹ usuwane przez wskaŸnik do klasy bazowej.
+     * Wirtualny destruktor, zapewniajÄ…cy prawidÅ‚owe usuwanie obiektÃ³w w hierarchii
+     * dziedziczenia, gdy sÄ… usuwane przez wskaÅºnik do klasy bazowej.
      */
-    virtual ~Drawable() = default; // Wirtualny destruktor zapewniaj¹cy poprawne usuwanie obiektów.
+    virtual ~Drawable() = default; // Wirtualny destruktor zapewniajÄ…cy poprawne usuwanie obiektÃ³w.
 };
 
 #endif // DRAWABLE_H

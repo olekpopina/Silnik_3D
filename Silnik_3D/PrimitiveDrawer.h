@@ -1,4 +1,4 @@
-
+ï»¿
 #ifndef PRIMITIVE_DRAWER_H
 #define PRIMITIVE_DRAWER_H
 
@@ -8,19 +8,19 @@
 
 /**
  * @class PrimitiveDrawer
- * @brief Klasa s³u¿¹ca do rysowania ró¿nych prymitywów w przestrzeni 3D przy u¿yciu OpenGL.
+ * @brief Klasa sÅ‚uÅ¼Ä…ca do rysowania rÃ³Å¼nych prymitywÃ³w w przestrzeni 3D przy uÅ¼yciu OpenGL.
  *
- * Klasa zapewnia statyczne metody do rysowania punktów, linii, trójk¹tów, szeœcianów z teksturami,
- * konfigurowania oœwietlenia oraz ustalania trybu cieniowania.
+ * Klasa zapewnia statyczne metody do rysowania punktÃ³w, linii, trÃ³jkÄ…tÃ³w, szeÅ›cianÃ³w z teksturami,
+ * konfigurowania oÅ›wietlenia oraz ustalania trybu cieniowania.
  */
 class PrimitiveDrawer {
 
 public:
 
     /**
-     * @brief Ustawia tryb cieniowania dla obiektów.
+     * @brief Ustawia tryb cieniowania dla obiektÃ³w.
      *
-     * Zmienia tryb cieniowania w OpenGL na okreœlony tryb.
+     * Zmienia tryb cieniowania w OpenGL na okreÅ›lony tryb.
      *
      * @param mode Tryb cieniowania (np. Phong, Gouraud).
      */
@@ -29,89 +29,89 @@ public:
     /**
     * @brief Rysuje punkt w przestrzeni 3D.
     *
-    * U¿ywa OpenGL do rysowania punktu o zadanej pozycji (x, y, z) oraz rozmiarze.
+    * UÅ¼ywa OpenGL do rysowania punktu o zadanej pozycji (x, y, z) oraz rozmiarze.
     *
-    * @param x Wspó³rzêdna X punktu.
-    * @param y Wspó³rzêdna Y punktu.
-    * @param z Wspó³rzêdna Z punktu.
-    * @param size Rozmiar punktu (domyœlnie 1.0f).
+    * @param x WspÃ³Å‚rzÄ™dna X punktu.
+    * @param y WspÃ³Å‚rzÄ™dna Y punktu.
+    * @param z WspÃ³Å‚rzÄ™dna Z punktu.
+    * @param size Rozmiar punktu (domyÅ›lnie 1.0f).
     */
     static void drawPoint(float x, float y, float z, float size = 1.0f);
    
     /**
-     * @brief Rysuje liniê miêdzy dwoma punktami w przestrzeni 3D.
+     * @brief Rysuje liniÄ™ miÄ™dzy dwoma punktami w przestrzeni 3D.
      *
-     * Rysuje liniê od punktu (x1, y1, z1) do punktu (x2, y2, z2) o zadanej szerokoœci.
+     * Rysuje liniÄ™ od punktu (x1, y1, z1) do punktu (x2, y2, z2) o zadanej szerokoÅ›ci.
      *
-     * @param x1 Wspó³rzêdna X pierwszego punktu.
-     * @param y1 Wspó³rzêdna Y pierwszego punktu.
-     * @param z1 Wspó³rzêdna Z pierwszego punktu.
-     * @param x2 Wspó³rzêdna X drugiego punktu.
-     * @param y2 Wspó³rzêdna Y drugiego punktu.
-     * @param z2 Wspó³rzêdna Z drugiego punktu.
-     * @param width Szerokoœæ linii (domyœlnie 2.0f).
+     * @param x1 WspÃ³Å‚rzÄ™dna X pierwszego punktu.
+     * @param y1 WspÃ³Å‚rzÄ™dna Y pierwszego punktu.
+     * @param z1 WspÃ³Å‚rzÄ™dna Z pierwszego punktu.
+     * @param x2 WspÃ³Å‚rzÄ™dna X drugiego punktu.
+     * @param y2 WspÃ³Å‚rzÄ™dna Y drugiego punktu.
+     * @param z2 WspÃ³Å‚rzÄ™dna Z drugiego punktu.
+     * @param width SzerokoÅ›Ä‡ linii (domyÅ›lnie 2.0f).
      */
     static void drawLine(float x1, float y1, float z1, float x2, float y2, float z2, float width = 2.0f);
     
     /**
-    * @brief Rysuje trójk¹t w przestrzeni 3D.
+    * @brief Rysuje trÃ³jkÄ…t w przestrzeni 3D.
     *
-    * Rysuje trójk¹t z³o¿ony z trzech wierzcho³ków, okreœlonych przez tablice `vertices1`, `vertices2`, `vertices3`
-    * oraz przypisanych kolorów z tablicy `colors`. Mo¿na ustawiæ równie¿ pozycjê, skalê i k¹t obrotu.
+    * Rysuje trÃ³jkÄ…t zÅ‚oÅ¼ony z trzech wierzchoÅ‚kÃ³w, okreÅ›lonych przez tablice `vertices1`, `vertices2`, `vertices3`
+    * oraz przypisanych kolorÃ³w z tablicy `colors`. MoÅ¼na ustawiÄ‡ rÃ³wnieÅ¼ pozycjÄ™, skalÄ™ i kÄ…t obrotu.
     *
-    * @param vertices1 Wspó³rzêdne pierwszego wierzcho³ka trójk¹ta.
-    * @param vertices2 Wspó³rzêdne drugiego wierzcho³ka trójk¹ta.
-    * @param vertices3 Wspó³rzêdne trzeciego wierzcho³ka trójk¹ta.
-    * @param colors Kolory wierzcho³ków.
-    * @param posX Wspó³rzêdna X pozycji trójk¹ta.
-    * @param posY Wspó³rzêdna Y pozycji trójk¹ta.
-    * @param scale Skala trójk¹ta.
-    * @param rotationAngle K¹t obrotu trójk¹ta.
+    * @param vertices1 WspÃ³Å‚rzÄ™dne pierwszego wierzchoÅ‚ka trÃ³jkÄ…ta.
+    * @param vertices2 WspÃ³Å‚rzÄ™dne drugiego wierzchoÅ‚ka trÃ³jkÄ…ta.
+    * @param vertices3 WspÃ³Å‚rzÄ™dne trzeciego wierzchoÅ‚ka trÃ³jkÄ…ta.
+    * @param colors Kolory wierzchoÅ‚kÃ³w.
+    * @param posX WspÃ³Å‚rzÄ™dna X pozycji trÃ³jkÄ…ta.
+    * @param posY WspÃ³Å‚rzÄ™dna Y pozycji trÃ³jkÄ…ta.
+    * @param scale Skala trÃ³jkÄ…ta.
+    * @param rotationAngle KÄ…t obrotu trÃ³jkÄ…ta.
     */
     static void drawTriangle(const float vertices1[9], const float vertices2[9],
         const float vertices3[9], const float colors[9],
         float posX, float posY, float scale, float rotationAngle);
     
     /**
-    * @brief Rysuje szeœcian z tekstur¹.
+    * @brief Rysuje szeÅ›cian z teksturÄ….
     *
-    * Rysuje szeœcian o zadanej skali i przesuniêciu, u¿ywaj¹c tekstury wczytanej przy pomocy obiektu `BitmapHandler`.
+    * Rysuje szeÅ›cian o zadanej skali i przesuniÄ™ciu, uÅ¼ywajÄ…c tekstury wczytanej przy pomocy obiektu `BitmapHandler`.
     *
-    * @param scale Skala szeœcianu.
-    * @param offsetX Przesuniêcie w osi X.
-    * @param offsetY Przesuniêcie w osi Y.
-    * @param bitmapHandler Obiekt do obs³ugi bitmapy (tekstury).
+    * @param scale Skala szeÅ›cianu.
+    * @param offsetX PrzesuniÄ™cie w osi X.
+    * @param offsetY PrzesuniÄ™cie w osi Y.
+    * @param bitmapHandler Obiekt do obsÅ‚ugi bitmapy (tekstury).
     */
     static void drawCubeWithTexture(float scale, float offsetX, float offsetY, BitmapHandler& bitmapHandler);
    
     /**
-     * @brief Konfiguruje œwiat³o w OpenGL.
+     * @brief Konfiguruje Å›wiatÅ‚o w OpenGL.
      *
-     * Ustawia parametry œwiat³a, takie jak pozycja, kolor ambient, kolor rozproszenia, kolor odbicia, k¹t i wspó³czynnik wyg³adzenia.
+     * Ustawia parametry Å›wiatÅ‚a, takie jak pozycja, kolor ambient, kolor rozproszenia, kolor odbicia, kÄ…t i wspÃ³Å‚czynnik wygÅ‚adzenia.
      *
-     * @param light Identyfikator Ÿród³a œwiat³a (np. GL_LIGHT0).
-     * @param position Pozycja Ÿród³a œwiat³a.
-     * @param ambient Kolor ambient Ÿród³a œwiat³a.
-     * @param diffuse Kolor rozproszenia Ÿród³a œwiat³a.
-     * @param specular Kolor odbicia Ÿród³a œwiat³a.
-     * @param direction Kierunek œwiat³a (opcjonalnie).
-     * @param cutoff K¹t odciêcia œwiat³a (opcjonalnie, domyœlnie 180.0f).
-     * @param exponent Wspó³czynnik wyg³adzenia œwiat³a (opcjonalnie, domyœlnie 0.0f).
+     * @param light Identyfikator ÅºrÃ³dÅ‚a Å›wiatÅ‚a (np. GL_LIGHT0).
+     * @param position Pozycja ÅºrÃ³dÅ‚a Å›wiatÅ‚a.
+     * @param ambient Kolor ambient ÅºrÃ³dÅ‚a Å›wiatÅ‚a.
+     * @param diffuse Kolor rozproszenia ÅºrÃ³dÅ‚a Å›wiatÅ‚a.
+     * @param specular Kolor odbicia ÅºrÃ³dÅ‚a Å›wiatÅ‚a.
+     * @param direction Kierunek Å›wiatÅ‚a (opcjonalnie).
+     * @param cutoff KÄ…t odciÄ™cia Å›wiatÅ‚a (opcjonalnie, domyÅ›lnie 180.0f).
+     * @param exponent WspÃ³Å‚czynnik wygÅ‚adzenia Å›wiatÅ‚a (opcjonalnie, domyÅ›lnie 0.0f).
      */
     static void configureLight(GLenum light, const GLfloat* position, const GLfloat* ambient, const GLfloat* diffuse, const GLfloat* specular, const GLfloat* direction = nullptr, float cutoff = 180.0f, float exponent = 0.0f);
 
     /**
-    * @brief Rysuje szeœcian w przestrzeni 3D.
+    * @brief Rysuje szeÅ›cian w przestrzeni 3D.
     *
-    * Rysuje szeœcian przy u¿yciu zadanych wierzcho³ków, indeksów, normalnych i kolorów.
+    * Rysuje szeÅ›cian przy uÅ¼yciu zadanych wierzchoÅ‚kÃ³w, indeksÃ³w, normalnych i kolorÃ³w.
     *
-    * @param scale Skala szeœcianu.
-    * @param offsetX Przesuniêcie w osi X.
-    * @param offsetY Przesuniêcie w osi Y.
-    * @param vertices Tablica wierzcho³ków szeœcianu.
-    * @param indices Tablica indeksów wierzcho³ków szeœcianu.
-    * @param normals Tablica normalnych dla ka¿dego wierzcho³ka.
-    * @param colors Tablica kolorów dla ka¿dego wierzcho³ka.
+    * @param scale Skala szeÅ›cianu.
+    * @param offsetX PrzesuniÄ™cie w osi X.
+    * @param offsetY PrzesuniÄ™cie w osi Y.
+    * @param vertices Tablica wierzchoÅ‚kÃ³w szeÅ›cianu.
+    * @param indices Tablica indeksÃ³w wierzchoÅ‚kÃ³w szeÅ›cianu.
+    * @param normals Tablica normalnych dla kaÅ¼dego wierzchoÅ‚ka.
+    * @param colors Tablica kolorÃ³w dla kaÅ¼dego wierzchoÅ‚ka.
     */
     static void drawCube(float scale, float offsetX, float offsetY, const float* vertices, const unsigned int* indices, const float* normals, const float* colors);
 
@@ -121,14 +121,14 @@ public:
    static int textureSet;
 
    /**
-   * @brief Tablica przechowuj¹ca tekstury dla szeœcianu.
+   * @brief Tablica przechowujÄ…ca tekstury dla szeÅ›cianu.
    */
    static GLuint textures[6];
 
 private:
 
     /**
-    * @brief Zmienna statyczna przechowuj¹ca bie¿¹cy tryb cieniowania.
+    * @brief Zmienna statyczna przechowujÄ…ca bieÅ¼Ä…cy tryb cieniowania.
     */
     static ShadingMode currentShadingMode;
 };

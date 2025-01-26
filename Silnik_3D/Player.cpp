@@ -1,4 +1,4 @@
-#include "Player.h"
+ï»¿#include "Player.h"
 #include <iostream>
 
 Player::Player(Triangle* triangle, Cube* cube, PrimitiveDrawer* drawer)
@@ -7,11 +7,11 @@ Player::Player(Triangle* triangle, Cube* cube, PrimitiveDrawer* drawer)
 }
 
 /**
- * @brief Obs³uguje wejœcie od u¿ytkownika (naciœniêcie klawisza).
+ * @brief ObsÅ‚uguje wejÅ›cie od uÅ¼ytkownika (naciÅ›niÄ™cie klawisza).
  *
- * Reaguje na ró¿ne klawisze, zmieniaj¹c stan gracza, np. rotacjê, ruch czy skalowanie figur.
+ * Reaguje na rÃ³Å¼ne klawisze, zmieniajÄ…c stan gracza, np. rotacjÄ™, ruch czy skalowanie figur.
  *
- * @param key Kod naciœniêtego klawisza.
+ * @param key Kod naciÅ›niÄ™tego klawisza.
  */
 void Player::handleInput(unsigned char key) {
     if (key == 'i' || key == 'I') {
@@ -63,16 +63,16 @@ void Player::handleInput(unsigned char key) {
 }
 
 /**
- * @brief Aktualizuje stan gracza na podstawie up³ywu czasu.
+ * @brief Aktualizuje stan gracza na podstawie upÅ‚ywu czasu.
  *
- * Aktualizuje rotacjê obiektów (trójk¹ta i szeœcianu) na podstawie czasu, który up³yn¹³ od ostatniej klatki.
+ * Aktualizuje rotacjÄ™ obiektÃ³w (trÃ³jkÄ…ta i szeÅ›cianu) na podstawie czasu, ktÃ³ry upÅ‚ynÄ…Å‚ od ostatniej klatki.
  *
- * @param deltaTime Czas, który up³yn¹³ od ostatniej klatki (w sekundach).
+ * @param deltaTime Czas, ktÃ³ry upÅ‚ynÄ…Å‚ od ostatniej klatki (w sekundach).
  */
 void Player::update(float deltaTime) {
-    // Aktualizuj rotacjê trójk¹ta
+    // Aktualizuj rotacjÄ™ trÃ³jkÄ…ta
     triangle->updateRotation(deltaTime);
 
-    // Aktualizuj rotacjê szeœcianu
+    // Aktualizuj rotacjÄ™ szeÅ›cianu
     cube->updateRotationC(deltaTime);
 }

@@ -1,4 +1,4 @@
-#ifndef TRIANGLE_H
+﻿#ifndef TRIANGLE_H
 #define TRIANGLE_H
 
 #include <GL/freeglut.h>

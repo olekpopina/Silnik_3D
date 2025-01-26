@@ -86,7 +86,6 @@ private:
     bool isDragging = false;
 
 
-    bool isPointNearLine(float px, float py, float x1, float y1, float x2, float y2, float threshold);
     float minCameraZ = 2.0f; 
     float maxCameraZ = 20.0f;
 
@@ -118,7 +117,7 @@ private:
     static void mouseCallback(int button, int state, int x, int y);
     static void motionCallback(int x, int y);
     static void reshapeCallback(int width, int height);
-    bool isClickOnCube(int mouseX, int mouseY);
+    bool isClickOnCube(int mouseX, int mouseY) const;
     static void specialKeyboardCallback(int key, int x, int y);
    
     static Engine* instance;

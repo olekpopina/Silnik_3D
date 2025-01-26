@@ -1,4 +1,4 @@
-#include "Triangle.h"
+Ôªø#include "Triangle.h"
 #include <fstream>
 
 
@@ -14,21 +14,21 @@ Triangle::Triangle() : rotationAngle(0.0f), isRotating(false) {
 
 
     float initialVertices1[] = {
-        0.0f,  0.5f, 0.0f,  // GÛrny wierzcho≥ek
+        0.0f,  0.5f, 0.0f,  // G√≥rny wierzcho≈Çek
        -0.5f, -0.5f, -0.5f, // Lewy dolny
         0.5f, -0.5f, -0.5f  // Prawy dolny
     };
     std::copy(std::begin(initialVertices1), std::end(initialVertices1), vertices1);
 
     float initialVertices2[] = {
-        0.0f,  0.5f, 0.0f,  // GÛrny wierzcho≥ek
+        0.0f,  0.5f, 0.0f,  // G√≥rny wierzcho≈Çek
         0.5f, -0.5f, -0.5f, // Lewy dolny
         0.0f, -0.5f,  0.5f  // Prawy dolny
     };
     std::copy(std::begin(initialVertices2), std::end(initialVertices2), vertices2);
 
     float initialVertices3[] = {
-        0.0f,  0.5f, 0.0f,  // GÛrny wierzcho≥ek
+        0.0f,  0.5f, 0.0f,  // G√≥rny wierzcho≈Çek
         0.0f, -0.5f,  0.5f, // Lewy dolny
        -0.5f, -0.5f, -0.5f  // Prawy dolny
     };

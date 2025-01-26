@@ -233,23 +233,6 @@ void Engine::render() {
     glutSwapBuffers();
 }
 
-
-bool Engine::isPointNearLine(float px, float py, float x1, float y1, float x2, float y2, float threshold) {
-    float dx = x2 - x1;
-    float dy = y2 - y1;
-    float lengthSq = dx * dx + dy * dy;
-    float projection = ((px - x1) * dx + (py - y1) * dy) / lengthSq;
-
-    if (projection < 0.0f || projection > 1.0f) {
-        return false; 
-    }
-    float closestX = x1 + projection * dx;
-    float closestY = y1 + projection * dy;
-
-    float distSq = (px - closestX) * (px - closestX) + (py - closestY) * (py - closestY);
-    return distSq <= threshold * threshold;
-}
-
 void Engine::onKeyboard(unsigned char key, int x, int y) {
     if (key == 'O' || key == 'o') { // Перемикання освітлення
         switchLightingMode();
@@ -382,8 +365,6 @@ void Engine::resetGame() {
 
     std::cout << "[DEBUG] Gra została zresetowana. Można grać ponownie." << std::endl;
 }
-
-
 
 
 // Funkcja obsługująca kliknięcie myszką
@@ -537,7 +518,7 @@ void Engine::reshapeCallback(int width, int height) {
 
 
 // Funkcja sprawdzająca, czy kliknięcie było na kostce
-bool Engine::isClickOnCube(int mouseX, int mouseY) {
+bool Engine::isClickOnCube(int mouseX, int mouseY) const {
     // Convert mouse coordinates to normalized OpenGL coordinates [-1, 1]
     float normalizedX = (float)mouseX / glutGet(GLUT_WINDOW_WIDTH) * 2.0f - 1.0f;
     float normalizedY = 1.0f - (float)mouseY / glutGet(GLUT_WINDOW_HEIGHT) * 2.0f;
@@ -650,8 +631,6 @@ void Engine::configureLighting() {
         break;
     }
 }
-
-
 
 void Engine::switchLightingMode() {
     // Перемикання між режимами

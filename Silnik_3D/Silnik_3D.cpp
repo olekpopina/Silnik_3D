@@ -21,7 +21,7 @@ int main(int argc, char** argv) {
      */
     std::vector<std::string> texturePaths = {
         "images/tlo.png", "images/1.png", "images/2.png", "images/3.png",
-        "images/4.png", "images/5.png", "images/6.png", "images/pionek2.png", "images/pionek1.png"
+        "images/4.png", "images/5.png", "images/6.png", "images/pionek1.png", "images/pionek2.png"
     };
 
     /**

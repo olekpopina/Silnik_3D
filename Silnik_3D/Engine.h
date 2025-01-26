@@ -29,7 +29,6 @@ public:
     void render();
     void onKeyboard(unsigned char key, int x, int y);
     void onMouse(int button, int state, int x, int y);
-    void clear();
     void onSpecialKeyboard(int key, int x, int y);
     void updatePawnPosition();
     void resetGame();

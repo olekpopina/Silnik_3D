@@ -24,14 +24,13 @@ public:
     void bindCubeTexture(int faceIndex);
 
     // Tekstura t³a
-    GLuint texture1;
+    GLuint textureBackground;
 
     // Tekstury œcian kostki
-    GLuint texture2, texture3, texture4, texture5, texture6, texture7;
+    GLuint texture1, texture2, texture3, texture4, texture5, texture6;
 
     // Tekstury pionków
-    GLuint texture_pionek;
-    GLuint texture_pionek2;
+    GLuint texture_pionek, texture_pionek2;
 
 private:
     // £adowanie pojedynczej tekstury z pliku

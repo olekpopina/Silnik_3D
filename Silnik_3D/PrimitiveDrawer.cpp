@@ -164,60 +164,60 @@ void PrimitiveDrawer::drawCubeNew(float scale, float offsetX, float offsetY, Bit
 
     switch (textureSet) {
     case 1: // Zestaw tekstur 1
+        textures[0] = bitmapHandler.texture1; // Przednia
+        textures[1] = bitmapHandler.texture2; // Tylna
+        textures[2] = bitmapHandler.texture3; // Lewa
+        textures[3] = bitmapHandler.texture4; // Prawa
+        textures[4] = bitmapHandler.texture5; // Górna
+        textures[5] = bitmapHandler.texture6; // Dolna
+        break;
+    case 2: // Zestaw tekstur 2
         textures[0] = bitmapHandler.texture2; // Przednia
         textures[1] = bitmapHandler.texture3; // Tylna
         textures[2] = bitmapHandler.texture4; // Lewa
         textures[3] = bitmapHandler.texture5; // Prawa
         textures[4] = bitmapHandler.texture6; // Górna
-        textures[5] = bitmapHandler.texture7; // Dolna
-        break;
-    case 2: // Zestaw tekstur 2
-        textures[0] = bitmapHandler.texture3; // Przednia
-        textures[1] = bitmapHandler.texture4; // Tylna
-        textures[2] = bitmapHandler.texture5; // Lewa
-        textures[3] = bitmapHandler.texture6; // Prawa
-        textures[4] = bitmapHandler.texture7; // Górna
-        textures[5] = bitmapHandler.texture2; // Dolna
+        textures[5] = bitmapHandler.texture1; // Dolna
         break;
     case 3: // Zestaw tekstur 2
-        textures[0] = bitmapHandler.texture4; // Przednia
-        textures[1] = bitmapHandler.texture3; // Tylna
-        textures[2] = bitmapHandler.texture5; // Lewa
-        textures[3] = bitmapHandler.texture6; // Prawa
-        textures[4] = bitmapHandler.texture7; // Górna
-        textures[5] = bitmapHandler.texture2; // Dolna
+        textures[0] = bitmapHandler.texture3; // Przednia
+        textures[1] = bitmapHandler.texture2; // Tylna
+        textures[2] = bitmapHandler.texture4; // Lewa
+        textures[3] = bitmapHandler.texture5; // Prawa
+        textures[4] = bitmapHandler.texture6; // Górna
+        textures[5] = bitmapHandler.texture1; // Dolna
         break;
     case 4: // Zestaw tekstur 2
-        textures[0] = bitmapHandler.texture5; // Przednia
-        textures[1] = bitmapHandler.texture4; // Tylna
-        textures[2] = bitmapHandler.texture3; // Lewa
-        textures[3] = bitmapHandler.texture6; // Prawa
-        textures[4] = bitmapHandler.texture7; // Górna
-        textures[5] = bitmapHandler.texture2; // Dolna
+        textures[0] = bitmapHandler.texture4; // Przednia
+        textures[1] = bitmapHandler.texture3; // Tylna
+        textures[2] = bitmapHandler.texture2; // Lewa
+        textures[3] = bitmapHandler.texture5; // Prawa
+        textures[4] = bitmapHandler.texture6; // Górna
+        textures[5] = bitmapHandler.texture1; // Dolna
         break;
     case 5: // Zestaw tekstur 2
-        textures[0] = bitmapHandler.texture6; // Przednia
-        textures[1] = bitmapHandler.texture3; // Tylna
-        textures[2] = bitmapHandler.texture5; // Lewa
-        textures[3] = bitmapHandler.texture4; // Prawa
-        textures[4] = bitmapHandler.texture7; // Górna
-        textures[5] = bitmapHandler.texture2; // Dolna
+        textures[0] = bitmapHandler.texture5; // Przednia
+        textures[1] = bitmapHandler.texture2; // Tylna
+        textures[2] = bitmapHandler.texture4; // Lewa
+        textures[3] = bitmapHandler.texture3; // Prawa
+        textures[4] = bitmapHandler.texture6; // Górna
+        textures[5] = bitmapHandler.texture1; // Dolna
         break;
     case 6: // Zestaw tekstur 2
-        textures[0] = bitmapHandler.texture7; // Przednia
-        textures[1] = bitmapHandler.texture3; // Tylna
-        textures[2] = bitmapHandler.texture5; // Lewa
-        textures[3] = bitmapHandler.texture6; // Prawa
-        textures[4] = bitmapHandler.texture4; // Górna
-        textures[5] = bitmapHandler.texture2; // Dolna
+        textures[0] = bitmapHandler.texture6; // Przednia
+        textures[1] = bitmapHandler.texture2; // Tylna
+        textures[2] = bitmapHandler.texture4; // Lewa
+        textures[3] = bitmapHandler.texture5; // Prawa
+        textures[4] = bitmapHandler.texture3; // Górna
+        textures[5] = bitmapHandler.texture1; // Dolna
         break;
     default: // Domyœlny zestaw tekstur
-        textures[0] = bitmapHandler.texture2;
-        textures[1] = bitmapHandler.texture3;
-        textures[2] = bitmapHandler.texture4;
-        textures[3] = bitmapHandler.texture5;
-        textures[4] = bitmapHandler.texture6;
-        textures[5] = bitmapHandler.texture7;
+        textures[0] = bitmapHandler.texture1;
+        textures[1] = bitmapHandler.texture2;
+        textures[2] = bitmapHandler.texture3;
+        textures[3] = bitmapHandler.texture4;
+        textures[4] = bitmapHandler.texture5;
+        textures[5] = bitmapHandler.texture6;
         break;
     }
 

@@ -10,14 +10,13 @@ int main(int argc, char** argv) {
     };
     int frameRate = 60;
 
-    Engine gameEngine(800, 600, "Game Engine");
+    Engine gameEngine(800, 600, "Game Engine", frameRate);
 
     Engine::setInstance(&gameEngine);
     
     gameEngine.init(argc, argv);
     gameEngine.setClearColor(0.2f, 0.3f, 0.4f);
     gameEngine.setTextures(texturePaths);
-    gameEngine.setFrameRate(frameRate); // Bez ograniczeń
     gameEngine.run();
 
     return 0;

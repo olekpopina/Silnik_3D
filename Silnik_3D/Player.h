@@ -12,7 +12,6 @@ public:
 
     void handleInput(unsigned char key);
     void update(float deltaTime);
-    void move(float dx, float dy); 
 
 private:
     Triangle* triangle;

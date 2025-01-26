@@ -6,10 +6,10 @@
 Cube cube;
 Engine* Engine::instance = nullptr;
 
-Engine::Engine(int width, int height, const char* title)
+Engine::Engine(int width, int height, const char* title, int fps)
     : windowWidth(width), windowHeight(height), windowTitle(title),clearColor{ 0.0f, 0.0f, 0.0f, 1.0f },
     cameraZ(5.0f), player(&triangle, &cube, &drawer), 
-    line(1.5f, 0.2f, 1.0f, 1.5f, 2.0f, 1.0f), rng(std::random_device{}()), dist(0, 5) {
+    line(1.5f, 0.2f, 1.0f, 1.5f, 2.0f, 1.0f), rng(std::random_device{}()), dist(0, 5), frameRate(fps) {
     point.set(
         (line.getEndX() + line.getStartX()) / 2,
         (line.getEndY() - line.getStartY()) / 2 ,

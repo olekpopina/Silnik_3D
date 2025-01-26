@@ -1,19 +1,17 @@
 #include "BitmapHandler.h"
 
 // Konstruktor - inicjalizuje wszystkie tekstury jako niezainicjalizowane (0)
-BitmapHandler::BitmapHandler()
-    : texture1(0), texture2(0), texture3(0), texture4(0), texture5(0), texture6(0), texture7(0),
-    texture_pionek(0), texture_pionek2(0) {}
+BitmapHandler::BitmapHandler() {}
 
 // Destruktor - usuwa wszystkie za³adowane tekstury
 BitmapHandler::~BitmapHandler() {
+    deleteTexture(textureBackground);
     deleteTexture(texture1);
     deleteTexture(texture2);
     deleteTexture(texture3);
     deleteTexture(texture4);
     deleteTexture(texture5);
     deleteTexture(texture6);
-    deleteTexture(texture7);
     deleteTexture(texture_pionek);
     deleteTexture(texture_pionek2);
 }
@@ -41,7 +39,7 @@ GLuint BitmapHandler::loadSingleTexture(const std::string& filePath) {
 // Funkcja ³aduj¹ca wszystkie tekstury z listy œcie¿ek
 bool BitmapHandler::loadTextures(const std::vector<std::string>& texturePaths) {
     std::vector<GLuint*> textures = {
-        &texture1, &texture2, &texture3, &texture4, &texture5, &texture6, &texture7, &texture_pionek, &texture_pionek2
+        &textureBackground, &texture1, &texture2, &texture3, &texture4, &texture5, &texture6, &texture_pionek, &texture_pionek2
     };
 
     if (texturePaths.size() != textures.size()) {
@@ -70,7 +68,7 @@ void BitmapHandler::deleteTexture(GLuint& texture) {
 
 // Funkcja przypisuj¹ca teksturê do œciany kostki
 void BitmapHandler::bindCubeTexture(int faceIndex) {
-    std::vector<GLuint> cubeTextures = { texture2, texture3, texture4, texture5, texture6, texture7 };
+    std::vector<GLuint> cubeTextures = { texture1, texture2, texture3, texture4, texture5, texture6 };
 
     if (faceIndex >= 0 && faceIndex < cubeTextures.size() && glIsTexture(cubeTextures[faceIndex])) {
         glBindTexture(GL_TEXTURE_2D, cubeTextures[faceIndex]);
@@ -82,7 +80,7 @@ void BitmapHandler::bindCubeTexture(int faceIndex) {
 
 // Rysowanie t³a w widoku 2D
 void BitmapHandler::drawBackground() {
-    if (!glIsTexture(texture1)) return; // SprawdŸ, czy tekstura jest za³adowana
+    if (!glIsTexture(textureBackground)) return; // SprawdŸ, czy tekstura jest za³adowana
 
     glMatrixMode(GL_PROJECTION);
     glPushMatrix();
@@ -95,7 +93,7 @@ void BitmapHandler::drawBackground() {
 
     glDisable(GL_DEPTH_TEST); // Wy³¹cz test g³êbokoœci
     glEnable(GL_TEXTURE_2D);
-    glBindTexture(GL_TEXTURE_2D, texture1);
+    glBindTexture(GL_TEXTURE_2D, textureBackground);
 
     glBegin(GL_QUADS); // Rysowanie prostok¹ta z tekstur¹
     glTexCoord2f(0.0f, 0.0f); glVertex2f(0.0f, 0.0f);

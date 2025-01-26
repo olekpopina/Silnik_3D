@@ -250,10 +250,10 @@ bool Engine::isPointNearLine(float px, float py, float x1, float y1, float x2, f
 }
 
 void Engine::onKeyboard(unsigned char key, int x, int y) {
-    if (key == 'L' || key == 'l') { // Перемикання освітлення
+    if (key == 'O' || key == 'o') { // Перемикання освітлення
         switchLightingMode();
     }
-    else if (key == 'S' || key == 's') { // Перемикання затінення
+    else if (key == 'Z' || key == 'z') { // Перемикання затінення
         switchShadingMode();
     }
     else if (key == 27) { // Вихід

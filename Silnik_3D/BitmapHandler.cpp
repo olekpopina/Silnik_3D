@@ -1,9 +1,17 @@
 #include "BitmapHandler.h"
 
 // Konstruktor - inicjalizuje wszystkie tekstury jako niezainicjalizowane (0)
+/**
+ * @brief Konstruktor klasy BitmapHandler.
+ * Inicjalizuje wszystkie tekstury jako niezainicjalizowane.
+ */
 BitmapHandler::BitmapHandler() {}
 
 // Destruktor - usuwa wszystkie za³adowane tekstury
+/**
+ * @brief Destruktor klasy BitmapHandler.
+ * Usuwa wszystkie za³adowane tekstury, zwalniaj¹c zasoby.
+ */
 BitmapHandler::~BitmapHandler() {
     deleteTexture(textureBackground);
     deleteTexture(texture1);
@@ -17,6 +25,15 @@ BitmapHandler::~BitmapHandler() {
 }
 
 // Funkcja ³aduj¹ca jedn¹ teksturê z podanej œcie¿ki
+/**
+ * @brief £aduje pojedyncz¹ teksturê z pliku.
+ *
+ * @param filePath Œcie¿ka do pliku tekstury.
+ * @return GLuint Identyfikator za³adowanej tekstury.
+ *
+ * Funkcja ³aduje teksturê z podanej œcie¿ki, generuje identyfikator tekstury
+ * w OpenGL, a nastêpnie ³aduje obrazek do tej tekstury.
+ */
 GLuint BitmapHandler::loadSingleTexture(const std::string& filePath) {
     sf::Image image;
     if (!image.loadFromFile(filePath)) {
@@ -37,6 +54,17 @@ GLuint BitmapHandler::loadSingleTexture(const std::string& filePath) {
 }
 
 // Funkcja ³aduj¹ca wszystkie tekstury z listy œcie¿ek
+/**
+ * @brief £aduje tekstury z listy œcie¿ek.
+ *
+ * @param texturePaths Lista œcie¿ek do plików z teksturami.
+ * @return true Jeœli wszystkie tekstury zosta³y pomyœlnie za³adowane.
+ * @return false Jeœli przynajmniej jedna tekstura nie zosta³a za³adowana.
+ *
+ * Funkcja ³aduje wszystkie tekstury z listy œcie¿ek i przypisuje je
+ * do odpowiednich zmiennych. Jeœli nie uda siê za³adowaæ którejkolwiek tekstury,
+ * zwróci false.
+ */
 bool BitmapHandler::loadTextures(const std::vector<std::string>& texturePaths) {
     std::vector<GLuint*> textures = {
         &textureBackground, &texture1, &texture2, &texture3, &texture4, &texture5, &texture6, &texture_pionek, &texture_pionek2
@@ -59,6 +87,14 @@ bool BitmapHandler::loadTextures(const std::vector<std::string>& texturePaths) {
 }
 
 // Usuwa teksturê, jeœli jest za³adowana
+/**
+ * @brief Usuwa teksturê, jeœli jest za³adowana.
+ *
+ * @param texture Referencja do identyfikatora tekstury do usuniêcia.
+ *
+ * Funkcja sprawdza, czy tekstura jest za³adowana, a nastêpnie usuwa j¹,
+ * zwalniaj¹c zasoby.
+ */
 void BitmapHandler::deleteTexture(GLuint& texture) {
     if (glIsTexture(texture)) { // SprawdŸ, czy tekstura jest za³adowana
         glDeleteTextures(1, &texture);
@@ -67,6 +103,14 @@ void BitmapHandler::deleteTexture(GLuint& texture) {
 }
 
 // Funkcja przypisuj¹ca teksturê do œciany kostki
+/**
+ * @brief Przypisuje teksturê do jednej œciany kostki.
+ *
+ * @param faceIndex Indeks œciany kostki (0-5).
+ *
+ * Funkcja przypisuje odpowiedni¹ teksturê do danej œciany kostki na podstawie
+ * indeksu. Sprawdza równie¿, czy tekstura jest za³adowana.
+ */
 void BitmapHandler::bindCubeTexture(int faceIndex) {
     std::vector<GLuint> cubeTextures = { texture1, texture2, texture3, texture4, texture5, texture6 };
 
@@ -78,7 +122,13 @@ void BitmapHandler::bindCubeTexture(int faceIndex) {
     }
 }
 
-// Rysowanie t³a w widoku 2D
+// Rysowanie t³a w widoku 3D
+/**
+ * @brief Rysuje t³o w widoku 3D.
+ *
+ * Funkcja rysuje t³o za pomoc¹ za³adowanej tekstury. Ustawia widok 3D,
+ * wy³¹cza test g³êbokoœci oraz rysuje prostok¹t z tekstur¹ t³a.
+ */
 void BitmapHandler::drawBackground() {
     if (!glIsTexture(textureBackground)) return; // SprawdŸ, czy tekstura jest za³adowana
 
@@ -112,6 +162,18 @@ void BitmapHandler::drawBackground() {
 }
 
 // Rysowanie pionka z tekstur¹
+/**
+ * @brief Rysuje pionka w zadanej pozycji z tekstur¹.
+ *
+ * @param x Wspó³rzêdna X pozycji pionka.
+ * @param y Wspó³rzêdna Y pozycji pionka.
+ * @param width Szerokoœæ pionka.
+ * @param height Wysokoœæ pionka.
+ * @param texture Tekstura do przypisania do pionka.
+ *
+ * Funkcja rysuje pionka w okreœlonym miejscu, wy³¹czaj¹c test g³êbokoœci i w³¹czaj¹c
+ * blending dla przezroczystoœci.
+ */
 void BitmapHandler::drawPionek(float x, float y, float width, float height, GLuint texture) {
     if (!glIsTexture(texture)) { // SprawdŸ, czy tekstura jest za³adowana
         std::cerr << "Tekstura nieza³adowana!" << std::endl;

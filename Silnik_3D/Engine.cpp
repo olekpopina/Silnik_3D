@@ -6,20 +6,35 @@
 Cube cube;
 Engine* Engine::instance = nullptr;
 
+/**
+ * @brief Konstruktor klasy Engine, inicjalizuje wszystkie ważne parametry.
+ *
+ * @param width Szerokość okna.
+ * @param height Wysokość okna.
+ * @param title Tytuł okna.
+ * @param fps Liczba klatek na sekundę (FPS).
+ */
 Engine::Engine(int width, int height, const char* title, int fps)
     : windowWidth(width), windowHeight(height), windowTitle(title), clearColor{ 0.0f, 0.0f, 0.0f, 1.0f },
     cameraZ(5.0f), player(&triangle, &cube, &drawer),
     line(1.5f, 0.2f, 1.0f, 1.5f, 2.0f, 1.0f), rng(std::random_device{}()), dist(0, 5), frameRate(fps),
     isMyTurn(false) 
 {
+    // Ustawienie środka linii
     point.set(
         (line.getEndX() + line.getStartX()) / 2,
         (line.getEndY() - line.getStartY()) / 2,
         (line.getEndZ() - line.getStartZ()) / 2
     );
-    PrimitiveDrawer::setShadingMode(currentShadingMode);
+    PrimitiveDrawer::setShadingMode(currentShadingMode);// Ustawienie trybu cieniowania
 }
 
+/**
+ * @brief Inicjalizacja okna i konfiguracja OpenGL.
+ *
+ * @param argc Liczba argumentów wiersza poleceń.
+ * @param argv Tablica argumentów wiersza poleceń.
+ */
 void Engine::init(int argc, char** argv) {
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA | GLUT_DEPTH);
@@ -44,6 +59,11 @@ void Engine::init(int argc, char** argv) {
         });
 }
 
+/**
+ * @brief Wyświetlenie komunikatu o zwycięzcy.
+ *
+ * @param winner Nazwa zwycięzcy.
+ */
 void Engine::showWinnerMessage(const std::string& winner) {
     // Konwersja napisu na szerokie znaki
     std::wstring wideWinner(winner.begin(), winner.end());
@@ -59,14 +79,21 @@ void Engine::showWinnerMessage(const std::string& winner) {
 
     // Sprawdzenie, czy okno zostało wyświetlone poprawnie
     if (result == 0) {
-        std::cerr << "[ERROR] Nie udało się wyświetlić okna dialogowego!" << std::endl;
+        std::cerr << "[ERROR] Nie udalo sie wyswietlic okna dialogowego!" << std::endl;
     }
     else {
-        std::cout << "[INFO] Wyświetlono komunikat: " << winner << " wygrywa!" << std::endl;
+        std::cout << "[INFO] Wyswietlono komunikat: " << winner << " wygrywa!" << std::endl;
     }
 }
 
-
+/**
+ * @brief Ustawia kolor tła dla okna.
+ *
+ * @param r Składowa czerwonego koloru (0.0 - 1.0).
+ * @param g Składowa zielonego koloru (0.0 - 1.0).
+ * @param b Składowa niebieskiego koloru (0.0 - 1.0).
+ * @param a Składowa przezroczystości (0.0 - 1.0).
+ */
 void Engine::setClearColor(float r, float g, float b, float a) {
     clearColor[0] = r;
     clearColor[1] = g;
@@ -75,6 +102,11 @@ void Engine::setClearColor(float r, float g, float b, float a) {
     glClearColor(clearColor[0], clearColor[1], clearColor[2], clearColor[3]);
 }
 
+/**
+ * @brief Ustawia liczbę klatek na sekundę (FPS) w grze.
+ *
+ * @param fps Liczba klatek na sekundę. Musi być większa od 0.
+ */
 void Engine::setFrameRate(int fps) {
     if (fps <= 0) {
         frameRate = 1; // Minimalny FPS to 1
@@ -85,6 +117,11 @@ void Engine::setFrameRate(int fps) {
     }
 }
 
+/**
+ * @brief Funkcja zegara dla cyklicznego odświeżania gry.
+ *
+ * @param value Argument (zwykle ustawiony na 0).
+ */
 void Engine::timer(int value) {
     if (instance) {  
         instance->render();
@@ -100,6 +137,9 @@ void Engine::timer(int value) {
     }
 }
 
+/**
+ * @brief Rozpoczyna główną pętlę gry.
+ */
 void Engine::run() {
 
         instance = this; // Ustawienie wskaźnika na obiekt
@@ -115,17 +155,28 @@ void Engine::run() {
     
 }
 
+/**
+ * @brief Zatrzymuje główną pętlę gry.
+ */
 void Engine::stop() {
 
     glutLeaveMainLoop();
 }
 
+/**
+ * @brief Ustawia tekstury dla obiektów w grze.
+ *
+ * @param texturePaths Ścieżki do plików tekstur.
+ */
 void Engine::setTextures(const std::vector<std::string>& texturePaths) {
     if (!bitmapHandler.loadTextures(texturePaths)) {
         std::cerr << "Nie udało się załadować tekstur!" << std::endl;
     }
 }
 
+/**
+ * @brief Funkcja renderująca całą scenę gry.
+ */
 void Engine::render() {
     // Obliczanie czasu ramki
     auto currentFrameTime = std::chrono::high_resolution_clock::now();
@@ -233,26 +284,56 @@ void Engine::render() {
     glutSwapBuffers();
 }
 
+/**
+ * @brief Obsługuje zdarzenia naciśnięcia klawiszy z klawiatury.
+ *
+ * Ta funkcja reaguje na naciśnięcie klawiszy, w tym:
+ * - 'O'/'o' - przełącza tryb oświetlenia,
+ * - 'Z'/'z' - przełącza tryb cieniowania,
+ * - 'Esc' - zatrzymuje grę.
+ *
+ * @param key Naciśnięty klawisz.
+ * @param x Pozycja kursora w osi X.
+ * @param y Pozycja kursora w osi Y.
+ */
 void Engine::onKeyboard(unsigned char key, int x, int y) {
-    if (key == 'O' || key == 'o') { // Перемикання освітлення
+    if (key == 'O' || key == 'o') { // przełączenia oświetlenia
         switchLightingMode();
     }
-    else if (key == 'Z' || key == 'z') { // Перемикання затінення
+    else if (key == 'Z' || key == 'z') { // przełączenia cieniowania
         switchShadingMode();
     }
-    else if (key == 27) { // Вихід
+    else if (key == 27) { // wyjście
         stop();
     }
     player.handleInput(key);
     glutPostRedisplay();
 }
 
+/**
+ * @brief Funkcja wywoływana przy naciśnięciu klawiszy specjalnych.
+ *
+ * Ta funkcja reaguje na klawisze specjalne, takie jak strzałki.
+ *
+ * @param key Kod klawisza.
+ * @param x Pozycja kursora w osi X.
+ * @param y Pozycja kursora w osi Y.
+ */
 void Engine::specialKeyboardCallback(int key, int x, int y) {
     if (instance) {
         instance->onSpecialKeyboard(key, x, y);
     }
 }
 
+/**
+ * @brief Obsługuje wejście z klawiszy strzałek.
+ *
+ * Funkcja ta obsługuje naciśnięcie klawiszy strzałek i przetwarza je na odpowiednie akcje w grze.
+ *
+ * @param key Kod naciśniętego klawisza.
+ * @param x Pozycja kursora w osi X.
+ * @param y Pozycja kursora w osi Y.
+ */
 void Engine::onSpecialKeyboard(int key, int x, int y) {
     switch (key) {
     case GLUT_KEY_UP:
@@ -271,6 +352,12 @@ void Engine::onSpecialKeyboard(int key, int x, int y) {
     glutPostRedisplay();
 }
 
+/**
+ * @brief Aktualizuje pozycję pionków na planszy.
+ *
+ * Funkcja ta odpowiada za przesuwanie pionków w zależności od liczby pozostałych kroków i granic planszy.
+ * Uwzględnia różne granice i przesunięcia pionków w zależności od stanu gry.
+ */
 void Engine::updatePawnPosition() {
     // Struktura zawierająca dane każdego pionka
     struct PawnData {
@@ -344,6 +431,11 @@ void Engine::updatePawnPosition() {
     }
 }
 
+/**
+ * @brief Resetuje stan gry, ustawiając pionki na początkowe pozycje.
+ *
+ * Funkcja ta ustawia pionki na pozycjach początkowych, resetuje liczbę pozostałych kroków oraz inne istotne zmienne.
+ */
 void Engine::resetGame() {
     // Resetowanie pozycji pionków do początkowych współrzędnych
     pawnX = 0.1f;
@@ -363,11 +455,21 @@ void Engine::resetGame() {
     crossedBottomBoundary1 = false;
     crossedBottomBoundary2 = false;
 
-    std::cout << "[DEBUG] Gra została zresetowana. Można grać ponownie." << std::endl;
+    std::cout << "[DEBUG] Gra zostala zresetowana. Mozna grać ponownie." << std::endl;
 }
 
 
-// Funkcja obsługująca kliknięcie myszką
+/**
+ * @brief Obsługuje kliknięcia myszką w grze.
+ *
+ * Funkcja ta sprawdza, czy kliknięcie miało miejsce na kostce do gry.
+ * Jeśli tak, rozpoczyna obrót kostki i losuje liczbę kroków dla pionka.
+ *
+ * @param button Przycisk myszy (np. lewy).
+ * @param state Stan przycisku myszy (naciśnięty lub puszczony).
+ * @param x Pozycja kursora w osi X.
+ * @param y Pozycja kursora w osi Y.
+ */
 void Engine::onMouse(int button, int state, int x, int y) {
     if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
         // Sprawdzenie, czy kliknięto na kostkę
@@ -402,72 +504,90 @@ void Engine::onMouse(int button, int state, int x, int y) {
     }
 }
 
-
+/**
+ * @brief Obsługuje kliknięcie myszką na kostce.
+ *
+ * Sprawdza, czy kliknięcie miało miejsce w odpowiednim obszarze kostki.
+ * Rozpoczyna przeciąganie, jeśli kliknięcie jest wystarczająco blisko środka kostki.
+ *
+ * @param button Przycisk myszy.
+ * @param state Stan przycisku.
+ * @param x Pozycja kursora w osi X.
+ * @param y Pozycja kursora w osi Y.
+ */
 void Engine::handleMouseClick(int button, int state, int x, int y) {
-    if (button == GLUT_LEFT_BUTTON) { // Left mouse button
-        // Convert mouse coordinates to world space
+    if (button == GLUT_LEFT_BUTTON) { 
         float mouseWorldX = (float)x / glutGet(GLUT_WINDOW_WIDTH) * 2.0f - 1.0f;
         float mouseWorldY = 1.0f - (float)y / glutGet(GLUT_WINDOW_HEIGHT) * 2.0f;
 
-        // Scale for zoom level
+   
         mouseWorldX *= cameraZ;
         mouseWorldY *= cameraZ;
 
-        if (state == GLUT_DOWN) { // Button pressed
-            // Calculate the center of the line
+        if (state == GLUT_DOWN) { 
+
             float centerX = (line.getStartX() + line.getEndX()) / 2.0f;
             float centerY = (line.getStartY() + line.getEndY()) / 2.0f;
 
-            // Check if the click is near the line's center
-            const float CLICK_RADIUS = 0.25f * cameraZ; // Tolerance based on zoom
+            const float CLICK_RADIUS = 0.25f * cameraZ;  
             if (std::abs(mouseWorldX - centerX) < CLICK_RADIUS &&
                 std::abs(mouseWorldY - centerY) < CLICK_RADIUS) {
-                isDraggingLine = true; // Enable dragging
+                isDraggingLine = true; 
                 mouseStartX = mouseWorldX;
                 mouseStartY = mouseWorldY;
                 lineStartPosX = centerX;
                 lineStartPosY = centerY;
             }
         }
-        else if (state == GLUT_UP) { // Button released
-            isDraggingLine = false; // Disable dragging
+        else if (state == GLUT_UP) { 
+            isDraggingLine = false; 
         }
     }
 }
 
-// Obsługa ruchu myszką
+/**
+ * @brief Obsługuje ruchy myszki, jeśli aktywne jest przeciąganie.
+ *
+ * Funkcja ta aktualizuje pozycję obiektów w grze w zależności od ruchów myszki, np. przesuwanie linii.
+ *
+ * @param x Nowa pozycja kursora w osi X.
+ * @param y Nowa pozycja kursora w osi Y.
+ */
 void Engine::handleMouseMotion(int x, int y) {
-    if (isDraggingLine) { // If dragging is active
-        // Convert mouse coordinates to world space
+    if (isDraggingLine) { 
+        
         float mouseWorldX = (float)x / glutGet(GLUT_WINDOW_WIDTH) * 2.0f - 1.0f;
         float mouseWorldY = 1.0f - (float)y / glutGet(GLUT_WINDOW_HEIGHT) * 2.0f;
 
-        // Scale for zoom level
+    
         mouseWorldX *= cameraZ;
         mouseWorldY *= cameraZ;
 
-        // Calculate the offset to keep the line center under the mouse
+    
         float deltaX = mouseWorldX - mouseStartX;
         float deltaY = mouseWorldY - mouseStartY;
 
-        // Update mouse start position for continuous dragging
         mouseStartX = mouseWorldX;
         mouseStartY = mouseWorldY;
 
-        // Adjust the line's start and end points
         line.setStart(line.getStartX() + deltaX, line.getStartY() + deltaY, line.getStartZ());
         line.setEnd(line.getEndX() + deltaX, line.getEndY() + deltaY, line.getEndZ());
 
-        // Update the center point
+
         point.set((line.getStartX() + line.getEndX()) / 2.0f,
             (line.getStartY() + line.getEndY()) / 2.0f,
             point.getZ());
 
-        // Redraw the scene
+
         glutPostRedisplay();
     }
 }
 
+/**
+ * @brief Funkcja wywoływana w pętli gry, gdy nie ma innych zdarzeń.
+ *
+ * Ta funkcja jest wywoływana w przypadku braku aktywności w grze i aktualizuje stan gry na podstawie upływu czasu.
+ */
 void Engine::idleCallback() {
     if (instance) {
         float currentTime = static_cast<float>(glutGet(GLUT_ELAPSED_TIME));
@@ -479,16 +599,40 @@ void Engine::idleCallback() {
     }
 }
 
+/**
+ * @brief Funkcja wywoływana w celu rysowania sceny.
+ *
+ * Funkcja ta renderuje całą scenę, w tym obiekty, które są aktualnie widoczne.
+ */
 void Engine::renderCallback() {
     if (instance) {
         instance->render();
     }
 }
 
+/**
+ * @brief Obsługuje zdarzenia związane z klawiaturą.
+ *
+ * Funkcja ta jest wywoływana przy naciśnięciu dowolnego klawisza.
+ *
+ * @param key Kod naciśniętego klawisza.
+ * @param x Pozycja kursora w osi X.
+ * @param y Pozycja kursora w osi Y.
+ */
 void Engine::keyboardCallback(unsigned char key, int x, int y) {
     instance->onKeyboard(key, x, y);
 }
 
+/**
+ * @brief Obsługuje zdarzenia związane z myszką.
+ *
+ * Funkcja ta reaguje na kliknięcia myszką, sprawdzając, czy kliknięcie miało miejsce w odpowiednich obszarach.
+ *
+ * @param button Przycisk myszy.
+ * @param state Stan przycisku myszy.
+ * @param x Pozycja kursora w osi X.
+ * @param y Pozycja kursora w osi Y.
+ */
 void Engine::mouseCallback(int button, int state, int x, int y) {
     if (instance) {
         instance->onMouse(button, state, x, y);
@@ -496,12 +640,30 @@ void Engine::mouseCallback(int button, int state, int x, int y) {
     }
 }
 
+/**
+ * Funkcja callback dla ruchu myszki. Wywoływana, gdy użytkownik porusza myszką w oknie gry.
+ *
+ * @param x Współrzędna X kursora myszy w oknie.
+ * @param y Współrzędna Y kursora myszy w oknie.
+ *
+ * Funkcja ta sprawdza, czy istnieje instancja silnika gry (Engine) i jeśli tak, przekazuje
+ * współrzędne ruchu myszy do metody `handleMouseMotion` odpowiedzialnej za dalsze
+ * przetwarzanie i ewentualne aktualizowanie stanu gry w odpowiedzi na ruch myszy.
+ */
 void Engine::motionCallback(int x, int y) {
     if (instance) {
         instance->handleMouseMotion(x, y);
     }
 }
 
+/**
+ * @brief Obsługuje zdarzenia związane z przesunięciem okna.
+ *
+ * Funkcja ta dostosowuje widok w zależności od rozmiaru okna gry.
+ *
+ * @param width Nowa szerokość okna.
+ * @param height Nowa wysokość okna.
+ */
 void Engine::reshapeCallback(int width, int height) {
     glViewport(0, 0, width, height);
     glMatrixMode(GL_PROJECTION);
@@ -516,36 +678,62 @@ void Engine::reshapeCallback(int width, int height) {
     }
 }
 
-
-// Funkcja sprawdzająca, czy kliknięcie było na kostce
+/**
+ * @brief Sprawdza, czy kliknięcie miało miejsce na kostce.
+ *
+ * Funkcja ta przekształca współrzędne kliknięcia w układ współrzędnych OpenGL i sprawdza, czy kliknięcie
+ * było w obrębie kostki.
+ *
+ * @param mouseX Pozycja kliknięcia w osi X.
+ * @param mouseY Pozycja kliknięcia w osi Y.
+ * @return true Jeśli kliknięcie było na kostce, false w przeciwnym razie.
+ */
 bool Engine::isClickOnCube(int mouseX, int mouseY) const {
-    // Convert mouse coordinates to normalized OpenGL coordinates [-1, 1]
+
     float normalizedX = (float)mouseX / glutGet(GLUT_WINDOW_WIDTH) * 2.0f - 1.0f;
     float normalizedY = 1.0f - (float)mouseY / glutGet(GLUT_WINDOW_HEIGHT) * 2.0f;
 
-    // Adjust normalized coordinates for the zoom level (cameraZ)
+  
     float worldX = normalizedX * cameraZ;
     float worldY = normalizedY * cameraZ;
 
-    // Cube's size and position relative to the world space
-    float cubeSize = 1.0f * cameraZ; // Adjust cube size based on zoom
-    float cubeCenterX = 0.0f;        // Cube's center in world space X
-    float cubeCenterY = 0.0f;        // Cube's center in world space Y
 
-    // Calculate cube boundaries in world space
+    float cubeSize = 1.0f * cameraZ; 
+    float cubeCenterX = 0.0f;       
+    float cubeCenterY = 0.0f;    
+
+
     float cubeMinX = cubeCenterX - 0.5f * cubeSize;
     float cubeMaxX = cubeCenterX + 0.5f * cubeSize;
     float cubeMinY = cubeCenterY - 0.5f * cubeSize;
     float cubeMaxY = cubeCenterY + 0.5f * cubeSize;
 
-    // Check if the click is inside the cube's boundaries
+
     return (worldX >= cubeMinX && worldX <= cubeMaxX &&
         worldY >= cubeMinY && worldY <= cubeMaxY);
 }
 
+/**
+ * @brief Ustawia instancję silnika gry.
+ *
+ * Funkcja ta ustawia wskaźnik na instancję gry, umożliwiając dostęp do metod tej instancji w innych częściach kodu.
+ *
+ * @param engineInstance Wskaźnik na instancję gry.
+ */
 void Engine::setInstance(Engine* engineInstance) {
     instance = engineInstance;
 }
+
+/**
+ * @brief Obsługuje przewijanie myszką (zoomowanie).
+ *
+ * Funkcja ta zmienia poziom przybliżenia kamery w zależności od kierunku przewijania kółka myszy.
+ *
+ * @param wheel Numer koła myszy.
+ * @param direction Kierunek przewijania (1 - w górę, -1 - w dół).
+ * @param x Pozycja kursora w osi X.
+ * @param y Pozycja kursora w osi Y.
+ */
 void Engine::onMouseWheel(int wheel, int direction, int x, int y) {
  
     if (direction > 0) {
@@ -565,6 +753,11 @@ void Engine::onMouseWheel(int wheel, int direction, int x, int y) {
     glutPostRedisplay(); 
 }
 
+/**
+ * @brief Przełącza tryb cieniowania.
+ *
+ * Funkcja ta zmienia tryb cieniowania pomiędzy płaskim a gładkim.
+ */
 void Engine::switchShadingMode() {
     if (currentShadingMode == ShadingMode::FLAT) {
         currentShadingMode = ShadingMode::SMOOTH;
@@ -576,17 +769,21 @@ void Engine::switchShadingMode() {
     PrimitiveDrawer::setShadingMode(currentShadingMode);
 }
 
-
+/**
+ * @brief Konfiguruje oświetlenie w grze.
+ *
+ * Funkcja ta ustawia odpowiedni typ oświetlenia (punktowe, kierunkowe, spot) w zależności od aktualnego trybu.
+ */
 void Engine::configureLighting() {
-    glEnable(GL_LIGHTING); // Увімкнення освітлення
+    glEnable(GL_LIGHTING); 
 
     switch (currentLightingMode) {
     case LightingMode::POINT_LIGHT: {
         glEnable(GL_LIGHT0);
-        GLfloat pointLightPos[] = { 1.0f, 1.0f, 2.0f, 1.0f };  // Позиція точкового світла
-        GLfloat pointLightDiffuse[] = { 1.0f, 1.0f, 1.0f, 1.0f };  // Білий дифузний колір
-        GLfloat pointLightAmbient[] = { 0.2f, 0.2f, 0.2f, 1.0f };  // Слабкий навколишній білий колір
-        GLfloat pointLightSpecular[] = { 1.0f, 1.0f, 1.0f, 1.0f }; // Білий дзеркальний колір
+        GLfloat pointLightPos[] = { 1.0f, 1.0f, 2.0f, 1.0f };  
+        GLfloat pointLightDiffuse[] = { 1.0f, 1.0f, 1.0f, 1.0f };  
+        GLfloat pointLightAmbient[] = { 0.2f, 0.2f, 0.2f, 1.0f };  
+        GLfloat pointLightSpecular[] = { 1.0f, 1.0f, 1.0f, 1.0f };
         glLightfv(GL_LIGHT0, GL_POSITION, pointLightPos);
         glLightfv(GL_LIGHT0, GL_DIFFUSE, pointLightDiffuse);
         glLightfv(GL_LIGHT0, GL_AMBIENT, pointLightAmbient);
@@ -596,10 +793,10 @@ void Engine::configureLighting() {
 
     case LightingMode::DIRECTIONAL_LIGHT: {
         glEnable(GL_LIGHT1);
-        GLfloat dirLightDir[] = { -1.0f, -1.0f, -1.0f, 0.0f };    // Напрямок спрямованого світла
-        GLfloat dirLightDiffuse[] = { 1.0f, 1.0f, 1.0f, 1.0f };   // Білий дифузний колір
-        GLfloat dirLightAmbient[] = { 0.2f, 0.2f, 0.2f, 1.0f };   // Слабкий навколишній білий колір
-        GLfloat dirLightSpecular[] = { 1.0f, 1.0f, 1.0f, 1.0f };  // Білий дзеркальний колір
+        GLfloat dirLightDir[] = { -1.0f, -1.0f, -1.0f, 0.0f };   
+        GLfloat dirLightDiffuse[] = { 1.0f, 1.0f, 1.0f, 1.0f };  
+        GLfloat dirLightAmbient[] = { 0.2f, 0.2f, 0.2f, 1.0f };  
+        GLfloat dirLightSpecular[] = { 1.0f, 1.0f, 1.0f, 1.0f };
         glLightfv(GL_LIGHT1, GL_POSITION, dirLightDir);
         glLightfv(GL_LIGHT1, GL_DIFFUSE, dirLightDiffuse);
         glLightfv(GL_LIGHT1, GL_AMBIENT, dirLightAmbient);
@@ -609,11 +806,11 @@ void Engine::configureLighting() {
 
     case LightingMode::SPOTLIGHT: {
         glEnable(GL_LIGHT2);
-        GLfloat spotLightPos[] = { 0.0f, 0.0f, 5.0f, 1.0f };      // Позиція прожектора
-        GLfloat spotLightDir[] = { 0.0f, 0.0f, -1.0f };           // Напрямок прожектора
-        GLfloat spotLightDiffuse[] = { 1.0f, 1.0f, 1.0f, 1.0f };  // Білий дифузний колір
-        GLfloat spotLightAmbient[] = { 0.2f, 0.2f, 0.2f, 1.0f };  // Слабкий навколишній білий колір
-        GLfloat spotLightSpecular[] = { 1.0f, 1.0f, 1.0f, 1.0f }; // Білий дзеркальний колір
+        GLfloat spotLightPos[] = { 0.0f, 0.0f, 5.0f, 1.0f };      
+        GLfloat spotLightDir[] = { 0.0f, 0.0f, -1.0f };          
+        GLfloat spotLightDiffuse[] = { 1.0f, 1.0f, 1.0f, 1.0f }; 
+        GLfloat spotLightAmbient[] = { 0.2f, 0.2f, 0.2f, 1.0f };  
+        GLfloat spotLightSpecular[] = { 1.0f, 1.0f, 1.0f, 1.0f }; 
         glLightfv(GL_LIGHT2, GL_POSITION, spotLightPos);
         glLightfv(GL_LIGHT2, GL_SPOT_DIRECTION, spotLightDir);
         glLightf(GL_LIGHT2, GL_SPOT_CUTOFF, 30.0f);
@@ -632,8 +829,13 @@ void Engine::configureLighting() {
     }
 }
 
+/**
+ * @brief Przełącza tryb oświetlenia.
+ *
+ * Funkcja ta przełącza pomiędzy różnymi trybami oświetlenia (brak, punktowe, kierunkowe, spot).
+ */
 void Engine::switchLightingMode() {
-    // Перемикання між режимами
+
     switch (currentLightingMode) {
     case LightingMode::NONE:
         currentLightingMode = LightingMode::POINT_LIGHT;
@@ -649,5 +851,5 @@ void Engine::switchLightingMode() {
         break;
     }
 
-    configureLighting(); // Оновлення налаштувань освітлення
+    configureLighting(); 
 }

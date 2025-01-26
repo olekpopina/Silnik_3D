@@ -8,6 +8,11 @@ ShadingMode PrimitiveDrawer::currentShadingMode = ShadingMode::SMOOTH;
 GLuint PrimitiveDrawer::textures[6];
 int PrimitiveDrawer::textureSet;
 
+/**
+ * Ustawia tryb cieniowania.
+ *
+ * @param mode Tryb cieniowania, który ma zostać ustawiony (SMOOTH lub FLAT).
+ */
 void PrimitiveDrawer::setShadingMode(ShadingMode mode) {
     currentShadingMode = mode;
 
@@ -19,6 +24,14 @@ void PrimitiveDrawer::setShadingMode(ShadingMode mode) {
     }
 }
 
+/**
+ * Rysuje punkt w przestrzeni 3D.
+ *
+ * @param x Współrzędna X punktu.
+ * @param y Współrzędna Y punktu.
+ * @param z Współrzędna Z punktu.
+ * @param size Rozmiar punktu (domyślnie 1.0f).
+ */
 void PrimitiveDrawer::drawPoint(float x, float y, float z, float size) {
     glPointSize(size);
     glColor3f(1.0f, 0.0f, 0.0f);
@@ -28,6 +41,17 @@ void PrimitiveDrawer::drawPoint(float x, float y, float z, float size) {
     glColor3f(1.0f, 1.0f, 1.0f);
 }
 
+/**
+ * Rysuje linię między dwoma punktami w przestrzeni 3D.
+ *
+ * @param x1 Współrzędna X pierwszego punktu.
+ * @param y1 Współrzędna Y pierwszego punktu.
+ * @param z1 Współrzędna Z pierwszego punktu.
+ * @param x2 Współrzędna X drugiego punktu.
+ * @param y2 Współrzędna Y drugiego punktu.
+ * @param z2 Współrzędna Z drugiego punktu.
+ * @param width Szerokość linii (domyślnie 2.0f).
+ */
 void PrimitiveDrawer::drawLine(float x1, float y1, float z1, float x2, float y2, float z2, float width) {
     glLineWidth(width);
     glColor3f(0.0f, 0.0f, 1.0f);
@@ -38,6 +62,18 @@ void PrimitiveDrawer::drawLine(float x1, float y1, float z1, float x2, float y2,
     glColor3f(1.0f, 1.0f, 1.0f);
 }
 
+/**
+ * Rysuje trójkąt w przestrzeni 3D.
+ *
+ * @param vertices1 Tablica zawierająca wierzchołki pierwszego trójkąta.
+ * @param vertices2 Tablica zawierająca wierzchołki drugiego trójkąta.
+ * @param vertices3 Tablica zawierająca wierzchołki trzeciego trójkąta.
+ * @param colors Tablica kolorów przypisanych do wierzchołków.
+ * @param posX Przesunięcie wzdłuż osi X.
+ * @param posY Przesunięcie wzdłuż osi Y.
+ * @param scale Skalowanie trójkąta.
+ * @param rotationAngle Kąt obrotu trójkąta.
+ */
 void PrimitiveDrawer::drawTriangle(const float vertices1[9], const float vertices2[9],
     const float vertices3[9], const float colors[9],
     float posX, float posY, float scale, float rotationAngle) {
@@ -97,7 +133,18 @@ void PrimitiveDrawer::drawTriangle(const float vertices1[9], const float vertice
     glDisable(GL_LIGHTING);
 }
 
-
+/**
+ * Konfiguruje światło w scenie.
+ *
+ * @param light Numer światła (np. GL_LIGHT0).
+ * @param position Pozycja światła w przestrzeni 3D.
+ * @param ambient Kolor otoczenia światła.
+ * @param diffuse Kolor rozproszonego światła.
+ * @param specular Kolor światła odbitego.
+ * @param direction Kierunek światła spot (opcjonalny).
+ * @param cutoff Kąt cięcia światła spot (opcjonalny).
+ * @param exponent Współczynnik eksponenta dla światła spot (opcjonalny).
+ */
 void PrimitiveDrawer::configureLight(GLenum light, const GLfloat* position, const GLfloat* ambient, const GLfloat* diffuse, const GLfloat* specular, const GLfloat* direction, float cutoff, float exponent) {
     glEnable(GL_LIGHTING);
     glEnable(light);
@@ -114,7 +161,17 @@ void PrimitiveDrawer::configureLight(GLenum light, const GLfloat* position, cons
     }
 }
 
-
+/**
+ * Rysuje sześcian w przestrzeni 3D.
+ *
+ * @param scale Skalowanie sześcianu.
+ * @param offsetX Przesunięcie wzdłuż osi X.
+ * @param offsetY Przesunięcie wzdłuż osi Y.
+ * @param vertices Tablica wierzchołków sześcianu.
+ * @param indices Tablica indeksów wierzchołków.
+ * @param normals Tablica normalnych wierzchołków.
+ * @param colors Tablica kolorów przypisanych do wierzchołków.
+ */
 void PrimitiveDrawer::drawCube(float scale, float offsetX, float offsetY,
     const float* vertices, const unsigned int* indices,
     const float* normals, const float* colors) {
@@ -163,7 +220,17 @@ void PrimitiveDrawer::drawCube(float scale, float offsetX, float offsetY,
     glDisable(GL_LIGHTING);
 }
 
-
+/**
+ * Rysuje sześcian z teksturą w przestrzeni 3D.
+ *
+ * Funkcja rysuje sześcian w przestrzeni 3D, przypisując odpowiednie tekstury do każdej z jego ścian.
+ * Tekstury są wybierane na podstawie numeru zestawu, który jest określony przez zmienną `textureSet`.
+ *
+ * @param scale Skalowanie sześcianu.
+ * @param offsetX Przesunięcie wzdłuż osi X.
+ * @param offsetY Przesunięcie wzdłuż osi Y.
+ * @param bitmapHandler Obiekt klasy `BitmapHandler` zawierający tekstury, które będą używane do renderowania sześcianu.
+ */
 void PrimitiveDrawer::drawCubeWithTexture(float scale, float offsetX, float offsetY, BitmapHandler& bitmapHandler) {
     glEnable(GL_TEXTURE_2D);
 

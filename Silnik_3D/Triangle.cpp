@@ -2,7 +2,12 @@
 #include <fstream>
 
 
-
+/**
+ * @brief Konstruktor klasy Triangle.
+ *
+ * Konstruktor inicjalizuje wartości współrzędnych wierzchołków i kolorów trójkąta.
+ * Trójkąt początkowo jest ustawiony na rotację 0.0f i nie jest obracany.
+ */
 Triangle::Triangle() : rotationAngle(0.0f), isRotating(false) {
 
     float initialColors[] = {
@@ -36,20 +41,45 @@ Triangle::Triangle() : rotationAngle(0.0f), isRotating(false) {
 
 }
 
+/**
+ * @brief Rysowanie trójkąta.
+ *
+ * Metoda rysuje trójkąt na podstawie współrzędnych jego wierzchołków i przypisanych kolorów.
+ * Używa funkcji `drawTriangle` z klasy `PrimitiveDrawer`.
+ */
 void Triangle::draw() const {
     PrimitiveDrawer::drawTriangle(vertices1, vertices2, vertices3, colors, posX, posY, scaleFactor, rotationAngle );
 }
 
-
+/**
+ * @brief Ustawienie stanu obrotu trójkąta.
+ *
+ * Ta metoda ustawia flagę `isRotating`, która decyduje, czy trójkąt ma być obracany.
+ * @param rotating Flaga określająca, czy trójkąt ma być obracany.
+ */
 void Triangle::setRotation(bool rotating) {
     isRotating = rotating;
 }
 
+/**
+ * @brief Ustawienie pozycji trójkąta.
+ *
+ * Metoda ta ustawia współrzędne X i Y pozycji trójkąta.
+ * @param x Nowa współrzędna X trójkąta.
+ * @param y Nowa współrzędna Y trójkąta.
+ */
 void Triangle::setPosition(float x, float y) {
     posX = x; 
     posY = y; 
 }
 
+/**
+ * @brief Aktualizacja obrotu trójkąta.
+ *
+ * Ta metoda aktualizuje kąt obrotu trójkąta, jeśli flaga `isRotating` jest ustawiona na `true`.
+ * Obrotu dokonuje się na podstawie prędkości rotacji i upływającego czasu.
+ * @param deltaTime Czas, który minął od ostatniej aktualizacji. Domyślnie 0.0f.
+ */
 void Triangle::updateRotation(float deltaTime) {
     if (isRotating) {
         rotationAngle += rotationSpeed * deltaTime;

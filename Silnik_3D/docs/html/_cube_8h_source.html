@@ -1,0 +1,162 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pl">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Silnik_3D: Plik źródłowy D:/Silnik_3D/Silnik_3D/Cube.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Silnik_3D
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Wygenerowano za pomocą Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Szukaj',false);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Wczytywanie...</div>
+<div class="SRStatus" id="Searching">Szukanie...</div>
+<div class="SRStatus" id="NoMatches">Brak dopasowań</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_275089585c7fc1b5fd5d7d42c69cb1da.html">D:</a></li><li class="navelem"><a class="el" href="dir_5a02e43ac81474926b727b5c562e11ac.html">Silnik_3D</a></li><li class="navelem"><a class="el" href="dir_95dd5d60f7b24221c1407bf4a2286a31.html">Silnik_3D</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">Cube.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="_cube_8h.html">Idź do dokumentacji tego pliku.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef CUBE_H</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define CUBE_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;GL/freeglut.h&gt;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;<a class="code" href="_transformable_object_8h.html">TransformableObject.h</a>&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;<a class="code" href="_bitmap_handler_8h.html">BitmapHandler.h</a>&quot;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span></div>
+<div class="foldopen" id="foldopen00014" data-start="{" data-end="};">
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="class_cube.html">   14</a></span><span class="keyword">class </span><a class="code hl_function" href="class_cube.html#a06f3d86fb63e3aad08623610aa3c17b4">Cube</a> : <span class="keyword">public</span> <a class="code hl_function" href="class_transformable_object.html#a2fe6508f5f72c0bf5cc097fae99aca31">TransformableObject</a> {</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    <a class="code hl_function" href="class_cube.html#a06f3d86fb63e3aad08623610aa3c17b4">Cube</a>();</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_cube.html#a79a0991eac9baba71e610995bf95405d">draw</a>() <span class="keyword">const override</span>;</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_cube.html#ab6e70b805b70f325f1879fb35d90cc48">setRotationC</a>(<span class="keywordtype">bool</span> rotating);</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_cube.html#aad8fc92a8f69073a6fc35f3eb0919a99">updateRotationC</a>(<span class="keywordtype">float</span> deltaTime);</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <span class="comment">// Współrzędne wierzchołków sześcianu</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="class_cube.html#ae6b40464e47bcbd89f50b03765ab16af">   49</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="class_cube.html#ae6b40464e47bcbd89f50b03765ab16af">vertices</a>[24];</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <span class="comment">// Indeksy wierzchołków do rysowania powierzchni sześcianu</span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="class_cube.html#aba51d50a7f057a7650431591dccc1a8e">   52</a></span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="class_cube.html#aba51d50a7f057a7650431591dccc1a8e">indices</a>[36];</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    <span class="comment">// Normale dla wierzchołków sześcianu</span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno"><a class="line" href="class_cube.html#a82e34670e8857de976dd9fadcac0c685">   55</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="class_cube.html#a82e34670e8857de976dd9fadcac0c685">normals</a>[24];</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    <span class="comment">// Kolory wierzchołków sześcianu</span></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno"><a class="line" href="class_cube.html#a63cfed334aaa1cc04e91a44e06f6c1e2">   58</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="class_cube.html#a63cfed334aaa1cc04e91a44e06f6c1e2">colors</a>[24];</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    <span class="comment">// Flaga określająca, czy sześcian jest w trakcie rotacji</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="class_cube.html#a6de50f7f50f0db6a9898b3fa54164242">   61</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="class_cube.html#a6de50f7f50f0db6a9898b3fa54164242">isRotating</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    <span class="comment">// Kąt rotacji sześcianu</span></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="class_cube.html#ac3842c9d7413775e5417ecad710210ba">   64</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="class_cube.html#ac3842c9d7413775e5417ecad710210ba">rotationAngle</a> = 0.0f;</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    <span class="comment">// Prędkość rotacji sześcianu</span></div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="class_cube.html#a38861b6033b8bfd4591a53b3f39581d3">   67</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="class_cube.html#a38861b6033b8bfd4591a53b3f39581d3">rotationSpeed</a> = 0.4f;</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    <span class="comment">// Obiekt klasy BitmapHandler do zarządzania teksturami</span></div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno"><a class="line" href="class_cube.html#ae1c6a4fc039ee9e81d903037a36d1d92">   70</a></span>    <a class="code hl_class" href="class_bitmap_handler.html">BitmapHandler</a> <a class="code hl_variable" href="class_cube.html#ae1c6a4fc039ee9e81d903037a36d1d92">bitmapHandler</a>;</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>};</div>
+</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span><span class="preprocessor">#endif </span><span class="comment">// CUBE_H</span></div>
+<div class="ttc" id="a_bitmap_handler_8h_html"><div class="ttname"><a href="_bitmap_handler_8h.html">BitmapHandler.h</a></div></div>
+<div class="ttc" id="a_transformable_object_8h_html"><div class="ttname"><a href="_transformable_object_8h.html">TransformableObject.h</a></div></div>
+<div class="ttc" id="aclass_bitmap_handler_html"><div class="ttname"><a href="class_bitmap_handler.html">BitmapHandler</a></div><div class="ttdoc">Klasa do obs�ugi tekstur w aplikacjach wykorzystuj�cych OpenGL.</div><div class="ttdef"><b>Definicja</b> BitmapHandler.h:18</div></div>
+<div class="ttc" id="aclass_cube_html_a06f3d86fb63e3aad08623610aa3c17b4"><div class="ttname"><a href="class_cube.html#a06f3d86fb63e3aad08623610aa3c17b4">Cube::Cube</a></div><div class="ttdeci">Cube()</div><div class="ttdoc">Konstruktor klasy Cube.</div><div class="ttdef"><b>Definicja</b> Cube.cpp:12</div></div>
+<div class="ttc" id="aclass_cube_html_a38861b6033b8bfd4591a53b3f39581d3"><div class="ttname"><a href="class_cube.html#a38861b6033b8bfd4591a53b3f39581d3">Cube::rotationSpeed</a></div><div class="ttdeci">float rotationSpeed</div><div class="ttdef"><b>Definicja</b> Cube.h:67</div></div>
+<div class="ttc" id="aclass_cube_html_a63cfed334aaa1cc04e91a44e06f6c1e2"><div class="ttname"><a href="class_cube.html#a63cfed334aaa1cc04e91a44e06f6c1e2">Cube::colors</a></div><div class="ttdeci">float colors[24]</div><div class="ttdef"><b>Definicja</b> Cube.h:58</div></div>
+<div class="ttc" id="aclass_cube_html_a6de50f7f50f0db6a9898b3fa54164242"><div class="ttname"><a href="class_cube.html#a6de50f7f50f0db6a9898b3fa54164242">Cube::isRotating</a></div><div class="ttdeci">bool isRotating</div><div class="ttdef"><b>Definicja</b> Cube.h:61</div></div>
+<div class="ttc" id="aclass_cube_html_a79a0991eac9baba71e610995bf95405d"><div class="ttname"><a href="class_cube.html#a79a0991eac9baba71e610995bf95405d">Cube::draw</a></div><div class="ttdeci">void draw() const override</div><div class="ttdoc">Funkcja rysująca sześcian.</div><div class="ttdef"><b>Definicja</b> Cube.cpp:39</div></div>
+<div class="ttc" id="aclass_cube_html_a82e34670e8857de976dd9fadcac0c685"><div class="ttname"><a href="class_cube.html#a82e34670e8857de976dd9fadcac0c685">Cube::normals</a></div><div class="ttdeci">float normals[24]</div><div class="ttdef"><b>Definicja</b> Cube.h:55</div></div>
+<div class="ttc" id="aclass_cube_html_aad8fc92a8f69073a6fc35f3eb0919a99"><div class="ttname"><a href="class_cube.html#aad8fc92a8f69073a6fc35f3eb0919a99">Cube::updateRotationC</a></div><div class="ttdeci">void updateRotationC(float deltaTime)</div><div class="ttdoc">Aktualizuje kąt rotacji sześcianu na podstawie upływającego czasu.</div><div class="ttdef"><b>Definicja</b> Cube.cpp:71</div></div>
+<div class="ttc" id="aclass_cube_html_ab6e70b805b70f325f1879fb35d90cc48"><div class="ttname"><a href="class_cube.html#ab6e70b805b70f325f1879fb35d90cc48">Cube::setRotationC</a></div><div class="ttdeci">void setRotationC(bool rotating)</div><div class="ttdoc">Ustawia flagę rotacji sześcianu.</div><div class="ttdef"><b>Definicja</b> Cube.cpp:58</div></div>
+<div class="ttc" id="aclass_cube_html_aba51d50a7f057a7650431591dccc1a8e"><div class="ttname"><a href="class_cube.html#aba51d50a7f057a7650431591dccc1a8e">Cube::indices</a></div><div class="ttdeci">unsigned int indices[36]</div><div class="ttdef"><b>Definicja</b> Cube.h:52</div></div>
+<div class="ttc" id="aclass_cube_html_ac3842c9d7413775e5417ecad710210ba"><div class="ttname"><a href="class_cube.html#ac3842c9d7413775e5417ecad710210ba">Cube::rotationAngle</a></div><div class="ttdeci">float rotationAngle</div><div class="ttdef"><b>Definicja</b> Cube.h:64</div></div>
+<div class="ttc" id="aclass_cube_html_ae1c6a4fc039ee9e81d903037a36d1d92"><div class="ttname"><a href="class_cube.html#ae1c6a4fc039ee9e81d903037a36d1d92">Cube::bitmapHandler</a></div><div class="ttdeci">BitmapHandler bitmapHandler</div><div class="ttdef"><b>Definicja</b> Cube.h:70</div></div>
+<div class="ttc" id="aclass_cube_html_ae6b40464e47bcbd89f50b03765ab16af"><div class="ttname"><a href="class_cube.html#ae6b40464e47bcbd89f50b03765ab16af">Cube::vertices</a></div><div class="ttdeci">float vertices[24]</div><div class="ttdef"><b>Definicja</b> Cube.h:49</div></div>
+<div class="ttc" id="aclass_transformable_object_html_a2fe6508f5f72c0bf5cc097fae99aca31"><div class="ttname"><a href="class_transformable_object.html#a2fe6508f5f72c0bf5cc097fae99aca31">TransformableObject::TransformableObject</a></div><div class="ttdeci">TransformableObject()</div><div class="ttdoc">Konstruktor domyślny.</div><div class="ttdef"><b>Definicja</b> TransformableObject.cpp:11</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Wygenerowano za pomocą&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

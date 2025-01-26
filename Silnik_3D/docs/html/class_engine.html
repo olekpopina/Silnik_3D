@@ -1,0 +1,2509 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pl">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Silnik_3D: Dokumentacja klasy Engine</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Silnik_3D
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Wygenerowano za pomocą Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Szukaj',false);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Wczytywanie...</div>
+<div class="SRStatus" id="Searching">Szukanie...</div>
+<div class="SRStatus" id="NoMatches">Brak dopasowań</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Metody publiczne</a> &#124;
+<a href="#pub-static-methods">Statyczne metody publiczne</a> &#124;
+<a href="#pub-attribs">Atrybuty publiczne</a> &#124;
+<a href="#pri-methods">Metody prywatne</a> &#124;
+<a href="#pri-static-methods">Statyczne metody prywatne</a> &#124;
+<a href="#pri-attribs">Atrybuty prywatne</a> &#124;
+<a href="#pri-static-attribs">Statyczne atrybuty prywatne</a> &#124;
+<a href="class_engine-members.html">Lista wszystkich składowych</a>  </div>
+  <div class="headertitle"><div class="title">Dokumentacja klasy Engine</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Klasa zarządzająca silnikiem graficznym.  
+ <a href="#details">Więcej...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_engine_8h_source.html">Engine.h</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Metody publiczne</h2></td></tr>
+<tr class="memitem:a96a0d0c457f74a158c4cfc8db8158a4e" id="r_a96a0d0c457f74a158c4cfc8db8158a4e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a96a0d0c457f74a158c4cfc8db8158a4e">Engine</a> (int width, int height, const char *title, int fps=60)</td></tr>
+<tr class="memdesc:a96a0d0c457f74a158c4cfc8db8158a4e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Konstruktor klasy <a class="el" href="class_engine.html" title="Klasa zarządzająca silnikiem graficznym.">Engine</a>.  <br /></td></tr>
+<tr class="separator:a96a0d0c457f74a158c4cfc8db8158a4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a43de1de345917a6ea3f654fe6db60434" id="r_a43de1de345917a6ea3f654fe6db60434"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a43de1de345917a6ea3f654fe6db60434">init</a> (int argc, char **argv)</td></tr>
+<tr class="memdesc:a43de1de345917a6ea3f654fe6db60434"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inicjalizuje środowisko OpenGL.  <br /></td></tr>
+<tr class="separator:a43de1de345917a6ea3f654fe6db60434"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af37097d033850e054dfef6178164aea2" id="r_af37097d033850e054dfef6178164aea2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af37097d033850e054dfef6178164aea2">showWinnerMessage</a> (const std::string &amp;winner)</td></tr>
+<tr class="memdesc:af37097d033850e054dfef6178164aea2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wyświetla wiadomość o wygranej.  <br /></td></tr>
+<tr class="separator:af37097d033850e054dfef6178164aea2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a45c166c33072bb08e22b35e3ae3b399b" id="r_a45c166c33072bb08e22b35e3ae3b399b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a45c166c33072bb08e22b35e3ae3b399b">setClearColor</a> (float r, float g, float b, float a=1.0f)</td></tr>
+<tr class="memdesc:a45c166c33072bb08e22b35e3ae3b399b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ustawia kolor tła.  <br /></td></tr>
+<tr class="separator:a45c166c33072bb08e22b35e3ae3b399b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab8d9cb0c2dd70f9d9f05dcf97ffb5293" id="r_ab8d9cb0c2dd70f9d9f05dcf97ffb5293"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab8d9cb0c2dd70f9d9f05dcf97ffb5293">setFrameRate</a> (int fps)</td></tr>
+<tr class="memdesc:ab8d9cb0c2dd70f9d9f05dcf97ffb5293"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ustawia liczbę klatek na sekundę.  <br /></td></tr>
+<tr class="separator:ab8d9cb0c2dd70f9d9f05dcf97ffb5293"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1a210cf30d6bd330b3649439ecd6d6cc" id="r_a1a210cf30d6bd330b3649439ecd6d6cc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1a210cf30d6bd330b3649439ecd6d6cc">run</a> ()</td></tr>
+<tr class="memdesc:a1a210cf30d6bd330b3649439ecd6d6cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Uruchamia pętlę gry.  <br /></td></tr>
+<tr class="separator:a1a210cf30d6bd330b3649439ecd6d6cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac88ada17b33bc5ddaf6bb73e0cdc67f3" id="r_ac88ada17b33bc5ddaf6bb73e0cdc67f3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac88ada17b33bc5ddaf6bb73e0cdc67f3">stop</a> ()</td></tr>
+<tr class="memdesc:ac88ada17b33bc5ddaf6bb73e0cdc67f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zatrzymuje działanie gry.  <br /></td></tr>
+<tr class="separator:ac88ada17b33bc5ddaf6bb73e0cdc67f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d44407408175ca350851f8a4c3dc69e" id="r_a8d44407408175ca350851f8a4c3dc69e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8d44407408175ca350851f8a4c3dc69e">setTextures</a> (const std::vector&lt; std::string &gt; &amp;texturePaths)</td></tr>
+<tr class="memdesc:a8d44407408175ca350851f8a4c3dc69e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ustawia tekstury dla obiektów w grze.  <br /></td></tr>
+<tr class="separator:a8d44407408175ca350851f8a4c3dc69e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7960743aefd62e846e7f3cd92c18bc73" id="r_a7960743aefd62e846e7f3cd92c18bc73"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7960743aefd62e846e7f3cd92c18bc73">render</a> ()</td></tr>
+<tr class="memdesc:a7960743aefd62e846e7f3cd92c18bc73"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja renderująca.  <br /></td></tr>
+<tr class="separator:a7960743aefd62e846e7f3cd92c18bc73"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aadf75b17926ba71ace13fd016cff7ae0" id="r_aadf75b17926ba71ace13fd016cff7ae0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aadf75b17926ba71ace13fd016cff7ae0">onKeyboard</a> (unsigned char key, int x, int y)</td></tr>
+<tr class="memdesc:aadf75b17926ba71ace13fd016cff7ae0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Obsługuje naciśnięcie klawisza na klawiaturze.  <br /></td></tr>
+<tr class="separator:aadf75b17926ba71ace13fd016cff7ae0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a196553fb4e82769586bab60d1570461b" id="r_a196553fb4e82769586bab60d1570461b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a196553fb4e82769586bab60d1570461b">onMouse</a> (int button, int state, int x, int y)</td></tr>
+<tr class="memdesc:a196553fb4e82769586bab60d1570461b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Obsługuje kliknięcie myszą.  <br /></td></tr>
+<tr class="separator:a196553fb4e82769586bab60d1570461b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a18416ea70decc8a6afd9f9a82d361f83" id="r_a18416ea70decc8a6afd9f9a82d361f83"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a18416ea70decc8a6afd9f9a82d361f83">onSpecialKeyboard</a> (int key, int x, int y)</td></tr>
+<tr class="memdesc:a18416ea70decc8a6afd9f9a82d361f83"><td class="mdescLeft">&#160;</td><td class="mdescRight">Obsługuje specjalne klawisze na klawiaturze.  <br /></td></tr>
+<tr class="separator:a18416ea70decc8a6afd9f9a82d361f83"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7b5534af4eb4bbed7084d6576fe299f9" id="r_a7b5534af4eb4bbed7084d6576fe299f9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7b5534af4eb4bbed7084d6576fe299f9">updatePawnPosition</a> ()</td></tr>
+<tr class="memdesc:a7b5534af4eb4bbed7084d6576fe299f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Aktualizuje pozycję pionka w grze.  <br /></td></tr>
+<tr class="separator:a7b5534af4eb4bbed7084d6576fe299f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9a930c4be49de8aa2948e0f16dec86e9" id="r_a9a930c4be49de8aa2948e0f16dec86e9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9a930c4be49de8aa2948e0f16dec86e9">resetGame</a> ()</td></tr>
+<tr class="memdesc:a9a930c4be49de8aa2948e0f16dec86e9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resetuje stan gry.  <br /></td></tr>
+<tr class="separator:a9a930c4be49de8aa2948e0f16dec86e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af57bb91e80bbc32d02a5c3e571de34e9" id="r_af57bb91e80bbc32d02a5c3e571de34e9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af57bb91e80bbc32d02a5c3e571de34e9">handleMouseClick</a> (int button, int state, int x, int y)</td></tr>
+<tr class="memdesc:af57bb91e80bbc32d02a5c3e571de34e9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Obsługuje kliknięcie myszką.  <br /></td></tr>
+<tr class="separator:af57bb91e80bbc32d02a5c3e571de34e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a690f82ba1d054722698e37ad071e6985" id="r_a690f82ba1d054722698e37ad071e6985"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a690f82ba1d054722698e37ad071e6985">handleMouseMotion</a> (int x, int y)</td></tr>
+<tr class="memdesc:a690f82ba1d054722698e37ad071e6985"><td class="mdescLeft">&#160;</td><td class="mdescRight">Obsługuje ruch myszki.  <br /></td></tr>
+<tr class="separator:a690f82ba1d054722698e37ad071e6985"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac02df1e3e7166b3b043221078de31593" id="r_ac02df1e3e7166b3b043221078de31593"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac02df1e3e7166b3b043221078de31593">switchShadingMode</a> ()</td></tr>
+<tr class="memdesc:ac02df1e3e7166b3b043221078de31593"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zmienia tryb cieniowania.  <br /></td></tr>
+<tr class="separator:ac02df1e3e7166b3b043221078de31593"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a73bb09fab9d983a0601c619a78cbc2fb" id="r_a73bb09fab9d983a0601c619a78cbc2fb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a73bb09fab9d983a0601c619a78cbc2fb">configureLighting</a> ()</td></tr>
+<tr class="memdesc:a73bb09fab9d983a0601c619a78cbc2fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Konfiguruje ustawienia oświetlenia.  <br /></td></tr>
+<tr class="separator:a73bb09fab9d983a0601c619a78cbc2fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a69ec3cee0855ee4b83298313162be5fa" id="r_a69ec3cee0855ee4b83298313162be5fa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a69ec3cee0855ee4b83298313162be5fa">switchLightingMode</a> ()</td></tr>
+<tr class="memdesc:a69ec3cee0855ee4b83298313162be5fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zmienia tryb oświetlenia.  <br /></td></tr>
+<tr class="separator:a69ec3cee0855ee4b83298313162be5fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adec0b777cc50f6e5da7d7393bbb9580c" id="r_adec0b777cc50f6e5da7d7393bbb9580c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adec0b777cc50f6e5da7d7393bbb9580c">onMouseWheel</a> (int wheel, int direction, int x, int y)</td></tr>
+<tr class="memdesc:adec0b777cc50f6e5da7d7393bbb9580c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Obsługuje przewijanie kółka myszy.  <br /></td></tr>
+<tr class="separator:adec0b777cc50f6e5da7d7393bbb9580c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+Statyczne metody publiczne</h2></td></tr>
+<tr class="memitem:a1d8f5091e811708609af0361f6918760" id="r_a1d8f5091e811708609af0361f6918760"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1d8f5091e811708609af0361f6918760">setInstance</a> (<a class="el" href="class_engine.html">Engine</a> *engineInstance)</td></tr>
+<tr class="memdesc:a1d8f5091e811708609af0361f6918760"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ustawia instancję silnika.  <br /></td></tr>
+<tr class="separator:a1d8f5091e811708609af0361f6918760"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a27ca7abaee60b9a25991adab1cdceb91" id="r_a27ca7abaee60b9a25991adab1cdceb91"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a27ca7abaee60b9a25991adab1cdceb91">timer</a> (int value)</td></tr>
+<tr class="memdesc:a27ca7abaee60b9a25991adab1cdceb91"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja wywoływana co klatkę.  <br /></td></tr>
+<tr class="separator:a27ca7abaee60b9a25991adab1cdceb91"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Atrybuty publiczne</h2></td></tr>
+<tr class="memitem:acaf43e8c01111253aa02ee4f28ece467" id="r_acaf43e8c01111253aa02ee4f28ece467"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acaf43e8c01111253aa02ee4f28ece467">crossedBottomBoundary1</a> = false</td></tr>
+<tr class="memdesc:acaf43e8c01111253aa02ee4f28ece467"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flaga dla pierwszej granicy.  <br /></td></tr>
+<tr class="separator:acaf43e8c01111253aa02ee4f28ece467"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac86e9df9a04069e73842dbe5f59c353c" id="r_ac86e9df9a04069e73842dbe5f59c353c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac86e9df9a04069e73842dbe5f59c353c">crossedBottomBoundary2</a> = false</td></tr>
+<tr class="memdesc:ac86e9df9a04069e73842dbe5f59c353c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flaga dla drugiej granicy.  <br /></td></tr>
+<tr class="separator:ac86e9df9a04069e73842dbe5f59c353c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0f58c7db609a405d40028230a91780b9" id="r_a0f58c7db609a405d40028230a91780b9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0f58c7db609a405d40028230a91780b9">isDraggingLine</a> = false</td></tr>
+<tr class="memdesc:a0f58c7db609a405d40028230a91780b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flaga wskazująca, czy linia jest przesuwana.  <br /></td></tr>
+<tr class="separator:a0f58c7db609a405d40028230a91780b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a721c40e952fcb08d4f2904ca0df562de" id="r_a721c40e952fcb08d4f2904ca0df562de"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a721c40e952fcb08d4f2904ca0df562de">mouseStartX</a> = 0.0f</td></tr>
+<tr class="memdesc:a721c40e952fcb08d4f2904ca0df562de"><td class="mdescLeft">&#160;</td><td class="mdescRight">Początkowa współrzędna X myszki.  <br /></td></tr>
+<tr class="separator:a721c40e952fcb08d4f2904ca0df562de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a28869c0ed2cb3f1e3984c573eb6a848b" id="r_a28869c0ed2cb3f1e3984c573eb6a848b"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a28869c0ed2cb3f1e3984c573eb6a848b">mouseStartY</a> = 0.0f</td></tr>
+<tr class="memdesc:a28869c0ed2cb3f1e3984c573eb6a848b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Początkowa współrzędna Y myszki.  <br /></td></tr>
+<tr class="separator:a28869c0ed2cb3f1e3984c573eb6a848b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3f2b35a9a0d325ece4061016091fa397" id="r_a3f2b35a9a0d325ece4061016091fa397"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3f2b35a9a0d325ece4061016091fa397">lineStartPosX</a> = 0.0f</td></tr>
+<tr class="memdesc:a3f2b35a9a0d325ece4061016091fa397"><td class="mdescLeft">&#160;</td><td class="mdescRight">Początkowa pozycja X linii.  <br /></td></tr>
+<tr class="separator:a3f2b35a9a0d325ece4061016091fa397"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae8b0e135c2d201756b30e22a4748cdde" id="r_ae8b0e135c2d201756b30e22a4748cdde"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae8b0e135c2d201756b30e22a4748cdde">lineStartPosY</a> = 0.0f</td></tr>
+<tr class="memdesc:ae8b0e135c2d201756b30e22a4748cdde"><td class="mdescLeft">&#160;</td><td class="mdescRight">Początkowa pozycja Y linii.  <br /></td></tr>
+<tr class="separator:ae8b0e135c2d201756b30e22a4748cdde"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0bb57d5b71cdc4906c2c4b5cf627d5e8" id="r_a0bb57d5b71cdc4906c2c4b5cf627d5e8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_shading_mode_8h.html#a474716bb9224d44d614704a0bd331d99">ShadingMode</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0bb57d5b71cdc4906c2c4b5cf627d5e8">currentShadingMode</a> = <a class="el" href="_shading_mode_8h.html#a474716bb9224d44d614704a0bd331d99a464948bf38663fe1c4053f72402b63d5">ShadingMode::SMOOTH</a></td></tr>
+<tr class="separator:a0bb57d5b71cdc4906c2c4b5cf627d5e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa981b7e994af5c9534bce8bd2a5c1a34" id="r_aa981b7e994af5c9534bce8bd2a5c1a34"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_engine_8h.html#a3cea85bd9127b51d9ff35de2ffc9ca33">LightingMode</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa981b7e994af5c9534bce8bd2a5c1a34">currentLightingMode</a> = <a class="el" href="_engine_8h.html#a3cea85bd9127b51d9ff35de2ffc9ca33ab50339a10e1de285ac99d4c3990b8693">LightingMode::NONE</a></td></tr>
+<tr class="separator:aa981b7e994af5c9534bce8bd2a5c1a34"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a92b0632ac2b7f6489b5c1651ced327a8" id="r_a92b0632ac2b7f6489b5c1651ced327a8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a92b0632ac2b7f6489b5c1651ced327a8">frameRate</a></td></tr>
+<tr class="memdesc:a92b0632ac2b7f6489b5c1651ced327a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Liczba klatek na sekundę  <br /></td></tr>
+<tr class="separator:a92b0632ac2b7f6489b5c1651ced327a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Metody prywatne</h2></td></tr>
+<tr class="memitem:ace5d2527888e19d388699ba2a433345c" id="r_ace5d2527888e19d388699ba2a433345c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ace5d2527888e19d388699ba2a433345c">isClickOnCube</a> (int mouseX, int mouseY) const</td></tr>
+<tr class="memdesc:ace5d2527888e19d388699ba2a433345c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sprawdza, czy kliknięcie myszki jest na sześcianie.  <br /></td></tr>
+<tr class="separator:ace5d2527888e19d388699ba2a433345c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-static-methods" name="pri-static-methods"></a>
+Statyczne metody prywatne</h2></td></tr>
+<tr class="memitem:a795a0aa821e923aedd017b324f7d77bb" id="r_a795a0aa821e923aedd017b324f7d77bb"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a795a0aa821e923aedd017b324f7d77bb">renderCallback</a> ()</td></tr>
+<tr class="memdesc:a795a0aa821e923aedd017b324f7d77bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja wywoływana w celu rysowania sceny.  <br /></td></tr>
+<tr class="separator:a795a0aa821e923aedd017b324f7d77bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3ab7f1b4b4c154eb79a002f12f17b841" id="r_a3ab7f1b4b4c154eb79a002f12f17b841"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3ab7f1b4b4c154eb79a002f12f17b841">idleCallback</a> ()</td></tr>
+<tr class="memdesc:a3ab7f1b4b4c154eb79a002f12f17b841"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja wywoływana w pętli gry, gdy nie ma innych zdarzeń.  <br /></td></tr>
+<tr class="separator:a3ab7f1b4b4c154eb79a002f12f17b841"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a813f9a54b93bd501d2c52d10826fa2fa" id="r_a813f9a54b93bd501d2c52d10826fa2fa"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a813f9a54b93bd501d2c52d10826fa2fa">keyboardCallback</a> (unsigned char key, int x, int y)</td></tr>
+<tr class="memdesc:a813f9a54b93bd501d2c52d10826fa2fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Obsługuje zdarzenia związane z klawiaturą.  <br /></td></tr>
+<tr class="separator:a813f9a54b93bd501d2c52d10826fa2fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acb170e405b800f9fc1220b4ae5b80826" id="r_acb170e405b800f9fc1220b4ae5b80826"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acb170e405b800f9fc1220b4ae5b80826">mouseCallback</a> (int button, int state, int x, int y)</td></tr>
+<tr class="memdesc:acb170e405b800f9fc1220b4ae5b80826"><td class="mdescLeft">&#160;</td><td class="mdescRight">Obsługuje zdarzenia związane z myszką.  <br /></td></tr>
+<tr class="separator:acb170e405b800f9fc1220b4ae5b80826"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac1f86daa82a1f3dbe46319bcb34aaad9" id="r_ac1f86daa82a1f3dbe46319bcb34aaad9"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac1f86daa82a1f3dbe46319bcb34aaad9">motionCallback</a> (int x, int y)</td></tr>
+<tr class="separator:ac1f86daa82a1f3dbe46319bcb34aaad9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa8ec4e01937c2c9b3194a4a4a9891a46" id="r_aa8ec4e01937c2c9b3194a4a4a9891a46"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa8ec4e01937c2c9b3194a4a4a9891a46">reshapeCallback</a> (int width, int height)</td></tr>
+<tr class="memdesc:aa8ec4e01937c2c9b3194a4a4a9891a46"><td class="mdescLeft">&#160;</td><td class="mdescRight">Obsługuje zdarzenia związane z przesunięciem okna.  <br /></td></tr>
+<tr class="separator:aa8ec4e01937c2c9b3194a4a4a9891a46"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae95c024614918de87b7a6b3535b946a2" id="r_ae95c024614918de87b7a6b3535b946a2"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae95c024614918de87b7a6b3535b946a2">specialKeyboardCallback</a> (int key, int x, int y)</td></tr>
+<tr class="memdesc:ae95c024614918de87b7a6b3535b946a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja wywoływana przy naciśnięciu klawiszy specjalnych.  <br /></td></tr>
+<tr class="separator:ae95c024614918de87b7a6b3535b946a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Atrybuty prywatne</h2></td></tr>
+<tr class="memitem:a4fbef408d27119137f1f203cf0aba652" id="r_a4fbef408d27119137f1f203cf0aba652"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_triangle.html">Triangle</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4fbef408d27119137f1f203cf0aba652">triangle</a></td></tr>
+<tr class="separator:a4fbef408d27119137f1f203cf0aba652"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abd0ff72a70b7643680cff6cd0513620f" id="r_abd0ff72a70b7643680cff6cd0513620f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_player.html">Player</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abd0ff72a70b7643680cff6cd0513620f">player</a></td></tr>
+<tr class="separator:abd0ff72a70b7643680cff6cd0513620f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae0e3072dc26e8959a2aeb09af192913b" id="r_ae0e3072dc26e8959a2aeb09af192913b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_primitive_drawer.html">PrimitiveDrawer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae0e3072dc26e8959a2aeb09af192913b">drawer</a></td></tr>
+<tr class="separator:ae0e3072dc26e8959a2aeb09af192913b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a012122a04665021ce47d577ca5db6b6a" id="r_a012122a04665021ce47d577ca5db6b6a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_bitmap_handler.html">BitmapHandler</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a012122a04665021ce47d577ca5db6b6a">bitmapHandler</a></td></tr>
+<tr class="memdesc:a012122a04665021ce47d577ca5db6b6a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Obiekt do zarządzania teksturami.  <br /></td></tr>
+<tr class="separator:a012122a04665021ce47d577ca5db6b6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a482db988828093ffc0988c5e8671aaca" id="r_a482db988828093ffc0988c5e8671aaca"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_line.html">Line</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a482db988828093ffc0988c5e8671aaca">line</a></td></tr>
+<tr class="separator:a482db988828093ffc0988c5e8671aaca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ace3ba6cad08529935746d70fdeb053c6" id="r_ace3ba6cad08529935746d70fdeb053c6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_point.html">Point</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ace3ba6cad08529935746d70fdeb053c6">point</a></td></tr>
+<tr class="separator:ace3ba6cad08529935746d70fdeb053c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a541d921b6b97e8756522958a58814344" id="r_a541d921b6b97e8756522958a58814344"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a541d921b6b97e8756522958a58814344">windowWidth</a></td></tr>
+<tr class="separator:a541d921b6b97e8756522958a58814344"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0ac480c63e98dd9b1fe4c4a3c9e6a7ca" id="r_a0ac480c63e98dd9b1fe4c4a3c9e6a7ca"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0ac480c63e98dd9b1fe4c4a3c9e6a7ca">windowHeight</a></td></tr>
+<tr class="memdesc:a0ac480c63e98dd9b1fe4c4a3c9e6a7ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wymiary okna.  <br /></td></tr>
+<tr class="separator:a0ac480c63e98dd9b1fe4c4a3c9e6a7ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2b7fed0a69907e37a2aa96040fc5f943" id="r_a2b7fed0a69907e37a2aa96040fc5f943"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2b7fed0a69907e37a2aa96040fc5f943">windowTitle</a></td></tr>
+<tr class="memdesc:a2b7fed0a69907e37a2aa96040fc5f943"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tytuł okna.  <br /></td></tr>
+<tr class="separator:a2b7fed0a69907e37a2aa96040fc5f943"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa60b15fe23aaf1ad61b9d50fc4dd4156" id="r_aa60b15fe23aaf1ad61b9d50fc4dd4156"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa60b15fe23aaf1ad61b9d50fc4dd4156">clearColor</a> [4]</td></tr>
+<tr class="memdesc:aa60b15fe23aaf1ad61b9d50fc4dd4156"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kolor tła okna.  <br /></td></tr>
+<tr class="separator:aa60b15fe23aaf1ad61b9d50fc4dd4156"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a538e3024b27fba17f64166258566429e" id="r_a538e3024b27fba17f64166258566429e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a538e3024b27fba17f64166258566429e">lastTime</a> = 0</td></tr>
+<tr class="memdesc:a538e3024b27fba17f64166258566429e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Czas ostatniej klatki.  <br /></td></tr>
+<tr class="separator:a538e3024b27fba17f64166258566429e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae33d8b82d9c1f13b82812a48f28f36d3" id="r_ae33d8b82d9c1f13b82812a48f28f36d3"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae33d8b82d9c1f13b82812a48f28f36d3">cameraZ</a></td></tr>
+<tr class="memdesc:ae33d8b82d9c1f13b82812a48f28f36d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pozycja kamery w osi Z.  <br /></td></tr>
+<tr class="separator:ae33d8b82d9c1f13b82812a48f28f36d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a71418cda0ad7bdf0ea83efd1b7ff2b92" id="r_a71418cda0ad7bdf0ea83efd1b7ff2b92"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a71418cda0ad7bdf0ea83efd1b7ff2b92">isGameRunning</a> = false</td></tr>
+<tr class="memdesc:a71418cda0ad7bdf0ea83efd1b7ff2b92"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flaga, czy gra jest aktywna.  <br /></td></tr>
+<tr class="separator:a71418cda0ad7bdf0ea83efd1b7ff2b92"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a070d622787eda9eaa7481e5e0e854d" id="r_a4a070d622787eda9eaa7481e5e0e854d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4a070d622787eda9eaa7481e5e0e854d">isDragging</a> = false</td></tr>
+<tr class="memdesc:a4a070d622787eda9eaa7481e5e0e854d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flaga, czy obiekt jest przesuwany.  <br /></td></tr>
+<tr class="separator:a4a070d622787eda9eaa7481e5e0e854d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a16c77a13619b9d491e2148df4d273080" id="r_a16c77a13619b9d491e2148df4d273080"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a16c77a13619b9d491e2148df4d273080">minCameraZ</a> = 2.0f</td></tr>
+<tr class="memdesc:a16c77a13619b9d491e2148df4d273080"><td class="mdescLeft">&#160;</td><td class="mdescRight">Minimalna wartość dla kamery.  <br /></td></tr>
+<tr class="separator:a16c77a13619b9d491e2148df4d273080"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aab03746af5870a5805423f4d659d3724" id="r_aab03746af5870a5805423f4d659d3724"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aab03746af5870a5805423f4d659d3724">maxCameraZ</a> = 20.0f</td></tr>
+<tr class="memdesc:aab03746af5870a5805423f4d659d3724"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maksymalna wartość dla kamery.  <br /></td></tr>
+<tr class="separator:aab03746af5870a5805423f4d659d3724"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acbb0b5a515d0de8f341edbbd5e5313ff" id="r_acbb0b5a515d0de8f341edbbd5e5313ff"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acbb0b5a515d0de8f341edbbd5e5313ff">isCubeRotating</a> = false</td></tr>
+<tr class="memdesc:acbb0b5a515d0de8f341edbbd5e5313ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flaga, czy sześcian się obraca.  <br /></td></tr>
+<tr class="separator:acbb0b5a515d0de8f341edbbd5e5313ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a74905eb97a47c13676d6c735d73ae00b" id="r_a74905eb97a47c13676d6c735d73ae00b"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a74905eb97a47c13676d6c735d73ae00b">rotationStartTime</a> = 0.0f</td></tr>
+<tr class="memdesc:a74905eb97a47c13676d6c735d73ae00b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Czas rozpoczęcia obrotu.  <br /></td></tr>
+<tr class="separator:a74905eb97a47c13676d6c735d73ae00b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad3f81132b2483c07917b16ba1f67463a" id="r_ad3f81132b2483c07917b16ba1f67463a"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad3f81132b2483c07917b16ba1f67463a">cubeRotationAngle</a> = 0.0f</td></tr>
+<tr class="memdesc:ad3f81132b2483c07917b16ba1f67463a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kąt obrotu sześcianu.  <br /></td></tr>
+<tr class="separator:ad3f81132b2483c07917b16ba1f67463a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acb484b0c74a082bb60b58e59597caca9" id="r_acb484b0c74a082bb60b58e59597caca9"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acb484b0c74a082bb60b58e59597caca9">rotationAxisX</a> = 1.0f</td></tr>
+<tr class="separator:acb484b0c74a082bb60b58e59597caca9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a536c98f8a00c8032da37a6620b4afd98" id="r_a536c98f8a00c8032da37a6620b4afd98"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a536c98f8a00c8032da37a6620b4afd98">rotationAxisY</a> = 0.0f</td></tr>
+<tr class="separator:a536c98f8a00c8032da37a6620b4afd98"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3f2f555bc3b57ebc327012e0e647cb4c" id="r_a3f2f555bc3b57ebc327012e0e647cb4c"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3f2f555bc3b57ebc327012e0e647cb4c">rotationAxisZ</a> = 0.0f</td></tr>
+<tr class="memdesc:a3f2f555bc3b57ebc327012e0e647cb4c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Osie obrotu.  <br /></td></tr>
+<tr class="separator:a3f2f555bc3b57ebc327012e0e647cb4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a19ffbc14ed3fc3a3b12ca8682f0cab16" id="r_a19ffbc14ed3fc3a3b12ca8682f0cab16"><td class="memItemLeft" align="right" valign="top">std::mt19937&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a19ffbc14ed3fc3a3b12ca8682f0cab16">rng</a></td></tr>
+<tr class="memdesc:a19ffbc14ed3fc3a3b12ca8682f0cab16"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generator liczb losowych.  <br /></td></tr>
+<tr class="separator:a19ffbc14ed3fc3a3b12ca8682f0cab16"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5a075b5b065acb5afba498512e2f2e56" id="r_a5a075b5b065acb5afba498512e2f2e56"><td class="memItemLeft" align="right" valign="top">std::uniform_int_distribution&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5a075b5b065acb5afba498512e2f2e56">dist</a></td></tr>
+<tr class="memdesc:a5a075b5b065acb5afba498512e2f2e56"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rozkład liczb losowych.  <br /></td></tr>
+<tr class="separator:a5a075b5b065acb5afba498512e2f2e56"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abae6224b7cd9e290d4f5c3d7b8494012" id="r_abae6224b7cd9e290d4f5c3d7b8494012"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abae6224b7cd9e290d4f5c3d7b8494012">isPawnMoving</a> = false</td></tr>
+<tr class="memdesc:abae6224b7cd9e290d4f5c3d7b8494012"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flaga dla ruchu pionka.  <br /></td></tr>
+<tr class="separator:abae6224b7cd9e290d4f5c3d7b8494012"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a961712fa0a8bca5d2d20bd2db9cad9e8" id="r_a961712fa0a8bca5d2d20bd2db9cad9e8"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a961712fa0a8bca5d2d20bd2db9cad9e8">isPawnMoving2</a> = false</td></tr>
+<tr class="memdesc:a961712fa0a8bca5d2d20bd2db9cad9e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flaga dla ruchu drugiego pionka.  <br /></td></tr>
+<tr class="separator:a961712fa0a8bca5d2d20bd2db9cad9e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac31460d29dd8e5269c6af694ba3ae2f1" id="r_ac31460d29dd8e5269c6af694ba3ae2f1"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac31460d29dd8e5269c6af694ba3ae2f1">pawnStepsRemaining</a> = 0</td></tr>
+<tr class="memdesc:ac31460d29dd8e5269c6af694ba3ae2f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Liczba pozostałych kroków pionka.  <br /></td></tr>
+<tr class="separator:ac31460d29dd8e5269c6af694ba3ae2f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aae8c366bf87dd215356d4efac7941efe" id="r_aae8c366bf87dd215356d4efac7941efe"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aae8c366bf87dd215356d4efac7941efe">pawnStepsRemaining2</a> = 0</td></tr>
+<tr class="memdesc:aae8c366bf87dd215356d4efac7941efe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Liczba pozostałych kroków drugiego pionka.  <br /></td></tr>
+<tr class="separator:aae8c366bf87dd215356d4efac7941efe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa1389598529e79624a53473e36fe368" id="r_aaa1389598529e79624a53473e36fe368"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aaa1389598529e79624a53473e36fe368">pawnStepSize</a> = 0.05f</td></tr>
+<tr class="memdesc:aaa1389598529e79624a53473e36fe368"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wielkość kroku pionka.  <br /></td></tr>
+<tr class="separator:aaa1389598529e79624a53473e36fe368"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aacc19de6348c0caed04a9cb11a5d07f2" id="r_aacc19de6348c0caed04a9cb11a5d07f2"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aacc19de6348c0caed04a9cb11a5d07f2">pawnStepSize2</a> = 0.05f</td></tr>
+<tr class="memdesc:aacc19de6348c0caed04a9cb11a5d07f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wielkość kroku drugiego pionka.  <br /></td></tr>
+<tr class="separator:aacc19de6348c0caed04a9cb11a5d07f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac391917de4eeaa4b5018aa864ea3e129" id="r_ac391917de4eeaa4b5018aa864ea3e129"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac391917de4eeaa4b5018aa864ea3e129">pawnX</a> = 0.1f</td></tr>
+<tr class="separator:ac391917de4eeaa4b5018aa864ea3e129"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa51e1321919f2b7ab9a811e58a78815a" id="r_aa51e1321919f2b7ab9a811e58a78815a"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa51e1321919f2b7ab9a811e58a78815a">pawnY</a> = 0.1f</td></tr>
+<tr class="memdesc:aa51e1321919f2b7ab9a811e58a78815a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pozycja pierwszego pionka.  <br /></td></tr>
+<tr class="separator:aa51e1321919f2b7ab9a811e58a78815a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a469d21e749ce69453faa31d221e16ed6" id="r_a469d21e749ce69453faa31d221e16ed6"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a469d21e749ce69453faa31d221e16ed6">pawnX2</a> = 0.1f</td></tr>
+<tr class="separator:a469d21e749ce69453faa31d221e16ed6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4858aab59deff8cab7a50dda419835d4" id="r_a4858aab59deff8cab7a50dda419835d4"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4858aab59deff8cab7a50dda419835d4">pawnY2</a> = 0.1f</td></tr>
+<tr class="memdesc:a4858aab59deff8cab7a50dda419835d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pozycja drugiego pionka.  <br /></td></tr>
+<tr class="separator:a4858aab59deff8cab7a50dda419835d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aadffdcbcb63ee62af27573f47c34858d" id="r_aadffdcbcb63ee62af27573f47c34858d"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aadffdcbcb63ee62af27573f47c34858d">pawnLastMoveTime</a> = 0.0f</td></tr>
+<tr class="memdesc:aadffdcbcb63ee62af27573f47c34858d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Czas ostatniego ruchu pionka.  <br /></td></tr>
+<tr class="separator:aadffdcbcb63ee62af27573f47c34858d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae2fbd93454678ca4f5c82319708005ac" id="r_ae2fbd93454678ca4f5c82319708005ac"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae2fbd93454678ca4f5c82319708005ac">pawnLastMoveTime2</a> = 0.0f</td></tr>
+<tr class="memdesc:ae2fbd93454678ca4f5c82319708005ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Czas ostatniego ruchu drugiego pionka.  <br /></td></tr>
+<tr class="separator:ae2fbd93454678ca4f5c82319708005ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8bd36fe72251827f01c81f463a3f2a42" id="r_a8bd36fe72251827f01c81f463a3f2a42"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8bd36fe72251827f01c81f463a3f2a42">isMyTurn</a></td></tr>
+<tr class="memdesc:a8bd36fe72251827f01c81f463a3f2a42"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flaga określająca, czy gracz ma swoją turę  <br /></td></tr>
+<tr class="separator:a8bd36fe72251827f01c81f463a3f2a42"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ff42d4086fe2b8e2d446f8e07d4934d" id="r_a1ff42d4086fe2b8e2d446f8e07d4934d"><td class="memItemLeft" align="right" valign="top">std::chrono::time_point&lt; std::chrono::high_resolution_clock &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1ff42d4086fe2b8e2d446f8e07d4934d">lastFrameTime</a></td></tr>
+<tr class="memdesc:a1ff42d4086fe2b8e2d446f8e07d4934d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Czas ostatniej klatki.  <br /></td></tr>
+<tr class="separator:a1ff42d4086fe2b8e2d446f8e07d4934d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-static-attribs" name="pri-static-attribs"></a>
+Statyczne atrybuty prywatne</h2></td></tr>
+<tr class="memitem:a51493b63c58390f775dd2bc6f72a2b75" id="r_a51493b63c58390f775dd2bc6f72a2b75"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_engine.html">Engine</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a51493b63c58390f775dd2bc6f72a2b75">instance</a> = nullptr</td></tr>
+<tr class="memdesc:a51493b63c58390f775dd2bc6f72a2b75"><td class="mdescLeft">&#160;</td><td class="mdescRight">Instancja silnika.  <br /></td></tr>
+<tr class="separator:a51493b63c58390f775dd2bc6f72a2b75"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Opis szczegółowy</h2>
+<div class="textblock"><p>Klasa zarządzająca silnikiem graficznym. </p>
+<p>Klasa <a class="el" href="class_engine.html" title="Klasa zarządzająca silnikiem graficznym.">Engine</a> jest odpowiedzialna za inicjalizację okna, rysowanie obiektów, obsługę wejścia z klawiatury i myszy, a także za renderowanie sceny i kontrolowanie gry. </p>
+</div><h2 class="groupheader">Dokumentacja konstruktora i destruktora</h2>
+<a id="a96a0d0c457f74a158c4cfc8db8158a4e" name="a96a0d0c457f74a158c4cfc8db8158a4e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a96a0d0c457f74a158c4cfc8db8158a4e">&#9670;&#160;</a></span>Engine()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Engine::Engine </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>width</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>height</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>title</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>fps</em></span><span class="paramdefsep"> = </span><span class="paramdefval">60</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Konstruktor klasy <a class="el" href="class_engine.html" title="Klasa zarządzająca silnikiem graficznym.">Engine</a>. </p>
+<p>Konstruktor klasy <a class="el" href="class_engine.html" title="Klasa zarządzająca silnikiem graficznym.">Engine</a>, inicjalizuje wszystkie ważne parametry.</p>
+<p>Ustawia szerokość i wysokość okna, tytuł oraz domyślną liczbę klatek na sekundę.</p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">width</td><td>Szerokość okna. </td></tr>
+    <tr><td class="paramname">height</td><td>Wysokość okna. </td></tr>
+    <tr><td class="paramname">title</td><td>Tytuł okna. </td></tr>
+    <tr><td class="paramname">fps</td><td>Liczba klatek na sekundę.</td></tr>
+    <tr><td class="paramname">width</td><td>Szerokość okna. </td></tr>
+    <tr><td class="paramname">height</td><td>Wysokość okna. </td></tr>
+    <tr><td class="paramname">title</td><td>Tytuł okna. </td></tr>
+    <tr><td class="paramname">fps</td><td>Liczba klatek na sekundę (FPS). </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Dokumentacja funkcji składowych</h2>
+<a id="a73bb09fab9d983a0601c619a78cbc2fb" name="a73bb09fab9d983a0601c619a78cbc2fb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a73bb09fab9d983a0601c619a78cbc2fb">&#9670;&#160;</a></span>configureLighting()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Engine::configureLighting </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Konfiguruje ustawienia oświetlenia. </p>
+<p>Konfiguruje oświetlenie w grze.</p>
+<p>Funkcja ta ustawia odpowiedni typ oświetlenia (punktowe, kierunkowe, spot) w zależności od aktualnego trybu. </p>
+
+</div>
+</div>
+<a id="af57bb91e80bbc32d02a5c3e571de34e9" name="af57bb91e80bbc32d02a5c3e571de34e9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af57bb91e80bbc32d02a5c3e571de34e9">&#9670;&#160;</a></span>handleMouseClick()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Engine::handleMouseClick </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>button</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>state</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>x</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>y</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Obsługuje kliknięcie myszką. </p>
+<p>Obsługuje kliknięcie myszką na kostce.</p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">button</td><td>Przycisk myszy. </td></tr>
+    <tr><td class="paramname">state</td><td>Stan przycisku (wciśnięty lub puszczony). </td></tr>
+    <tr><td class="paramname">x</td><td>Pozycja myszy w osi X. </td></tr>
+    <tr><td class="paramname">y</td><td>Pozycja myszy w osi Y.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Sprawdza, czy kliknięcie miało miejsce w odpowiednim obszarze kostki. Rozpoczyna przeciąganie, jeśli kliknięcie jest wystarczająco blisko środka kostki.</p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">button</td><td>Przycisk myszy. </td></tr>
+    <tr><td class="paramname">state</td><td>Stan przycisku. </td></tr>
+    <tr><td class="paramname">x</td><td>Pozycja kursora w osi X. </td></tr>
+    <tr><td class="paramname">y</td><td>Pozycja kursora w osi Y. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a690f82ba1d054722698e37ad071e6985" name="a690f82ba1d054722698e37ad071e6985"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a690f82ba1d054722698e37ad071e6985">&#9670;&#160;</a></span>handleMouseMotion()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Engine::handleMouseMotion </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>x</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>y</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Obsługuje ruch myszki. </p>
+<p>Obsługuje ruchy myszki, jeśli aktywne jest przeciąganie.</p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>Pozycja myszy w osi X. </td></tr>
+    <tr><td class="paramname">y</td><td>Pozycja myszy w osi Y.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Funkcja ta aktualizuje pozycję obiektów w grze w zależności od ruchów myszki, np. przesuwanie linii.</p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>Nowa pozycja kursora w osi X. </td></tr>
+    <tr><td class="paramname">y</td><td>Nowa pozycja kursora w osi Y. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a3ab7f1b4b4c154eb79a002f12f17b841" name="a3ab7f1b4b4c154eb79a002f12f17b841"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3ab7f1b4b4c154eb79a002f12f17b841">&#9670;&#160;</a></span>idleCallback()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Engine::idleCallback </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Funkcja wywoływana w pętli gry, gdy nie ma innych zdarzeń. </p>
+<p>Ta funkcja jest wywoływana w przypadku braku aktywności w grze i aktualizuje stan gry na podstawie upływu czasu. </p>
+
+</div>
+</div>
+<a id="a43de1de345917a6ea3f654fe6db60434" name="a43de1de345917a6ea3f654fe6db60434"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a43de1de345917a6ea3f654fe6db60434">&#9670;&#160;</a></span>init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Engine::init </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>argc</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char **</td>          <td class="paramname"><span class="paramname"><em>argv</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Inicjalizuje środowisko OpenGL. </p>
+<p>Inicjalizacja okna i konfiguracja OpenGL.</p>
+<p>Przygotowuje OpenGL do rysowania, ustawiając wszystkie niezbędne parametry.</p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">argc</td><td>Liczba argumentów. </td></tr>
+    <tr><td class="paramname">argv</td><td>Argumenty wiersza poleceń.</td></tr>
+    <tr><td class="paramname">argc</td><td>Liczba argumentów wiersza poleceń. </td></tr>
+    <tr><td class="paramname">argv</td><td>Tablica argumentów wiersza poleceń. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ace5d2527888e19d388699ba2a433345c" name="ace5d2527888e19d388699ba2a433345c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ace5d2527888e19d388699ba2a433345c">&#9670;&#160;</a></span>isClickOnCube()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Engine::isClickOnCube </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>mouseX</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>mouseY</em></span>&#160;) const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sprawdza, czy kliknięcie myszki jest na sześcianie. </p>
+<p>Sprawdza, czy kliknięcie miało miejsce na kostce.</p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">mouseX</td><td>Współrzędna X myszy. </td></tr>
+    <tr><td class="paramname">mouseY</td><td>Współrzędna Y myszy. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Zwraca</dt><dd>Zwraca true, jeśli kliknięcie jest na sześcianie, w przeciwnym razie false.</dd></dl>
+<p>Funkcja ta przekształca współrzędne kliknięcia w układ współrzędnych OpenGL i sprawdza, czy kliknięcie było w obrębie kostki.</p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">mouseX</td><td>Pozycja kliknięcia w osi X. </td></tr>
+    <tr><td class="paramname">mouseY</td><td>Pozycja kliknięcia w osi Y. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Zwraca</dt><dd>true Jeśli kliknięcie było na kostce, false w przeciwnym razie. </dd></dl>
+
+</div>
+</div>
+<a id="a813f9a54b93bd501d2c52d10826fa2fa" name="a813f9a54b93bd501d2c52d10826fa2fa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a813f9a54b93bd501d2c52d10826fa2fa">&#9670;&#160;</a></span>keyboardCallback()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Engine::keyboardCallback </td>
+          <td>(</td>
+          <td class="paramtype">unsigned char</td>          <td class="paramname"><span class="paramname"><em>key</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>x</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>y</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Obsługuje zdarzenia związane z klawiaturą. </p>
+<p>Funkcja ta jest wywoływana przy naciśnięciu dowolnego klawisza.</p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td>Kod naciśniętego klawisza. </td></tr>
+    <tr><td class="paramname">x</td><td>Pozycja kursora w osi X. </td></tr>
+    <tr><td class="paramname">y</td><td>Pozycja kursora w osi Y. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ac1f86daa82a1f3dbe46319bcb34aaad9" name="ac1f86daa82a1f3dbe46319bcb34aaad9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac1f86daa82a1f3dbe46319bcb34aaad9">&#9670;&#160;</a></span>motionCallback()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Engine::motionCallback </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>x</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>y</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Funkcja callback dla ruchu myszki. Wywoływana, gdy użytkownik porusza myszką w oknie gry.</p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>Współrzędna X kursora myszy w oknie. </td></tr>
+    <tr><td class="paramname">y</td><td>Współrzędna Y kursora myszy w oknie.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Funkcja ta sprawdza, czy istnieje instancja silnika gry (<a class="el" href="class_engine.html" title="Klasa zarządzająca silnikiem graficznym.">Engine</a>) i jeśli tak, przekazuje współrzędne ruchu myszy do metody <code>handleMouseMotion</code> odpowiedzialnej za dalsze przetwarzanie i ewentualne aktualizowanie stanu gry w odpowiedzi na ruch myszy. </p>
+
+</div>
+</div>
+<a id="acb170e405b800f9fc1220b4ae5b80826" name="acb170e405b800f9fc1220b4ae5b80826"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acb170e405b800f9fc1220b4ae5b80826">&#9670;&#160;</a></span>mouseCallback()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Engine::mouseCallback </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>button</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>state</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>x</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>y</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Obsługuje zdarzenia związane z myszką. </p>
+<p>Funkcja ta reaguje na kliknięcia myszką, sprawdzając, czy kliknięcie miało miejsce w odpowiednich obszarach.</p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">button</td><td>Przycisk myszy. </td></tr>
+    <tr><td class="paramname">state</td><td>Stan przycisku myszy. </td></tr>
+    <tr><td class="paramname">x</td><td>Pozycja kursora w osi X. </td></tr>
+    <tr><td class="paramname">y</td><td>Pozycja kursora w osi Y. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aadf75b17926ba71ace13fd016cff7ae0" name="aadf75b17926ba71ace13fd016cff7ae0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aadf75b17926ba71ace13fd016cff7ae0">&#9670;&#160;</a></span>onKeyboard()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Engine::onKeyboard </td>
+          <td>(</td>
+          <td class="paramtype">unsigned char</td>          <td class="paramname"><span class="paramname"><em>key</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>x</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>y</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Obsługuje naciśnięcie klawisza na klawiaturze. </p>
+<p>Obsługuje zdarzenia naciśnięcia klawiszy z klawiatury.</p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td>Naciśnięty klawisz. </td></tr>
+    <tr><td class="paramname">x</td><td>Pozycja myszy w osi X. </td></tr>
+    <tr><td class="paramname">y</td><td>Pozycja myszy w osi Y.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Ta funkcja reaguje na naciśnięcie klawiszy, w tym:</p><ul>
+<li>'O'/'o' - przełącza tryb oświetlenia,</li>
+<li>'Z'/'z' - przełącza tryb cieniowania,</li>
+<li>'Esc' - zatrzymuje grę.</li>
+</ul>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td>Naciśnięty klawisz. </td></tr>
+    <tr><td class="paramname">x</td><td>Pozycja kursora w osi X. </td></tr>
+    <tr><td class="paramname">y</td><td>Pozycja kursora w osi Y. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a196553fb4e82769586bab60d1570461b" name="a196553fb4e82769586bab60d1570461b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a196553fb4e82769586bab60d1570461b">&#9670;&#160;</a></span>onMouse()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Engine::onMouse </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>button</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>state</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>x</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>y</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Obsługuje kliknięcie myszą. </p>
+<p>Obsługuje kliknięcia myszką w grze.</p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">button</td><td>Przycisk myszy. </td></tr>
+    <tr><td class="paramname">state</td><td>Stan przycisku (wciśnięty lub puszczony). </td></tr>
+    <tr><td class="paramname">x</td><td>Pozycja myszy w osi X. </td></tr>
+    <tr><td class="paramname">y</td><td>Pozycja myszy w osi Y.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Funkcja ta sprawdza, czy kliknięcie miało miejsce na kostce do gry. Jeśli tak, rozpoczyna obrót kostki i losuje liczbę kroków dla pionka.</p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">button</td><td>Przycisk myszy (np. lewy). </td></tr>
+    <tr><td class="paramname">state</td><td>Stan przycisku myszy (naciśnięty lub puszczony). </td></tr>
+    <tr><td class="paramname">x</td><td>Pozycja kursora w osi X. </td></tr>
+    <tr><td class="paramname">y</td><td>Pozycja kursora w osi Y. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="adec0b777cc50f6e5da7d7393bbb9580c" name="adec0b777cc50f6e5da7d7393bbb9580c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adec0b777cc50f6e5da7d7393bbb9580c">&#9670;&#160;</a></span>onMouseWheel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Engine::onMouseWheel </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>wheel</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>direction</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>x</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>y</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Obsługuje przewijanie kółka myszy. </p>
+<p>Obsługuje przewijanie myszką (zoomowanie).</p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">wheel</td><td>Numer koła myszy. </td></tr>
+    <tr><td class="paramname">direction</td><td>Kierunek przewijania. </td></tr>
+    <tr><td class="paramname">x</td><td>Pozycja myszy w osi X. </td></tr>
+    <tr><td class="paramname">y</td><td>Pozycja myszy w osi Y.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Funkcja ta zmienia poziom przybliżenia kamery w zależności od kierunku przewijania kółka myszy.</p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">wheel</td><td>Numer koła myszy. </td></tr>
+    <tr><td class="paramname">direction</td><td>Kierunek przewijania (1 - w górę, -1 - w dół). </td></tr>
+    <tr><td class="paramname">x</td><td>Pozycja kursora w osi X. </td></tr>
+    <tr><td class="paramname">y</td><td>Pozycja kursora w osi Y. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a18416ea70decc8a6afd9f9a82d361f83" name="a18416ea70decc8a6afd9f9a82d361f83"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a18416ea70decc8a6afd9f9a82d361f83">&#9670;&#160;</a></span>onSpecialKeyboard()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Engine::onSpecialKeyboard </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>key</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>x</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>y</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Obsługuje specjalne klawisze na klawiaturze. </p>
+<p>Obsługuje wejście z klawiszy strzałek.</p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td>Specjalny klawisz. </td></tr>
+    <tr><td class="paramname">x</td><td>Pozycja myszy w osi X. </td></tr>
+    <tr><td class="paramname">y</td><td>Pozycja myszy w osi Y.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Funkcja ta obsługuje naciśnięcie klawiszy strzałek i przetwarza je na odpowiednie akcje w grze.</p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td>Kod naciśniętego klawisza. </td></tr>
+    <tr><td class="paramname">x</td><td>Pozycja kursora w osi X. </td></tr>
+    <tr><td class="paramname">y</td><td>Pozycja kursora w osi Y. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a7960743aefd62e846e7f3cd92c18bc73" name="a7960743aefd62e846e7f3cd92c18bc73"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7960743aefd62e846e7f3cd92c18bc73">&#9670;&#160;</a></span>render()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Engine::render </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Funkcja renderująca. </p>
+<p>Funkcja renderująca całą scenę gry.</p>
+<p>Wykonuje renderowanie sceny w oknie aplikacji. </p>
+
+</div>
+</div>
+<a id="a795a0aa821e923aedd017b324f7d77bb" name="a795a0aa821e923aedd017b324f7d77bb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a795a0aa821e923aedd017b324f7d77bb">&#9670;&#160;</a></span>renderCallback()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Engine::renderCallback </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Funkcja wywoływana w celu rysowania sceny. </p>
+<p>Funkcja ta renderuje całą scenę, w tym obiekty, które są aktualnie widoczne. </p>
+
+</div>
+</div>
+<a id="a9a930c4be49de8aa2948e0f16dec86e9" name="a9a930c4be49de8aa2948e0f16dec86e9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9a930c4be49de8aa2948e0f16dec86e9">&#9670;&#160;</a></span>resetGame()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Engine::resetGame </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Resetuje stan gry. </p>
+<p>Resetuje stan gry, ustawiając pionki na początkowe pozycje.</p>
+<p>Funkcja ta ustawia pionki na pozycjach początkowych, resetuje liczbę pozostałych kroków oraz inne istotne zmienne. </p>
+
+</div>
+</div>
+<a id="aa8ec4e01937c2c9b3194a4a4a9891a46" name="aa8ec4e01937c2c9b3194a4a4a9891a46"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa8ec4e01937c2c9b3194a4a4a9891a46">&#9670;&#160;</a></span>reshapeCallback()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Engine::reshapeCallback </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>width</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>height</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Obsługuje zdarzenia związane z przesunięciem okna. </p>
+<p>Funkcja ta dostosowuje widok w zależności od rozmiaru okna gry.</p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">width</td><td>Nowa szerokość okna. </td></tr>
+    <tr><td class="paramname">height</td><td>Nowa wysokość okna. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a1a210cf30d6bd330b3649439ecd6d6cc" name="a1a210cf30d6bd330b3649439ecd6d6cc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1a210cf30d6bd330b3649439ecd6d6cc">&#9670;&#160;</a></span>run()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Engine::run </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Uruchamia pętlę gry. </p>
+<p>Rozpoczyna główną pętlę gry.</p>
+<p>Pętla gry, która renderuje scenę, przetwarza zdarzenia, aktualizuje stan gry. </p>
+
+</div>
+</div>
+<a id="a45c166c33072bb08e22b35e3ae3b399b" name="a45c166c33072bb08e22b35e3ae3b399b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a45c166c33072bb08e22b35e3ae3b399b">&#9670;&#160;</a></span>setClearColor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Engine::setClearColor </td>
+          <td>(</td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>r</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>g</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>b</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>a</em></span><span class="paramdefsep"> = </span><span class="paramdefval">1.0f</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Ustawia kolor tła. </p>
+<p>Ustawia kolor tła dla okna.</p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">r</td><td>Czerwony składnik koloru. </td></tr>
+    <tr><td class="paramname">g</td><td>Zielony składnik koloru. </td></tr>
+    <tr><td class="paramname">b</td><td>Niebieski składnik koloru. </td></tr>
+    <tr><td class="paramname">a</td><td>Przezroczystość (domyślnie 1.0f).</td></tr>
+    <tr><td class="paramname">r</td><td>Składowa czerwonego koloru (0.0 - 1.0). </td></tr>
+    <tr><td class="paramname">g</td><td>Składowa zielonego koloru (0.0 - 1.0). </td></tr>
+    <tr><td class="paramname">b</td><td>Składowa niebieskiego koloru (0.0 - 1.0). </td></tr>
+    <tr><td class="paramname">a</td><td>Składowa przezroczystości (0.0 - 1.0). </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ab8d9cb0c2dd70f9d9f05dcf97ffb5293" name="ab8d9cb0c2dd70f9d9f05dcf97ffb5293"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab8d9cb0c2dd70f9d9f05dcf97ffb5293">&#9670;&#160;</a></span>setFrameRate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Engine::setFrameRate </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>fps</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Ustawia liczbę klatek na sekundę. </p>
+<p>Ustawia liczbę klatek na sekundę (FPS) w grze.</p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fps</td><td>Liczba klatek na sekundę.</td></tr>
+    <tr><td class="paramname">fps</td><td>Liczba klatek na sekundę. Musi być większa od 0. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a1d8f5091e811708609af0361f6918760" name="a1d8f5091e811708609af0361f6918760"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1d8f5091e811708609af0361f6918760">&#9670;&#160;</a></span>setInstance()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Engine::setInstance </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_engine.html">Engine</a> *</td>          <td class="paramname"><span class="paramname"><em>engineInstance</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Ustawia instancję silnika. </p>
+<p>Ustawia instancję silnika gry.</p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">engineInstance</td><td>Instancja silnika.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Funkcja ta ustawia wskaźnik na instancję gry, umożliwiając dostęp do metod tej instancji w innych częściach kodu.</p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">engineInstance</td><td>Wskaźnik na instancję gry. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a8d44407408175ca350851f8a4c3dc69e" name="a8d44407408175ca350851f8a4c3dc69e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8d44407408175ca350851f8a4c3dc69e">&#9670;&#160;</a></span>setTextures()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Engine::setTextures </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; std::string &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>texturePaths</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Ustawia tekstury dla obiektów w grze. </p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">texturePaths</td><td>Lista ścieżek do plików tekstur.</td></tr>
+    <tr><td class="paramname">texturePaths</td><td>Ścieżki do plików tekstur. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="af37097d033850e054dfef6178164aea2" name="af37097d033850e054dfef6178164aea2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af37097d033850e054dfef6178164aea2">&#9670;&#160;</a></span>showWinnerMessage()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Engine::showWinnerMessage </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>winner</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Wyświetla wiadomość o wygranej. </p>
+<p>Wyświetlenie komunikatu o zwycięzcy.</p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">winner</td><td>Nazwa zwycięzcy, która ma być wyświetlona.</td></tr>
+    <tr><td class="paramname">winner</td><td>Nazwa zwycięzcy. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ae95c024614918de87b7a6b3535b946a2" name="ae95c024614918de87b7a6b3535b946a2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae95c024614918de87b7a6b3535b946a2">&#9670;&#160;</a></span>specialKeyboardCallback()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Engine::specialKeyboardCallback </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>key</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>x</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>y</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Funkcja wywoływana przy naciśnięciu klawiszy specjalnych. </p>
+<p>Ta funkcja reaguje na klawisze specjalne, takie jak strzałki.</p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td>Kod klawisza. </td></tr>
+    <tr><td class="paramname">x</td><td>Pozycja kursora w osi X. </td></tr>
+    <tr><td class="paramname">y</td><td>Pozycja kursora w osi Y. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ac88ada17b33bc5ddaf6bb73e0cdc67f3" name="ac88ada17b33bc5ddaf6bb73e0cdc67f3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac88ada17b33bc5ddaf6bb73e0cdc67f3">&#9670;&#160;</a></span>stop()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Engine::stop </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Zatrzymuje działanie gry. </p>
+<p>Zatrzymuje główną pętlę gry.</p>
+<p>Zatrzymuje wszystkie procesy związane z grą i renderowaniem. </p>
+
+</div>
+</div>
+<a id="a69ec3cee0855ee4b83298313162be5fa" name="a69ec3cee0855ee4b83298313162be5fa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a69ec3cee0855ee4b83298313162be5fa">&#9670;&#160;</a></span>switchLightingMode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Engine::switchLightingMode </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Zmienia tryb oświetlenia. </p>
+<p>Przełącza tryb oświetlenia.</p>
+<p>Funkcja ta przełącza pomiędzy różnymi trybami oświetlenia (brak, punktowe, kierunkowe, spot). </p>
+
+</div>
+</div>
+<a id="ac02df1e3e7166b3b043221078de31593" name="ac02df1e3e7166b3b043221078de31593"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac02df1e3e7166b3b043221078de31593">&#9670;&#160;</a></span>switchShadingMode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Engine::switchShadingMode </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Zmienia tryb cieniowania. </p>
+<p>Przełącza tryb cieniowania.</p>
+<p>Funkcja ta zmienia tryb cieniowania pomiędzy płaskim a gładkim. </p>
+
+</div>
+</div>
+<a id="a27ca7abaee60b9a25991adab1cdceb91" name="a27ca7abaee60b9a25991adab1cdceb91"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a27ca7abaee60b9a25991adab1cdceb91">&#9670;&#160;</a></span>timer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Engine::timer </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>value</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Funkcja wywoływana co klatkę. </p>
+<p>Funkcja zegara dla cyklicznego odświeżania gry.</p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td>Parametr dla timera.</td></tr>
+    <tr><td class="paramname">value</td><td>Argument (zwykle ustawiony na 0). </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a7b5534af4eb4bbed7084d6576fe299f9" name="a7b5534af4eb4bbed7084d6576fe299f9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7b5534af4eb4bbed7084d6576fe299f9">&#9670;&#160;</a></span>updatePawnPosition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Engine::updatePawnPosition </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Aktualizuje pozycję pionka w grze. </p>
+<p>Aktualizuje pozycję pionków na planszy.</p>
+<p>Funkcja ta odpowiada za przesuwanie pionków w zależności od liczby pozostałych kroków i granic planszy. Uwzględnia różne granice i przesunięcia pionków w zależności od stanu gry. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Dokumentacja atrybutów składowych</h2>
+<a id="a012122a04665021ce47d577ca5db6b6a" name="a012122a04665021ce47d577ca5db6b6a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a012122a04665021ce47d577ca5db6b6a">&#9670;&#160;</a></span>bitmapHandler</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_bitmap_handler.html">BitmapHandler</a> Engine::bitmapHandler</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Obiekt do zarządzania teksturami. </p>
+
+</div>
+</div>
+<a id="ae33d8b82d9c1f13b82812a48f28f36d3" name="ae33d8b82d9c1f13b82812a48f28f36d3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae33d8b82d9c1f13b82812a48f28f36d3">&#9670;&#160;</a></span>cameraZ</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Engine::cameraZ</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Pozycja kamery w osi Z. </p>
+
+</div>
+</div>
+<a id="aa60b15fe23aaf1ad61b9d50fc4dd4156" name="aa60b15fe23aaf1ad61b9d50fc4dd4156"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa60b15fe23aaf1ad61b9d50fc4dd4156">&#9670;&#160;</a></span>clearColor</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Engine::clearColor[4]</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Kolor tła okna. </p>
+
+</div>
+</div>
+<a id="acaf43e8c01111253aa02ee4f28ece467" name="acaf43e8c01111253aa02ee4f28ece467"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acaf43e8c01111253aa02ee4f28ece467">&#9670;&#160;</a></span>crossedBottomBoundary1</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Engine::crossedBottomBoundary1 = false</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Flaga dla pierwszej granicy. </p>
+
+</div>
+</div>
+<a id="ac86e9df9a04069e73842dbe5f59c353c" name="ac86e9df9a04069e73842dbe5f59c353c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac86e9df9a04069e73842dbe5f59c353c">&#9670;&#160;</a></span>crossedBottomBoundary2</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Engine::crossedBottomBoundary2 = false</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Flaga dla drugiej granicy. </p>
+
+</div>
+</div>
+<a id="ad3f81132b2483c07917b16ba1f67463a" name="ad3f81132b2483c07917b16ba1f67463a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad3f81132b2483c07917b16ba1f67463a">&#9670;&#160;</a></span>cubeRotationAngle</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Engine::cubeRotationAngle = 0.0f</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Kąt obrotu sześcianu. </p>
+
+</div>
+</div>
+<a id="aa981b7e994af5c9534bce8bd2a5c1a34" name="aa981b7e994af5c9534bce8bd2a5c1a34"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa981b7e994af5c9534bce8bd2a5c1a34">&#9670;&#160;</a></span>currentLightingMode</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_engine_8h.html#a3cea85bd9127b51d9ff35de2ffc9ca33">LightingMode</a> Engine::currentLightingMode = <a class="el" href="_engine_8h.html#a3cea85bd9127b51d9ff35de2ffc9ca33ab50339a10e1de285ac99d4c3990b8693">LightingMode::NONE</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0bb57d5b71cdc4906c2c4b5cf627d5e8" name="a0bb57d5b71cdc4906c2c4b5cf627d5e8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0bb57d5b71cdc4906c2c4b5cf627d5e8">&#9670;&#160;</a></span>currentShadingMode</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_shading_mode_8h.html#a474716bb9224d44d614704a0bd331d99">ShadingMode</a> Engine::currentShadingMode = <a class="el" href="_shading_mode_8h.html#a474716bb9224d44d614704a0bd331d99a464948bf38663fe1c4053f72402b63d5">ShadingMode::SMOOTH</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5a075b5b065acb5afba498512e2f2e56" name="a5a075b5b065acb5afba498512e2f2e56"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5a075b5b065acb5afba498512e2f2e56">&#9670;&#160;</a></span>dist</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::uniform_int_distribution&lt;int&gt; Engine::dist</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Rozkład liczb losowych. </p>
+
+</div>
+</div>
+<a id="ae0e3072dc26e8959a2aeb09af192913b" name="ae0e3072dc26e8959a2aeb09af192913b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae0e3072dc26e8959a2aeb09af192913b">&#9670;&#160;</a></span>drawer</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_primitive_drawer.html">PrimitiveDrawer</a> Engine::drawer</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a92b0632ac2b7f6489b5c1651ced327a8" name="a92b0632ac2b7f6489b5c1651ced327a8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a92b0632ac2b7f6489b5c1651ced327a8">&#9670;&#160;</a></span>frameRate</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Engine::frameRate</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Liczba klatek na sekundę </p>
+
+</div>
+</div>
+<a id="a51493b63c58390f775dd2bc6f72a2b75" name="a51493b63c58390f775dd2bc6f72a2b75"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a51493b63c58390f775dd2bc6f72a2b75">&#9670;&#160;</a></span>instance</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_engine.html">Engine</a> * Engine::instance = nullptr</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Instancja silnika. </p>
+
+</div>
+</div>
+<a id="acbb0b5a515d0de8f341edbbd5e5313ff" name="acbb0b5a515d0de8f341edbbd5e5313ff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acbb0b5a515d0de8f341edbbd5e5313ff">&#9670;&#160;</a></span>isCubeRotating</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Engine::isCubeRotating = false</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Flaga, czy sześcian się obraca. </p>
+
+</div>
+</div>
+<a id="a4a070d622787eda9eaa7481e5e0e854d" name="a4a070d622787eda9eaa7481e5e0e854d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4a070d622787eda9eaa7481e5e0e854d">&#9670;&#160;</a></span>isDragging</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Engine::isDragging = false</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Flaga, czy obiekt jest przesuwany. </p>
+
+</div>
+</div>
+<a id="a0f58c7db609a405d40028230a91780b9" name="a0f58c7db609a405d40028230a91780b9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0f58c7db609a405d40028230a91780b9">&#9670;&#160;</a></span>isDraggingLine</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Engine::isDraggingLine = false</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Flaga wskazująca, czy linia jest przesuwana. </p>
+
+</div>
+</div>
+<a id="a71418cda0ad7bdf0ea83efd1b7ff2b92" name="a71418cda0ad7bdf0ea83efd1b7ff2b92"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a71418cda0ad7bdf0ea83efd1b7ff2b92">&#9670;&#160;</a></span>isGameRunning</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Engine::isGameRunning = false</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Flaga, czy gra jest aktywna. </p>
+
+</div>
+</div>
+<a id="a8bd36fe72251827f01c81f463a3f2a42" name="a8bd36fe72251827f01c81f463a3f2a42"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8bd36fe72251827f01c81f463a3f2a42">&#9670;&#160;</a></span>isMyTurn</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Engine::isMyTurn</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Flaga określająca, czy gracz ma swoją turę </p>
+
+</div>
+</div>
+<a id="abae6224b7cd9e290d4f5c3d7b8494012" name="abae6224b7cd9e290d4f5c3d7b8494012"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abae6224b7cd9e290d4f5c3d7b8494012">&#9670;&#160;</a></span>isPawnMoving</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Engine::isPawnMoving = false</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Flaga dla ruchu pionka. </p>
+
+</div>
+</div>
+<a id="a961712fa0a8bca5d2d20bd2db9cad9e8" name="a961712fa0a8bca5d2d20bd2db9cad9e8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a961712fa0a8bca5d2d20bd2db9cad9e8">&#9670;&#160;</a></span>isPawnMoving2</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Engine::isPawnMoving2 = false</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Flaga dla ruchu drugiego pionka. </p>
+
+</div>
+</div>
+<a id="a1ff42d4086fe2b8e2d446f8e07d4934d" name="a1ff42d4086fe2b8e2d446f8e07d4934d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1ff42d4086fe2b8e2d446f8e07d4934d">&#9670;&#160;</a></span>lastFrameTime</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::chrono::time_point&lt;std::chrono::high_resolution_clock&gt; Engine::lastFrameTime</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Czas ostatniej klatki. </p>
+
+</div>
+</div>
+<a id="a538e3024b27fba17f64166258566429e" name="a538e3024b27fba17f64166258566429e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a538e3024b27fba17f64166258566429e">&#9670;&#160;</a></span>lastTime</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Engine::lastTime = 0</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Czas ostatniej klatki. </p>
+
+</div>
+</div>
+<a id="a482db988828093ffc0988c5e8671aaca" name="a482db988828093ffc0988c5e8671aaca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a482db988828093ffc0988c5e8671aaca">&#9670;&#160;</a></span>line</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_line.html">Line</a> Engine::line</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3f2b35a9a0d325ece4061016091fa397" name="a3f2b35a9a0d325ece4061016091fa397"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3f2b35a9a0d325ece4061016091fa397">&#9670;&#160;</a></span>lineStartPosX</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Engine::lineStartPosX = 0.0f</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Początkowa pozycja X linii. </p>
+
+</div>
+</div>
+<a id="ae8b0e135c2d201756b30e22a4748cdde" name="ae8b0e135c2d201756b30e22a4748cdde"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae8b0e135c2d201756b30e22a4748cdde">&#9670;&#160;</a></span>lineStartPosY</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Engine::lineStartPosY = 0.0f</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Początkowa pozycja Y linii. </p>
+
+</div>
+</div>
+<a id="aab03746af5870a5805423f4d659d3724" name="aab03746af5870a5805423f4d659d3724"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aab03746af5870a5805423f4d659d3724">&#9670;&#160;</a></span>maxCameraZ</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Engine::maxCameraZ = 20.0f</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Maksymalna wartość dla kamery. </p>
+
+</div>
+</div>
+<a id="a16c77a13619b9d491e2148df4d273080" name="a16c77a13619b9d491e2148df4d273080"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a16c77a13619b9d491e2148df4d273080">&#9670;&#160;</a></span>minCameraZ</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Engine::minCameraZ = 2.0f</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Minimalna wartość dla kamery. </p>
+
+</div>
+</div>
+<a id="a721c40e952fcb08d4f2904ca0df562de" name="a721c40e952fcb08d4f2904ca0df562de"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a721c40e952fcb08d4f2904ca0df562de">&#9670;&#160;</a></span>mouseStartX</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Engine::mouseStartX = 0.0f</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Początkowa współrzędna X myszki. </p>
+
+</div>
+</div>
+<a id="a28869c0ed2cb3f1e3984c573eb6a848b" name="a28869c0ed2cb3f1e3984c573eb6a848b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a28869c0ed2cb3f1e3984c573eb6a848b">&#9670;&#160;</a></span>mouseStartY</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Engine::mouseStartY = 0.0f</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Początkowa współrzędna Y myszki. </p>
+
+</div>
+</div>
+<a id="aadffdcbcb63ee62af27573f47c34858d" name="aadffdcbcb63ee62af27573f47c34858d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aadffdcbcb63ee62af27573f47c34858d">&#9670;&#160;</a></span>pawnLastMoveTime</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Engine::pawnLastMoveTime = 0.0f</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Czas ostatniego ruchu pionka. </p>
+
+</div>
+</div>
+<a id="ae2fbd93454678ca4f5c82319708005ac" name="ae2fbd93454678ca4f5c82319708005ac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae2fbd93454678ca4f5c82319708005ac">&#9670;&#160;</a></span>pawnLastMoveTime2</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Engine::pawnLastMoveTime2 = 0.0f</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Czas ostatniego ruchu drugiego pionka. </p>
+
+</div>
+</div>
+<a id="aaa1389598529e79624a53473e36fe368" name="aaa1389598529e79624a53473e36fe368"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaa1389598529e79624a53473e36fe368">&#9670;&#160;</a></span>pawnStepSize</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Engine::pawnStepSize = 0.05f</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Wielkość kroku pionka. </p>
+
+</div>
+</div>
+<a id="aacc19de6348c0caed04a9cb11a5d07f2" name="aacc19de6348c0caed04a9cb11a5d07f2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aacc19de6348c0caed04a9cb11a5d07f2">&#9670;&#160;</a></span>pawnStepSize2</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Engine::pawnStepSize2 = 0.05f</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Wielkość kroku drugiego pionka. </p>
+
+</div>
+</div>
+<a id="ac31460d29dd8e5269c6af694ba3ae2f1" name="ac31460d29dd8e5269c6af694ba3ae2f1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac31460d29dd8e5269c6af694ba3ae2f1">&#9670;&#160;</a></span>pawnStepsRemaining</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Engine::pawnStepsRemaining = 0</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Liczba pozostałych kroków pionka. </p>
+
+</div>
+</div>
+<a id="aae8c366bf87dd215356d4efac7941efe" name="aae8c366bf87dd215356d4efac7941efe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aae8c366bf87dd215356d4efac7941efe">&#9670;&#160;</a></span>pawnStepsRemaining2</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Engine::pawnStepsRemaining2 = 0</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Liczba pozostałych kroków drugiego pionka. </p>
+
+</div>
+</div>
+<a id="ac391917de4eeaa4b5018aa864ea3e129" name="ac391917de4eeaa4b5018aa864ea3e129"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac391917de4eeaa4b5018aa864ea3e129">&#9670;&#160;</a></span>pawnX</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Engine::pawnX = 0.1f</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a469d21e749ce69453faa31d221e16ed6" name="a469d21e749ce69453faa31d221e16ed6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a469d21e749ce69453faa31d221e16ed6">&#9670;&#160;</a></span>pawnX2</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Engine::pawnX2 = 0.1f</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa51e1321919f2b7ab9a811e58a78815a" name="aa51e1321919f2b7ab9a811e58a78815a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa51e1321919f2b7ab9a811e58a78815a">&#9670;&#160;</a></span>pawnY</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Engine::pawnY = 0.1f</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Pozycja pierwszego pionka. </p>
+
+</div>
+</div>
+<a id="a4858aab59deff8cab7a50dda419835d4" name="a4858aab59deff8cab7a50dda419835d4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4858aab59deff8cab7a50dda419835d4">&#9670;&#160;</a></span>pawnY2</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Engine::pawnY2 = 0.1f</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Pozycja drugiego pionka. </p>
+
+</div>
+</div>
+<a id="abd0ff72a70b7643680cff6cd0513620f" name="abd0ff72a70b7643680cff6cd0513620f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abd0ff72a70b7643680cff6cd0513620f">&#9670;&#160;</a></span>player</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_player.html">Player</a> Engine::player</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ace3ba6cad08529935746d70fdeb053c6" name="ace3ba6cad08529935746d70fdeb053c6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ace3ba6cad08529935746d70fdeb053c6">&#9670;&#160;</a></span>point</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_point.html">Point</a> Engine::point</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a19ffbc14ed3fc3a3b12ca8682f0cab16" name="a19ffbc14ed3fc3a3b12ca8682f0cab16"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a19ffbc14ed3fc3a3b12ca8682f0cab16">&#9670;&#160;</a></span>rng</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::mt19937 Engine::rng</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Generator liczb losowych. </p>
+
+</div>
+</div>
+<a id="acb484b0c74a082bb60b58e59597caca9" name="acb484b0c74a082bb60b58e59597caca9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acb484b0c74a082bb60b58e59597caca9">&#9670;&#160;</a></span>rotationAxisX</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Engine::rotationAxisX = 1.0f</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a536c98f8a00c8032da37a6620b4afd98" name="a536c98f8a00c8032da37a6620b4afd98"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a536c98f8a00c8032da37a6620b4afd98">&#9670;&#160;</a></span>rotationAxisY</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Engine::rotationAxisY = 0.0f</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3f2f555bc3b57ebc327012e0e647cb4c" name="a3f2f555bc3b57ebc327012e0e647cb4c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3f2f555bc3b57ebc327012e0e647cb4c">&#9670;&#160;</a></span>rotationAxisZ</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Engine::rotationAxisZ = 0.0f</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Osie obrotu. </p>
+
+</div>
+</div>
+<a id="a74905eb97a47c13676d6c735d73ae00b" name="a74905eb97a47c13676d6c735d73ae00b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a74905eb97a47c13676d6c735d73ae00b">&#9670;&#160;</a></span>rotationStartTime</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Engine::rotationStartTime = 0.0f</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Czas rozpoczęcia obrotu. </p>
+
+</div>
+</div>
+<a id="a4fbef408d27119137f1f203cf0aba652" name="a4fbef408d27119137f1f203cf0aba652"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4fbef408d27119137f1f203cf0aba652">&#9670;&#160;</a></span>triangle</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_triangle.html">Triangle</a> Engine::triangle</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0ac480c63e98dd9b1fe4c4a3c9e6a7ca" name="a0ac480c63e98dd9b1fe4c4a3c9e6a7ca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0ac480c63e98dd9b1fe4c4a3c9e6a7ca">&#9670;&#160;</a></span>windowHeight</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Engine::windowHeight</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Wymiary okna. </p>
+
+</div>
+</div>
+<a id="a2b7fed0a69907e37a2aa96040fc5f943" name="a2b7fed0a69907e37a2aa96040fc5f943"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2b7fed0a69907e37a2aa96040fc5f943">&#9670;&#160;</a></span>windowTitle</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* Engine::windowTitle</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Tytuł okna. </p>
+
+</div>
+</div>
+<a id="a541d921b6b97e8756522958a58814344" name="a541d921b6b97e8756522958a58814344"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a541d921b6b97e8756522958a58814344">&#9670;&#160;</a></span>windowWidth</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Engine::windowWidth</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<hr/>Dokumentacja dla tej klasy została wygenerowana z plików:<ul>
+<li>D:/Silnik_3D/Silnik_3D/<a class="el" href="_engine_8h_source.html">Engine.h</a></li>
+<li>D:/Silnik_3D/Silnik_3D/<a class="el" href="_engine_8cpp.html">Engine.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Wygenerowano za pomocą&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

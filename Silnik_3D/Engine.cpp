@@ -143,6 +143,8 @@ void Engine::render() {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glLoadIdentity();
 
+    configureLighting();
+
     // Ustawienie kamery
     gluLookAt(1.5, 1.5, cameraZ, 0.0, 0.0, 0.0, 0.0, 8.0, 0.0);
 
@@ -248,7 +250,13 @@ bool Engine::isPointNearLine(float px, float py, float x1, float y1, float x2, f
 }
 
 void Engine::onKeyboard(unsigned char key, int x, int y) {
-    if (key == 27) {
+    if (key == 'L' || key == 'l') { // Перемикання освітлення
+        switchLightingMode();
+    }
+    else if (key == 'S' || key == 's') { // Перемикання затінення
+        switchShadingMode();
+    }
+    else if (key == 27) { // Вихід
         stop();
     }
     player.handleInput(key);
@@ -575,4 +583,93 @@ void Engine::onMouseWheel(int wheel, int direction, int x, int y) {
     }
 
     glutPostRedisplay(); 
+}
+
+void Engine::switchShadingMode() {
+    // Перемикання між режимами затінення
+    if (currentShadingMode == ShadingMode::FLAT) {
+        currentShadingMode = ShadingMode::SMOOTH;
+        glShadeModel(GL_SMOOTH);
+    }
+    else {
+        currentShadingMode = ShadingMode::FLAT;
+        glShadeModel(GL_FLAT);
+    }
+}
+
+void Engine::configureLighting() {
+    glEnable(GL_LIGHTING); // Увімкнення освітлення
+
+    switch (currentLightingMode) {
+    case LightingMode::POINT_LIGHT: {
+        glEnable(GL_LIGHT0);
+        GLfloat pointLightPos[] = { 1.0f, 1.0f, 2.0f, 1.0f };  // Позиція точкового світла
+        GLfloat pointLightDiffuse[] = { 1.0f, 1.0f, 1.0f, 1.0f };  // Білий дифузний колір
+        GLfloat pointLightAmbient[] = { 0.2f, 0.2f, 0.2f, 1.0f };  // Слабкий навколишній білий колір
+        GLfloat pointLightSpecular[] = { 1.0f, 1.0f, 1.0f, 1.0f }; // Білий дзеркальний колір
+        glLightfv(GL_LIGHT0, GL_POSITION, pointLightPos);
+        glLightfv(GL_LIGHT0, GL_DIFFUSE, pointLightDiffuse);
+        glLightfv(GL_LIGHT0, GL_AMBIENT, pointLightAmbient);
+        glLightfv(GL_LIGHT0, GL_SPECULAR, pointLightSpecular);
+        break;
+    }
+
+    case LightingMode::DIRECTIONAL_LIGHT: {
+        glEnable(GL_LIGHT1);
+        GLfloat dirLightDir[] = { -1.0f, -1.0f, -1.0f, 0.0f };    // Напрямок спрямованого світла
+        GLfloat dirLightDiffuse[] = { 1.0f, 1.0f, 1.0f, 1.0f };   // Білий дифузний колір
+        GLfloat dirLightAmbient[] = { 0.2f, 0.2f, 0.2f, 1.0f };   // Слабкий навколишній білий колір
+        GLfloat dirLightSpecular[] = { 1.0f, 1.0f, 1.0f, 1.0f };  // Білий дзеркальний колір
+        glLightfv(GL_LIGHT1, GL_POSITION, dirLightDir);
+        glLightfv(GL_LIGHT1, GL_DIFFUSE, dirLightDiffuse);
+        glLightfv(GL_LIGHT1, GL_AMBIENT, dirLightAmbient);
+        glLightfv(GL_LIGHT1, GL_SPECULAR, dirLightSpecular);
+        break;
+    }
+
+    case LightingMode::SPOTLIGHT: {
+        glEnable(GL_LIGHT2);
+        GLfloat spotLightPos[] = { 0.0f, 0.0f, 5.0f, 1.0f };      // Позиція прожектора
+        GLfloat spotLightDir[] = { 0.0f, 0.0f, -1.0f };           // Напрямок прожектора
+        GLfloat spotLightDiffuse[] = { 1.0f, 1.0f, 1.0f, 1.0f };  // Білий дифузний колір
+        GLfloat spotLightAmbient[] = { 0.2f, 0.2f, 0.2f, 1.0f };  // Слабкий навколишній білий колір
+        GLfloat spotLightSpecular[] = { 1.0f, 1.0f, 1.0f, 1.0f }; // Білий дзеркальний колір
+        glLightfv(GL_LIGHT2, GL_POSITION, spotLightPos);
+        glLightfv(GL_LIGHT2, GL_SPOT_DIRECTION, spotLightDir);
+        glLightf(GL_LIGHT2, GL_SPOT_CUTOFF, 30.0f);
+        glLightfv(GL_LIGHT2, GL_DIFFUSE, spotLightDiffuse);
+        glLightfv(GL_LIGHT2, GL_AMBIENT, spotLightAmbient);
+        glLightfv(GL_LIGHT2, GL_SPECULAR, spotLightSpecular);
+        break;
+    }
+
+    case LightingMode::NONE:
+    default:
+        glDisable(GL_LIGHT0);
+        glDisable(GL_LIGHT1);
+        glDisable(GL_LIGHT2);
+        break;
+    }
+}
+
+
+
+void Engine::switchLightingMode() {
+    // Перемикання між режимами
+    switch (currentLightingMode) {
+    case LightingMode::NONE:
+        currentLightingMode = LightingMode::POINT_LIGHT;
+        break;
+    case LightingMode::POINT_LIGHT:
+        currentLightingMode = LightingMode::DIRECTIONAL_LIGHT;
+        break;
+    case LightingMode::DIRECTIONAL_LIGHT:
+        currentLightingMode = LightingMode::SPOTLIGHT;
+        break;
+    case LightingMode::SPOTLIGHT:
+        currentLightingMode = LightingMode::NONE;
+        break;
+    }
+
+    configureLighting(); // Оновлення налаштувань освітлення
 }

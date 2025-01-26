@@ -1,4 +1,4 @@
-#ifndef ENGINE_H
+﻿#ifndef ENGINE_H
 #define ENGINE_H
 
 #include <GL/freeglut.h>
@@ -14,6 +14,19 @@
 #include <chrono>
 #include <string>
 #include <windows.h>
+
+
+enum class LightingMode {
+    NONE,
+    POINT_LIGHT,
+    DIRECTIONAL_LIGHT,
+    SPOTLIGHT
+};
+
+enum class ShadingMode {
+    FLAT,
+    SMOOTH
+};
 
 class Engine {
 public:
@@ -34,17 +47,23 @@ public:
     void resetGame();
     bool crossedBottomBoundary1 = false; 
     bool crossedBottomBoundary2 = false; 
-    // Flagi i zmienne dla obs�ugi przesuwania linii
+    // Flagi i zmienne dla obsługi przesuwania linii
     bool isDraggingLine = false;        // Czy linia jest przesuwana
-    float mouseStartX = 0.0f;           // Pocz�tkowa wsp�rz�dna X myszki
-    float mouseStartY = 0.0f;           // Pocz�tkowa wsp�rz�dna Y myszki
-    float lineStartPosX = 0.0f;         // Pocz�tkowa pozycja X linii
-    float lineStartPosY = 0.0f;         // Pocz�tkowa pozycja Y linii
+    float mouseStartX = 0.0f;           // Początkowa współrzędna X myszki
+    float mouseStartY = 0.0f;           // Początkowa współrzędna Y myszki
+    float lineStartPosX = 0.0f;         // Początkowa pozycja X linii
+    float lineStartPosY = 0.0f;         // Początkowa pozycja Y linii
 
-    // Funkcje do obs�ugi klikni�� i ruchu myszki
-    void handleMouseClick(int button, int state, int x, int y); // Klikni�cie myszk�
-    void handleMouseMotion(int x, int y); // Ruch myszk�
-
+    // Funkcje do obsługi kliknięć i ruchu myszki
+    void handleMouseClick(int button, int state, int x, int y); // Kliknięcie myszką
+    void handleMouseMotion(int x, int y); // Ruch myszką
+    ShadingMode currentShadingMode = ShadingMode::SMOOTH; // Поточний режим затінення
+    LightingMode currentLightingMode = LightingMode::NONE; // Поточний режим освітлення
+    
+    
+    void switchShadingMode(); // Зміна режиму затінення
+    void configureLighting(); // Налаштування освітлення
+    void switchLightingMode(); // Зміна режиму освітлення
 
 
     void onMouseWheel(int wheel, int direction, int x, int y);
@@ -76,13 +95,13 @@ private:
     float maxCameraZ = 20.0f;
 
     bool isCubeRotating = false;
-    float rotationStartTime = 0.0f; // Czas rozpocz�cia obrotu
-    float cubeRotationAngle = 0.0f; // Aktualny k�t obrotu kostki
+    float rotationStartTime = 0.0f; // Czas rozpoczęcia obrotu
+    float cubeRotationAngle = 0.0f; // Aktualny kąt obrotu kostki
     float rotationAxisX = 1.0f;
     float rotationAxisY = 0.0f;
     float rotationAxisZ = 0.0f;
     std::mt19937 rng; // Generator liczb losowych
-    std::uniform_int_distribution<int> dist; // Rozk�ad liczb losowych
+    std::uniform_int_distribution<int> dist; // Rozkład liczb losowych
 
     bool isPawnMoving = false;
     bool isPawnMoving2 = false;

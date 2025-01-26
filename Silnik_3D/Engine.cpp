@@ -173,7 +173,7 @@ void Engine::render() {
     glPushMatrix();
     cube.draw();
     glRotatef(cubeRotationAngle, rotationAxisX, rotationAxisY, rotationAxisZ);  
-    PrimitiveDrawer::drawCubeNew(1.0f, 0.0f, 0.0f, bitmapHandler);
+    PrimitiveDrawer::drawCubeWithTexture(1.0f, 0.0f, 0.0f, bitmapHandler);
     glPopMatrix();
 
     // Aktualizacja i rysowanie pionków

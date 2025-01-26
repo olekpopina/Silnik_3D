@@ -17,7 +17,7 @@
 
 class Engine {
 public:
-    Engine(int width, int height, const char* title, int fps);
+    Engine(int width, int height, const char* title, int fps = 60);
 
     void init(int argc, char** argv);
     void showWinnerMessage(const std::string& winner);

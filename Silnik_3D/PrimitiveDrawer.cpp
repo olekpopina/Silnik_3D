@@ -158,7 +158,7 @@ void PrimitiveDrawer::drawCube(float scale, float offsetX, float offsetY,
 }
 
 
-void PrimitiveDrawer::drawCubeNew(float scale, float offsetX, float offsetY, BitmapHandler& bitmapHandler) {
+void PrimitiveDrawer::drawCubeWithTexture(float scale, float offsetX, float offsetY, BitmapHandler& bitmapHandler) {
     glEnable(GL_TEXTURE_2D);
 
 

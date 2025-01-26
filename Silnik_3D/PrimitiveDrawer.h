@@ -22,7 +22,7 @@ public:
     static void drawTriangle(const float vertices1[9], const float vertices2[9],
         const float vertices3[9], const float colors[9],
         float posX, float posY, float scale, float rotationAngle);
-    static void drawCubeNew(float scale, float offsetX, float offsetY, BitmapHandler& bitmapHandler);
+    static void drawCubeWithTexture(float scale, float offsetX, float offsetY, BitmapHandler& bitmapHandler);
     static void configureLight(GLenum light, const GLfloat* position, const GLfloat* ambient, const GLfloat* diffuse, const GLfloat* specular, const GLfloat* direction = nullptr, float cutoff = 180.0f, float exponent = 0.0f);
 
     static void drawCube(float scale, float offsetX, float offsetY, const float* vertices, const unsigned int* indices, const float* normals, const float* colors);

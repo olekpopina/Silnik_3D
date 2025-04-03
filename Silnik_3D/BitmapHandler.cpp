@@ -129,6 +129,7 @@ void BitmapHandler::bindCubeTexture(int faceIndex) {
  * Funkcja rysuje tło za pomocą załadowanej tekstury. Ustawia widok 3D,
  * wyłącza test głębokości oraz rysuje prostokąt z teksturą tła.
  */
+
 void BitmapHandler::drawBackground() {
     if (!glIsTexture(textureBackground)) return; // Sprawdź, czy tekstura jest załadowana
 
@@ -146,10 +147,10 @@ void BitmapHandler::drawBackground() {
     glBindTexture(GL_TEXTURE_2D, textureBackground);
 
     glBegin(GL_QUADS); // Rysowanie prostokąta z teksturą
-    glTexCoord2f(0.0f, 0.0f); glVertex2f(0.0f, 0.0f);
-    glTexCoord2f(1.0f, 0.0f); glVertex2f(1.0f, 0.0f);
-    glTexCoord2f(1.0f, 1.0f); glVertex2f(1.0f, 1.0f);
-    glTexCoord2f(0.0f, 1.0f); glVertex2f(0.0f, 1.0f);
+    glTexCoord2f(0.0f, 1.0f); glVertex2f(0.0f, 0.0f);
+    glTexCoord2f(1.0f, 1.0f); glVertex2f(1.0f, 0.0f);
+    glTexCoord2f(1.0f, 0.0f); glVertex2f(1.0f, 1.0f);
+    glTexCoord2f(0.0f, 0.0f); glVertex2f(0.0f, 1.0f);
     glEnd();
 
     glBindTexture(GL_TEXTURE_2D, 0); // Odłącz teksturę

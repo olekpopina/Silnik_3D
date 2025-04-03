@@ -358,6 +358,7 @@ void Engine::onSpecialKeyboard(int key, int x, int y) {
  * Funkcja ta odpowiada za przesuwanie pionków w zależności od liczby pozostałych kroków i granic planszy.
  * Uwzględnia różne granice i przesunięcia pionków w zależności od stanu gry.
  */
+/*
 void Engine::updatePawnPosition() {
     // Struktura zawierająca dane każdego pionka
     struct PawnData {
@@ -430,6 +431,80 @@ void Engine::updatePawnPosition() {
         }
     }
 }
+*/
+
+void Engine::updatePawnPosition() {
+    struct PawnData {
+        float& pawnX;
+        float& pawnY;
+        int& pawnStepsRemaining;
+        float pawnStepSize;
+        GLuint texture;
+        bool& isMoving;
+        const std::string winnerName;
+        bool& crossedBottomBoundary;
+        const std::vector<std::pair<float, float>>& path; // Ścieżka pionka
+        int& currentStep;
+    };
+
+    // Definicja ścieżek dla pionków (współrzędne X, Y w układzie normalizowanym)
+    const std::vector<std::pair<float, float>> redPath = {
+       {0.38f, 0.14f}, {0.38f, 0.21f}, {0.38f, 0.28f},  {0.38f, 0.35f}, 
+       {0.31f, 0.4f}, {0.25f, 0.4f}, {0.18f, 0.4f}, {0.11f, 0.4f}, {0.04f, 0.4f}, {0.00f, 0.4f},
+       {0.00f, 0.47f}, {0.00f, 0.54f},
+       {0.06f, 0.54f},{0.13f, 0.54f}, {0.20f, 0.54f}, {0.26f, 0.54f}, {0.33f, 0.54f}, 
+       {0.39f, 0.61f}, {0.39f, 0.68f}, {0.39f, 0.75f}, {0.39f, 0.82f}, {0.39f, 0.89f}, 
+       {0.39f, 0.94f}, {0.46f, 0.94f}, {0.52f, 0.94f},
+       {0.52f, 0.87f}, {0.52f, 0.80f}, {0.52f, 0.73f}, {0.52f, 0.66f}, {0.52f, 0.59f}, {0.59f, 0.53f}, {0.66f, 0.53f},{0.72f, 0.53f}, {0.79f, 0.53f}, {0.86f, 0.53f}, {0.91f, 0.53f}, {0.91f, 0.46f},
+       {0.91f, 0.4f}, {0.85f, 0.4f}, {0.78f, 0.4f}, { 0.71f, 0.4f }, {0.64f, 0.4f}, {0.58f, 0.4f},  
+       {0.52f, 0.33f}, {0.52f, 0.26f}, {0.52f, 0.19f}, {0.52f, 0.12f}, {0.52f, 0.05f}, {0.52f, 0.00f}, {0.45f, 0.00f},
+       {0.45f, 0.07f}, {0.45f, 0.14f}, {0.45f, 0.21f}, {0.45f, 0.28f}, {0.45f, 0.35f}, {0.45f, 0.42f}
+  
+    };
+   
+    const std::vector<std::pair<float, float>> bluePath = {
+        {0.78f, 0.4f}, { 0.71f, 0.4f }, {0.64f, 0.4f}, {0.58f, 0.4f},
+        {0.52f, 0.33f}, {0.52f, 0.26f}, {0.52f, 0.19f}, {0.52f, 0.12f}, {0.52f, 0.05f}, {0.52f, 0.00f},
+        {0.45f, 0.00f}, {0.38f, 0.00f}, {0.38f, 0.07f}, {0.38f, 0.14f}, {0.38f, 0.21f}, {0.38f, 0.28f}, {0.38f, 0.35f}, 
+        {0.31f, 0.4f}, {0.25f, 0.4f}, {0.18f, 0.4f}, {0.11f, 0.4f}, {0.04f, 0.4f}, {0.00f, 0.4f}, {0.00f, 0.47f}, {0.00f, 0.54f},
+        {0.06f, 0.54f},{0.13f, 0.54f}, {0.20f, 0.54f}, {0.26f, 0.54f}, {0.33f, 0.54f}, {0.39f, 0.61f}, {0.39f, 0.68f}, {0.39f, 0.75f}, {0.39f, 0.82f}, {0.39f, 0.89f}, {0.39f, 0.94f}, {0.46f, 0.94f}, {0.52f, 0.94f},
+        {0.52f, 0.87f}, {0.52f, 0.80f}, {0.52f, 0.73f}, {0.52f, 0.66f}, {0.52f, 0.59f}, {0.59f, 0.53f}, {0.66f, 0.53f},{0.72f, 0.53f}, {0.79f, 0.53f}, {0.86f, 0.53f}, {0.91f, 0.53f}, {0.91f, 0.46f}, {0.84f, 0.46f}, {0.77f, 0.46f}, {0.70f, 0.46f}, {0.64f, 0.46f}, {0.58f, 0.46f}, {0.51f, 0.46f}
+
+
+    };
+   
+    const std::vector<std::pair<float, float>> houseBlue = {
+
+    };
+
+    std::array<PawnData, 2> pawns = { {
+         {pawnX, pawnY, pawnStepsRemaining, pawnStepSize, bitmapHandler.texture_pionek, isPawnMoving, "Pionek czerwony", crossedBottomBoundary1, redPath, currentStepRed},
+         {pawnX2, pawnY2, pawnStepsRemaining2, pawnStepSize2, bitmapHandler.texture_pionek2, isPawnMoving2, "Pionek niebieski", crossedBottomBoundary2, bluePath, currentStepBlue}
+     } };
+
+    for (auto& pawn : pawns) {
+        if (pawn.pawnStepsRemaining > 0 && pawn.currentStep < pawn.path.size()) {
+            pawn.pawnX = pawn.path[pawn.currentStep].first;
+            pawn.pawnY = pawn.path[pawn.currentStep].second;
+            pawn.currentStep++;
+            pawn.pawnStepsRemaining--;
+
+            if (pawn.currentStep == pawn.path.size()) {
+                pawn.isMoving = false;
+            }
+        }
+        if (pawn.currentStep >= pawn.path.size()) {
+            showWinnerMessage(pawn.winnerName); // Wyświetlenie komunikatu o zwycięstwie
+            resetGame(); // Reset gry
+            return;
+        }
+    }
+}
+   
+
+
+
+
 
 /**
  * @brief Resetuje stan gry, ustawiając pionki na początkowe pozycje.
@@ -438,10 +513,10 @@ void Engine::updatePawnPosition() {
  */
 void Engine::resetGame() {
     // Resetowanie pozycji pionków do początkowych współrzędnych
-    pawnX = 0.1f;
-    pawnY = 0.1f; 
-    pawnX2 = 0.1f;
-    pawnY2 = 0.1f; 
+    pawnX = 0.38f;
+    pawnY = 0.06f; 
+    pawnX2 = 0.85f;
+    pawnY2 = 0.4f; 
 
     // Resetowanie liczby kroków
     pawnStepsRemaining = 0;

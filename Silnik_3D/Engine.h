@@ -15,6 +15,7 @@
 #include <string>
 #include <windows.h>
 #include "ShadingMode.h"
+#include <thread>
 
 // Enum reprezentujący tryby oświetlenia
 enum class LightingMode {
@@ -255,12 +256,17 @@ private:
     int pawnStepsRemaining = 0; ///< Liczba pozostałych kroków pionka
     int pawnStepsRemaining2 = 0; ///< Liczba pozostałych kroków drugiego pionka
     float pawnStepSize = 0.05f; ///< Wielkość kroku pionka
-    float pawnStepSize2 = 0.05f; ///< Wielkość kroku drugiego pionka
-    float pawnX = 0.1f, pawnY = 0.1f; ///< Pozycja pierwszego pionka
-    float pawnX2 = 0.1f, pawnY2 = 0.1f; ///< Pozycja drugiego pionka
+    float pawnStepSize2 = 0.1f; ///< Wielkość kroku drugiego pionka
+    float pawnX = 0.38f, pawnY = 0.06f; ///< Pozycja pierwszego pionka
+    float pawnX2 = 0.85f, pawnY2 = 0.4f; ///< Pozycja drugiego pionka
     float pawnLastMoveTime = 0.0f; ///< Czas ostatniego ruchu pionka
     float pawnLastMoveTime2 = 0.0f; ///< Czas ostatniego ruchu drugiego pionka
     bool isMyTurn; ///< Flaga określająca, czy gracz ma swoją turę
+    int currentStepRed = 0;
+    int currentStepBlue = 0;
+
+    
+
 
     // Statyczne funkcje wywoływane przez OpenGL
     static void renderCallback();

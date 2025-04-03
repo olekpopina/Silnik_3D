@@ -1,4 +1,5 @@
-﻿#include "Engine.h"
+﻿
+#include "Engine.h"
 #include <SFML/Graphics.hpp>
 
 /**
@@ -19,9 +20,9 @@ int main(int argc, char** argv) {
      * Wektor zawiera ścieżki do plików obrazów, które będą ładowane
      * i używane jako tekstury w silniku gry.
      */
-    std::vector<std::string> texturePaths = {
-        "images/tlo.png", "images/1.png", "images/2.png", "images/3.png",
-        "images/4.png", "images/5.png", "images/6.png", "images/pionek1.png", "images/pionek2.png"
+   std::vector<std::string> texturePaths = {
+       "images/tlo_chinczyk.png", "images/1.png", "images/2.png", "images/3.png",
+       "images/4.png", "images/5.png", "images/6.png", "images/pionek1.png", "images/pionek2.png"
     };
 
     /**
@@ -71,7 +72,7 @@ int main(int argc, char** argv) {
      * @param green Składowa zielona (0.3f).
      * @param blue Składowa niebieska (0.4f).
      */
-    gameEngine.setClearColor(0.2f, 0.3f, 0.4f);
+   gameEngine.setClearColor(0.2f, 0.3f, 0.4f);
 
     /**
      * @brief Ustawienie ścieżek tekstur.
@@ -80,14 +81,15 @@ int main(int argc, char** argv) {
      *
      * @param texturePaths Wektor zawierający ścieżki do plików z teksturami.
      */
-    gameEngine.setTextures(texturePaths);
+   gameEngine.setTextures(texturePaths);
 
     /**
      * @brief Uruchomienie głównej pętli gry.
      *
      * Rozpoczyna działanie silnika gry, w tym renderowanie i obsługę zdarzeń.
      */
-    gameEngine.run();
+   gameEngine.run();
 
-    return 0;
+   return 0;
 }
+

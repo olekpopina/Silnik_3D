@@ -225,7 +225,7 @@ void Engine::render() {
 
     // Rysowanie kostki z obrotem
     glPushMatrix();
-    cube.draw();
+    //cube.draw();
     glRotatef(cubeRotationAngle, rotationAxisX, rotationAxisY, rotationAxisZ);  
     PrimitiveDrawer::drawCubeWithTexture(1.0f, 0.0f, 0.0f, bitmapHandler);
     glPopMatrix();
@@ -259,12 +259,28 @@ void Engine::render() {
         }
     }
 
-    // Rysowanie pierwszego pionka
-    bitmapHandler.drawPionek(pawnX, pawnY, 0.1f, 0.1f, bitmapHandler.texture_pionek);
+    // Rysowanie czerwonych pionków w domku
+    for (const auto& pos : redHouse) {
+        bitmapHandler.drawPionek(pos.first, pos.second, 0.08f, 0.08f, bitmapHandler.texture_pionek);
+    }
 
-    // Rysowanie drugiego pionka
-    bitmapHandler.drawPionek(pawnX2, pawnY2, 0.1f, 0.1f, bitmapHandler.texture_pionek2);
+    // Rysowanie niebieskich pionków w domku
+    for (const auto& pos : blueHouse) {
+        bitmapHandler.drawPionek(pos.first, pos.second, 0.08f, 0.08f, bitmapHandler.texture_pionek2);
+    }
 
+   // Rysowanie pionków tylko jeśli wyszły z domku
+// Rysowanie pionka czerwonego (jeśli już jest na planszy)
+    if (currentStepRed > 0 || pawnStepsRemaining >= -1) {
+        bitmapHandler.drawPionek(pawnX, pawnY, 0.1f, 0.1f, bitmapHandler.texture_pionek);
+    }
+
+    // Rysowanie pionka niebieskiego
+    if (currentStepBlue > 0 || pawnStepsRemaining2 >= -1) {
+        bitmapHandler.drawPionek(pawnX2, pawnY2, 0.1f, 0.1f, bitmapHandler.texture_pionek2);
+    }
+
+    
     // Rysowanie trójkąta
     glPushMatrix();
     triangle.updateRotation();
@@ -273,8 +289,8 @@ void Engine::render() {
 
     // Rysowanie linii i punktu
     glPushMatrix();
-    line.draw();
-    point.draw();
+    //line.draw();
+   // point.draw();
     glPopMatrix();
 
     // Ustawienie drugiej kamery
@@ -352,87 +368,7 @@ void Engine::onSpecialKeyboard(int key, int x, int y) {
     glutPostRedisplay();
 }
 
-/**
- * @brief Aktualizuje pozycję pionków na planszy.
- *
- * Funkcja ta odpowiada za przesuwanie pionków w zależności od liczby pozostałych kroków i granic planszy.
- * Uwzględnia różne granice i przesunięcia pionków w zależności od stanu gry.
- */
 /*
-void Engine::updatePawnPosition() {
-    // Struktura zawierająca dane każdego pionka
-    struct PawnData {
-        float& pawnX;                 // Współrzędna X pionka
-        float& pawnY;                 // Współrzędna Y pionka
-        int& pawnStepsRemaining;      // Liczba pozostałych kroków
-        float pawnStepSize;           // Rozmiar jednego kroku
-        GLuint texture;               // Tekstura pionka
-        bool& isMoving;               // Flaga wskazująca, czy pionek się porusza
-        const std::string winnerName; // Nazwa gracza
-        bool& crossedBottomBoundary;  // Czy pionek przekroczył dolną granicę
-    };
-
-    // Konfiguracja dwóch pionków
-    std::array<PawnData, 2> pawns = { {
-        {pawnX, pawnY, pawnStepsRemaining, pawnStepSize, bitmapHandler.texture_pionek, isPawnMoving, "Pionek czerwony", crossedBottomBoundary1},
-        {pawnX2, pawnY2, pawnStepsRemaining2, pawnStepSize2, bitmapHandler.texture_pionek2, isPawnMoving2, "Pionek niebieski", crossedBottomBoundary2}
-    } };
-
-    // Stałe granice planszy
-    const float LEFT_LIMIT = 0.1f;     // Lewa granica planszy
-    const float RIGHT_LIMIT = 0.85f;   // Prawa granica planszy
-    const float BOTTOM_LIMIT = 0.1f;   // Dolna granica planszy
-    const float TOP_LIMIT = 0.85f;     // Górna granica planszy
-    const float START_X = 0.1f;        // Początkowa współrzędna X
-    const float START_Y = 0.1f;        // Początkowa współrzędna Y
-    const float EPSILON = 0.01f;       // Tolerancja dla błędów obliczeń zmiennoprzecinkowych
-
-    // Iteracja przez wszystkie pionki
-    for (auto& pawn : pawns) {
-        if (pawn.pawnStepsRemaining > 0) {
-            // Logika poruszania się pionka po granicach planszy
-            if (std::abs(pawn.pawnX - LEFT_LIMIT) < EPSILON && pawn.pawnY > BOTTOM_LIMIT) {
-                pawn.pawnY -= pawn.pawnStepSize; // Ruch w dół
-                if (pawn.pawnY < BOTTOM_LIMIT) pawn.pawnY = BOTTOM_LIMIT; // Zapobieganie wyjściu poza granicę
-            }
-            else if (std::abs(pawn.pawnY - BOTTOM_LIMIT) < EPSILON && pawn.pawnX < RIGHT_LIMIT) {
-                pawn.pawnX += pawn.pawnStepSize; // Ruch w prawo
-                if (pawn.pawnX > RIGHT_LIMIT) pawn.pawnX = RIGHT_LIMIT; // Zapobieganie wyjściu poza granicę
-            }
-            else if (std::abs(pawn.pawnX - RIGHT_LIMIT) < EPSILON && pawn.pawnY < TOP_LIMIT) {
-                pawn.pawnY += pawn.pawnStepSize; // Ruch w górę
-                if (pawn.pawnY > TOP_LIMIT) pawn.pawnY = TOP_LIMIT; // Zapobieganie wyjściu poza granicę
-            }
-            else if (std::abs(pawn.pawnY - TOP_LIMIT) < EPSILON && pawn.pawnX > LEFT_LIMIT) {
-                pawn.pawnX -= pawn.pawnStepSize; // Ruch w lewo
-                if (pawn.pawnX < LEFT_LIMIT) pawn.pawnX = LEFT_LIMIT; // Zapobieganie wyjściu poza granicę
-            }
-
-            // Sprawdzenie, czy pionek przekroczył dolną granicę
-            if (std::abs(pawn.pawnY - BOTTOM_LIMIT) < EPSILON) {
-                pawn.crossedBottomBoundary = true;
-            }
-
-            // Sprawdzenie, czy pionek wrócił na pozycję początkową (X = 0.1, Y = 0.1)
-            if (pawn.crossedBottomBoundary &&
-                std::abs(pawn.pawnX - START_X) < EPSILON &&
-                std::abs(pawn.pawnY - START_Y) < EPSILON) {
-                showWinnerMessage(pawn.winnerName); // Wyświetlenie komunikatu o zwycięstwie
-                resetGame(); // Reset gry
-                return;
-            }
-
-            pawn.pawnStepsRemaining--; // Zmniejszenie liczby pozostałych kroków
-        }
-
-        // Zatrzymanie ruchu, jeśli pionek zakończył wszystkie kroki
-        if (pawn.pawnStepsRemaining == 0) {
-            pawn.isMoving = false;
-        }
-    }
-}
-*/
-
 void Engine::updatePawnPosition() {
     struct PawnData {
         float& pawnX;
@@ -500,8 +436,78 @@ void Engine::updatePawnPosition() {
         }
     }
 }
-   
+   */
 
+void Engine::updatePawnPosition() {
+    struct PawnData {
+        float& pawnX;
+        float& pawnY;
+        int& pawnStepsRemaining;
+        float pawnStepSize;
+        GLuint texture;
+        bool& isMoving;
+        const std::string winnerName;
+        bool& crossedBottomBoundary;
+        std::vector<std::pair<float, float>>& house; // domek
+        int& currentStep;
+        const std::vector<std::pair<float, float>>& path; // ścieżka
+        bool isRed; // czy pionek czerwony
+    };
+    
+    std::array<PawnData, 2> pawns = { {
+        {pawnX, pawnY, pawnStepsRemaining, pawnStepSize, bitmapHandler.texture_pionek, isPawnMoving, "Pionek czerwony", crossedBottomBoundary1, redHouse, currentStepRed, {
+            {0.38f, 0.06f}, { 0.38f, 0.14f }, {0.38f, 0.21f}, {0.38f, 0.28f}, {0.38f, 0.35f}, {0.31f, 0.4f}, {0.25f, 0.4f},
+            {0.18f, 0.4f}, {0.11f, 0.4f}, {0.04f, 0.4f}, {0.00f, 0.4f}, {0.00f, 0.47f}, {0.00f, 0.54f},
+            {0.06f, 0.54f}, {0.13f, 0.54f}, {0.20f, 0.54f}, {0.26f, 0.54f}, {0.33f, 0.54f}, {0.39f, 0.61f},
+            {0.39f, 0.68f}, {0.39f, 0.75f}, {0.39f, 0.82f}, {0.39f, 0.89f}, {0.39f, 0.94f}, {0.46f, 0.94f},
+            {0.52f, 0.94f}, {0.52f, 0.87f}, {0.52f, 0.80f}, {0.52f, 0.73f}, {0.52f, 0.66f}, {0.52f, 0.59f},
+            {0.59f, 0.53f}, {0.66f, 0.53f}, {0.72f, 0.53f}, {0.79f, 0.53f}, {0.86f, 0.53f}, {0.91f, 0.53f},
+            {0.91f, 0.46f}, {0.91f, 0.4f}, {0.85f, 0.4f}, {0.78f, 0.4f}, {0.71f, 0.4f}, {0.64f, 0.4f},
+            {0.58f, 0.4f}, {0.52f, 0.33f}, {0.52f, 0.26f}, {0.52f, 0.19f}, {0.52f, 0.12f}, {0.52f, 0.05f},
+            {0.52f, 0.00f}, {0.45f, 0.00f}, {0.45f, 0.07f}, {0.45f, 0.14f}, {0.45f, 0.21f}, {0.45f, 0.28f},
+            {0.45f, 0.35f}, {0.45f, 0.42f}
+        }, true},
+
+        {pawnX2, pawnY2, pawnStepsRemaining2, pawnStepSize2, bitmapHandler.texture_pionek2, isPawnMoving2, "Pionek niebieski", crossedBottomBoundary2, blueHouse, currentStepBlue, {
+            {0.85f, 0.4f}, { 0.78f, 0.4f }, {0.71f, 0.4f}, {0.64f, 0.4f}, {0.58f, 0.4f}, {0.52f, 0.33f}, {0.52f, 0.26f},
+            {0.52f, 0.19f}, {0.52f, 0.12f}, {0.52f, 0.05f}, {0.52f, 0.00f}, {0.45f, 0.00f}, {0.38f, 0.00f},
+            {0.38f, 0.07f}, {0.38f, 0.14f}, {0.38f, 0.21f}, {0.38f, 0.28f}, {0.38f, 0.35f}, {0.31f, 0.4f},
+            {0.25f, 0.4f}, {0.18f, 0.4f}, {0.11f, 0.4f}, {0.04f, 0.4f}, {0.00f, 0.4f}, {0.00f, 0.47f},
+            {0.00f, 0.54f}, {0.06f, 0.54f}, {0.13f, 0.54f}, {0.20f, 0.54f}, {0.26f, 0.54f}, {0.33f, 0.54f},
+            {0.39f, 0.61f}, {0.39f, 0.68f}, {0.39f, 0.75f}, {0.39f, 0.82f}, {0.39f, 0.89f}, {0.39f, 0.94f},
+            {0.46f, 0.94f}, {0.52f, 0.94f}, {0.52f, 0.87f}, {0.52f, 0.80f}, {0.52f, 0.73f}, {0.52f, 0.66f},
+            {0.52f, 0.59f}, {0.59f, 0.53f}, {0.66f, 0.53f}, {0.72f, 0.53f}, {0.79f, 0.53f}, {0.86f, 0.53f},
+            {0.91f, 0.53f}, {0.91f, 0.46f}, {0.84f, 0.46f}, {0.77f, 0.46f}, {0.70f, 0.46f}, {0.64f, 0.46f},
+            {0.58f, 0.46f}, {0.51f, 0.46f}
+        }, false}
+    } };
+
+    for (auto& pawn : pawns) {
+        // Specjalna flaga: pionek właśnie wyszedł na planszę
+        if (pawn.pawnStepsRemaining == -1) {
+            pawn.isMoving = false; // nie rusza się jeszcze
+            continue;
+        }
+
+        // Normalne przesuwanie po ścieżce
+        if (pawn.pawnStepsRemaining > 0 && pawn.currentStep < pawn.path.size()) {
+            pawn.pawnX = pawn.path[pawn.currentStep].first;
+            pawn.pawnY = pawn.path[pawn.currentStep].second;
+            pawn.currentStep++;
+            pawn.pawnStepsRemaining--;
+
+            if (pawn.pawnStepsRemaining == 0 || pawn.currentStep >= pawn.path.size()) {
+                pawn.isMoving = false;
+            }
+
+            if (pawn.currentStep >= pawn.path.size()) {
+                showWinnerMessage(pawn.winnerName);
+                resetGame();
+                return;
+            }
+        }
+    }
+}
 
 
 
@@ -558,7 +564,7 @@ void Engine::onMouse(int button, int state, int x, int y) {
             // Generowanie losowej liczby kroków dla pionka
             srand(static_cast<unsigned int>(time(nullptr)));
             int steps = (rand() % 6) + 1;
-
+            /*
             if (isMyTurn) {
                 pawnStepsRemaining = steps;
                 std::cout << "[DEBUG] Wylosowano dla pionka 1: " << steps << std::endl;
@@ -567,6 +573,41 @@ void Engine::onMouse(int button, int state, int x, int y) {
                 pawnStepsRemaining2 = steps;
                 std::cout << "[DEBUG] Wylosowano dla pionka 2: " << steps << std::endl;
             }
+            */
+            
+            if (isMyTurn) {
+                if (steps == 6 && redHouseIndex < redHouse.size()) {
+                    redHouse.erase(redHouse.begin() + redHouseIndex);
+
+                    pawnX = 0.38f; 
+                    pawnY = 0.06f;
+                    currentStepRed = 0;
+                    pawnStepsRemaining = 1; 
+
+                    std::cout << "[DEBUG] Czerwony pionek wychodzi na startowe pole!" << std::endl;
+                }
+                else {
+                    pawnStepsRemaining = steps;
+                    std::cout << "[DEBUG] Ruch czerwonego: " << steps << std::endl;
+                }
+            }
+            else {
+                if (steps == 6 && blueHouseIndex < blueHouse.size()) {
+                    blueHouse.erase(blueHouse.begin() + blueHouseIndex);
+
+                    pawnX2 = 0.85f;
+                    pawnY2 = 0.4f;
+                    currentStepBlue = 0;
+                    pawnStepsRemaining2 = 1;
+
+                    std::cout << "[DEBUG] Niebieski pionek wychodzi na startowe pole!" << std::endl;
+                }
+                else {
+                    pawnStepsRemaining2 = steps;
+                    std::cout << "[DEBUG] Ruch niebieskiego: " << steps << std::endl;
+                }
+            }
+
 
             // Ustawianie tekstury kostki w zależności od liczby kroków
             drawer.textureSet = steps;

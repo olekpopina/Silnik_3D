@@ -257,7 +257,8 @@ private:
     int pawnStepsRemaining2 = 0; ///< Liczba pozostałych kroków drugiego pionka
     float pawnStepSize = 0.05f; ///< Wielkość kroku pionka
     float pawnStepSize2 = 0.1f; ///< Wielkość kroku drugiego pionka
-    float pawnX = 0.38f, pawnY = 0.06f; ///< Pozycja pierwszego pionka
+    float pawnX = 0.38f;
+    float pawnY = 0.06f; ///< Pozycja pierwszego pionka
     float pawnX2 = 0.85f, pawnY2 = 0.4f; ///< Pozycja drugiego pionka
     float pawnLastMoveTime = 0.0f; ///< Czas ostatniego ruchu pionka
     float pawnLastMoveTime2 = 0.0f; ///< Czas ostatniego ruchu drugiego pionka
@@ -266,6 +267,19 @@ private:
     int currentStepBlue = 0;
 
     
+
+
+    // Nowe dane domków
+    std::vector<std::pair<float, float>> redHouse = {
+        {0.12f, 0.12f}, {0.12f, 0.22f}, {0.22f, 0.12f}, {0.22f, 0.22f}
+    };
+    std::vector<std::pair<float, float>> blueHouse = {
+        {0.80f, 0.13f}, {0.80f, 0.23f}, {0.70f, 0.13f}, {0.70f, 0.23f}
+    };
+
+    int redHouseIndex = 0;
+    int blueHouseIndex = 0;
+
 
 
     // Statyczne funkcje wywoływane przez OpenGL

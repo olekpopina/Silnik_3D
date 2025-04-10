@@ -271,12 +271,12 @@ void Engine::render() {
 
    // Rysowanie pionków tylko jeśli wyszły z domku
 // Rysowanie pionka czerwonego (jeśli już jest na planszy)
-    if (currentStepRed > 0 || pawnStepsRemaining >= -1) {
+    if (redPawnInPlay) {
+
         bitmapHandler.drawPionek(pawnX, pawnY, 0.1f, 0.1f, bitmapHandler.texture_pionek);
     }
 
-    // Rysowanie pionka niebieskiego
-    if (currentStepBlue > 0 || pawnStepsRemaining2 >= -1) {
+    if (bluePawnInPlay) {
         bitmapHandler.drawPionek(pawnX2, pawnY2, 0.1f, 0.1f, bitmapHandler.texture_pionek2);
     }
 
@@ -368,76 +368,6 @@ void Engine::onSpecialKeyboard(int key, int x, int y) {
     glutPostRedisplay();
 }
 
-/*
-void Engine::updatePawnPosition() {
-    struct PawnData {
-        float& pawnX;
-        float& pawnY;
-        int& pawnStepsRemaining;
-        float pawnStepSize;
-        GLuint texture;
-        bool& isMoving;
-        const std::string winnerName;
-        bool& crossedBottomBoundary;
-        const std::vector<std::pair<float, float>>& path; // Ścieżka pionka
-        int& currentStep;
-    };
-
-    // Definicja ścieżek dla pionków (współrzędne X, Y w układzie normalizowanym)
-    const std::vector<std::pair<float, float>> redPath = {
-       {0.38f, 0.14f}, {0.38f, 0.21f}, {0.38f, 0.28f},  {0.38f, 0.35f}, 
-       {0.31f, 0.4f}, {0.25f, 0.4f}, {0.18f, 0.4f}, {0.11f, 0.4f}, {0.04f, 0.4f}, {0.00f, 0.4f},
-       {0.00f, 0.47f}, {0.00f, 0.54f},
-       {0.06f, 0.54f},{0.13f, 0.54f}, {0.20f, 0.54f}, {0.26f, 0.54f}, {0.33f, 0.54f}, 
-       {0.39f, 0.61f}, {0.39f, 0.68f}, {0.39f, 0.75f}, {0.39f, 0.82f}, {0.39f, 0.89f}, 
-       {0.39f, 0.94f}, {0.46f, 0.94f}, {0.52f, 0.94f},
-       {0.52f, 0.87f}, {0.52f, 0.80f}, {0.52f, 0.73f}, {0.52f, 0.66f}, {0.52f, 0.59f}, {0.59f, 0.53f}, {0.66f, 0.53f},{0.72f, 0.53f}, {0.79f, 0.53f}, {0.86f, 0.53f}, {0.91f, 0.53f}, {0.91f, 0.46f},
-       {0.91f, 0.4f}, {0.85f, 0.4f}, {0.78f, 0.4f}, { 0.71f, 0.4f }, {0.64f, 0.4f}, {0.58f, 0.4f},  
-       {0.52f, 0.33f}, {0.52f, 0.26f}, {0.52f, 0.19f}, {0.52f, 0.12f}, {0.52f, 0.05f}, {0.52f, 0.00f}, {0.45f, 0.00f},
-       {0.45f, 0.07f}, {0.45f, 0.14f}, {0.45f, 0.21f}, {0.45f, 0.28f}, {0.45f, 0.35f}, {0.45f, 0.42f}
-  
-    };
-   
-    const std::vector<std::pair<float, float>> bluePath = {
-        {0.78f, 0.4f}, { 0.71f, 0.4f }, {0.64f, 0.4f}, {0.58f, 0.4f},
-        {0.52f, 0.33f}, {0.52f, 0.26f}, {0.52f, 0.19f}, {0.52f, 0.12f}, {0.52f, 0.05f}, {0.52f, 0.00f},
-        {0.45f, 0.00f}, {0.38f, 0.00f}, {0.38f, 0.07f}, {0.38f, 0.14f}, {0.38f, 0.21f}, {0.38f, 0.28f}, {0.38f, 0.35f}, 
-        {0.31f, 0.4f}, {0.25f, 0.4f}, {0.18f, 0.4f}, {0.11f, 0.4f}, {0.04f, 0.4f}, {0.00f, 0.4f}, {0.00f, 0.47f}, {0.00f, 0.54f},
-        {0.06f, 0.54f},{0.13f, 0.54f}, {0.20f, 0.54f}, {0.26f, 0.54f}, {0.33f, 0.54f}, {0.39f, 0.61f}, {0.39f, 0.68f}, {0.39f, 0.75f}, {0.39f, 0.82f}, {0.39f, 0.89f}, {0.39f, 0.94f}, {0.46f, 0.94f}, {0.52f, 0.94f},
-        {0.52f, 0.87f}, {0.52f, 0.80f}, {0.52f, 0.73f}, {0.52f, 0.66f}, {0.52f, 0.59f}, {0.59f, 0.53f}, {0.66f, 0.53f},{0.72f, 0.53f}, {0.79f, 0.53f}, {0.86f, 0.53f}, {0.91f, 0.53f}, {0.91f, 0.46f}, {0.84f, 0.46f}, {0.77f, 0.46f}, {0.70f, 0.46f}, {0.64f, 0.46f}, {0.58f, 0.46f}, {0.51f, 0.46f}
-
-
-    };
-   
-    const std::vector<std::pair<float, float>> houseBlue = {
-
-    };
-
-    std::array<PawnData, 2> pawns = { {
-         {pawnX, pawnY, pawnStepsRemaining, pawnStepSize, bitmapHandler.texture_pionek, isPawnMoving, "Pionek czerwony", crossedBottomBoundary1, redPath, currentStepRed},
-         {pawnX2, pawnY2, pawnStepsRemaining2, pawnStepSize2, bitmapHandler.texture_pionek2, isPawnMoving2, "Pionek niebieski", crossedBottomBoundary2, bluePath, currentStepBlue}
-     } };
-
-    for (auto& pawn : pawns) {
-        if (pawn.pawnStepsRemaining > 0 && pawn.currentStep < pawn.path.size()) {
-            pawn.pawnX = pawn.path[pawn.currentStep].first;
-            pawn.pawnY = pawn.path[pawn.currentStep].second;
-            pawn.currentStep++;
-            pawn.pawnStepsRemaining--;
-
-            if (pawn.currentStep == pawn.path.size()) {
-                pawn.isMoving = false;
-            }
-        }
-        if (pawn.currentStep >= pawn.path.size()) {
-            showWinnerMessage(pawn.winnerName); // Wyświetlenie komunikatu o zwycięstwie
-            resetGame(); // Reset gry
-            return;
-        }
-    }
-}
-   */
-
 void Engine::updatePawnPosition() {
     struct PawnData {
         float& pawnX;
@@ -452,6 +382,7 @@ void Engine::updatePawnPosition() {
         int& currentStep;
         const std::vector<std::pair<float, float>>& path; // ścieżka
         bool isRed; // czy pionek czerwony
+        int& houseIndex;
     };
     
     std::array<PawnData, 2> pawns = { {
@@ -466,7 +397,7 @@ void Engine::updatePawnPosition() {
             {0.58f, 0.4f}, {0.52f, 0.33f}, {0.52f, 0.26f}, {0.52f, 0.19f}, {0.52f, 0.12f}, {0.52f, 0.05f},
             {0.52f, 0.00f}, {0.45f, 0.00f}, {0.45f, 0.07f}, {0.45f, 0.14f}, {0.45f, 0.21f}, {0.45f, 0.28f},
             {0.45f, 0.35f}, {0.45f, 0.42f}
-        }, true},
+        }, true, redHouseIndex},
 
         {pawnX2, pawnY2, pawnStepsRemaining2, pawnStepSize2, bitmapHandler.texture_pionek2, isPawnMoving2, "Pionek niebieski", crossedBottomBoundary2, blueHouse, currentStepBlue, {
             {0.85f, 0.4f}, { 0.78f, 0.4f }, {0.71f, 0.4f}, {0.64f, 0.4f}, {0.58f, 0.4f}, {0.52f, 0.33f}, {0.52f, 0.26f},
@@ -479,17 +410,34 @@ void Engine::updatePawnPosition() {
             {0.52f, 0.59f}, {0.59f, 0.53f}, {0.66f, 0.53f}, {0.72f, 0.53f}, {0.79f, 0.53f}, {0.86f, 0.53f},
             {0.91f, 0.53f}, {0.91f, 0.46f}, {0.84f, 0.46f}, {0.77f, 0.46f}, {0.70f, 0.46f}, {0.64f, 0.46f},
             {0.58f, 0.46f}, {0.51f, 0.46f}
-        }, false}
+        }, false, blueHouseIndex}
     } };
 
     for (auto& pawn : pawns) {
-        // Specjalna flaga: pionek właśnie wyszedł na planszę
+        // Pionek jeszcze nie wyszedł na planszę – czekamy na szóstkę (czyli pawnStepsRemaining == -1)
         if (pawn.pawnStepsRemaining == -1) {
-            pawn.isMoving = false; // nie rusza się jeszcze
+            pawn.isMoving = false;
             continue;
         }
 
-        // Normalne przesuwanie po ścieżce
+        // Warunek specjalny: pionek ma właśnie wyjść na planszę
+        if (pawn.pawnStepsRemaining > 0 && pawn.currentStep == 0) {
+            // Ustaw pionka na pierwszym polu z path
+            pawn.pawnX = pawn.path[0].first;
+            pawn.pawnY = pawn.path[0].second;
+            pawn.currentStep = 1;
+            pawn.pawnStepsRemaining--; // zużywamy 1 krok na wejście na planszę
+            pawn.isMoving = true;
+
+            if (pawn.houseIndex < pawn.house.size()) {
+                pawn.house.erase(pawn.house.begin() + pawn.houseIndex);
+               
+            }
+
+            continue;
+        }
+
+        // Normalny ruch po ścieżce
         if (pawn.pawnStepsRemaining > 0 && pawn.currentStep < pawn.path.size()) {
             pawn.pawnX = pawn.path[pawn.currentStep].first;
             pawn.pawnY = pawn.path[pawn.currentStep].second;
@@ -500,6 +448,7 @@ void Engine::updatePawnPosition() {
                 pawn.isMoving = false;
             }
 
+            // Koniec ścieżki = zwycięstwo
             if (pawn.currentStep >= pawn.path.size()) {
                 showWinnerMessage(pawn.winnerName);
                 resetGame();
@@ -507,9 +456,8 @@ void Engine::updatePawnPosition() {
             }
         }
     }
+    
 }
-
-
 
 
 /**
@@ -564,6 +512,7 @@ void Engine::onMouse(int button, int state, int x, int y) {
             // Generowanie losowej liczby kroków dla pionka
             srand(static_cast<unsigned int>(time(nullptr)));
             int steps = (rand() % 6) + 1;
+           
             /*
             if (isMyTurn) {
                 pawnStepsRemaining = steps;
@@ -576,37 +525,46 @@ void Engine::onMouse(int button, int state, int x, int y) {
             */
             
             if (isMyTurn) {
-                if (steps == 6 && redHouseIndex < redHouse.size()) {
+                if (steps == 6 && !redPawnInPlay && redHouseIndex < redHouse.size()) {
+                    redPawnInPlay = true;
                     redHouse.erase(redHouse.begin() + redHouseIndex);
 
-                    pawnX = 0.38f; 
-                    pawnY = 0.06f;
+                    //pawnX = 0.38f;
+                    //pawnY = 0.06f;
                     currentStepRed = 0;
-                    pawnStepsRemaining = 1; 
+                    pawnStepsRemaining = 1;  // Ustawiamy 1 krok, żeby pojawić się na planszy
 
-                    std::cout << "[DEBUG] Czerwony pionek wychodzi na startowe pole!" << std::endl;
+                    std::cout << "[DEBUG] Czerwony pionek wychodzi na planszę!" << std::endl;
+                }
+                else if (redPawnInPlay) {
+                    pawnStepsRemaining = steps;
+                    std::cout << "[DEBUG] Ruch czerwonego pionka o " << steps << " kroków." << std::endl;
                 }
                 else {
-                    pawnStepsRemaining = steps;
-                    std::cout << "[DEBUG] Ruch czerwonego: " << steps << std::endl;
+                    std::cout << "[DEBUG] Wylosowano " << steps << ", ale czerwony pionek nie może jeszcze wyjść z domku." << std::endl;
                 }
             }
             else {
-                if (steps == 6 && blueHouseIndex < blueHouse.size()) {
+                if (steps == 6 && !bluePawnInPlay && blueHouseIndex < blueHouse.size()) {
+                    bluePawnInPlay = true;
                     blueHouse.erase(blueHouse.begin() + blueHouseIndex);
 
-                    pawnX2 = 0.85f;
-                    pawnY2 = 0.4f;
+                   // pawnX2 = 0.85f;
+                    //pawnY2 = 0.4f;
                     currentStepBlue = 0;
                     pawnStepsRemaining2 = 1;
 
-                    std::cout << "[DEBUG] Niebieski pionek wychodzi na startowe pole!" << std::endl;
+                    std::cout << "[DEBUG] Niebieski pionek wychodzi na planszę!" << std::endl;
+                }
+                else if (bluePawnInPlay) {
+                    pawnStepsRemaining2 = steps;
+                    std::cout << "[DEBUG] Ruch niebieskiego pionka o " << steps << " kroków." << std::endl;
                 }
                 else {
-                    pawnStepsRemaining2 = steps;
-                    std::cout << "[DEBUG] Ruch niebieskiego: " << steps << std::endl;
+                    std::cout << "[DEBUG] Wylosowano " << steps << ", ale niebieski pionek nie może jeszcze wyjść z domku." << std::endl;
                 }
             }
+
 
 
             // Ustawianie tekstury kostki w zależności od liczby kroków

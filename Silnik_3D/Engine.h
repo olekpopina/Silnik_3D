@@ -279,7 +279,10 @@ private:
 
     int redHouseIndex = 0;
     int blueHouseIndex = 0;
-
+    bool redPawnInPlay = false;
+    bool bluePawnInPlay = false;
+    int pendingSteps = 0;
+    bool hasPendingSteps = false;
 
 
     // Statyczne funkcje wywoływane przez OpenGL

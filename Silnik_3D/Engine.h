@@ -259,7 +259,8 @@ private:
     float pawnStepSize2 = 0.1f; ///< Wielkość kroku drugiego pionka
     float pawnX = 0.38f;
     float pawnY = 0.06f; ///< Pozycja pierwszego pionka
-    float pawnX2 = 0.85f, pawnY2 = 0.4f; ///< Pozycja drugiego pionka
+    float pawnX2 = 0.85f;
+    float pawnY2 = 0.4f; ///< Pozycja drugiego pionka
     float pawnLastMoveTime = 0.0f; ///< Czas ostatniego ruchu pionka
     float pawnLastMoveTime2 = 0.0f; ///< Czas ostatniego ruchu drugiego pionka
     bool isMyTurn; ///< Flaga określająca, czy gracz ma swoją turę
@@ -281,9 +282,7 @@ private:
     int blueHouseIndex = 0;
     bool redPawnInPlay = false;
     bool bluePawnInPlay = false;
-    int pendingSteps = 0;
-    bool hasPendingSteps = false;
-
+   
 
     // Statyczne funkcje wywoływane przez OpenGL
     static void renderCallback();

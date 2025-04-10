@@ -225,7 +225,7 @@ void Engine::render() {
 
     // Rysowanie kostki z obrotem
     glPushMatrix();
-    //cube.draw();
+    cube.draw();
     glRotatef(cubeRotationAngle, rotationAxisX, rotationAxisY, rotationAxisZ);  
     PrimitiveDrawer::drawCubeWithTexture(1.0f, 0.0f, 0.0f, bitmapHandler);
     glPopMatrix();
@@ -428,12 +428,12 @@ void Engine::updatePawnPosition() {
             pawn.currentStep = 1;
             pawn.pawnStepsRemaining--; // zużywamy 1 krok na wejście na planszę
             pawn.isMoving = true;
-
+            /*
             if (pawn.houseIndex < pawn.house.size()) {
                 pawn.house.erase(pawn.house.begin() + pawn.houseIndex);
                
             }
-
+            */
             continue;
         }
 

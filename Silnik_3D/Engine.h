@@ -282,7 +282,10 @@ private:
     int blueHouseIndex = 0;
     bool redPawnInPlay = false;
     bool bluePawnInPlay = false;
-   
+    bool waitingForRedPawnClick = false;
+    bool waitingForBluePawnClick = false;
+
+
 
     // Statyczne funkcje wywoływane przez OpenGL
     static void renderCallback();

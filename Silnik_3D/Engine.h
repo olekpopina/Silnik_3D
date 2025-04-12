@@ -284,6 +284,7 @@ private:
     bool bluePawnInPlay = false;
     bool waitingForRedPawnClick = false;
     bool waitingForBluePawnClick = false;
+    bool rolledSix = false; // czy w ostatnim rzucie wypadło 6
 
 
 

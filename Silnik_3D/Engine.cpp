@@ -214,13 +214,28 @@ void Engine::render() {
         }
         else {
             isCubeRotating = false;    // Zakończenie obrotu kostki
+           /*
             isPawnMoving = true;       // Rozpoczęcie ruchu pierwszego pionka
             isPawnMoving2 = true;      // Rozpoczęcie ruchu drugiego pionka
             pawnLastMoveTime = currentTime;
             pawnLastMoveTime2 = currentTime;
             isMyTurn = !isMyTurn;      // Zmiana tury gracza
             std::cout << "[DEBUG] Tura gracza: " << (isMyTurn ? "1" : "2") << std::endl;
+            */
+            if((isMyTurn && pawnStepsRemaining > 0) || (!isMyTurn && pawnStepsRemaining2 > 0)) {
+                isPawnMoving = isMyTurn;
+                isPawnMoving2 = !isMyTurn;
+                pawnLastMoveTime = currentTime;
+                pawnLastMoveTime2 = currentTime;
+            }
+
+            // Tylko jeśli NIE wypadła 6 – zmień turę
+            if (!rolledSix) {
+                isMyTurn = !isMyTurn;
+            }
+            std::cout << "[DEBUG] Tura gracza: " << (isMyTurn ? "1" : "2") << std::endl;
         }
+       // rolledSix = false;
     }
 
     // Rysowanie kostki z obrotem
@@ -387,7 +402,7 @@ void Engine::updatePawnPosition() {
     
     std::array<PawnData, 2> pawns = { {
         {pawnX, pawnY, pawnStepsRemaining, pawnStepSize, bitmapHandler.texture_pionek, isPawnMoving, "Pionek czerwony", crossedBottomBoundary1, redHouse, currentStepRed, {
-            {0.38f, 0.06f}, { 0.38f, 0.14f }, {0.38f, 0.21f}, {0.38f, 0.28f}, {0.38f, 0.35f}, {0.31f, 0.4f}, {0.25f, 0.4f},
+           /* {0.38f, 0.06f},*/ {0.38f, 0.14f}, {0.38f, 0.21f}, {0.38f, 0.28f}, {0.38f, 0.35f}, {0.31f, 0.4f}, {0.25f, 0.4f},
             {0.18f, 0.4f}, {0.11f, 0.4f}, {0.04f, 0.4f}, {0.00f, 0.4f}, {0.00f, 0.47f}, {0.00f, 0.54f},
             {0.06f, 0.54f}, {0.13f, 0.54f}, {0.20f, 0.54f}, {0.26f, 0.54f}, {0.33f, 0.54f}, {0.39f, 0.61f},
             {0.39f, 0.68f}, {0.39f, 0.75f}, {0.39f, 0.82f}, {0.39f, 0.89f}, {0.39f, 0.94f}, {0.46f, 0.94f},
@@ -400,7 +415,7 @@ void Engine::updatePawnPosition() {
         }, true, redHouseIndex},
 
         {pawnX2, pawnY2, pawnStepsRemaining2, pawnStepSize2, bitmapHandler.texture_pionek2, isPawnMoving2, "Pionek niebieski", crossedBottomBoundary2, blueHouse, currentStepBlue, {
-            {0.85f, 0.4f}, { 0.78f, 0.4f }, {0.71f, 0.4f}, {0.64f, 0.4f}, {0.58f, 0.4f}, {0.52f, 0.33f}, {0.52f, 0.26f},
+           /* {0.85f, 0.4f},*/ {0.78f, 0.4f}, {0.71f, 0.4f}, {0.64f, 0.4f}, {0.58f, 0.4f}, {0.52f, 0.33f}, {0.52f, 0.26f},
             {0.52f, 0.19f}, {0.52f, 0.12f}, {0.52f, 0.05f}, {0.52f, 0.00f}, {0.45f, 0.00f}, {0.38f, 0.00f},
             {0.38f, 0.07f}, {0.38f, 0.14f}, {0.38f, 0.21f}, {0.38f, 0.28f}, {0.38f, 0.35f}, {0.31f, 0.4f},
             {0.25f, 0.4f}, {0.18f, 0.4f}, {0.11f, 0.4f}, {0.04f, 0.4f}, {0.00f, 0.4f}, {0.00f, 0.47f},
@@ -536,13 +551,12 @@ void Engine::onMouse(int button, int state, int x, int y) {
                 pawnStepsRemaining2 = 1;
                 currentStepBlue = 0;
                 waitingForBluePawnClick = false;
-
+                isCubeRotating = false;//pozwolenie na kolejny rzut
                 std::cout << "[DEBUG] Niebieski pionek został kliknięty i wychodzi na planszę!" << std::endl;
                 return;
             }
         }
     
-    //if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
         // Sprawdzenie, czy kliknięto na kostkę
         if (isClickOnCube(x, y) && !isCubeRotating && !isPawnMoving && !isPawnMoving2) {
             isDragging = true;
@@ -554,48 +568,7 @@ void Engine::onMouse(int button, int state, int x, int y) {
             // Generowanie losowej liczby kroków dla pionka
             srand(static_cast<unsigned int>(time(nullptr)));
             int steps = (rand() % 6) + 1;
-    /*
-            if (isMyTurn) {
-                if (steps == 6 && !redPawnInPlay && redHouseIndex < redHouse.size()) {
-                    redPawnInPlay = true;
-                    redHouse.erase(redHouse.begin() + redHouseIndex);
-
-                    //pawnX = 0.38f;
-                    //pawnY = 0.06f;
-                    currentStepRed = 0;
-                    pawnStepsRemaining = 1;  // Ustawiamy 1 krok, żeby pojawić się na planszy
-
-                    std::cout << "[DEBUG] Czerwony pionek wychodzi na planszę!" << std::endl;
-                }
-                else if (redPawnInPlay) {
-                    pawnStepsRemaining = steps;
-                    std::cout << "[DEBUG] Ruch czerwonego pionka o " << steps << " kroków." << std::endl;
-                }
-                else {
-                    std::cout << "[DEBUG] Wylosowano " << steps << ", ale czerwony pionek nie może jeszcze wyjść z domku." << std::endl;
-                }
-            }
-            else {
-                if (steps == 6 && !bluePawnInPlay && blueHouseIndex < blueHouse.size()) {
-                    bluePawnInPlay = true;
-                    blueHouse.erase(blueHouse.begin() + blueHouseIndex);
-
-                   // pawnX2 = 0.85f;
-                    //pawnY2 = 0.4f;
-                    currentStepBlue = 0;
-                    pawnStepsRemaining2 = 1;
-
-                    std::cout << "[DEBUG] Niebieski pionek wychodzi na planszę!" << std::endl;
-                }
-                else if (bluePawnInPlay) {
-                    pawnStepsRemaining2 = steps;
-                    std::cout << "[DEBUG] Ruch niebieskiego pionka o " << steps << " kroków." << std::endl;
-                }
-                else {
-                    std::cout << "[DEBUG] Wylosowano " << steps << ", ale niebieski pionek nie może jeszcze wyjść z domku." << std::endl;
-                }
-            }
-            */
+            rolledSix = (steps == 6);
            
             if (isMyTurn) {
                 if (steps == 6 && !redPawnInPlay && redHouseIndex < redHouse.size()) {

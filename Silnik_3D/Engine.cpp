@@ -337,6 +337,11 @@ void Engine::onKeyboard(unsigned char key, int x, int y) {
     else if (key == 27) { // wyjście
         stop();
     }
+    else if (key >= '1' && key <= '6') {
+        manualDiceValue = key - '0';
+        std::cout << "[DEBUG] Ręcznie ustawiono wartość kostki na: " << manualDiceValue << std::endl;
+    }
+
     player.handleInput(key);
     glutPostRedisplay();
 }
@@ -399,34 +404,34 @@ void Engine::updatePawnPosition() {
         bool isRed;
         int& houseIndex;
     };
-    
+
     std::array<PawnData, 2> pawns = { {
         {pawnX, pawnY, pawnStepsRemaining, pawnStepSize, bitmapHandler.texture_pionek, isPawnMoving, "Pionek czerwony", crossedBottomBoundary1, redHouse, currentStepRed, {
-           /* {0.38f, 0.06f},*/ {0.38f, 0.14f}, {0.38f, 0.21f}, {0.38f, 0.28f}, {0.38f, 0.35f}, {0.31f, 0.4f}, {0.25f, 0.4f},
-            {0.18f, 0.4f}, {0.11f, 0.4f}, {0.04f, 0.4f}, {0.00f, 0.4f}, {0.00f, 0.47f}, {0.00f, 0.54f},
-            {0.06f, 0.54f}, {0.13f, 0.54f}, {0.20f, 0.54f}, {0.26f, 0.54f}, {0.33f, 0.54f}, {0.39f, 0.61f},
-            {0.39f, 0.68f}, {0.39f, 0.75f}, {0.39f, 0.82f}, {0.39f, 0.89f}, {0.39f, 0.94f}, {0.46f, 0.94f},
-            {0.52f, 0.94f}, {0.52f, 0.87f}, {0.52f, 0.80f}, {0.52f, 0.73f}, {0.52f, 0.66f}, {0.52f, 0.59f},
-            {0.59f, 0.53f}, {0.66f, 0.53f}, {0.72f, 0.53f}, {0.79f, 0.53f}, {0.86f, 0.53f}, {0.91f, 0.53f},
-            {0.91f, 0.46f}, {0.91f, 0.4f}, {0.85f, 0.4f}, {0.78f, 0.4f}, {0.71f, 0.4f}, {0.64f, 0.4f},
-            {0.58f, 0.4f}, {0.52f, 0.33f}, {0.52f, 0.26f}, {0.52f, 0.19f}, {0.52f, 0.12f}, {0.52f, 0.05f},
-            {0.52f, 0.00f}, {0.45f, 0.00f}, {0.45f, 0.07f}, {0.45f, 0.14f}, {0.45f, 0.21f}, {0.45f, 0.28f},
-            {0.45f, 0.35f}, {0.45f, 0.42f}
-        }, true, redHouseIndex},
+            /* {0.38f, 0.06f},*/ {0.38f, 0.14f}, {0.38f, 0.21f}, {0.38f, 0.28f}, {0.38f, 0.35f}, {0.31f, 0.4f}, {0.25f, 0.4f},
+             {0.18f, 0.4f}, {0.11f, 0.4f}, {0.04f, 0.4f}, {0.00f, 0.4f}, {0.00f, 0.47f}, {0.00f, 0.54f},
+             {0.06f, 0.54f}, {0.13f, 0.54f}, {0.20f, 0.54f}, {0.26f, 0.54f}, {0.33f, 0.54f}, {0.39f, 0.61f},
+             {0.39f, 0.68f}, {0.39f, 0.75f}, {0.39f, 0.82f}, {0.39f, 0.89f}, {0.39f, 0.94f}, {0.46f, 0.94f},
+             {0.52f, 0.94f}, {0.52f, 0.87f}, {0.52f, 0.80f}, {0.52f, 0.73f}, {0.52f, 0.66f}, {0.52f, 0.59f},
+             {0.59f, 0.53f}, {0.66f, 0.53f}, {0.72f, 0.53f}, {0.79f, 0.53f}, {0.86f, 0.53f}, {0.91f, 0.53f},
+             {0.91f, 0.46f}, {0.91f, 0.4f}, {0.85f, 0.4f}, {0.78f, 0.4f}, {0.71f, 0.4f}, {0.64f, 0.4f},
+             {0.58f, 0.4f}, {0.52f, 0.33f}, {0.52f, 0.26f}, {0.52f, 0.19f}, {0.52f, 0.12f}, {0.52f, 0.05f},
+             {0.52f, 0.00f}, {0.45f, 0.00f}, {0.45f, 0.07f}, {0.45f, 0.14f}, {0.45f, 0.21f}, {0.45f, 0.28f},
+             {0.45f, 0.35f}, {0.45f, 0.42f}
+         }, true, redHouseIndex},
 
-        {pawnX2, pawnY2, pawnStepsRemaining2, pawnStepSize2, bitmapHandler.texture_pionek2, isPawnMoving2, "Pionek niebieski", crossedBottomBoundary2, blueHouse, currentStepBlue, {
-           /* {0.85f, 0.4f},*/ {0.78f, 0.4f}, {0.71f, 0.4f}, {0.64f, 0.4f}, {0.58f, 0.4f}, {0.52f, 0.33f}, {0.52f, 0.26f},
-            {0.52f, 0.19f}, {0.52f, 0.12f}, {0.52f, 0.05f}, {0.52f, 0.00f}, {0.45f, 0.00f}, {0.38f, 0.00f},
-            {0.38f, 0.07f}, {0.38f, 0.14f}, {0.38f, 0.21f}, {0.38f, 0.28f}, {0.38f, 0.35f}, {0.31f, 0.4f},
-            {0.25f, 0.4f}, {0.18f, 0.4f}, {0.11f, 0.4f}, {0.04f, 0.4f}, {0.00f, 0.4f}, {0.00f, 0.47f},
-            {0.00f, 0.54f}, {0.06f, 0.54f}, {0.13f, 0.54f}, {0.20f, 0.54f}, {0.26f, 0.54f}, {0.33f, 0.54f},
-            {0.39f, 0.61f}, {0.39f, 0.68f}, {0.39f, 0.75f}, {0.39f, 0.82f}, {0.39f, 0.89f}, {0.39f, 0.94f},
-            {0.46f, 0.94f}, {0.52f, 0.94f}, {0.52f, 0.87f}, {0.52f, 0.80f}, {0.52f, 0.73f}, {0.52f, 0.66f},
-            {0.52f, 0.59f}, {0.59f, 0.53f}, {0.66f, 0.53f}, {0.72f, 0.53f}, {0.79f, 0.53f}, {0.86f, 0.53f},
-            {0.91f, 0.53f}, {0.91f, 0.46f}, {0.84f, 0.46f}, {0.77f, 0.46f}, {0.70f, 0.46f}, {0.64f, 0.46f},
-            {0.58f, 0.46f}, {0.51f, 0.46f}
-        }, false, blueHouseIndex}
-    } };
+         {pawnX2, pawnY2, pawnStepsRemaining2, pawnStepSize2, bitmapHandler.texture_pionek2, isPawnMoving2, "Pionek niebieski", crossedBottomBoundary2, blueHouse, currentStepBlue, {
+            /* {0.85f, 0.4f},*/ {0.78f, 0.4f}, {0.71f, 0.4f}, {0.64f, 0.4f}, {0.58f, 0.4f}, {0.52f, 0.33f}, {0.52f, 0.26f},
+             {0.52f, 0.19f}, {0.52f, 0.12f}, {0.52f, 0.05f}, {0.52f, 0.00f}, {0.45f, 0.00f}, {0.38f, 0.00f},
+             {0.38f, 0.07f}, {0.38f, 0.14f}, {0.38f, 0.21f}, {0.38f, 0.28f}, {0.38f, 0.35f}, {0.31f, 0.4f},
+             {0.25f, 0.4f}, {0.18f, 0.4f}, {0.11f, 0.4f}, {0.04f, 0.4f}, {0.00f, 0.4f}, {0.00f, 0.47f},
+             {0.00f, 0.54f}, {0.06f, 0.54f}, {0.13f, 0.54f}, {0.20f, 0.54f}, {0.26f, 0.54f}, {0.33f, 0.54f},
+             {0.39f, 0.61f}, {0.39f, 0.68f}, {0.39f, 0.75f}, {0.39f, 0.82f}, {0.39f, 0.89f}, {0.39f, 0.94f},
+             {0.46f, 0.94f}, {0.52f, 0.94f}, {0.52f, 0.87f}, {0.52f, 0.80f}, {0.52f, 0.73f}, {0.52f, 0.66f},
+             {0.52f, 0.59f}, {0.59f, 0.53f}, {0.66f, 0.53f}, {0.72f, 0.53f}, {0.79f, 0.53f}, {0.86f, 0.53f},
+             {0.91f, 0.53f}, {0.91f, 0.46f}, {0.84f, 0.46f}, {0.77f, 0.46f}, {0.70f, 0.46f}, {0.64f, 0.46f},
+             {0.58f, 0.46f}, {0.51f, 0.46f}
+         }, false, blueHouseIndex}
+     } };
 
     for (auto& pawn : pawns) {
         // Pionek jeszcze nie wyszedl
@@ -435,27 +440,60 @@ void Engine::updatePawnPosition() {
             continue;
         }
 
-      
+
         if (pawn.pawnStepsRemaining > 0 && pawn.currentStep == 0) {
-            
+
             pawn.pawnX = pawn.path[0].first;
             pawn.pawnY = pawn.path[0].second;
             pawn.currentStep = 1;
-            pawn.pawnStepsRemaining--; 
+            pawn.pawnStepsRemaining--;
             pawn.isMoving = true;
             /*
             if (pawn.houseIndex < pawn.house.size()) {
                 pawn.house.erase(pawn.house.begin() + pawn.houseIndex);
-               
+
             }
             */
             continue;
         }
 
-        // Normalny ruch po ścieżce
         if (pawn.pawnStepsRemaining > 0 && pawn.currentStep < pawn.path.size()) {
-            pawn.pawnX = pawn.path[pawn.currentStep].first;
-            pawn.pawnY = pawn.path[pawn.currentStep].second;
+
+            // Oblicz następne pole, na które pionek ma wejść
+            int nextStep = pawn.currentStep;
+            float nextX = pawn.path[nextStep].first;
+            float nextY = pawn.path[nextStep].second;
+
+            pawn.pawnX = nextX;
+            pawn.pawnY = nextY;
+
+            // Sprawdzenie czy pionek może zbić przeciwnika
+            for (auto& other : pawns) {
+                if (&other == &pawn) continue; // pomiń siebie
+
+                if (other.pawnStepsRemaining >= 0 &&
+                    std::abs(other.pawnX - nextX) < 0.01f &&
+                    std::abs(other.pawnY - nextY) < 0.01f &&
+                    pawn.pawnStepsRemaining == 1) {
+
+                    std::cout << "[INFO] " << other.winnerName << " został zbity!" << std::endl;
+
+                    other.pawnStepsRemaining = -1;
+                    other.currentStep = 0;
+                    other.isMoving = false;
+
+                    if (other.isRed) {
+                        redPawnInPlay = false;
+                        other.house.insert(other.house.begin() + other.houseIndex, { 0.12f, 0.12f }); // wraca na swój slot
+                    }
+                    else {
+                        bluePawnInPlay = false;
+                        other.house.insert(other.house.begin() + other.houseIndex, { 0.80f, 0.13f }); // wraca na swój slot
+                    }
+                }
+            }
+
+
             pawn.currentStep++;
             pawn.pawnStepsRemaining--;
 
@@ -567,7 +605,10 @@ void Engine::onMouse(int button, int state, int x, int y) {
 
             // Generowanie losowej liczby kroków dla pionka
             srand(static_cast<unsigned int>(time(nullptr)));
-            int steps = (rand() % 6) + 1;
+            //int steps = (rand() % 6) + 1;
+            int steps = (manualDiceValue != -1) ? manualDiceValue : (rand() % 6 + 1);
+            manualDiceValue = -1; // resetuj po użyciu
+
             rolledSix = (steps == 6);
            
             if (isMyTurn) {

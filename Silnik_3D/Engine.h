@@ -286,7 +286,7 @@ private:
     bool waitingForBluePawnClick = false;
     bool rolledSix = false; // czy w ostatnim rzucie wypadło 6
 
-
+    int manualDiceValue = -1; // czasowa zmienna
 
     // Statyczne funkcje wywoływane przez OpenGL
     static void renderCallback();

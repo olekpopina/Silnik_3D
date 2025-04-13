@@ -280,7 +280,6 @@ void Engine::render() {
     }
 
    // Rysowanie pionków tylko jeśli wyszły z domku
-// Rysowanie pionka czerwonego (jeśli już jest na planszy)
     if (redPawnInPlay) {
 
         bitmapHandler.drawPionek(pawnX, pawnY, 0.1f, 0.1f, bitmapHandler.texture_pionek);

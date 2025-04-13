@@ -290,7 +290,7 @@ private:
 
 
 
-    bool inMainMenu = true;
+  
 
     // Statyczne funkcje wywoływane przez OpenGL
     static void renderCallback();

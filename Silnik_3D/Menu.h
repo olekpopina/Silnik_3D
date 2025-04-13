@@ -17,6 +17,29 @@ private:
     sf::Texture backgroundTexture;
     sf::Sprite backgroundSprite;
 
+    sf::RectangleShape loginButton1;
+    sf::RectangleShape loginButton2;
+    sf::Text loginText1;
+    sf::Text loginText2;
+
+    bool enteringName1 = false;
+    bool enteringName2 = false;
+    sf::Text inputText1;
+    sf::Text inputText2;
+    std::string nickname1;
+    std::string nickname2;
+
+    bool showDialog = false;
+    int activeDialogPlayer = 0; // 1 = gracz 1, 2 = gracz 2
+    sf::RectangleShape dialogBox;
+    sf::Text dialogPrompt;
+    sf::RectangleShape dialogOkButton;
+    sf::Text dialogOkText;
+    sf::Text dialogInputText;
+    std::string dialogInput;
+
+
+
     void processEvents(bool& gameShouldStart);
     void render();
 };

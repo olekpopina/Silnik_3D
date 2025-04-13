@@ -282,6 +282,9 @@ private:
         {0.80f, 0.13f}, {0.80f, 0.23f}, {0.70f, 0.13f}, {0.70f, 0.23f}
     };
 
+    std::vector<std::pair<float, float>> redPath;
+    std::vector<std::pair<float, float>> bluePath;
+
     int redHouseIndex = 0;
     int blueHouseIndex = 0;
     bool redPawnInPlay = false;
@@ -306,7 +309,7 @@ private:
     static void mouseCallback(int button, int state, int x, int y);
     static void motionCallback(int x, int y);
     static void reshapeCallback(int width, int height);
-
+    void initializePawnPaths();
     /**
      * @brief Sprawdza, czy kliknięcie myszki jest na sześcianie.
      *

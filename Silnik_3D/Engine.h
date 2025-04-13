@@ -288,6 +288,10 @@ private:
 
     int manualDiceValue = -1; // czasowa zmienna dla steps
 
+
+
+    bool inMainMenu = true;
+
     // Statyczne funkcje wywoływane przez OpenGL
     static void renderCallback();
     static void idleCallback();
@@ -295,7 +299,7 @@ private:
     static void mouseCallback(int button, int state, int x, int y);
     static void motionCallback(int x, int y);
     static void reshapeCallback(int width, int height);
-   
+
     /**
      * @brief Sprawdza, czy kliknięcie myszki jest na sześcianie.
      *

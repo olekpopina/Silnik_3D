@@ -141,6 +141,7 @@
     <ClCompile Include="Silnik_3D.cpp" />
     <ClCompile Include="TransformableObject.cpp" />
     <ClCompile Include="Triangle.cpp" />
+    <ClCompile Include="Menu.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -151,6 +152,7 @@
     <ClInclude Include="Drawable.h" />
     <ClInclude Include="Engine.h" />
     <ClInclude Include="Line.h" />
+    <ClInclude Include="Menu.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Point.h" />
     <ClInclude Include="PrimitiveDrawer.h" />

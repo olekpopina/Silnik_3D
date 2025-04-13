@@ -178,6 +178,8 @@ void Engine::setTextures(const std::vector<std::string>& texturePaths) {
  * @brief Funkcja renderująca całą scenę gry.
  */
 void Engine::render() {
+   
+
     // Obliczanie czasu ramki
     auto currentFrameTime = std::chrono::high_resolution_clock::now();
     if (frameRate > 0) {
@@ -194,7 +196,7 @@ void Engine::render() {
     // Czyszczenie buforów
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glLoadIdentity();
-
+   
     configureLighting();
 
     // Ustawienie kamery
@@ -214,14 +216,7 @@ void Engine::render() {
         }
         else {
             isCubeRotating = false;    // Zakończenie obrotu kostki
-           /*
-            isPawnMoving = true;       // Rozpoczęcie ruchu pierwszego pionka
-            isPawnMoving2 = true;      // Rozpoczęcie ruchu drugiego pionka
-            pawnLastMoveTime = currentTime;
-            pawnLastMoveTime2 = currentTime;
-            isMyTurn = !isMyTurn;      // Zmiana tury gracza
-            std::cout << "[DEBUG] Tura gracza: " << (isMyTurn ? "1" : "2") << std::endl;
-            */
+          
             if((isMyTurn && pawnStepsRemaining > 0) || (!isMyTurn && pawnStepsRemaining2 > 0)) {
                 isPawnMoving = isMyTurn;
                 isPawnMoving2 = !isMyTurn;
@@ -235,7 +230,7 @@ void Engine::render() {
             }
             std::cout << "[DEBUG] Tura gracza: " << (isMyTurn ? "1" : "2") << std::endl;
         }
-       // rolledSix = false;
+
     }
 
     // Rysowanie kostki z obrotem
@@ -314,6 +309,7 @@ void Engine::render() {
     // Wymiana buforów
     glutSwapBuffers();
 }
+
 
 /**
  * @brief Obsługuje zdarzenia naciśnięcia klawiszy z klawiatury.
@@ -448,12 +444,7 @@ void Engine::updatePawnPosition() {
             pawn.currentStep = 1;
             pawn.pawnStepsRemaining--;
             pawn.isMoving = true;
-            /*
-            if (pawn.houseIndex < pawn.house.size()) {
-                pawn.house.erase(pawn.house.begin() + pawn.houseIndex);
-
-            }
-            */
+           
             continue;
         }
 
@@ -614,27 +605,27 @@ void Engine::onMouse(int button, int state, int x, int y) {
             if (isMyTurn) {
                 if (steps == 6 && !redPawnInPlay && redHouseIndex < redHouse.size()) {
                     waitingForRedPawnClick = true;
-                    std::cout << "[INFO] Wyrzucono 6 – kliknij czerwonego pionka w domku, aby go wyciągnąć." << std::endl;
+                    std::cout << "[INFO] Wyrzucono 6 – kliknij czerwonego pionka w domku, aby go wyciagnac." << std::endl;
                 }
                 else if (redPawnInPlay) {
                     pawnStepsRemaining = steps;
-                    std::cout << "[DEBUG] Ruch czerwonego pionka o " << steps << " kroków." << std::endl;
+                    std::cout << "[DEBUG] Ruch czerwonego pionka o " << steps << " krokow." << std::endl;
                 }
                 else {
-                    std::cout << "[DEBUG] Wylosowano " << steps << ", ale czerwony pionek nie może jeszcze wyjść z domku." << std::endl;
+                    std::cout << "[DEBUG] Wylosowano " << steps << ", ale czerwony pionek nie moze jeszcze wyjsc z domku." << std::endl;
                 }
             }
             else {
                 if (steps == 6 && !bluePawnInPlay && blueHouseIndex < blueHouse.size()) {
                     waitingForBluePawnClick = true;
-                    std::cout << "[INFO] Wyrzucono 6 – kliknij niebieskiego pionka w domku, aby go wyciągnąć." << std::endl;
+                    std::cout << "[INFO] Wyrzucono 6 – kliknij niebieskiego pionka w domku, aby go wyciagnac." << std::endl;
                 }
                 else if (bluePawnInPlay) {
                     pawnStepsRemaining2 = steps;
-                    std::cout << "[DEBUG] Ruch niebieskiego pionka o " << steps << " kroków." << std::endl;
+                    std::cout << "[DEBUG] Ruch niebieskiego pionka o " << steps << " krokow." << std::endl;
                 }
                 else {
-                    std::cout << "[DEBUG] Wylosowano " << steps << ", ale niebieski pionek nie może jeszcze wyjść z domku." << std::endl;
+                    std::cout << "[DEBUG] Wylosowano " << steps << ", ale niebieski pionek nie moze jeszcze wyjsc z domku." << std::endl;
                 }
             }
 

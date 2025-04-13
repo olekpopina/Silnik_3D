@@ -4,6 +4,13 @@ Menu::Menu(unsigned int width, unsigned int height)
     : window(sf::VideoMode(width, height), "Menu") {
     font.loadFromFile("C:\\Windows\\Fonts\\Arial.ttf");
 
+    if (!backgroundTexture.loadFromFile("D:\\Silnik_3D\\\Silnik_3D\\\images\\tlo.png")) {
+   
+        std::cerr << "Nie udalo sie zaladowac tla menu!" << std::endl;
+    }
+    backgroundSprite.setTexture(backgroundTexture);
+
+
     startText.setFont(font);
     startText.setString("Start gry");
     startText.setCharacterSize(40);
@@ -48,6 +55,7 @@ void Menu::processEvents(bool& gameShouldStart) {
 
 void Menu::render() {
     window.clear(sf::Color::Blue);
+    window.draw(backgroundSprite);
     window.draw(startButton);
     window.draw(startText);
     window.display();

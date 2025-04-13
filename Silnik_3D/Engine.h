@@ -289,6 +289,8 @@ private:
     bool waitingForRedPawnClick = false;
     bool waitingForBluePawnClick = false;
     bool rolledSix = false; // czy w ostatnim rzucie wypadło 6
+    bool allowPawnSelection = false; // pozwala na wybór pionka do ruchu po wyrzuceniu 6
+
 
     int manualDiceValue = -1; // czasowa zmienna dla steps
 

@@ -611,7 +611,34 @@ void Engine::onMouse(int button, int state, int x, int y) {
                 return;
             }
         }
-    
+        if (allowPawnSelection) {
+            float size = 0.1f;
+
+            if (isMyTurn && redPawnInPlay &&
+                normalizedX >= pawnX && normalizedX <= pawnX + size &&
+                normalizedY >= pawnY && normalizedY <= pawnY + size) {
+
+                pawnStepsRemaining = drawer.textureSet; // ponowny ruch tym pionkiem
+                isPawnMoving = true;
+                pawnLastMoveTime = glutGet(GLUT_ELAPSED_TIME) / 1000.0f;
+                allowPawnSelection = false;
+                std::cout << "[DEBUG] Wybrano czerwonego pionka do ponownego ruchu." << std::endl;
+                return;
+            }
+
+            if (!isMyTurn && bluePawnInPlay &&
+                normalizedX >= pawnX2 && normalizedX <= pawnX2 + size &&
+                normalizedY >= pawnY2 && normalizedY <= pawnY2 + size) {
+
+                pawnStepsRemaining2 = drawer.textureSet;
+                isPawnMoving2 = true;
+                pawnLastMoveTime2 = glutGet(GLUT_ELAPSED_TIME) / 1000.0f;
+                allowPawnSelection = false;
+                std::cout << "[DEBUG] Wybrano niebieskiego pionka do ponownego ruchu." << std::endl;
+                return;
+            }
+        }
+
         // Sprawdzenie, czy kliknięto na kostkę
         if (isClickOnCube(x, y) && !isCubeRotating && !isPawnMoving && !isPawnMoving2) {
             isDragging = true;
@@ -627,7 +654,7 @@ void Engine::onMouse(int button, int state, int x, int y) {
             manualDiceValue = -1; // resetuj po użyciu
 
             rolledSix = (steps == 6);
-           
+           /*
             if (isMyTurn) {
                 if (steps == 6 && !redPawnInPlay && redHouseIndex < redHouse.size()) {
                     waitingForRedPawnClick = true;
@@ -654,8 +681,38 @@ void Engine::onMouse(int button, int state, int x, int y) {
                     std::cout << "[DEBUG] Wylosowano " << steps << ", ale niebieski pionek nie moze jeszcze wyjsc z domku." << std::endl;
                 }
             }
-
-
+            */
+            if (isMyTurn) {
+                if (steps == 6) {
+                    if (redHouseIndex < redHouse.size()) {
+                        waitingForRedPawnClick = true;
+                        std::cout << "[INFO] Wyrzucono 6 – kliknij czerwonego pionka w domku." << std::endl;
+                    }
+                    if (redPawnInPlay) {
+                        allowPawnSelection = true;
+                        std::cout << "[INFO] Możesz też kliknąć istniejącego czerwonego pionka i poruszyć go o " << steps << " kroków." << std::endl;
+                    }
+                }
+                else if (redPawnInPlay) {
+                    pawnStepsRemaining = steps;
+                    std::cout << "[DEBUG] Ruch czerwonego pionka o " << steps << " kroków." << std::endl;
+                }
+            }
+            else {
+                if (steps == 6) {
+                    if (blueHouseIndex < blueHouse.size()) {
+                        waitingForBluePawnClick = true;
+                        std::cout << "[INFO] Wyrzucono 6 – kliknij niebieskiego pionka w domku." << std::endl;
+                    }
+                    if (bluePawnInPlay) {
+                        allowPawnSelection = true;
+                        std::cout << "[INFO] Możesz też kliknąć istniejącego niebieskiego pionka i poruszyć go o " << steps << " kroków." << std::endl;
+                    }
+                } else if (bluePawnInPlay) {
+                    pawnStepsRemaining2 = steps;
+                    std::cout << "[DEBUG] Ruch niebieskiego pionka o " << steps << " kroków." << std::endl;
+                }
+            }
             // Ustawianie tekstury kostki w zależności od liczby kroków
             drawer.textureSet = steps;
 

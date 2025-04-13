@@ -207,10 +207,11 @@ void Engine::render() {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glLoadIdentity();
    
-    configureLighting();
+    //configureLighting();
 
     // Ustawienie kamery
     gluLookAt(1.5, 1.5, cameraZ, 0.0, 0.0, 0.0, 0.0, 8.0, 0.0);
+
 
     // Rysowanie tła
     bitmapHandler.drawBackground();
@@ -245,9 +246,8 @@ void Engine::render() {
 
     // Rysowanie kostki z obrotem
     glPushMatrix();
-    cube.draw();
-    glRotatef(cubeRotationAngle, rotationAxisX, rotationAxisY, rotationAxisZ);  
-    PrimitiveDrawer::drawCubeWithTexture(1.0f, 0.0f, 0.0f, bitmapHandler);
+   // cube.draw();
+    
     glPopMatrix();
 
     // Aktualizacja i rysowanie pionków
@@ -309,6 +309,31 @@ void Engine::render() {
     glPushMatrix();
     glLoadIdentity();
 
+    if (diceInCenter) {
+        cubeScreenPosX = 0.5f - cubeScreenScale / 2.0f; // środek planszy
+    }
+    else {
+        cubeScreenPosX = isMyTurn ? 0.00f : 0.90f; // lewa lub prawa
+    }
+    cubeScreenPosY = 0.32f;
+
+
+    // Translacja do środka kostki, bo rysowana jest od -1 do 1 (czyli 2x większa)
+    glTranslatef(cubeScreenPosX + cubeScreenScale, cubeScreenPosY + cubeScreenScale, 0.0f);
+    glScalef(cubeScreenScale * 0.5f, cubeScreenScale * 0.5f, cubeScreenScale * 0.5f); // Dzielimy na pół, bo kostka ma 2x2x2 jednostki
+    glRotatef(cubeRotationAngle, rotationAxisX, rotationAxisY, rotationAxisZ);
+
+    // Rysowanie
+    PrimitiveDrawer::drawCubeWithTexture(1.0f, 0.0f, 0.0f, bitmapHandler);
+
+    glMatrixMode(GL_PROJECTION);
+    glPushMatrix();
+    glLoadIdentity();
+    gluOrtho2D(0.0, 1.0, 0.0, 1.0); // Ustawienie ortograficzne (2D)
+
+    glMatrixMode(GL_MODELVIEW);
+    glPushMatrix();
+    glLoadIdentity();
     glColor3f(1.0f, 1.0f, 1.0f); 
     drawText(0.18f, 0.03f, player1Name);
     drawText(0.77f, 0.03f, player2Name);
@@ -320,8 +345,8 @@ void Engine::render() {
     
     // Rysowanie trójkąta
     glPushMatrix();
-    triangle.updateRotation();
-    triangle.draw();
+    //triangle.updateRotation();
+   // triangle.draw();
     glPopMatrix();
 
     // Rysowanie linii i punktu
@@ -331,7 +356,7 @@ void Engine::render() {
     glPopMatrix();
 
     // Ustawienie drugiej kamery
-    gluLookAt(3.0, 3.0, cameraZ, 5.0, 0.0, 0.0, 0.0, 3.0, 2.0);
+    //gluLookAt(3.0, 3.0, cameraZ, 5.0, 0.0, 0.0, 0.0, 3.0, 2.0);
 
     // Wymiana buforów
     glutSwapBuffers();
@@ -651,6 +676,7 @@ void Engine::onMouse(int button, int state, int x, int y) {
 
             // Rozpoczęcie obrotu kostki
             isCubeRotating = true;
+            diceInCenter = false;
             rotationStartTime = glutGet(GLUT_ELAPSED_TIME) / 1000.0f; // Czas początkowy obrotu
 
             // Generowanie losowej liczby kroków dla pionka
@@ -922,27 +948,23 @@ void Engine::reshapeCallback(int width, int height) {
  */
 bool Engine::isClickOnCube(int mouseX, int mouseY) const {
 
-    float normalizedX = (float)mouseX / glutGet(GLUT_WINDOW_WIDTH) * 2.0f - 1.0f;
-    float normalizedY = 1.0f - (float)mouseY / glutGet(GLUT_WINDOW_HEIGHT) * 2.0f;
+    float windowWidthF = static_cast<float>(glutGet(GLUT_WINDOW_WIDTH));
+    float windowHeightF = static_cast<float>(glutGet(GLUT_WINDOW_HEIGHT));
 
-  
-    float worldX = normalizedX * cameraZ;
-    float worldY = normalizedY * cameraZ;
+    // Normalizujemy kliknięcie
+    float normalizedX = static_cast<float>(mouseX) / windowWidthF;
+    float normalizedY = 1.0f - (static_cast<float>(mouseY) / windowHeightF); // y jest odwrócone
 
+    float margin = 0.02f; // albo 0.005f
 
-    float cubeSize = 1.0f * cameraZ; 
-    float cubeCenterX = 0.0f;       
-    float cubeCenterY = 0.0f;    
+    float cubeMinX = cubeScreenPosX - margin;
+    float cubeMaxX = cubeScreenPosX + cubeScreenScale + margin;
+    float cubeMinY = cubeScreenPosY - margin;
+    float cubeMaxY = cubeScreenPosY + cubeScreenScale + margin;
 
-
-    float cubeMinX = cubeCenterX - 0.5f * cubeSize;
-    float cubeMaxX = cubeCenterX + 0.5f * cubeSize;
-    float cubeMinY = cubeCenterY - 0.5f * cubeSize;
-    float cubeMaxY = cubeCenterY + 0.5f * cubeSize;
-
-
-    return (worldX >= cubeMinX && worldX <= cubeMaxX &&
-        worldY >= cubeMinY && worldY <= cubeMaxY);
+    // Sprawdzenie, czy kliknięto w granicach prostokąta kostki
+    return (normalizedX >= cubeMinX && normalizedX <= cubeMaxX &&
+        normalizedY >= cubeMinY && normalizedY <= cubeMaxY);
 }
 
 /**

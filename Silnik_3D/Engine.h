@@ -251,6 +251,10 @@ private:
     float rotationStartTime = 0.0f; ///< Czas rozpoczęcia obrotu
     float cubeRotationAngle = 0.0f; ///< Kąt obrotu sześcianu
     float rotationAxisX = 1.0f, rotationAxisY = 0.0f, rotationAxisZ = 0.0f; ///< Osie obrotu
+    bool diceInCenter = true; // domyślnie na środku
+    float cubeScreenPosX = 0.5f;  // Domyślnie środek
+    float cubeScreenPosY = 0.32f;
+    float cubeScreenScale = 0.05f;  // Takie jak używasz w render()
 
     std::mt19937 rng; ///< Generator liczb losowych
     std::uniform_int_distribution<int> dist; ///< Rozkład liczb losowych

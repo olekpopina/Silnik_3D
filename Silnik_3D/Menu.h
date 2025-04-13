@@ -7,6 +7,8 @@ class Menu {
 public:
     Menu(unsigned int width, unsigned int height);
     bool show(); 
+    std::string getNickname1() const { return nickname1; }
+    std::string getNickname2() const { return nickname2; }
 
 private:
     sf::RenderWindow window;

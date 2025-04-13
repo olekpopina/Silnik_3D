@@ -220,6 +220,10 @@ public:
 
    int frameRate; ///< Liczba klatek na sekundę
 
+
+       void setPlayerNicknames(const std::string& name1, const std::string& name2);
+
+
 private:
     // Obiekty i zmienne związane z grą
     Triangle triangle;
@@ -289,7 +293,8 @@ private:
     int manualDiceValue = -1; // czasowa zmienna dla steps
 
 
-
+    std::string player1Name = "Gracz 1";
+    std::string player2Name = "Gracz 2";
   
 
     // Statyczne funkcje wywoływane przez OpenGL

@@ -174,6 +174,15 @@ void Engine::setTextures(const std::vector<std::string>& texturePaths) {
     }
 }
 
+
+void drawText(float x, float y, const std::string& text) {
+    glRasterPos2f(x, y);
+    for (char c : text) {
+        glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, c);
+    }
+}
+
+
 /**
  * @brief Funkcja renderująca całą scenę gry.
  */
@@ -272,11 +281,13 @@ void Engine::render() {
     // Rysowanie czerwonych pionków w domku
     for (const auto& pos : redHouse) {
         bitmapHandler.drawPionek(pos.first, pos.second, 0.08f, 0.08f, bitmapHandler.texture_pionek);
+ 
     }
 
     // Rysowanie niebieskich pionków w domku
     for (const auto& pos : blueHouse) {
         bitmapHandler.drawPionek(pos.first, pos.second, 0.08f, 0.08f, bitmapHandler.texture_pionek2);
+ 
     }
 
    // Rysowanie pionków tylko jeśli wyszły z domku
@@ -288,7 +299,23 @@ void Engine::render() {
     if (bluePawnInPlay) {
         bitmapHandler.drawPionek(pawnX2, pawnY2, 0.1f, 0.1f, bitmapHandler.texture_pionek2);
     }
+    glMatrixMode(GL_PROJECTION);
+    glPushMatrix();
+    glLoadIdentity();
+    gluOrtho2D(0.0, 1.0, 0.0, 1.0); // Ustawienie ortograficzne (2D)
 
+    glMatrixMode(GL_MODELVIEW);
+    glPushMatrix();
+    glLoadIdentity();
+
+    glColor3f(1.0f, 1.0f, 1.0f); 
+    drawText(0.18f, 0.03f, player1Name);
+    drawText(0.77f, 0.03f, player2Name);
+
+    glPopMatrix(); 
+    glMatrixMode(GL_PROJECTION);
+    glPopMatrix();
+    glMatrixMode(GL_MODELVIEW);
     
     // Rysowanie trójkąta
     glPushMatrix();
@@ -639,6 +666,12 @@ void Engine::onMouse(int button, int state, int x, int y) {
         }
     }
 }
+
+void Engine::setPlayerNicknames(const std::string& name1, const std::string& name2) {
+    player1Name = name1;
+    player2Name = name2;
+}
+
 
 /**
  * @brief Obsługuje kliknięcie myszką na kostce.

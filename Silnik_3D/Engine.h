@@ -277,6 +277,27 @@ private:
     int currentStepRed = 0;
     int currentStepBlue = 0;
 
+
+    bool redPawnInPlay2 = false;
+    float pawnX_R2 = 0.38f;
+    float pawnY_R2 = 0.06f;
+
+    bool bluePawnInPlay2 = false;
+    float pawnX_B2 = 0.85f;
+    float pawnY_B2 = 0.4f;
+
+    int currentStepRed2 = 0;
+    int currentStepBlue2 = 0;
+
+    int pawnStepsRemainingRed2 = 0;
+    int pawnStepsRemainingBlue2 = 0;
+
+    bool isRedPawn2Moving = false;
+    bool isBluePawn2Moving = false;
+
+    float lastMoveTimeRed2 = 0.0f;
+    float lastMoveTimeBlue2 = 0.0f;
+
     std::vector<std::pair<float, float>> redHouse = Paths::getRedHouse();
     std::vector<std::pair<float, float>> blueHouse = Paths::getBlueHouse();
     std::vector<std::pair<float, float>> redPath = Paths::getRedPath();

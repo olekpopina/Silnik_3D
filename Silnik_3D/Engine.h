@@ -278,6 +278,8 @@ private:
     int currentStepBlue = 0;
     bool canRollAgain = false;
 
+    bool diceRolledForRed = false;
+    bool diceRolledForBlue = false;
 
     bool redPawnInPlay2 = false;
     float pawnX_R2;// = 0.38f;

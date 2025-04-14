@@ -224,20 +224,27 @@ void Engine::render() {
         }
         else {
             isCubeRotating = false;    // Zakończenie obrotu kostki
-          
+          /*
             if((isMyTurn && pawnStepsRemaining > 0) || (!isMyTurn && pawnStepsRemaining2 > 0)) {
                 isPawnMoving = isMyTurn;
                 isPawnMoving2 = !isMyTurn;
                 pawnLastMoveTime = currentTime;
                 pawnLastMoveTime2 = currentTime;
             }
-
+            */
+            if ((isMyTurn && pawnStepsRemaining > 0) || (!isMyTurn && pawnStepsRemaining2 > 0)) {
+                allowPawnSelection = true; // Pozwól na kliknięcie pionka
+                std::cout << "[INFO] Kliknij pionka, ktorym chcesz sie poruszyc." << std::endl;
+            }
+            /**
             // Tylko jeśli NIE wypadła 6 – zmień turę
             if (!rolledSix) {
                 isMyTurn = !isMyTurn;
             }
             std::cout << "[DEBUG] Tura gracza: " << (isMyTurn ? "1" : "2") << std::endl;
+        */
         }
+
 
     }
 
@@ -522,6 +529,10 @@ void Engine::updatePawnPosition() {
             if (pawn.pawnStepsRemaining == 0 || pawn.currentStep >= pawn.path.size()) {
                 pawn.isMoving = false;
             }
+            if (pawn.pawnStepsRemaining == 0 && !rolledSix) {
+                isMyTurn = !isMyTurn;
+                std::cout << "[DEBUG] Tura zmieniona! Teraz gra: " << (isMyTurn ? "Czerwony" : "Niebieski") << std::endl;
+            }
 
             // Koniec ścieżki = zwycięstwo
             if (pawn.currentStep >= pawn.path.size()) {
@@ -637,15 +648,16 @@ void Engine::onMouse(int button, int state, int x, int y) {
         }
 
         if (allowPawnSelection) {
-            float size = 0.1f;
+            float size = 0.2f;
 
             if (isMyTurn && redPawnInPlay &&
                 normalizedX >= pawnX && normalizedX <= pawnX + size &&
                 normalizedY >= pawnY && normalizedY <= pawnY + size) {
-
+                if (!diceRolledForRed) return;
                 pawnStepsRemaining = drawer.textureSet; // ponowny ruch tym pionkiem
                 isPawnMoving = true;
                 pawnLastMoveTime = glutGet(GLUT_ELAPSED_TIME) / 1000.0f;
+                drawer.textureSet = 0;
                 allowPawnSelection = false;
                 std::cout << "[DEBUG] Wybrano czerwonego pionka do ponownego ruchu." << std::endl;
                 return;
@@ -653,9 +665,11 @@ void Engine::onMouse(int button, int state, int x, int y) {
             if (isMyTurn && redPawnInPlay2 &&
                 normalizedX >= pawnX_R2 && normalizedX <= pawnX_R2 + size &&
                 normalizedY >= pawnY_R2 && normalizedY <= pawnY_R2 + size) {
+                if (!diceRolledForRed) return;
                 pawnStepsRemainingRed2 = drawer.textureSet;
                 isRedPawn2Moving = true;
                 lastMoveTimeRed2 = glutGet(GLUT_ELAPSED_TIME) / 1000.0f;
+                drawer.textureSet = 0;
                 allowPawnSelection = false;
                 std::cout << "[DEBUG] Wybrano czerwonego pionka nr 2 do ruchu." << std::endl;
                 return;
@@ -665,10 +679,11 @@ void Engine::onMouse(int button, int state, int x, int y) {
             if (!isMyTurn && bluePawnInPlay &&
                 normalizedX >= pawnX2 && normalizedX <= pawnX2 + size &&
                 normalizedY >= pawnY2 && normalizedY <= pawnY2 + size) {
-
+                if (!diceRolledForBlue) return;
                 pawnStepsRemaining2 = drawer.textureSet;
                 isPawnMoving2 = true;
                 pawnLastMoveTime2 = glutGet(GLUT_ELAPSED_TIME) / 1000.0f;
+                drawer.textureSet = 0;
                 allowPawnSelection = false;
                 std::cout << "[DEBUG] Wybrano niebieskiego pionka do ponownego ruchu." << std::endl;
                 return;
@@ -676,10 +691,11 @@ void Engine::onMouse(int button, int state, int x, int y) {
             if (!isMyTurn && bluePawnInPlay2 &&
                 normalizedX >= pawnX_B2 && normalizedX <= pawnX_B2 + size &&
                 normalizedY >= pawnY_B2 && normalizedY <= pawnY_B2 + size) {
-
+                if (!diceRolledForBlue) return;
                 pawnStepsRemainingBlue2 = drawer.textureSet;
                 isBluePawn2Moving = true;
                 lastMoveTimeBlue2 = glutGet(GLUT_ELAPSED_TIME) / 1000.0f;
+                drawer.textureSet = 0;
                 allowPawnSelection = false;
                 std::cout << "[DEBUG] Wybrano niebieskiego pionka nr 2 do ruchu." << std::endl;
                 return;
@@ -703,6 +719,8 @@ void Engine::onMouse(int button, int state, int x, int y) {
             manualDiceValue = -1; // resetuj po użyciu
 
             rolledSix = (steps == 6);
+            diceRolledForRed = isMyTurn;
+                        diceRolledForBlue = !isMyTurn;
           
             if (isMyTurn) {
                 if (steps == 6) {

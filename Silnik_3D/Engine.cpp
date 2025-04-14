@@ -301,8 +301,8 @@ void Engine::render() {
     if (bluePawnInPlay) {
         bitmapHandler.drawPionek(pawnX2, pawnY2, 0.1f, 0.1f, bitmapHandler.texture_pionek2);
     }
-    if (redPawnInPlay2) {
-        bitmapHandler.drawPionek(pawnX_R2, pawnY_R2, 0.1f, 0.1f, bitmapHandler.texture_pionek);
+    if (bluePawnInPlay2) {
+        bitmapHandler.drawPionek(pawnX_B2, pawnY_B2, 0.1f, 0.1f, bitmapHandler.texture_pionek2);
     }
 
     glMatrixMode(GL_PROJECTION);

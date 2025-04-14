@@ -236,13 +236,12 @@ void Engine::render() {
                 allowPawnSelection = true; // Pozwól na kliknięcie pionka
                 std::cout << "[INFO] Kliknij pionka, ktorym chcesz sie poruszyc." << std::endl;
             }
-            /**
-            // Tylko jeśli NIE wypadła 6 – zmień turę
-            if (!rolledSix) {
+            else if (!rolledSix) {
+                // Tylko jeśli NIE wypadła 6 – zmień turę
                 isMyTurn = !isMyTurn;
             }
             std::cout << "[DEBUG] Tura gracza: " << (isMyTurn ? "1" : "2") << std::endl;
-        */
+       
         }
 
 
@@ -398,7 +397,7 @@ void Engine::onKeyboard(unsigned char key, int x, int y) {
     }
     else if (key >= '1' && key <= '6') {
         manualDiceValue = key - '0';
-        std::cout << "[DEBUG] Ręcznie ustawiono wartość kostki na: " << manualDiceValue << std::endl;
+        std::cout << "[DEBUG] Recznie ustawiono wartosc kostki na: " << manualDiceValue << std::endl;
     }
 
     player.handleInput(key);
@@ -505,7 +504,7 @@ void Engine::updatePawnPosition() {
                     std::abs(other.pawnY - nextY) < 0.01f &&
                     pawn.pawnStepsRemaining == 1) {
 
-                    std::cout << "[INFO] " << other.winnerName << " został zbity!" << std::endl;
+                    std::cout << "[INFO] " << other.winnerName << " zostal zbity!" << std::endl;
 
                     other.pawnStepsRemaining = -1;
                     other.currentStep = 0;
@@ -569,7 +568,7 @@ void Engine::resetGame() {
     crossedBottomBoundary1 = false;
     crossedBottomBoundary2 = false;
 
-    std::cout << "[DEBUG] Gra zostala zresetowana. Mozna grać ponownie." << std::endl;
+    std::cout << "[DEBUG] Gra zostala zresetowana. Mozna grac ponownie." << std::endl;
 }
 
 
@@ -613,7 +612,7 @@ void Engine::onMouse(int button, int state, int x, int y) {
 
                 redHouse.erase(redHouse.begin() + redHouseIndex);
                 waitingForRedPawnClick = false;
-                std::cout << "[DEBUG] Czerwony pionek został kliknięty i wychodzi na planszę!" << std::endl;
+                std::cout << "[DEBUG] Czerwony pionek zostal klikniety i wychodzi na plansze!" << std::endl;
                 return;
             }
         }
@@ -642,7 +641,7 @@ void Engine::onMouse(int button, int state, int x, int y) {
                 blueHouse.erase(blueHouse.begin() + blueHouseIndex);
                 waitingForBluePawnClick = false;
                 isCubeRotating = false;
-                std::cout << "[DEBUG] Niebieski pionek został kliknięty i wychodzi na planszę!" << std::endl;
+                std::cout << "[DEBUG] Niebieski pionek zostal klikniety i wychodzi na plansze!" << std::endl;
                 return;
             }
         }
@@ -730,12 +729,12 @@ void Engine::onMouse(int button, int state, int x, int y) {
                     }
                     if (redPawnInPlay) {
                         allowPawnSelection = true;
-                        std::cout << "[INFO] Możesz też kliknąć istniejącego czerwonego pionka i poruszyć go o " << steps << " kroków." << std::endl;
+                        std::cout << "[INFO] Mozesz tez kliknac istniejacego czerwonego pionka i poruszyc go o " << steps << " kroków." << std::endl;
                     }
                 }
                 else if (redPawnInPlay) {
                     pawnStepsRemaining = steps;
-                    std::cout << "[DEBUG] Ruch czerwonego pionka o " << steps << " kroków." << std::endl;
+                    std::cout << "[DEBUG] Ruch czerwonego pionka o " << steps << " krokow." << std::endl;
                 }
             }
             else {
@@ -746,11 +745,11 @@ void Engine::onMouse(int button, int state, int x, int y) {
                     }
                     if (bluePawnInPlay) {
                         allowPawnSelection = true;
-                        std::cout << "[INFO] Możesz też kliknąć istniejącego niebieskiego pionka i poruszyć go o " << steps << " kroków." << std::endl;
+                        std::cout << "[INFO] Mozesz też kliknac istniejacego niebieskiego pionka i poruszyc go o " << steps << " kroków." << std::endl;
                     }
                 } else if (bluePawnInPlay) {
                     pawnStepsRemaining2 = steps;
-                    std::cout << "[DEBUG] Ruch niebieskiego pionka o " << steps << " kroków." << std::endl;
+                    std::cout << "[DEBUG] Ruch niebieskiego pionka o " << steps << " krokow." << std::endl;
                 }
             }
             // Ustawianie tekstury kostki w zależności od liczby kroków

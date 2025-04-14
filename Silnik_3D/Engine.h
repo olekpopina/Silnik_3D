@@ -267,24 +267,25 @@ private:
     int pawnStepsRemaining2 = 0; ///< Liczba pozostałych kroków drugiego pionka
     float pawnStepSize = 0.05f; ///< Wielkość kroku pionka
     float pawnStepSize2 = 0.1f; ///< Wielkość kroku drugiego pionka
-    float pawnX = 0.38f;
-    float pawnY = 0.06f; ///< Pozycja pierwszego pionka
-    float pawnX2 = 0.85f;
-    float pawnY2 = 0.4f; ///< Pozycja drugiego pionka
+    float pawnX; //= 0.38f;
+    float pawnY;// = 0.06f; ///< Pozycja pierwszego pionka
+    float pawnX2;// = 0.85f;
+    float pawnY2; //= 0.4f; ///< Pozycja drugiego pionka
     float pawnLastMoveTime = 0.0f; ///< Czas ostatniego ruchu pionka
     float pawnLastMoveTime2 = 0.0f; ///< Czas ostatniego ruchu drugiego pionka
     bool isMyTurn; ///< Flaga określająca, czy gracz ma swoją turę
     int currentStepRed = 0;
     int currentStepBlue = 0;
+    bool canRollAgain = false;
 
 
     bool redPawnInPlay2 = false;
-    float pawnX_R2 = 0.38f;
-    float pawnY_R2 = 0.06f;
+    float pawnX_R2;// = 0.38f;
+    float pawnY_R2;// = 0.06f;
 
     bool bluePawnInPlay2 = false;
-    float pawnX_B2 = 0.85f;
-    float pawnY_B2 = 0.4f;
+    float pawnX_B2;// = 0.85f;
+    float pawnY_B2;// = 0.4f;
 
     int currentStepRed2 = 0;
     int currentStepBlue2 = 0;

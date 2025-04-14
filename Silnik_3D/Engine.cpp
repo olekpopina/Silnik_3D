@@ -577,26 +577,7 @@ void Engine::onMouse(int button, int state, int x, int y) {
     if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
         float normalizedX = (float)x / glutGet(GLUT_WINDOW_WIDTH);
         float normalizedY = 1.0f - (float)y / glutGet(GLUT_WINDOW_HEIGHT);
-        /*
-        // Czekamy na kliknięcie w czerwonego pionka
-        if (waitingForRedPawnClick && isMyTurn) {
-            auto pos = redHouse[redHouseIndex]; // Pozycja pionka w domku
-            float size = 0.08f;
-
-            if (normalizedX >= pos.first && normalizedX <= pos.first + size &&
-                normalizedY >= pos.second && normalizedY <= pos.second + size) {
-
-                redPawnInPlay = true;
-                redHouse.erase(redHouse.begin() + redHouseIndex);
-                pawnStepsRemaining = 1;
-                currentStepRed = 0;
-                waitingForRedPawnClick = false;
-
-                std::cout << "[DEBUG] Czerwony pionek został kliknięty i wychodzi na planszę!" << std::endl;
-                return;
-            }
-        }
-        */
+       
         if (waitingForRedPawnClick && isMyTurn) {
             auto pos = redHouse[redHouseIndex];
             float size = 0.08f;
@@ -607,14 +588,14 @@ void Engine::onMouse(int button, int state, int x, int y) {
                 if (!redPawnInPlay) {
                     redPawnInPlay = true;
                     pawnStepsRemaining = 1;
-                    currentStepRed = 0;
+                    currentStepRed = 1;
                     pawnX = redPath[0].first;
                     pawnY = redPath[0].second;
                 }
                 else if (!redPawnInPlay2) {
                     redPawnInPlay2 = true;
                     pawnStepsRemainingRed2 = 1;
-                    currentStepRed2 = 0;
+                    currentStepRed2 = 1;
                     pawnX_R2 = redPath[0].first;
                     pawnY_R2 = redPath[0].second;
                 }
@@ -635,14 +616,14 @@ void Engine::onMouse(int button, int state, int x, int y) {
                 if (!bluePawnInPlay) {
                     bluePawnInPlay = true;
                     pawnStepsRemaining2 = 1;
-                    currentStepBlue = 0;
+                    currentStepBlue = 1;
                     pawnX2 = bluePath[0].first;
                     pawnY2 = bluePath[0].second;
                 }
                 else if (!bluePawnInPlay2) {
                     bluePawnInPlay2 = true;
                     pawnStepsRemainingBlue2 = 1;
-                    currentStepBlue2 = 0;
+                    currentStepBlue2 = 1;
                     pawnX_B2 = bluePath[0].first;
                     pawnY_B2 = bluePath[0].second;
                 }
@@ -655,27 +636,6 @@ void Engine::onMouse(int button, int state, int x, int y) {
             }
         }
 
-
-        /*
-        // Czekamy na kliknięcie w niebieskiego pionka
-        if (waitingForBluePawnClick && !isMyTurn) {
-            auto pos = blueHouse[blueHouseIndex]; // Pozycja pionka w domku
-            float size = 0.08f;
-
-            if (normalizedX >= pos.first && normalizedX <= pos.first + size &&
-                normalizedY >= pos.second && normalizedY <= pos.second + size) {
-
-                bluePawnInPlay = true;
-                blueHouse.erase(blueHouse.begin() + blueHouseIndex);
-                pawnStepsRemaining2 = 1;
-                currentStepBlue = 0;
-                waitingForBluePawnClick = false;
-                isCubeRotating = false;//pozwolenie na kolejny rzut
-                std::cout << "[DEBUG] Niebieski pionek został kliknięty i wychodzi na planszę!" << std::endl;
-                return;
-            }
-        }
-        */
         if (allowPawnSelection) {
             float size = 0.1f;
 
@@ -743,34 +703,7 @@ void Engine::onMouse(int button, int state, int x, int y) {
             manualDiceValue = -1; // resetuj po użyciu
 
             rolledSix = (steps == 6);
-           /*
-            if (isMyTurn) {
-                if (steps == 6 && !redPawnInPlay && redHouseIndex < redHouse.size()) {
-                    waitingForRedPawnClick = true;
-                    std::cout << "[INFO] Wyrzucono 6 – kliknij czerwonego pionka w domku, aby go wyciagnac." << std::endl;
-                }
-                else if (redPawnInPlay) {
-                    pawnStepsRemaining = steps;
-                    std::cout << "[DEBUG] Ruch czerwonego pionka o " << steps << " krokow." << std::endl;
-                }
-                else {
-                    std::cout << "[DEBUG] Wylosowano " << steps << ", ale czerwony pionek nie moze jeszcze wyjsc z domku." << std::endl;
-                }
-            }
-            else {
-                if (steps == 6 && !bluePawnInPlay && blueHouseIndex < blueHouse.size()) {
-                    waitingForBluePawnClick = true;
-                    std::cout << "[INFO] Wyrzucono 6 – kliknij niebieskiego pionka w domku, aby go wyciagnac." << std::endl;
-                }
-                else if (bluePawnInPlay) {
-                    pawnStepsRemaining2 = steps;
-                    std::cout << "[DEBUG] Ruch niebieskiego pionka o " << steps << " krokow." << std::endl;
-                }
-                else {
-                    std::cout << "[DEBUG] Wylosowano " << steps << ", ale niebieski pionek nie moze jeszcze wyjsc z domku." << std::endl;
-                }
-            }
-            */
+          
             if (isMyTurn) {
                 if (steps == 6) {
                     if (redHouseIndex < redHouse.size()) {

@@ -142,7 +142,7 @@ public:
     /**
      * @brief Aktualizuje pozycję pionka w grze.
      */
-    void updatePawnPosition();
+    void updatePawnPosition(const std::string& id);
     
     /**
      * @brief Resetuje stan gry.

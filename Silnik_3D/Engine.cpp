@@ -252,71 +252,40 @@ void Engine::render() {
    // cube.draw();
     
     glPopMatrix();
-    /*
-    // Aktualizacja i rysowanie pionków
-    if (isPawnMoving || isPawnMoving2) {
+
+    if (isPawnMoving && pawnStepsRemaining > 0) {
         float currentTime = glutGet(GLUT_ELAPSED_TIME) / 1000.0f;
-
-        // Ruch pierwszego pionka
-        if (isPawnMoving) {
-            float elapsedTime = currentTime - pawnLastMoveTime;
-            if (elapsedTime >= 0.1f && pawnStepsRemaining > 0) {
-                updatePawnPosition(); // Aktualizacja pozycji pionków
-                pawnLastMoveTime = currentTime;
-            }
-            if (pawnStepsRemaining == 0) {
-                isPawnMoving = false;
-            }
-        }
-
-        // Ruch drugiego pionka
-        if (isPawnMoving2) {
-            float elapsedTime2 = currentTime - pawnLastMoveTime2;
-            if (elapsedTime2 >= 0.1f && pawnStepsRemaining2 > 0) {
-                updatePawnPosition(); // Wykorzystanie jednej funkcji
-                pawnLastMoveTime2 = currentTime;
-            }
-            if (pawnStepsRemaining2 == 0) {
-                isPawnMoving2 = false;
-            }
+        float elapsedTime = currentTime - pawnLastMoveTime;
+        if (elapsedTime >= 0.1f) {
+            updatePawnPosition("red1");
+            pawnLastMoveTime = currentTime;
         }
     }
-    */
-    if (isPawnMoving || isPawnMoving2 || isRedPawn2Moving || isBluePawn2Moving) {
+    else if (isRedPawn2Moving && pawnStepsRemainingRed2 > 0) {
         float currentTime = glutGet(GLUT_ELAPSED_TIME) / 1000.0f;
-
-        if (isPawnMoving && pawnStepsRemaining > 0) {
-            float elapsedTime = currentTime - pawnLastMoveTime;
-            if (elapsedTime >= 0.1f) {
-                updatePawnPosition();
-                pawnLastMoveTime = currentTime;
-            }
-        }
-
-        if (isPawnMoving2 && pawnStepsRemaining2 > 0) {
-            float elapsedTime2 = currentTime - pawnLastMoveTime2;
-            if (elapsedTime2 >= 0.1f) {
-                updatePawnPosition();
-                pawnLastMoveTime2 = currentTime;
-            }
-        }
-
-        if (isRedPawn2Moving && pawnStepsRemainingRed2 > 0) {
-            float elapsedTimeR2 = currentTime - lastMoveTimeRed2;
-            if (elapsedTimeR2 >= 0.1f) {
-                updatePawnPosition();
-                lastMoveTimeRed2 = currentTime;
-            }
-        }
-
-        if (isBluePawn2Moving && pawnStepsRemainingBlue2 > 0) {
-            float elapsedTimeB2 = currentTime - lastMoveTimeBlue2;
-            if (elapsedTimeB2 >= 0.1f) {
-                updatePawnPosition();
-                lastMoveTimeBlue2 = currentTime;
-            }
+        float elapsedTime = currentTime - lastMoveTimeRed2;
+        if (elapsedTime >= 0.1f) {
+            updatePawnPosition("red2");
+            lastMoveTimeRed2 = currentTime;
         }
     }
+    else if (isPawnMoving2 && pawnStepsRemaining2 > 0) {
+        float currentTime = glutGet(GLUT_ELAPSED_TIME) / 1000.0f;
+        float elapsedTime = currentTime - pawnLastMoveTime2;
+        if (elapsedTime >= 0.1f) {
+            updatePawnPosition("blue1");
+            pawnLastMoveTime2 = currentTime;
+        }
+    }
+    else if (isBluePawn2Moving && pawnStepsRemainingBlue2 > 0) {
+        float currentTime = glutGet(GLUT_ELAPSED_TIME) / 1000.0f;
+        float elapsedTime = currentTime - lastMoveTimeBlue2;
+        if (elapsedTime >= 0.1f) {
+            updatePawnPosition("blue2");
+            lastMoveTimeBlue2 = currentTime;
+        }
+    }
+
 
     // Rysowanie czerwonych pionków w domku
     for (const auto& pos : redHouse) {
@@ -489,12 +458,8 @@ void Engine::initializePawnPaths()
     redPath = Paths::getRedPath();
     bluePath = Paths::getBluePath();
 }
-void Engine::updatePawnPosition() {
+void Engine::updatePawnPosition(const std::string& id) {
     
-    /*std::array<PawnData, 2> pawns = { {
-    {pawnX, pawnY, pawnStepsRemaining, pawnStepSize, bitmapHandler.texture_pionek, isPawnMoving, "Pionek czerwony", crossedBottomBoundary1, redHouse, currentStepRed, redPath, true, redHouseIndex},
-    {pawnX2, pawnY2, pawnStepsRemaining2, pawnStepSize2, bitmapHandler.texture_pionek2, isPawnMoving2, "Pionek niebieski", crossedBottomBoundary2, blueHouse, currentStepBlue, bluePath, false, blueHouseIndex}
-} };*/
     std::array<PawnData, 4> pawns = { {
         {pawnX, pawnY, pawnStepsRemaining, pawnStepSize, bitmapHandler.texture_pionek, isPawnMoving, "Pionek czerwony", crossedBottomBoundary1, redHouse, currentStepRed, redPath, true, redHouseIndex},
         {pawnX2, pawnY2, pawnStepsRemaining2, pawnStepSize2, bitmapHandler.texture_pionek2, isPawnMoving2, "Pionek niebieski", crossedBottomBoundary2, blueHouse, currentStepBlue, bluePath, false, blueHouseIndex},
@@ -503,6 +468,13 @@ void Engine::updatePawnPosition() {
     } };
 
     for (auto& pawn : pawns) {
+        if ((id == "red1" && &pawn != &pawns[0]) ||
+            (id == "blue1" && &pawn != &pawns[1]) ||
+            (id == "red2" && &pawn != &pawns[2]) ||
+            (id == "blue2" && &pawn != &pawns[3])) {
+            continue;
+        }
+
         // Pionek jeszcze nie wyszedl
         if (pawn.pawnStepsRemaining == -1) {
             pawn.isMoving = false;
@@ -681,63 +653,7 @@ void Engine::onMouse(int button, int state, int x, int y) {
                 return;
             }
         }
-        /*
-        if (allowPawnSelection) {
-            float size = 0.2f;
-
-            if (isMyTurn && redPawnInPlay &&
-                normalizedX >= pawnX && normalizedX <= pawnX + size &&
-                normalizedY >= pawnY && normalizedY <= pawnY + size) {
-                if (!diceRolledForRed) return;
-                pawnStepsRemaining = drawer.textureSet; // ponowny ruch tym pionkiem
-                isPawnMoving = true;
-                pawnLastMoveTime = glutGet(GLUT_ELAPSED_TIME) / 1000.0f;
-                drawer.textureSet = 0;
-                allowPawnSelection = false;
-                std::cout << "[DEBUG] Wybrano czerwonego pionka do ponownego ruchu." << std::endl;
-                return;
-            }
-            if (isMyTurn && redPawnInPlay2 &&
-                normalizedX >= pawnX_R2 && normalizedX <= pawnX_R2 + size &&
-                normalizedY >= pawnY_R2 && normalizedY <= pawnY_R2 + size) {
-                if (!diceRolledForRed) return;
-                pawnStepsRemainingRed2 = drawer.textureSet;
-                isRedPawn2Moving = true;
-                lastMoveTimeRed2 = glutGet(GLUT_ELAPSED_TIME) / 1000.0f;
-                drawer.textureSet = 0;
-                allowPawnSelection = false;
-                std::cout << "[DEBUG] Wybrano czerwonego pionka nr 2 do ruchu." << std::endl;
-                return;
-            }
-
-
-            if (!isMyTurn && bluePawnInPlay &&
-                normalizedX >= pawnX2 && normalizedX <= pawnX2 + size &&
-                normalizedY >= pawnY2 && normalizedY <= pawnY2 + size) {
-                if (!diceRolledForBlue) return;
-                pawnStepsRemaining2 = drawer.textureSet;
-                isPawnMoving2 = true;
-                pawnLastMoveTime2 = glutGet(GLUT_ELAPSED_TIME) / 1000.0f;
-                drawer.textureSet = 0;
-                allowPawnSelection = false;
-                std::cout << "[DEBUG] Wybrano niebieskiego pionka do ponownego ruchu." << std::endl;
-                return;
-            }
-            if (!isMyTurn && bluePawnInPlay2 &&
-                normalizedX >= pawnX_B2 && normalizedX <= pawnX_B2 + size &&
-                normalizedY >= pawnY_B2 && normalizedY <= pawnY_B2 + size) {
-                if (!diceRolledForBlue) return;
-                pawnStepsRemainingBlue2 = drawer.textureSet;
-                isBluePawn2Moving = true;
-                lastMoveTimeBlue2 = glutGet(GLUT_ELAPSED_TIME) / 1000.0f;
-                drawer.textureSet = 0;
-                allowPawnSelection = false;
-                std::cout << "[DEBUG] Wybrano niebieskiego pionka nr 2 do ruchu." << std::endl;
-                return;
-            }
-
-        }
-        */
+       
         if (allowPawnSelection && drawer.textureSet > 0) {
             float size = 0.2f;
 

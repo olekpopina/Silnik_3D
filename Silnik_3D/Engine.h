@@ -16,6 +16,8 @@
 #include <windows.h>
 #include "ShadingMode.h"
 #include <thread>
+#include "Paths.h"
+#include "PawnData.h"
 
 // Enum reprezentujący tryby oświetlenia
 enum class LightingMode {
@@ -275,19 +277,10 @@ private:
     int currentStepRed = 0;
     int currentStepBlue = 0;
 
-    
-
-
-    // Nowe dane domków
-    std::vector<std::pair<float, float>> redHouse = {
-        {0.12f, 0.12f}, {0.12f, 0.22f}, {0.22f, 0.12f}, {0.22f, 0.22f}
-    };
-    std::vector<std::pair<float, float>> blueHouse = {
-        {0.80f, 0.13f}, {0.80f, 0.23f}, {0.70f, 0.13f}, {0.70f, 0.23f}
-    };
-
-    std::vector<std::pair<float, float>> redPath;
-    std::vector<std::pair<float, float>> bluePath;
+    std::vector<std::pair<float, float>> redHouse = Paths::getRedHouse();
+    std::vector<std::pair<float, float>> blueHouse = Paths::getBlueHouse();
+    std::vector<std::pair<float, float>> redPath = Paths::getRedPath();
+    std::vector<std::pair<float, float>> bluePath = Paths::getBluePath();
 
     int redHouseIndex = 0;
     int blueHouseIndex = 0;
@@ -297,15 +290,11 @@ private:
     bool waitingForBluePawnClick = false;
     bool rolledSix = false; // czy w ostatnim rzucie wypadło 6
     bool allowPawnSelection = false; // pozwala na wybór pionka do ruchu po wyrzuceniu 6
-
-
     int manualDiceValue = -1; // czasowa zmienna dla steps
-
 
     std::string player1Name = "Gracz 1";
     std::string player2Name = "Gracz 2";
   
-
     // Statyczne funkcje wywoływane przez OpenGL
     static void renderCallback();
     static void idleCallback();

@@ -257,6 +257,8 @@ private:
     float cubeScreenPosX = 0.5f;  // Domyślnie środek
     float cubeScreenPosY = 0.32f;
     float cubeScreenScale = 0.05f;  // Takie jak używasz w render()
+    bool firstThrowDone = false;
+
 
     std::mt19937 rng; ///< Generator liczb losowych
     std::uniform_int_distribution<int> dist; ///< Rozkład liczb losowych

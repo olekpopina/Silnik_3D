@@ -326,12 +326,13 @@ void Engine::render() {
     glLoadIdentity();
 
     if (diceInCenter) {
-        cubeScreenPosX = 0.5f - cubeScreenScale / 2.0f; // środek planszy
+        cubeScreenPosX = 0.02f - cubeScreenScale / 2.0f; // środek planszy
     }
     else {
         cubeScreenPosX = isMyTurn ? 0.00f : 0.90f; // lewa lub prawa
     }
-    cubeScreenPosY = 0.32f;
+    cubeScreenPosY = firstThrowDone ? 0.32f : 0.90f;
+
 
 
     // Translacja do środka kostki, bo rysowana jest od -1 do 1 (czyli 2x większa)
@@ -723,6 +724,7 @@ void Engine::onMouse(int button, int state, int x, int y) {
             // Rozpoczęcie obrotu kostki
             isCubeRotating = true;
             diceInCenter = false;
+            firstThrowDone = true;
             rotationStartTime = glutGet(GLUT_ELAPSED_TIME) / 1000.0f; // Czas początkowy obrotu
 
             // Generowanie losowej liczby kroków dla pionka

@@ -458,8 +458,7 @@ void Engine::initializePawnPaths()
     blueHouse = Paths::getBlueHouse();
     redPath = Paths::getRedPath();
     bluePath = Paths::getBluePath();
-    redHouseOriginal = redHouse;
-    blueHouseOriginal = blueHouse;
+
 }
 void Engine::updatePawnPosition(const std::string& id) {
     
@@ -530,16 +529,25 @@ void Engine::updatePawnPosition(const std::string& id) {
                     other.isMoving = false;
 
                     if (other.isRed) {
-                        if (otherId == "red1") redPawnInPlay = false;
-                        else if (otherId == "red2") redPawnInPlay2 = false;
+                        if (otherId == "red1") {
+                            redPawnInPlay = false;
+                            other.house.insert(other.house.begin() + other.houseIndex, { 0.12f, 0.12f });
+                        }
+                        else if (otherId == "red2"){
+                            redPawnInPlay2 = false;
 
-                        other.house.insert(other.house.begin() + other.houseIndex, { 0.12f, 0.12f });
+                        other.house.insert(other.house.begin() + other.houseIndex, { 0.12f, 0.22f });
+                    }
                     }
                     else {
-                        if (otherId == "blue1") bluePawnInPlay = false;
-                        else if (otherId == "blue2") bluePawnInPlay2 = false;
-
-                        other.house.insert(other.house.begin() + other.houseIndex, { 0.80f, 0.13f });
+                        if (otherId == "blue1") {
+                            bluePawnInPlay = false;
+                            other.house.insert(other.house.begin() + other.houseIndex, { 0.80f, 0.13f });
+                        }
+                        else if (otherId == "blue2") {
+                            bluePawnInPlay2 = false;
+                            other.house.insert(other.house.begin() + other.houseIndex, { 0.80f, 0.23f });
+                        }
                     }
                 }
             }

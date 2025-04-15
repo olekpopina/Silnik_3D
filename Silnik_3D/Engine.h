@@ -321,9 +321,7 @@ private:
     std::string player1Name = "Gracz 1";
     std::string player2Name = "Gracz 2";
 
-    std::vector<std::pair<float, float>> redHouseOriginal;
-    std::vector<std::pair<float, float>> blueHouseOriginal;
-
+   
   
     // Statyczne funkcje wywoływane przez OpenGL
     static void renderCallback();

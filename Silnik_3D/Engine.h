@@ -303,6 +303,27 @@ private:
     float lastMoveTimeRed2 = 0.0f;
     float lastMoveTimeBlue2 = 0.0f;
 
+
+    bool redPawnInPlay3 = false;
+    float pawnX_R3;// = 0.38f;
+    float pawnY_R3;// = 0.06f;
+
+    bool bluePawnInPlay3 = false;
+    float pawnX_B3;// = 0.85f;
+    float pawnY_B3;// = 0.4f;
+
+    int currentStepRed3 = 0;
+    int currentStepBlue3 = 0;
+
+    int pawnStepsRemainingRed3 = 0;
+    int pawnStepsRemainingBlue3 = 0;
+
+    bool isRedPawn3Moving = false;
+    bool isBluePawn3Moving = false;
+
+    float lastMoveTimeRed3 = 0.0f;
+    float lastMoveTimeBlue3 = 0.0f;
+
     std::vector<std::pair<float, float>> redHouse = Paths::getRedHouse();
     std::vector<std::pair<float, float>> blueHouse = Paths::getBlueHouse();
     std::vector<std::pair<float, float>> redPath = Paths::getRedPath();

@@ -458,6 +458,8 @@ void Engine::initializePawnPaths()
     blueHouse = Paths::getBlueHouse();
     redPath = Paths::getRedPath();
     bluePath = Paths::getBluePath();
+    redHouseOriginal = redHouse;
+    blueHouseOriginal = blueHouse;
 }
 void Engine::updatePawnPosition(const std::string& id) {
     
@@ -496,49 +498,30 @@ void Engine::updatePawnPosition(const std::string& id) {
 
         if (pawn.pawnStepsRemaining > 0 && pawn.currentStep < pawn.path.size()) {
 
-            // Oblicz następne pole, na które pionek ma wejść
+            // Sprawdzenie czy pionek może zbić przeciwnika (najpierw ustal, gdzie pionek ma się przemieścić)
             int nextStep = pawn.currentStep;
             float nextX = pawn.path[nextStep].first;
             float nextY = pawn.path[nextStep].second;
 
-            pawn.pawnX = nextX;
-            pawn.pawnY = nextY;
-            /*
-            // Sprawdzenie czy pionek może zbić przeciwnika
+            // Sprawdzenie czy na tym polu stoi przeciwnik
             for (auto& other : pawns) {
-                if (&other == &pawn) continue; // pomiń siebie
+                if (&other == &pawn) continue;
+                std::string currentPawnId = id;
 
-                if (other.pawnStepsRemaining >= 0 &&
-                    std::abs(other.pawnX - nextX) < 0.01f &&
-                    std::abs(other.pawnY - nextY) < 0.01f &&
-                    pawn.pawnStepsRemaining == 1) {
+                // Zabezpieczenie: Nie zbijaj pionka, który porusza się aktualnie
+                std::string otherId;
+                if (&other == &pawns[0]) otherId = "red1";
+                else if (&other == &pawns[1]) otherId = "blue1";
+                else if (&other == &pawns[2]) otherId = "red2";
+                else if (&other == &pawns[3]) otherId = "blue2";
 
-                    std::cout << "[INFO] " << other.winnerName << " zostal zbity!" << std::endl;
-
-                    other.pawnStepsRemaining = -1;
-                    other.currentStep = 0;
-                    other.isMoving = false;
-
-                    if (other.isRed) {
-                        redPawnInPlay = false;
-                        other.house.insert(other.house.begin() + other.houseIndex, { 0.12f, 0.12f }); // wraca na swój slot
-                    }
-                    else {
-                        bluePawnInPlay = false;
-                        other.house.insert(other.house.begin() + other.houseIndex, { 0.80f, 0.13f }); // wraca na swój slot
-                    }
-                }
-            }
-            */
-            // Sprawdzenie czy pionek może zbić przeciwnika
-            for (auto& other : pawns) {
-                if (&other == &pawn) continue; // pomiń siebie
+                if (otherId == currentPawnId) continue; // nie bij samego siebie!
 
                 if (other.pawnStepsRemaining >= 0 &&
                     std::abs(other.pawnX - nextX) < 0.01f &&
                     std::abs(other.pawnY - nextY) < 0.01f &&
                     pawn.pawnStepsRemaining == 1 &&
-                    pawn.isRed != other.isRed) {  // Dodane: zbijaj tylko przeciwnika
+                    pawn.isRed != other.isRed) {
 
                     std::cout << "[INFO] " << other.winnerName << " zostal zbity!" << std::endl;
 
@@ -547,15 +530,25 @@ void Engine::updatePawnPosition(const std::string& id) {
                     other.isMoving = false;
 
                     if (other.isRed) {
-                        redPawnInPlay = false;
-                        other.house.insert(other.house.begin() + other.houseIndex, { 0.12f, 0.12f }); // wraca na swój slot
+                        if (otherId == "red1") redPawnInPlay = false;
+                        else if (otherId == "red2") redPawnInPlay2 = false;
+
+                        other.house.insert(other.house.begin() + other.houseIndex, { 0.12f, 0.12f });
                     }
                     else {
-                        bluePawnInPlay = false;
-                        other.house.insert(other.house.begin() + other.houseIndex, { 0.80f, 0.13f }); // wraca na swój slot
+                        if (otherId == "blue1") bluePawnInPlay = false;
+                        else if (otherId == "blue2") bluePawnInPlay2 = false;
+
+                        other.house.insert(other.house.begin() + other.houseIndex, { 0.80f, 0.13f });
                     }
                 }
             }
+
+
+            // Dopiero teraz przesuwamy pionka na nowe pole
+            pawn.pawnX = nextX;
+            pawn.pawnY = nextY;
+
 
 
             pawn.currentStep++;

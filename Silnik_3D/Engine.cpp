@@ -21,6 +21,9 @@ Engine::Engine(int width, int height, const char* title, int fps)
     isMyTurn(false) 
 {
     initializePawnPaths();
+    //currentLightingMode = LightingMode::DIRECTIONAL_LIGHT;
+  
+
     // Ustawienie środka linii
     point.set(
         (line.getEndX() + line.getStartX()) / 2,
@@ -207,7 +210,10 @@ void Engine::render() {
     //configureLighting();
 
     // Ustawienie kamery
-    gluLookAt(1.5, 1.5, cameraZ, 0.0, 0.0, 0.0, 0.0, 8.0, 0.0);
+    //gluLookAt(1.5, 1.5, cameraZ, 0.0, 0.0, 0.0, 0.0, 8.0, 0.0);
+    gluLookAt(0.5, 0.5, cameraZ,  // nad środkiem planszy
+        0.5, 0.5, 0.0,      // patrz na środek planszy
+        0.0, 1.0, 0.0);     // oś Y jako góra
 
 
     // Rysowanie tła
@@ -561,7 +567,8 @@ void Engine::updatePawnPosition(const std::string& id) {
                 else if (&other == &pawns[7]) otherId = "blue4";
 
                 // Nie bij pionków z własnej drużyny
-                if ((pawn.isRed && other.isRed) || (!pawn.isRed && !other.isRed)) continue;
+                bool isEnemy = (pawn.isRed && !other.isRed) || (!pawn.isRed && other.isRed);
+                if (!isEnemy) continue;
 
                 if (other.pawnStepsRemaining >= 0 &&
                     std::abs(other.pawnX - nextX) < 0.01f &&
@@ -1220,15 +1227,18 @@ void Engine::configureLighting() {
 
     case LightingMode::DIRECTIONAL_LIGHT: {
         glEnable(GL_LIGHT1);
-        GLfloat dirLightDir[] = { -1.0f, -1.0f, -1.0f, 0.0f };   
-        GLfloat dirLightDiffuse[] = { 1.0f, 1.0f, 1.0f, 1.0f };  
-        GLfloat dirLightAmbient[] = { 0.2f, 0.2f, 0.2f, 1.0f };  
-        GLfloat dirLightSpecular[] = { 1.0f, 1.0f, 1.0f, 1.0f };
+
+        GLfloat dirLightDir[] = { -0.3f, -1.0f, -0.7f, 0.0f }; // światło z lewego górnego rogu
+        GLfloat dirLightDiffuse[] = { 0.9f, 0.85f, 0.7f, 1.0f }; // lekko ciepłe, jak Ludo Club
+        GLfloat dirLightAmbient[] = { 0.25f, 0.25f, 0.25f, 1.0f }; // subtelna poświata
+        GLfloat dirLightSpecular[] = { 0.6f, 0.6f, 0.6f, 1.0f }; // miękkie krawędzie
+
         glLightfv(GL_LIGHT1, GL_POSITION, dirLightDir);
         glLightfv(GL_LIGHT1, GL_DIFFUSE, dirLightDiffuse);
         glLightfv(GL_LIGHT1, GL_AMBIENT, dirLightAmbient);
         glLightfv(GL_LIGHT1, GL_SPECULAR, dirLightSpecular);
-        break;
+
+        break; 
     }
 
     case LightingMode::SPOTLIGHT: {

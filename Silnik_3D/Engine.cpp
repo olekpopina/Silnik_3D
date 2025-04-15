@@ -505,22 +505,20 @@ void Engine::updatePawnPosition(const std::string& id) {
             // Sprawdzenie czy na tym polu stoi przeciwnik
             for (auto& other : pawns) {
                 if (&other == &pawn) continue;
-                std::string currentPawnId = id;
 
-                // Zabezpieczenie: Nie zbijaj pionka, który porusza się aktualnie
                 std::string otherId;
                 if (&other == &pawns[0]) otherId = "red1";
                 else if (&other == &pawns[1]) otherId = "blue1";
                 else if (&other == &pawns[2]) otherId = "red2";
                 else if (&other == &pawns[3]) otherId = "blue2";
 
-                if (otherId == currentPawnId) continue; // nie bij samego siebie!
+                // Nie bij pionków z własnej drużyny
+                if ((pawn.isRed && other.isRed) || (!pawn.isRed && !other.isRed)) continue;
 
                 if (other.pawnStepsRemaining >= 0 &&
                     std::abs(other.pawnX - nextX) < 0.01f &&
                     std::abs(other.pawnY - nextY) < 0.01f &&
-                    pawn.pawnStepsRemaining == 1 &&
-                    pawn.isRed != other.isRed) {
+                    pawn.pawnStepsRemaining == 1) {
 
                     std::cout << "[INFO] " << other.winnerName << " zostal zbity!" << std::endl;
 
@@ -533,11 +531,10 @@ void Engine::updatePawnPosition(const std::string& id) {
                             redPawnInPlay = false;
                             other.house.insert(other.house.begin() + other.houseIndex, { 0.12f, 0.12f });
                         }
-                        else if (otherId == "red2"){
+                        else if (otherId == "red2") {
                             redPawnInPlay2 = false;
-
-                        other.house.insert(other.house.begin() + other.houseIndex, { 0.12f, 0.22f });
-                    }
+                            other.house.insert(other.house.begin() + other.houseIndex, { 0.12f, 0.22f });
+                        }
                     }
                     else {
                         if (otherId == "blue1") {
@@ -551,6 +548,7 @@ void Engine::updatePawnPosition(const std::string& id) {
                     }
                 }
             }
+
 
 
             // Dopiero teraz przesuwamy pionka na nowe pole

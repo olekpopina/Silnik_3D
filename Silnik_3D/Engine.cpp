@@ -503,7 +503,7 @@ void Engine::updatePawnPosition(const std::string& id) {
 
             pawn.pawnX = nextX;
             pawn.pawnY = nextY;
-
+            /*
             // Sprawdzenie czy pionek może zbić przeciwnika
             for (auto& other : pawns) {
                 if (&other == &pawn) continue; // pomiń siebie
@@ -512,6 +512,33 @@ void Engine::updatePawnPosition(const std::string& id) {
                     std::abs(other.pawnX - nextX) < 0.01f &&
                     std::abs(other.pawnY - nextY) < 0.01f &&
                     pawn.pawnStepsRemaining == 1) {
+
+                    std::cout << "[INFO] " << other.winnerName << " zostal zbity!" << std::endl;
+
+                    other.pawnStepsRemaining = -1;
+                    other.currentStep = 0;
+                    other.isMoving = false;
+
+                    if (other.isRed) {
+                        redPawnInPlay = false;
+                        other.house.insert(other.house.begin() + other.houseIndex, { 0.12f, 0.12f }); // wraca na swój slot
+                    }
+                    else {
+                        bluePawnInPlay = false;
+                        other.house.insert(other.house.begin() + other.houseIndex, { 0.80f, 0.13f }); // wraca na swój slot
+                    }
+                }
+            }
+            */
+            // Sprawdzenie czy pionek może zbić przeciwnika
+            for (auto& other : pawns) {
+                if (&other == &pawn) continue; // pomiń siebie
+
+                if (other.pawnStepsRemaining >= 0 &&
+                    std::abs(other.pawnX - nextX) < 0.01f &&
+                    std::abs(other.pawnY - nextY) < 0.01f &&
+                    pawn.pawnStepsRemaining == 1 &&
+                    pawn.isRed != other.isRed) {  // Dodane: zbijaj tylko przeciwnika
 
                     std::cout << "[INFO] " << other.winnerName << " zostal zbity!" << std::endl;
 

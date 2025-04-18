@@ -634,12 +634,40 @@ void Engine::updatePawnPosition(const std::string& id) {
                 std::cout << "[DEBUG] Tura zmieniona! Teraz gra: " << (isMyTurn ? "Czerwony" : "Niebieski") << std::endl;
             }
 
-            // Koniec ścieżki = zwycięstwo
             if (pawn.currentStep >= pawn.path.size()) {
-                showWinnerMessage(pawn.winnerName);
+                pawn.isMoving = false;
+                pawn.pawnStepsRemaining = 0;
+            }
+
+            // Po zakończeniu ruchu, sprawdzamy czy któryś z pionków właśnie dobił do końca,
+            // i czy **wszystkie 4 pionki** gracza osiągnęły cel.
+            int redFinished = 0;
+            int blueFinished = 0;
+
+            for (const auto& other : pawns) {
+                if (other.isRed && other.currentStep >= other.path.size()) {
+                    redFinished++;
+                }
+                else if (!other.isRed && other.currentStep >= other.path.size()) {
+                    blueFinished++;
+                }
+            }
+
+            // Wygrana Czerwonego
+            if (redFinished == 4 && pawn.isRed) {
+                showWinnerMessage(player1Name); // albo pawn.winnerName
                 resetGame();
                 return;
             }
+
+            // Wygrana Niebieskiego
+            if (blueFinished == 4 && !pawn.isRed) {
+                showWinnerMessage(player2Name); // albo pawn.winnerName
+                resetGame();
+                return;
+            }
+
+
         }
     }
     

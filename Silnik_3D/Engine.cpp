@@ -685,18 +685,18 @@ void Engine::resetGame() {
     pawnX2 = 0.80f;
     pawnY2 = 0.13f; 
 
-    float pawnX_B2 = 0.80f;
-    float pawnY_B2 = 0.23f;
-    float pawnX_B3 = 0.70f;
-    float pawnY_B3 = 0.13f;
-    float pawnX_B4 = 0.70f;
-    float pawnY_B4 = 0.23f;
-    float pawnX_R2 = 0.12f;
-    float pawnY_R2 = 0.22f;
-    float pawnX_R3 = 0.22f;
-    float pawnY_R3 = 0.12f;
-    float pawnX_R4 = 0.22f;
-    float pawnY_R4 = 0.22f;
+    pawnX_B2 = 0.80f;
+    pawnY_B2 = 0.23f;
+    pawnX_B3 = 0.70f;
+    pawnY_B3 = 0.13f;
+    pawnX_B4 = 0.70f;
+    pawnY_B4 = 0.23f;
+    pawnX_R2 = 0.12f;
+    pawnY_R2 = 0.22f;
+    pawnX_R3 = 0.22f;
+    pawnY_R3 = 0.12f;
+    pawnX_R4 = 0.22f;
+    pawnY_R4 = 0.22f;
     //// Resetowanie liczby kroków
     pawnStepsRemaining = 0;
     pawnStepsRemaining2 = 0;

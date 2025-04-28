@@ -367,7 +367,7 @@ void Engine::render() {
     glLoadIdentity();
 
     if (diceInCenter) {
-        cubeScreenPosX = 0.02f - cubeScreenScale / 2.0f; // środek planszy
+        cubeScreenPosX = 0.02f - cubeScreenScale / 2.0f;
     }
     else {
         cubeScreenPosX = isMyTurn ? 0.00f : 0.90f; // lewa lub prawa
@@ -799,8 +799,10 @@ void Engine::onMouse(int button, int state, int x, int y) {
 
             if (isMyTurn) {
                 if (redPawnInPlay &&
+                    currentStepRed < redPath.size() &&  
                     normalizedX >= pawnX && normalizedX <= pawnX + size &&
                     normalizedY >= pawnY && normalizedY <= pawnY + size) {
+
 
                     pawnStepsRemaining = drawer.textureSet;
                     isPawnMoving = true;
@@ -810,7 +812,7 @@ void Engine::onMouse(int button, int state, int x, int y) {
                     allowPawnSelection = false;
                     return;
                 }
-                else if (redPawnInPlay2 &&
+                else if (redPawnInPlay2 && currentStepRed2 < redPath.size() &&
                     normalizedX >= pawnX_R2 && normalizedX <= pawnX_R2 + size &&
                     normalizedY >= pawnY_R2 && normalizedY <= pawnY_R2 + size) {
 
@@ -822,7 +824,7 @@ void Engine::onMouse(int button, int state, int x, int y) {
                     allowPawnSelection = false;
                     return;
                 }
-                else if (redPawnInPlay3 &&
+                else if (redPawnInPlay3 && currentStepRed3 < redPath.size() &&
                     normalizedX >= pawnX_R3 && normalizedX <= pawnX_R3 + size &&
                     normalizedY >= pawnY_R3 && normalizedY <= pawnY_R3 + size) {
 
@@ -834,7 +836,7 @@ void Engine::onMouse(int button, int state, int x, int y) {
                     allowPawnSelection = false;
                     return;
                 }
-                else if (redPawnInPlay4 &&
+                else if (redPawnInPlay4 && currentStepRed4 < redPath.size() &&
                     normalizedX >= pawnX_R4 && normalizedX <= pawnX_R4 + size &&
                     normalizedY >= pawnY_R4 && normalizedY <= pawnY_R4 + size) {
 
@@ -848,7 +850,7 @@ void Engine::onMouse(int button, int state, int x, int y) {
                 }
             }
             else {
-                if (bluePawnInPlay &&
+                if (bluePawnInPlay && currentStepBlue < bluePath.size() &&
                     normalizedX >= pawnX2 && normalizedX <= pawnX2 + size &&
                     normalizedY >= pawnY2 && normalizedY <= pawnY2 + size) {
 
@@ -860,7 +862,7 @@ void Engine::onMouse(int button, int state, int x, int y) {
                     allowPawnSelection = false;
                     return;
                 }
-                else if (bluePawnInPlay2 &&
+                else if (bluePawnInPlay2 && currentStepBlue2 < bluePath.size() &&
                     normalizedX >= pawnX_B2 && normalizedX <= pawnX_B2 + size &&
                     normalizedY >= pawnY_B2 && normalizedY <= pawnY_B2 + size) {
 
@@ -872,7 +874,7 @@ void Engine::onMouse(int button, int state, int x, int y) {
                     allowPawnSelection = false;
                     return;
                 }
-                else if (bluePawnInPlay3 &&
+                else if (bluePawnInPlay3 && currentStepBlue3 < bluePath.size() &&
                     normalizedX >= pawnX_B3 && normalizedX <= pawnX_B3 + size &&
                     normalizedY >= pawnY_B3 && normalizedY <= pawnY_B3 + size) {
 
@@ -884,7 +886,7 @@ void Engine::onMouse(int button, int state, int x, int y) {
                     allowPawnSelection = false;
                     return;
                 }
-                else if (bluePawnInPlay4 &&
+                else if (bluePawnInPlay4 && currentStepBlue4 < bluePath.size() &&
                     normalizedX >= pawnX_B4 && normalizedX <= pawnX_B4 + size &&
                     normalizedY >= pawnY_B4 && normalizedY <= pawnY_B4 + size) {
 

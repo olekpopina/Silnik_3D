@@ -679,25 +679,43 @@ void Engine::updatePawnPosition(const std::string& id) {
  * Funkcja ta ustawia pionki na pozycjach początkowych, resetuje liczbę pozostałych kroków oraz inne istotne zmienne.
  */
 void Engine::resetGame() {
-    //// Resetowanie pozycji pionków do początkowych współrzędnych
-    //pawnX = 0.38f;
-    //pawnY = 0.06f; 
-    //pawnX2 = 0.85f;
-    //pawnY2 = 0.4f; 
+    // Resetowanie pozycji pionków do domków
+    pawnX = 0.12f;
+    pawnY = 0.12f; 
+    pawnX2 = 0.80f;
+    pawnY2 = 0.13f; 
 
+    float pawnX_B2 = 0.80f;
+    float pawnY_B2 = 0.23f;
+    float pawnX_B3 = 0.70f;
+    float pawnY_B3 = 0.13f;
+    float pawnX_B4 = 0.70f;
+    float pawnY_B4 = 0.23f;
+    float pawnX_R2 = 0.12f;
+    float pawnY_R2 = 0.22f;
+    float pawnX_R3 = 0.22f;
+    float pawnY_R3 = 0.12f;
+    float pawnX_R4 = 0.22f;
+    float pawnY_R4 = 0.22f;
     //// Resetowanie liczby kroków
-    //pawnStepsRemaining = 0;
-    //pawnStepsRemaining2 = 0;
+    pawnStepsRemaining = 0;
+    pawnStepsRemaining2 = 0;
+    pawnStepsRemainingRed2 = 0;
+    pawnStepsRemainingBlue2 = 0;
+    pawnStepsRemainingRed3 = 0;
+    pawnStepsRemainingBlue3 = 0;
+    pawnStepsRemainingRed4 = 0;
+    pawnStepsRemainingBlue4 = 0;
 
     //// Zatrzymanie ruchu pionków
-    //isPawnMoving = false;
-    //isPawnMoving2 = false;
-
-    //// Resetowanie flag przekroczenia dolnej granicy
-    //crossedBottomBoundary1 = false;
-    //crossedBottomBoundary2 = false;
-
-    //std::cout << "[DEBUG] Gra zostala zresetowana. Mozna grac ponownie." << std::endl;
+    isPawnMoving = false;
+    isPawnMoving2 = false;
+    isRedPawn2Moving = false;
+    isBluePawn2Moving = false;
+    isRedPawn3Moving = false;
+    isBluePawn3Moving = false;
+    isRedPawn4Moving = false;
+    isBluePawn4Moving = false;
 }
 
 

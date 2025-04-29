@@ -4,17 +4,23 @@ Winner::Winner(unsigned int width, unsigned int height)
     : window(sf::VideoMode(width, height), "Winner") {
     font.loadFromFile("C:\\Windows\\Fonts\\Arial.ttf");
 
-    if (!backgroundTexture.loadFromFile("images/tlo.png")) {
+    if (!backgroundTexture.loadFromFile("images/winner.png")) {
 
         std::cerr << "Nie udalo sie zaladowac tla winner!" << std::endl;
     }
     backgroundSprite.setTexture(backgroundTexture);
 
+    sf::Vector2u textureSize = backgroundTexture.getSize();
+    sf::Vector2u windowSize = window.getSize();
+    float scaleX = static_cast<float>(windowSize.x) / textureSize.x;
+    float scaleY = static_cast<float>(windowSize.y) / textureSize.y;
+    backgroundSprite.setScale(scaleX, scaleY);
+
     startText.setFont(font);
-    startText.setString("Wygrywa");
+    startText.setString("Wygrywasz");
     startText.setCharacterSize(40);
-    startText.setFillColor(sf::Color::Black);
-    startText.setPosition(150, 150);
+    startText.setFillColor(sf::Color::White);
+    startText.setPosition(145, 150);
 }
 
 bool Winner::showWinnerScreen() {

@@ -70,9 +70,13 @@ void Engine::init(int argc, char** argv) {
  * @param winner Nazwa zwycięzcy.
  */
 void Engine::showWinnerMessage(const std::string& winner) {
-    
-    Winner winners(400, 400);
-    winners.showWinnerScreen();
+    std::thread winnerThread([&]() {
+        Winner winners(400, 400);
+        winners.showWinnerScreen();
+        });
+    winnerThread.join();
+    resetGame();
+   
 }
 
 /**
@@ -698,12 +702,12 @@ void Engine::resetGame() {
     isBluePawn3Moving = false;
     isRedPawn4Moving = false;
     isBluePawn4Moving = false;
-
+    
     redHouse = Paths::getRedHouse();
     blueHouse = Paths::getBlueHouse();
     redHouseIndex = 0;
     blueHouseIndex = 0;
-
+    
     isCubeRotating = false;
     firstThrowDone = false;
     diceInCenter = true;

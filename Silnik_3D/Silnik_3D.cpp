@@ -4,7 +4,7 @@
 
 
 int main(int argc, char** argv) {
-    Menu menu(800, 600);
+    Menu menu(600, 600);
 
     if (!menu.show()) {
         return 0; // użytkownik zamknął menu bez kliknięcia "Start gry"

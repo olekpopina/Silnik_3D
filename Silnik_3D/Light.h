@@ -17,7 +17,7 @@ public:
     void configureLighting();
     void switchLightingMode();
 
-    LightingMode currentLightingMode = LightingMode::NONE;
+    LightingMode currentLightingMode = LightingMode::POINT_LIGHT;
 };
 
 #endif // LIGHT_H

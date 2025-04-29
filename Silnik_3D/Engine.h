@@ -20,15 +20,7 @@
 #include "PawnData.h"
 #include "Winner.h"
 #include "Light.h"
-/*
-// Enum reprezentujący tryby oświetlenia
-enum class LightingMode {
-    NONE,            ///< Brak oświetlenia
-    POINT_LIGHT,     ///< Światło punktowe
-    DIRECTIONAL_LIGHT, ///< Światło kierunkowe
-    SPOTLIGHT        ///< Światło punktowe o wąskim kącie
-};
-*/
+
 /**
  * @brief Klasa zarządzająca silnikiem graficznym.
  *
@@ -181,22 +173,11 @@ public:
     
     
     ShadingMode currentShadingMode = ShadingMode::SMOOTH; // Bieżący tryb oświetlenia
-    //LightingMode currentLightingMode = LightingMode::NONE; // Bieżący tryb oświetlenia
     
     /**
     * @brief Zmienia tryb cieniowania.
     */
     void switchShadingMode();
-
-    /**
-     * @brief Konfiguruje ustawienia oświetlenia.
-     */
-    //void configureLighting(); 
-
-    /**
-    * @brief Zmienia tryb oświetlenia.
-    */
-    //void switchLightingMode(); // Зміна режиму освітлення
 
     /**
     * @brief Obsługuje przewijanie kółka myszy.

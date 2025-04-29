@@ -5,6 +5,9 @@ Player::Player(Triangle* triangle, Cube* cube, PrimitiveDrawer* drawer)
     : triangle(triangle), cube(cube), drawer(drawer), isRotating(false) {
     isRotatingCube = false;
 }
+Light& Player::getLight() {
+    return light;
+}
 
 /**
  * @brief Obsługuje wejście od użytkownika (naciśnięcie klawisza).
@@ -60,6 +63,10 @@ void Player::handleInput(unsigned char key) {
         cube->setRotationC(isRotatingCube);
         std::cout << key;
     }
+    else if (key == 'O' || key == 'o') {
+        light.switchLightingMode();
+        std::cout << key;
+    }
 }
 
 /**
@@ -75,4 +82,7 @@ void Player::update(float deltaTime) {
 
     // Aktualizuj rotację sześcianu
     cube->updateRotationC(deltaTime);
+}
+void Player::configureLighting() {
+    light.configureLighting();
 }

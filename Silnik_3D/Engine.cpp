@@ -192,7 +192,8 @@ void Engine::render() {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glLoadIdentity();
    
-    //configureLighting();
+    player.configureLighting();
+    //light.configureLighting();
 
     // Ustawienie kamery
     //gluLookAt(1.5, 1.5, cameraZ, 0.0, 0.0, 0.0, 0.0, 8.0, 0.0);
@@ -418,10 +419,13 @@ void Engine::render() {
  * @param y Pozycja kursora w osi Y.
  */
 void Engine::onKeyboard(unsigned char key, int x, int y) {
+    /*
     if (key == 'O' || key == 'o') { // przełączenia oświetlenia
-        switchLightingMode();
+        //switchLightingMode();
+   
     }
-    else if (key == 'Z' || key == 'z') { // przełączenia cieniowania
+    */
+    if (key == 'Z' || key == 'z') { // przełączenia cieniowania
         switchShadingMode();
     }
     else if (key == 27) { // wyjście
@@ -1274,6 +1278,7 @@ void Engine::switchShadingMode() {
  *
  * Funkcja ta ustawia odpowiedni typ oświetlenia (punktowe, kierunkowe, spot) w zależności od aktualnego trybu.
  */
+/*
 void Engine::configureLighting() {
     glEnable(GL_LIGHTING); 
 
@@ -1331,12 +1336,13 @@ void Engine::configureLighting() {
         break;
     }
 }
-
+*/
 /**
  * @brief Przełącza tryb oświetlenia.
  *
  * Funkcja ta przełącza pomiędzy różnymi trybami oświetlenia (brak, punktowe, kierunkowe, spot).
  */
+/*
 void Engine::switchLightingMode() {
 
     switch (currentLightingMode) {
@@ -1356,3 +1362,4 @@ void Engine::switchLightingMode() {
 
     configureLighting(); 
 }
+*/

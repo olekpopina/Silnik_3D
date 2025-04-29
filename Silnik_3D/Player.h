@@ -4,6 +4,7 @@
 #include "Triangle.h"
 #include "Cube.h"
 #include "PrimitiveDrawer.h"
+#include "Light.h"
 
 /**
  * @class Player
@@ -24,6 +25,8 @@ public:
      */
     Player(Triangle* triangle, Cube* cube, PrimitiveDrawer* drawer);
 
+    Light& getLight();
+
     /**
      * @brief Obsługuje wejście od użytkownika (naciśnięcie klawisza).
      *
@@ -42,11 +45,14 @@ public:
      */
     void update(float deltaTime);
 
+    void configureLighting();
+
+
 private:
     Triangle* triangle; ///< Wskaźnik na obiekt typu Triangle (trójkąt) reprezentujący gracza.
     Cube* cube; ///< Wskaźnik na obiekt typu Cube (sześcian) reprezentujący gracza.
     PrimitiveDrawer* drawer; ///< Wskaźnik na obiekt PrimitiveDrawer, który rysuje obiekty.
-
+    Light light;
     bool isRotating; ///< Flaga informująca, czy gracz wykonuje rotację trójkąta.
     bool isRotatingCube; ///< Flaga informująca, czy gracz wykonuje rotację sześcianu.
 };

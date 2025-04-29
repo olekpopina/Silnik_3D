@@ -18,6 +18,7 @@
 #include <thread>
 #include "Paths.h"
 #include "PawnData.h"
+#include "Winner.h"
 
 // Enum reprezentujący tryby oświetlenia
 enum class LightingMode {
@@ -234,6 +235,7 @@ private:
     BitmapHandler bitmapHandler;  ///< Obiekt do zarządzania teksturami
     Line line;
     Point point;
+
   
     int windowWidth, windowHeight; ///< Wymiary okna
     const char* windowTitle; ///< Tytuł okna
@@ -269,10 +271,10 @@ private:
     int pawnStepsRemaining2 = 0; ///< Liczba pozostałych kroków drugiego pionka
     float pawnStepSize = 0.05f; ///< Wielkość kroku pionka
     float pawnStepSize2 = 0.1f; ///< Wielkość kroku drugiego pionka
-    float pawnX; //= 0.38f;
-    float pawnY;// = 0.06f; ///< Pozycja pierwszego pionka
-    float pawnX2;// = 0.85f;
-    float pawnY2; //= 0.4f; ///< Pozycja drugiego pionka
+    float pawnX; 
+    float pawnY;
+    float pawnX2;
+    float pawnY2; 
     float pawnLastMoveTime = 0.0f; ///< Czas ostatniego ruchu pionka
     float pawnLastMoveTime2 = 0.0f; ///< Czas ostatniego ruchu drugiego pionka
     bool isMyTurn; ///< Flaga określająca, czy gracz ma swoją turę
@@ -284,12 +286,12 @@ private:
     bool diceRolledForBlue = false;
 
     bool redPawnInPlay2 = false;
-    float pawnX_R2;// = 0.38f;
-    float pawnY_R2;// = 0.06f;
+    float pawnX_R2;
+    float pawnY_R2;
 
     bool bluePawnInPlay2 = false;
-    float pawnX_B2;// = 0.85f;
-    float pawnY_B2;// = 0.4f;
+    float pawnX_B2;
+    float pawnY_B2;
 
     int currentStepRed2 = 0;
     int currentStepBlue2 = 0;
@@ -305,12 +307,12 @@ private:
 
 
     bool redPawnInPlay3 = false;
-    float pawnX_R3;// = 0.38f;
-    float pawnY_R3;// = 0.06f;
+    float pawnX_R3;
+    float pawnY_R3;
 
     bool bluePawnInPlay3 = false;
-    float pawnX_B3;// = 0.85f;
-    float pawnY_B3;// = 0.4f;
+    float pawnX_B3;
+    float pawnY_B3;
 
     int currentStepRed3 = 0;
     int currentStepBlue3 = 0;
@@ -325,12 +327,12 @@ private:
     float lastMoveTimeBlue3 = 0.0f;
 
     bool redPawnInPlay4 = false;
-    float pawnX_R4;// = 0.38f;
-    float pawnY_R4;// = 0.06f;
+    float pawnX_R4;
+    float pawnY_R4;
 
     bool bluePawnInPlay4 = false;
-    float pawnX_B4;// = 0.85f;
-    float pawnY_B4;// = 0.4f;
+    float pawnX_B4;
+    float pawnY_B4;
 
     int currentStepRed4 = 0;
     int currentStepBlue4 = 0;

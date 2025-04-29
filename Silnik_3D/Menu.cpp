@@ -4,7 +4,7 @@ Menu::Menu(unsigned int width, unsigned int height)
     : window(sf::VideoMode(width, height), "Menu") {
     font.loadFromFile("C:\\Windows\\Fonts\\Arial.ttf");
 
-    if (!backgroundTexture.loadFromFile("D:\\Silnik_3D\\\Silnik_3D\\\images\\tlo.png")) {
+    if (!backgroundTexture.loadFromFile("images/tlo.png")) {
    
         std::cerr << "Nie udalo sie zaladowac tla menu!" << std::endl;
     }
@@ -124,26 +124,7 @@ void Menu::processEvents(bool& gameShouldStart) {
                 showDialog = false;
             }   
         }
-        /*
-        if (event.type == sf::Event::TextEntered) {
-            if (enteringName1 && event.text.unicode < 128) {
-                if (event.text.unicode == 8 && !nickname1.empty()) // Backspace
-                    nickname1.pop_back();
-                else if (event.text.unicode != 8)
-                    nickname1 += static_cast<char>(event.text.unicode);
-                inputText1.setString(nickname1);
-            }
-
-            if (enteringName2 && event.text.unicode < 128) {
-                if (event.text.unicode == 8 && !nickname2.empty()) // Backspace
-                    nickname2.pop_back();
-                else if (event.text.unicode != 8)
-                    nickname2 += static_cast<char>(event.text.unicode);
-                inputText2.setString(nickname2);
-            }
-        
-        }
-        */
+       
         if (showDialog && event.type == sf::Event::TextEntered && event.text.unicode < 128) {
             if (event.text.unicode == 8 && !dialogInput.empty()) // Backspace
                 dialogInput.pop_back();

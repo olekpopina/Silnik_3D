@@ -143,6 +143,7 @@
     <ClCompile Include="TransformableObject.cpp" />
     <ClCompile Include="Triangle.cpp" />
     <ClCompile Include="Menu.cpp" />
+    <ClCompile Include="Winner.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -162,6 +163,7 @@
     <ClInclude Include="ShadingMode.h" />
     <ClInclude Include="TransformableObject.h" />
     <ClInclude Include="Triangle.h" />
+    <ClInclude Include="Winner.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

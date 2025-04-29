@@ -18,8 +18,9 @@ Engine::Engine(int width, int height, const char* title, int fps)
     : windowWidth(width), windowHeight(height), windowTitle(title), clearColor{ 0.0f, 0.0f, 0.0f, 1.0f },
     cameraZ(5.0f), player(&triangle, &cube, &drawer),
     line(1.5f, 0.2f, 1.0f, 1.5f, 2.0f, 1.0f), rng(std::random_device{}()), dist(0, 5), frameRate(fps),
-    isMyTurn(false) 
+    isMyTurn(false)
 {
+    //winners.showWinnerScreen();
     initializePawnPaths();
     //currentLightingMode = LightingMode::DIRECTIONAL_LIGHT;
   
@@ -69,25 +70,9 @@ void Engine::init(int argc, char** argv) {
  * @param winner Nazwa zwycięzcy.
  */
 void Engine::showWinnerMessage(const std::string& winner) {
-    // Konwersja napisu na szerokie znaki
-    std::wstring wideWinner(winner.begin(), winner.end());
-    std::wstring message = wideWinner + L" wygrywa!";
-
-    // Wyświetlenie okna dialogowego
-    int result = MessageBoxW(
-        nullptr,               // Brak okna nadrzędnego
-        message.c_str(),       // Treść komunikatu
-        L"Koniec gry",         // Tytuł okna
-        MB_OK | MB_ICONINFORMATION // Styl okna
-    );
-
-    // Sprawdzenie, czy okno zostało wyświetlone poprawnie
-    if (result == 0) {
-        std::cerr << "[ERROR] Nie udalo sie wyswietlic okna dialogowego!" << std::endl;
-    }
-    else {
-        std::cout << "[INFO] Wyswietlono komunikat: " << winner << " wygrywa!" << std::endl;
-    }
+    
+    Winner winners(400, 400);
+    winners.showWinnerScreen();
 }
 
 /**

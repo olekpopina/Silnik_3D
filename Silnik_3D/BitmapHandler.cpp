@@ -177,7 +177,7 @@ void BitmapHandler::drawBackground() {
  */
 void BitmapHandler::drawPionek(float x, float y, float width, float height, GLuint texture) {
     if (!glIsTexture(texture)) { // Sprawdź, czy tekstura jest załadowana
-        std::cerr << "Tekstura niezaładowana!" << std::endl;
+        std::cerr << "Tekstura niezaladowana Pionki!" << std::endl;
         return;
     }
 

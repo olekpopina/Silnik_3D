@@ -701,6 +701,39 @@ void Engine::resetGame() {
     isBluePawn3Moving = false;
     isRedPawn4Moving = false;
     isBluePawn4Moving = false;
+
+    redHouse = Paths::getRedHouse();
+    blueHouse = Paths::getBlueHouse();
+    redHouseIndex = 0;
+    blueHouseIndex = 0;
+
+    isCubeRotating = false;
+    firstThrowDone = false;
+    diceInCenter = true;
+    drawer.textureSet = 0;
+    cubeRotationAngle = 0.0f;
+
+    // Reset tury i flag graczy
+    isMyTurn = true;
+    allowPawnSelection = false;
+    waitingForRedPawnClick = false;
+    waitingForBluePawnClick = false;
+    rolledSix = false;
+    manualDiceValue = -1;
+
+    // Reset pozycji kamery
+    cameraZ = 5.0f;
+
+    // Reset czasów ruchu
+    pawnLastMoveTime = 0.0f;
+    pawnLastMoveTime2 = 0.0f;
+    lastMoveTimeRed2 = 0.0f;
+    lastMoveTimeRed3 = 0.0f;
+    lastMoveTimeRed4 = 0.0f;
+    lastMoveTimeBlue2 = 0.0f;
+    lastMoveTimeBlue3 = 0.0f;
+    lastMoveTimeBlue4 = 0.0f;
+    std::cout << "[INFO] Gra zostala zresetowana!" << std::endl;
 }
 
 

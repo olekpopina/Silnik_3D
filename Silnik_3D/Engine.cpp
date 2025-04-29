@@ -562,6 +562,8 @@ void Engine::updatePawnPosition(const std::string& id) {
                     pawn.pawnStepsRemaining == 1) {
 
                     std::cout << "[INFO] " << other.winnerName << " zostal zbity!" << std::endl;
+                    extraRollAfterCapture = true;
+                    std::cout << "[INFO] Gracz zbija pionka! Dodatkowy rzut kostka!" << std::endl;
 
                     other.pawnStepsRemaining = -1;
                     other.currentStep = 0;
@@ -615,7 +617,7 @@ void Engine::updatePawnPosition(const std::string& id) {
             if (pawn.pawnStepsRemaining == 0 || pawn.currentStep >= pawn.path.size()) {
                 pawn.isMoving = false;
             }
-            if (pawn.pawnStepsRemaining == 0 && !rolledSix) {
+            if (pawn.pawnStepsRemaining == 0 && !rolledSix && !extraRollAfterCapture) {
                 isMyTurn = !isMyTurn;
                 std::cout << "[DEBUG] Tura zmieniona! Teraz gra: " << (isMyTurn ? "Czerwony" : "Niebieski") << std::endl;
             }
@@ -994,6 +996,7 @@ void Engine::onMouse(int button, int state, int x, int y) {
             }
             // Ustawianie tekstury kostki w zależności od liczby kroków
             drawer.textureSet = steps;
+            extraRollAfterCapture = false; // Po rzucie resetujemy dodatkowy rzut
 
             // Ustawianie osi obrotu kostki
             rotationAxisX = static_cast<float>(rand() % 2);

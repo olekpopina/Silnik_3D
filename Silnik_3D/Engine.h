@@ -346,6 +346,8 @@ private:
     std::string player1Name = "Gracz 1";
     std::string player2Name = "Gracz 2";
 
+    bool extraRollAfterCapture = false; // Nowa zmienna - pozwala na dodatkowy rzut po zbiciu pionka
+
    
   
     // Statyczne funkcje wywoływane przez OpenGL

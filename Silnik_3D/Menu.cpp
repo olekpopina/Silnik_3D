@@ -137,6 +137,30 @@ void Menu::processEvents(bool& gameShouldStart) {
                 dialogInput += static_cast<char>(event.text.unicode);
             dialogInputText.setString(dialogInput);
         }
+        // Pobierz pozycjê kursora
+        sf::Vector2i mousePos = sf::Mouse::getPosition(window);
+        sf::Vector2f mousePosF(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y));
+
+        // Jeœli kursor jest nad przyciskiem Start, zmieñ kolor
+        if (startButton.getGlobalBounds().contains(mousePosF)) {
+            startButton.setFillColor(sf::Color(255, 255, 255, 100)); // lekko przezroczysty bia³y
+        }
+        else {
+            startButton.setFillColor(sf::Color(0, 0, 0, 0)); // ca³kowicie przezroczysty
+        }
+        if (loginButton1.getGlobalBounds().contains(mousePosF)) {
+            loginButton1.setFillColor(sf::Color(255, 255, 255, 100)); // lekko przezroczysty bia³y
+        }
+        else {
+            loginButton1.setFillColor(sf::Color(0, 0, 0, 0)); // ca³kowicie przezroczysty
+        }
+        if (loginButton2.getGlobalBounds().contains(mousePosF)) {
+            loginButton2.setFillColor(sf::Color(255, 255, 255, 100)); // lekko przezroczysty bia³y
+        }
+        else {
+            loginButton2.setFillColor(sf::Color(0, 0, 0, 0)); // ca³kowicie przezroczysty
+        }
+
     }
 }
 

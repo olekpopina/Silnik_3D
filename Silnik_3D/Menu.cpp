@@ -160,6 +160,12 @@ void Menu::processEvents(bool& gameShouldStart) {
         else {
             loginButton2.setFillColor(sf::Color(0, 0, 0, 0)); // ca³kowicie przezroczysty
         }
+        if (dialogOkButton.getGlobalBounds().contains(mousePosF)) {
+            dialogOkButton.setFillColor(sf::Color(255, 255, 255, 100)); // lekko przezroczysty bia³y
+        }
+        else {
+            dialogOkButton.setFillColor(sf::Color::Green); 
+        }
 
     }
 }

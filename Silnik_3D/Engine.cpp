@@ -533,6 +533,25 @@ void Engine::updatePawnPosition(const std::string& id) {
 
         if (pawn.pawnStepsRemaining > 0 && pawn.currentStep < pawn.path.size()) {
 
+
+            int stepsToEnd = static_cast<int>(pawn.path.size()) - pawn.currentStep;
+
+            if (stepsToEnd <= 6 && pawn.pawnStepsRemaining > stepsToEnd) {
+                std::cout << "[INFO] Wymagane dokładnie " << stepsToEnd << " oczek, ale wyrzucono "
+                    << pawn.pawnStepsRemaining << ". Ruch anulowany." << std::endl;
+
+                pawn.pawnStepsRemaining = 0;
+                pawn.isMoving = false;
+
+                if (!rolledSix && !extraRollAfterCapture) {
+                    isMyTurn = !isMyTurn;
+                    std::cout << "[DEBUG] Tura zmieniona! Teraz gra: " << (isMyTurn ? "Czerwony" : "Niebieski") << std::endl;
+                }
+
+                continue; // <- bardzo ważne!
+            }
+
+
             // Sprawdzenie czy pionek może zbić przeciwnika (najpierw ustal, gdzie pionek ma się przemieścić)
             int nextStep = pawn.currentStep;
             float nextX = pawn.path[nextStep].first;

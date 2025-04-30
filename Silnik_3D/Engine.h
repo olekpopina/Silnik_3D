@@ -347,8 +347,10 @@ private:
     std::string player2Name = "Gracz 2";
 
     bool extraRollAfterCapture = false; // Nowa zmienna - pozwala na dodatkowy rzut po zbiciu pionka
+    bool forceEndTurnAfterRotation = false;
 
-   
+    int consecutiveSixes = 0;
+
   
     // Statyczne funkcje wywoływane przez OpenGL
     static void renderCallback();

@@ -231,6 +231,17 @@ void Engine::render() {
             std::cout << "[DEBUG] Tura gracza: " << (isMyTurn ? "1" : "2") << std::endl;
        
         }
+        // Jeśli wymuszone zakończenie tury po 3 szóstkach
+        if (forceEndTurnAfterRotation) {
+            isMyTurn = !isMyTurn;
+            consecutiveSixes = 0;
+            forceEndTurnAfterRotation = false;
+            allowPawnSelection = false;
+            waitingForRedPawnClick = false;
+            waitingForBluePawnClick = false;
+            std::cout << "[INFO] Tura zakonczona po 3 szóstkach z rzędu. Teraz gra: "
+                << (isMyTurn ? "Czerwony" : "Niebieski") << std::endl;
+        }
 
 
     }
@@ -537,7 +548,7 @@ void Engine::updatePawnPosition(const std::string& id) {
             int stepsToEnd = static_cast<int>(pawn.path.size()) - pawn.currentStep;
 
             if (stepsToEnd <= 6 && pawn.pawnStepsRemaining > stepsToEnd) {
-                std::cout << "[INFO] Wymagane dokładnie " << stepsToEnd << " oczek, ale wyrzucono "
+                std::cout << "[INFO] Wymagane dokladnie " << stepsToEnd << " oczek, ale wyrzucono "
                     << pawn.pawnStepsRemaining << ". Ruch anulowany." << std::endl;
 
                 pawn.pawnStepsRemaining = 0;
@@ -639,6 +650,8 @@ void Engine::updatePawnPosition(const std::string& id) {
             if (pawn.pawnStepsRemaining == 0 && !rolledSix && !extraRollAfterCapture) {
                 isMyTurn = !isMyTurn;
                 std::cout << "[DEBUG] Tura zmieniona! Teraz gra: " << (isMyTurn ? "Czerwony" : "Niebieski") << std::endl;
+                consecutiveSixes = 0;
+
             }
 
             if (pawn.currentStep >= pawn.path.size()) {
@@ -992,7 +1005,21 @@ void Engine::onMouse(int button, int state, int x, int y) {
 
             rolledSix = (steps == 6);
             diceRolledForRed = isMyTurn;
-                        diceRolledForBlue = !isMyTurn;
+            diceRolledForBlue = !isMyTurn;
+            if (rolledSix) {
+                consecutiveSixes++;
+                std::cout << "[DEBUG] Wyrzucono 6 po raz " << consecutiveSixes << "." << std::endl;
+                if (consecutiveSixes >= 3) {
+                    std::cout << "[INFO] Trzy szóstki z rzędu! Tura przejdzie po zakonczeniu obrotu kostki." << std::endl;
+                    forceEndTurnAfterRotation = true;
+                    rolledSix = false;
+                    drawer.textureSet = 0;
+                }
+
+            }
+            else {
+                consecutiveSixes = 0; // zresetuj licznik jeśli nie szóstka
+            }
           
             if (isMyTurn) {
                 if (steps == 6) {

@@ -20,6 +20,7 @@
 #include "PawnData.h"
 #include "Winner.h"
 #include "Light.h"
+#include "Pawn3D.h"
 
 /**
  * @brief Klasa zarządzająca silnikiem graficznym.
@@ -208,6 +209,7 @@ public:
 
        void setPlayerNicknames(const std::string& name1, const std::string& name2);
 
+       void draw3DPawnAt(float x, float y);
 
 private:
     // Obiekty i zmienne związane z grą
@@ -218,7 +220,12 @@ private:
     Line line;
     Point point;
     Light light;
-  
+    Pawn3D pawn3D;
+
+    float pawnX2t = 0.50f;
+    float pawnY2t = 0.50f;
+
+
     int windowWidth, windowHeight; ///< Wymiary okna
     const char* windowTitle; ///< Tytuł okna
 

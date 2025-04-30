@@ -24,6 +24,10 @@ Engine::Engine(int width, int height, const char* title, int fps)
     initializePawnPaths();
     //currentLightingMode = LightingMode::DIRECTIONAL_LIGHT;
   
+    if (!pawn3D.loadModel()) {
+        std::cerr << "[ERROR] Nie udało się załadować modelu pionka 3D!" << std::endl;
+    }
+
 
     // Ustawienie środka linii
     point.set(
@@ -173,6 +177,10 @@ void drawText(float x, float y, const std::string& text) {
         glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, c);
     }
 }
+void Engine::draw3DPawnAt(float x, float y) {
+   
+}
+
 
 /**
  * @brief Funkcja renderująca całą scenę gry.
@@ -200,6 +208,7 @@ void Engine::render() {
 
     // Ustawienie kamery
     //gluLookAt(1.5, 1.5, cameraZ, 0.0, 0.0, 0.0, 0.0, 8.0, 0.0);
+  
     gluLookAt(0.5, 0.5, cameraZ,  // nad środkiem planszy
         0.5, 0.5, 0.0,      // patrz na środek planszy
         0.0, 1.0, 0.0);     // oś Y jako góra
@@ -207,6 +216,33 @@ void Engine::render() {
 
     // Rysowanie tła
     bitmapHandler.drawBackground();
+ 
+    // --- Rysowanie pionka 3D w trybie ortho (na tle 2D) ---
+
+    glDisable(GL_LIGHTING);
+
+    glMatrixMode(GL_PROJECTION);
+    glPushMatrix();
+    glLoadIdentity();
+    gluOrtho2D(0.0, 1.0, 0.0, 1.0);  // Widok 2D
+
+    glMatrixMode(GL_MODELVIEW);
+    glPushMatrix();
+    glLoadIdentity();
+
+    // Przesunięcie i skalowanie modelu 3D w układzie 2D
+    glTranslatef(0.4f, 0.2f, 0.0f);  // Pozycja na ekranie 2D (współrzędne od 0 do 1)
+    glScalef(0.1f, 0.1f, 0.1f);      // Skalowanie modelu
+
+    pawn3D.draw();                  // Rysowanie modelu
+
+    glPopMatrix();
+    glMatrixMode(GL_PROJECTION);
+    glPopMatrix();
+    glMatrixMode(GL_MODELVIEW);
+
+    glEnable(GL_LIGHTING);
+    
 
     // Obracanie kostki
     if (isCubeRotating) {
@@ -249,7 +285,6 @@ void Engine::render() {
     // Rysowanie kostki z obrotem
     glPushMatrix();
    // cube.draw();
-    
     glPopMatrix();
 
     if (isPawnMoving && pawnStepsRemaining > 0) {
@@ -414,7 +449,7 @@ void Engine::render() {
     glPopMatrix();
 
     // Ustawienie drugiej kamery
-    //gluLookAt(3.0, 3.0, cameraZ, 5.0, 0.0, 0.0, 0.0, 3.0, 2.0);
+   // gluLookAt(3.0, 3.0, cameraZ, 5.0, 0.0, 0.0, 0.0, 3.0, 2.0);
 
     // Wymiana buforów
     glutSwapBuffers();

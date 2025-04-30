@@ -7,7 +7,7 @@ Pawn3D::Pawn3D() : scene(nullptr) {}
 Pawn3D::~Pawn3D() {}
 
 bool Pawn3D::loadModel() {
-    std::string path = "D:\\pionek.obj"; // <<--- tutaj wpisujesz œcie¿kê
+    std::string path = "images/pionek.obj"; // <<--- tutaj wpisujesz œcie¿kê
 
     scene = importer.ReadFile(path,
         aiProcess_Triangulate | aiProcess_GenSmoothNormals);

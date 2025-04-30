@@ -696,14 +696,14 @@ void Engine::resetGame() {
     currentStepRed4 = 0;
     currentStepBlue4 = 0;
     //// Resetowanie liczby kroków
-    pawnStepsRemaining = -1;
-    pawnStepsRemaining2 = -1;
-    pawnStepsRemainingRed2 = -1;
-    pawnStepsRemainingBlue2 = -1;
-    pawnStepsRemainingRed3 = -1;
-    pawnStepsRemainingBlue3 = -1;
-    pawnStepsRemainingRed4 = -1;
-    pawnStepsRemainingBlue4 = -1;
+    pawnStepsRemaining = 0;
+    pawnStepsRemaining2 = 0;
+    pawnStepsRemainingRed2 = 0;
+    pawnStepsRemainingBlue2 = 0;
+    pawnStepsRemainingRed3 = 0;
+    pawnStepsRemainingBlue3 = 0;
+    pawnStepsRemainingRed4 = 0;
+    pawnStepsRemainingBlue4 = 0;
 
     //// Zatrzymanie ruchu pionków
     isPawnMoving = false;

@@ -667,6 +667,7 @@ void Engine::updatePawnPosition(const std::string& id) {
  * Funkcja ta ustawia pionki na pozycjach początkowych, resetuje liczbę pozostałych kroków oraz inne istotne zmienne.
  */
 void Engine::resetGame() {
+   
     // Resetowanie pozycji pionków do domków
     pawnX = 0.12f;
     pawnY = 0.12f; 
@@ -685,15 +686,24 @@ void Engine::resetGame() {
     pawnY_R3 = 0.12f;
     pawnX_R4 = 0.22f;
     pawnY_R4 = 0.22f;
+    
+    currentStepRed = 0;
+    currentStepBlue = 0;
+    currentStepRed2 = 0;
+    currentStepBlue2 = 0;
+    currentStepRed3 = 0;
+    currentStepBlue3 = 0;
+    currentStepRed4 = 0;
+    currentStepBlue4 = 0;
     //// Resetowanie liczby kroków
-    pawnStepsRemaining = 0;
-    pawnStepsRemaining2 = 0;
-    pawnStepsRemainingRed2 = 0;
-    pawnStepsRemainingBlue2 = 0;
-    pawnStepsRemainingRed3 = 0;
-    pawnStepsRemainingBlue3 = 0;
-    pawnStepsRemainingRed4 = 0;
-    pawnStepsRemainingBlue4 = 0;
+    pawnStepsRemaining = -1;
+    pawnStepsRemaining2 = -1;
+    pawnStepsRemainingRed2 = -1;
+    pawnStepsRemainingBlue2 = -1;
+    pawnStepsRemainingRed3 = -1;
+    pawnStepsRemainingBlue3 = -1;
+    pawnStepsRemainingRed4 = -1;
+    pawnStepsRemainingBlue4 = -1;
 
     //// Zatrzymanie ruchu pionków
     isPawnMoving = false;
@@ -704,12 +714,14 @@ void Engine::resetGame() {
     isBluePawn3Moving = false;
     isRedPawn4Moving = false;
     isBluePawn4Moving = false;
-    
+    /*
     redHouse = Paths::getRedHouse();
     blueHouse = Paths::getBlueHouse();
+    redPath = Paths::getRedPath();
+    bluePath = Paths::getBluePath();
     redHouseIndex = 0;
     blueHouseIndex = 0;
-    
+    */
     isCubeRotating = false;
     firstThrowDone = false;
     diceInCenter = true;

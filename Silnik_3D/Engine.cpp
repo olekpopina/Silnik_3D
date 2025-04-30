@@ -178,7 +178,29 @@ void drawText(float x, float y, const std::string& text) {
     }
 }
 void Engine::draw3DPawnAt(float x, float y) {
-   
+    glDisable(GL_LIGHTING);
+
+    //glMatrixMode(GL_PROJECTION);
+    glPushMatrix();
+    glLoadIdentity();
+
+    //glMatrixMode(GL_MODELVIEW);
+    glPushMatrix();
+    glLoadIdentity();
+
+    // Przesunięcie i skalowanie modelu 3D w układzie 2D
+    glTranslatef(0.4f, 0.2f, 0.0f);  // Pozycja na ekranie 2D (współrzędne od 0 do 1)
+    glScalef(0.11f, 0.11f, 0.11f);      // Skalowanie modelu
+
+    pawn3D.draw();                  // Rysowanie modelu
+
+    glPopMatrix();
+    glMatrixMode(GL_PROJECTION);
+    glPopMatrix();
+    glMatrixMode(GL_MODELVIEW);
+
+    glEnable(GL_LIGHTING);
+
 }
 
 
@@ -208,31 +230,30 @@ void Engine::render() {
 
     // Ustawienie kamery
     //gluLookAt(1.5, 1.5, cameraZ, 0.0, 0.0, 0.0, 0.0, 8.0, 0.0);
-  
+  /*
     gluLookAt(0.5, 0.5, cameraZ,  // nad środkiem planszy
         0.5, 0.5, 0.0,      // patrz na środek planszy
         0.0, 1.0, 0.0);     // oś Y jako góra
-
+*/
+   
 
     // Rysowanie tła
     bitmapHandler.drawBackground();
  
-    // --- Rysowanie pionka 3D w trybie ortho (na tle 2D) ---
-
+    /*
     glDisable(GL_LIGHTING);
 
-    glMatrixMode(GL_PROJECTION);
-    glPushMatrix();
-    glLoadIdentity();
-    gluOrtho2D(0.0, 1.0, 0.0, 1.0);  // Widok 2D
-
-    glMatrixMode(GL_MODELVIEW);
+    //glMatrixMode(GL_PROJECTION);
     glPushMatrix();
     glLoadIdentity();
 
+    //glMatrixMode(GL_MODELVIEW);
+    glPushMatrix();
+    glLoadIdentity();
+    
     // Przesunięcie i skalowanie modelu 3D w układzie 2D
     glTranslatef(0.4f, 0.2f, 0.0f);  // Pozycja na ekranie 2D (współrzędne od 0 do 1)
-    glScalef(0.1f, 0.1f, 0.1f);      // Skalowanie modelu
+    glScalef(0.17f, 0.17f, 0.17f);      // Skalowanie modelu
 
     pawn3D.draw();                  // Rysowanie modelu
 
@@ -243,7 +264,9 @@ void Engine::render() {
 
     glEnable(GL_LIGHTING);
     
-
+    */
+    
+    draw3DPawnAt(pawnX2t, pawnY2t);
     // Obracanie kostki
     if (isCubeRotating) {
         float currentTime = glutGet(GLUT_ELAPSED_TIME) / 1000.0f;

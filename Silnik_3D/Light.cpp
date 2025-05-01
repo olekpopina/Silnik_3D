@@ -27,10 +27,10 @@ void Light::configureLighting()
     case LightingMode::DIRECTIONAL_LIGHT: {
         glEnable(GL_LIGHT1);
 
-        GLfloat dirLightDir[] = { -0.3f, -1.0f, -0.7f, 0.0f }; // œwiat³o z lewego górnego rogu
-        GLfloat dirLightDiffuse[] = { 0.9f, 0.85f, 0.7f, 1.0f }; // lekko ciep³e, jak Ludo Club
-        GLfloat dirLightAmbient[] = { 0.25f, 0.25f, 0.25f, 1.0f }; // subtelna poœwiata
-        GLfloat dirLightSpecular[] = { 0.6f, 0.6f, 0.6f, 1.0f }; // miêkkie krawêdzie
+        GLfloat dirLightDir[] = { -0.3f, -1.0f, -0.7f, 0.0f }; // œwiat³o z góry pod k¹tem
+        GLfloat dirLightDiffuse[] = { 0.5f, 0.5f, 0.5f, 1.0f };   // mniej intensywne
+        GLfloat dirLightAmbient[] = { 0.15f, 0.15f, 0.15f, 1.0f }; // subtelne t³o
+        GLfloat dirLightSpecular[] = { 0.1f, 0.1f, 0.1f, 1.0f };  // prawie brak b³ysku
 
         glLightfv(GL_LIGHT1, GL_POSITION, dirLightDir);
         glLightfv(GL_LIGHT1, GL_DIFFUSE, dirLightDiffuse);

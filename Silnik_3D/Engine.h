@@ -222,8 +222,8 @@ private:
     Light light;
     Pawn3D pawn3D;
 
-    float pawnX2t = 0.50f;
-    float pawnY2t = 0.50f;
+    float pawnX2t = 0.90f;
+    float pawnY2t = 0.23f;
 
 
     int windowWidth, windowHeight; ///< Wymiary okna

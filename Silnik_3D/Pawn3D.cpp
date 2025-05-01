@@ -28,8 +28,8 @@ void Pawn3D::draw() const {
 
         aiColor3D diffuse(0.f, 0.f, 0.f);
         if (material->Get(AI_MATKEY_COLOR_DIFFUSE, diffuse) == AI_SUCCESS) {
-            std::cout << "[INFO] Kolor z materia³u: "
-                << diffuse.r << ", " << diffuse.g << ", " << diffuse.b << std::endl;
+            //std::cout << "[INFO] Kolor z materia³u: "
+               // << diffuse.r << ", " << diffuse.g << ", " << diffuse.b << std::endl;
             float brightnessScale = 3.0f; // mo¿esz zwiêkszyæ, np. do 5.0
             glColor3f(
                 std::min(1.0f, diffuse.r * brightnessScale),

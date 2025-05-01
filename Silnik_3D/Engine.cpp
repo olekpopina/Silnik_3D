@@ -288,7 +288,7 @@ void Engine::render() {
     
     */
     
-    /draw3DPawnAt(pawnX2t, pawnY2t);
+    //draw3DPawnAt(pawnX2t, pawnY2t);
     // Obracanie kostki
     if (isCubeRotating) {
         float currentTime = glutGet(GLUT_ELAPSED_TIME) / 1000.0f;

@@ -182,27 +182,30 @@ void Engine::draw3DPawnAt(float x, float y) {
     angle += 0.5f;
     if (angle >= 360.0f) angle -= 360.0f;
 
-  // glDisable(GL_LIGHTING);
 
-    //glMatrixMode(GL_PROJECTION);
+    glMatrixMode(GL_PROJECTION);
     glPushMatrix();
     glLoadIdentity();
+    gluPerspective(60.0, 1.0, 0.1, 10.0);  // poprawna perspektywa
 
-    //glMatrixMode(GL_MODELVIEW);
+    glMatrixMode(GL_MODELVIEW);
     glPushMatrix();
     glLoadIdentity();
-  //  gluLookAt(0.2f, 0.2f, 1.0f,   // Pozycja kamery (blisko, z góry i z przodu)
-       // 0.4f, 0.2f, 0.0f,   // Punkt, na który patrzy kamera (pionek)
-       // 0.0f, 1.0f, 0.0f);  // Oś Y jako "góra"
+    gluLookAt(0.5f, 0.8f, 1.5f,  // kamera: trochę z góry i z przodu
+        0.5f, 0.3f, 0.0f,  // cel: środek planszy (na pionek)
+        0.0f, 1.0f, 0.0f); // oś Y w górę
      
     // Przesunięcie i skalowanie modelu 3D w układzie 2D
-    glTranslatef(0.5f, 0.3f, 0.0f);  // Pozycja na ekranie 2D (współrzędne od 0 do 1)
-    glRotatef(angle, 0.0f, 1.0f, 0.0f);    // Obrót wokół osi Y
-    glScalef(0.50f, 0.50f, 0.50f);      // Skalowanie modelu
-    GLfloat matAmbient[] = { 0.0f, 0.0f, 0.4f, 1.0f };  // Ciemny niebieski
-    GLfloat matDiffuse[] = { 0.0f, 0.0f, 1.0f, 1.0f };  // Jasny niebieski przy światle
-    GLfloat matSpecular[] = { 0.1f, 0.1f, 0.1f, 1.0f }; // Minimalny błysk
-    GLfloat matShininess = 5.0f;
+   // glTranslatef(0.5f, 0.3f, 0.0f);  // Pozycja na ekranie 2D (współrzędne od 0 do 1)
+    glTranslatef(x, y, 0.0f);
+    glRotatef(-10, 1.2f, 0.0f, 0.0f);
+   // glRotatef(angle, 0.0f, 1.0f, 0.0f);    // Obrót wokół osi Y
+    glScalef(0.17f, 0.17f, 0.17f);      // Skalowanie modelu
+    GLfloat matAmbient[] = { 0.0f, 0.0f, 0.2f, 1.0f };  // jeszcze ciemniejszy niebieski
+    GLfloat matDiffuse[] = { 0.0f, 0.0f, 0.4f, 1.0f };  // mniej intensywny
+    GLfloat matSpecular[] = { 0.0f, 0.0f, 0.0f, 1.0f }; // brak błysku
+    GLfloat matShininess = 0.0f;                       // całkowicie matowy
+
 
     glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, matAmbient);
     glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, matDiffuse);
@@ -216,7 +219,7 @@ void Engine::draw3DPawnAt(float x, float y) {
     glPopMatrix();
     glMatrixMode(GL_MODELVIEW);
 
-    //glEnable(GL_LIGHTING);
+
 
 }
 
@@ -246,13 +249,14 @@ void Engine::render() {
     player.configureLighting();
 
     // Ustawienie kamery
-    gluLookAt(1.5, 1.5, cameraZ, 0.0, 0.0, 0.0, 0.0, 8.0, 0.0);
-  
+   // gluLookAt(1.5, 1.5, cameraZ, 0.0, 0.0, 0.0, 0.0, 8.0, 0.0);
+  /*
     gluLookAt(0.5, 0.5, cameraZ,  // nad środkiem planszy
         0.5, 0.5, 0.0,      // patrz na środek planszy
         0.0, 1.0, 0.0);     // oś Y jako góra
-
+*/
    
+
    
     glDisable(GL_LIGHTING);
     // Rysowanie tła
@@ -284,7 +288,7 @@ void Engine::render() {
     
     */
     
-    draw3DPawnAt(pawnX2t, pawnY2t);
+    /draw3DPawnAt(pawnX2t, pawnY2t);
     // Obracanie kostki
     if (isCubeRotating) {
         float currentTime = glutGet(GLUT_ELAPSED_TIME) / 1000.0f;
@@ -492,7 +496,7 @@ void Engine::render() {
     glPopMatrix();
 
     // Ustawienie drugiej kamery
-    gluLookAt(3.0, 3.0, cameraZ, 5.0, 0.0, 0.0, 0.0, 3.0, 2.0);
+    //gluLookAt(3.0, 3.0, cameraZ, 5.0, 0.0, 0.0, 0.0, 3.0, 2.0);
 
     // Wymiana buforów
     glutSwapBuffers();

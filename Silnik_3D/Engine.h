@@ -223,7 +223,7 @@ private:
     Pawn3D pawn3D;
 
     float pawnX2t = 0.90f;
-    float pawnY2t = 0.23f;
+    float pawnY2t = 0.20f;
 
 
     int windowWidth, windowHeight; ///< Wymiary okna

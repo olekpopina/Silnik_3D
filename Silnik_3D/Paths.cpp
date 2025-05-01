@@ -9,6 +9,7 @@ std::vector<std::pair<float, float>> Paths::getRedHouse() {
 std::vector<std::pair<float, float>> Paths::getBlueHouse() {
     return {
         {0.80f, 0.13f}, {0.80f, 0.23f}, {0.70f, 0.13f}, {0.70f, 0.23f}
+
     };
 }
 

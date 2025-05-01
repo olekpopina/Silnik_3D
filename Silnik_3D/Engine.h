@@ -209,7 +209,7 @@ public:
 
        void setPlayerNicknames(const std::string& name1, const std::string& name2);
 
-       void draw3DPawnAt(float x, float y);
+
 
 private:
     // Obiekty i zmienne związane z grą

@@ -177,52 +177,6 @@ void drawText(float x, float y, const std::string& text) {
         glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, c);
     }
 }
-void Engine::draw3DPawnAt(float x, float y) {
-    static float angle = 0.0f; // zapamiętuje wartość między wywołaniami
-    angle += 0.5f;
-    if (angle >= 360.0f) angle -= 360.0f;
-
-
-    glMatrixMode(GL_PROJECTION);
-    glPushMatrix();
-    glLoadIdentity();
-    gluPerspective(60.0, 1.0, 0.1, 10.0);  // poprawna perspektywa
-
-    glMatrixMode(GL_MODELVIEW);
-    glPushMatrix();
-    glLoadIdentity();
-    gluLookAt(0.5f, 0.8f, 1.5f,  // kamera: trochę z góry i z przodu
-        0.5f, 0.3f, 0.0f,  // cel: środek planszy (na pionek)
-        0.0f, 1.0f, 0.0f); // oś Y w górę
-     
-    // Przesunięcie i skalowanie modelu 3D w układzie 2D
-   // glTranslatef(0.5f, 0.3f, 0.0f);  // Pozycja na ekranie 2D (współrzędne od 0 do 1)
-    glTranslatef(x, y, 0.0f);
-    glRotatef(-10, 1.2f, 0.0f, 0.0f);
-   // glRotatef(angle, 0.0f, 1.0f, 0.0f);    // Obrót wokół osi Y
-    glScalef(0.17f, 0.17f, 0.17f);      // Skalowanie modelu
-    GLfloat matAmbient[] = { 0.0f, 0.0f, 0.2f, 1.0f };  // jeszcze ciemniejszy niebieski
-    GLfloat matDiffuse[] = { 0.0f, 0.0f, 0.4f, 1.0f };  // mniej intensywny
-    GLfloat matSpecular[] = { 0.0f, 0.0f, 0.0f, 1.0f }; // brak błysku
-    GLfloat matShininess = 0.0f;                       // całkowicie matowy
-
-
-    glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, matAmbient);
-    glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, matDiffuse);
-    glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, matSpecular);
-    glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, matShininess);
-
-    pawn3D.draw();                  // Rysowanie modelu
-
-    glPopMatrix();
-    glMatrixMode(GL_PROJECTION);
-    glPopMatrix();
-    glMatrixMode(GL_MODELVIEW);
-
-
-
-}
-
 
 /**
  * @brief Funkcja renderująca całą scenę gry.
@@ -256,39 +210,13 @@ void Engine::render() {
         0.0, 1.0, 0.0);     // oś Y jako góra
 */
    
-
-   
     glDisable(GL_LIGHTING);
     // Rysowanie tła
     bitmapHandler.drawBackground();
     glEnable(GL_LIGHTING);
-    /*
-    glDisable(GL_LIGHTING);
-
-    //glMatrixMode(GL_PROJECTION);
-    glPushMatrix();
-    glLoadIdentity();
-
-    //glMatrixMode(GL_MODELVIEW);
-    glPushMatrix();
-    glLoadIdentity();
     
-    // Przesunięcie i skalowanie modelu 3D w układzie 2D
-    glTranslatef(0.4f, 0.2f, 0.0f);  // Pozycja na ekranie 2D (współrzędne od 0 do 1)
-    glScalef(0.17f, 0.17f, 0.17f);      // Skalowanie modelu
+    pawn3D.draw3DPawnAtBlue(pawnX2t, pawnY2t);
 
-    pawn3D.draw();                  // Rysowanie modelu
-
-    glPopMatrix();
-    glMatrixMode(GL_PROJECTION);
-    glPopMatrix();
-    glMatrixMode(GL_MODELVIEW);
-
-    glEnable(GL_LIGHTING);
-    
-    */
-    
-    //draw3DPawnAt(pawnX2t, pawnY2t);
     // Obracanie kostki
     if (isCubeRotating) {
         float currentTime = glutGet(GLUT_ELAPSED_TIME) / 1000.0f;
@@ -398,16 +326,17 @@ void Engine::render() {
     }
     glPushAttrib(GL_LIGHTING_BIT);
     glDisable(GL_LIGHTING);
-    glColor4f(1.0f, 1.0f, 1.0f, 1.0f); // reset koloru
+   glColor4f(1.0f, 1.0f, 1.0f, 1.0f); // reset koloru
     // Rysowanie czerwonych pionków w domku
     for (const auto& pos : redHouse) {
         bitmapHandler.drawPionek(pos.first, pos.second, 0.08f, 0.08f, bitmapHandler.texture_pionek);
+   
     }
 
     // Rysowanie niebieskich pionków w domku
     for (const auto& pos : blueHouse) {
         bitmapHandler.drawPionek(pos.first, pos.second, 0.08f, 0.08f, bitmapHandler.texture_pionek2);
- 
+        //draw3DPawnAt(pos.first, pos.second);
     }
 
    // Rysowanie pionków tylko jeśli wyszły z domku
@@ -427,6 +356,7 @@ void Engine::render() {
 
     if (bluePawnInPlay) {
         bitmapHandler.drawPionek(pawnX2, pawnY2, 0.1f, 0.1f, bitmapHandler.texture_pionek2);
+   
     }
     if (bluePawnInPlay2) {
         bitmapHandler.drawPionek(pawnX_B2, pawnY_B2, 0.1f, 0.1f, bitmapHandler.texture_pionek2);
@@ -454,7 +384,6 @@ void Engine::render() {
         cubeScreenPosX = isMyTurn ? 0.00f : 0.90f; // lewa lub prawa
     }
     cubeScreenPosY = firstThrowDone ? 0.32f : 0.90f;
-
 
 
     // Translacja do środka kostki, bo rysowana jest od -1 do 1 (czyli 2x większa)

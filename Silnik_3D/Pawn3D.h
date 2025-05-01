@@ -14,6 +14,8 @@ public:
     bool loadModel();
     void draw() const;
 
+    void draw3DPawnAtBlue(float x, float y);
+
 private:
     Assimp::Importer importer;
     const aiScene* scene;

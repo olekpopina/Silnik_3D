@@ -1,7 +1,7 @@
 #include "Winner.h"
 
-Winner::Winner(unsigned int width, unsigned int height)
-    : window(sf::VideoMode(width, height), "Winner") {
+Winner::Winner(unsigned int width, unsigned int height, const std::string& winnerName)
+    : window(sf::VideoMode(width, height), "Winner"), winnerName(winnerName) {
     font.loadFromFile("C:\\Windows\\Fonts\\Arial.ttf");
 
     if (!backgroundTexture.loadFromFile("images/winner.png")) {
@@ -15,12 +15,12 @@ Winner::Winner(unsigned int width, unsigned int height)
     float scaleX = static_cast<float>(windowSize.x) / textureSize.x;
     float scaleY = static_cast<float>(windowSize.y) / textureSize.y;
     backgroundSprite.setScale(scaleX, scaleY);
-
-    startText.setFont(font);
-    startText.setString("Wygrywasz");
-    startText.setCharacterSize(40);
-    startText.setFillColor(sf::Color::White);
-    startText.setPosition(145, 150);
+   
+    winnerText.setFont(font);
+    winnerText.setString(winnerName);
+    winnerText.setCharacterSize(30);
+    winnerText.setFillColor(sf::Color::White);
+    winnerText.setPosition(100, 160);
 }
 
 bool Winner::showWinnerScreen() {
@@ -53,6 +53,6 @@ void Winner::render() {
     window.clear(sf::Color::Blue);
     window.draw(backgroundSprite);
     window.draw(startText);
-    
+    window.draw(winnerText);
     window.display();
 }

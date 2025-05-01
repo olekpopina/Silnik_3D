@@ -3,13 +3,15 @@
 
 class Winner {
 public:
-	Winner(unsigned int width, unsigned int height);
+	Winner(unsigned int width, unsigned int height, const std::string& winnerName);
 	bool showWinnerScreen();
 
 private:
 	sf::RenderWindow window;
 	sf::Font font;
 	sf::Text startText;
+	sf::Text winnerText;
+	std::string winnerName;
 	sf::Texture backgroundTexture;
 	sf::Sprite backgroundSprite;
 	bool showDialog = false;

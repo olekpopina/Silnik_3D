@@ -75,7 +75,7 @@ void Engine::init(int argc, char** argv) {
  */
 void Engine::showWinnerMessage(const std::string& winner) {
     std::thread winnerThread([&]() {
-        Winner winners(400, 400);
+        Winner winners(400, 400, winner);
         winners.showWinnerScreen();
         });
     winnerThread.join();
@@ -336,7 +336,7 @@ void Engine::render() {
     // Rysowanie niebieskich pionków w domku
     for (const auto& pos : blueHouse) {
         bitmapHandler.drawPionek(pos.first, pos.second, 0.08f, 0.08f, bitmapHandler.texture_pionek2);
-        //draw3DPawnAt(pos.first, pos.second);
+        //pawn3D.draw3DPawnAtBlue(pos.first, pos.second);
     }
 
    // Rysowanie pionków tylko jeśli wyszły z domku
@@ -692,7 +692,7 @@ void Engine::updatePawnPosition(const std::string& id) {
             }
 
             // Wygrana Niebieskiego
-            if (blueFinished == 4 && !pawn.isRed) {
+            if (blueFinished == 1 && !pawn.isRed) {
                 showWinnerMessage(player2Name); // albo pawn.winnerName
                 resetGame();
                 return;

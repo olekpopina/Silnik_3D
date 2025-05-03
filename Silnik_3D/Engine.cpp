@@ -218,12 +218,15 @@ void Engine::render() {
     // Rysowanie tła
     bitmapHandler.drawBackground();
     glEnable(GL_LIGHTING);
-    
+    /*
     float x3D = bluePath[pI].first;
     float y3D = bluePath[pI].second;
+    float x3D2 = redPath[pI].first;
+    float y3D2 = redPath[pI].second;
     //pawn3D.draw3DPawnAtBlue(pawnX2t, pawnY2t);
     pawn3D.draw3DPawnAtBlue(x3D, y3D);
-
+    pawn3D.draw3DPawnAtRed(x3D2, y3D2);
+    
     if (instance->lastTime >= t)
     {
         t += cooldown;
@@ -234,7 +237,7 @@ void Engine::render() {
         }
     }
 
-
+    */
     //pawn3D.draw3DPawnAtRed(pawnX2t2, pawnY2t2);
 
     // Obracanie kostki
@@ -349,44 +352,49 @@ void Engine::render() {
  // glColor4f(1.0f, 1.0f, 1.0f, 1.0f); // reset koloru
     // Rysowanie czerwonych pionków w domku
     for (const auto& pos : redHouse) {
-        bitmapHandler.drawPionek(pos.first, pos.second, 0.08f, 0.08f, bitmapHandler.texture_pionek);
-   
+        //bitmapHandler.drawPionek(pos.first, pos.second, 0.08f, 0.08f, bitmapHandler.texture_pionek);
+        pawn3D.draw3DPawnAtRed(pos.first, pos.second);
     }
 
     // Rysowanie niebieskich pionków w domku
     for (const auto& pos : blueHouse) {
-        bitmapHandler.drawPionek(pos.first, pos.second, 0.08f, 0.08f, bitmapHandler.texture_pionek2);
-        //pawn3D.draw3DPawnAtBlue(pos.first, pos.second);
+        //bitmapHandler.drawPionek(pos.first, pos.second, 0.08f, 0.08f, bitmapHandler.texture_pionek2);
+        pawn3D.draw3DPawnAtBlue(pos.first, pos.second);
     }
 
    // Rysowanie pionków tylko jeśli wyszły z domku
     if (redPawnInPlay) {
-
         //bitmapHandler.drawPionek(pawnX, pawnY, 0.1f, 0.1f, bitmapHandler.texture_pionek);
         pawn3D.draw3DPawnAtRed(pawnX, pawnY);
     }
     if (redPawnInPlay2) {
-        bitmapHandler.drawPionek(pawnX_R2, pawnY_R2, 0.1f, 0.1f, bitmapHandler.texture_pionek);
+        //bitmapHandler.drawPionek(pawnX_R2, pawnY_R2, 0.1f, 0.1f, bitmapHandler.texture_pionek);
+        pawn3D.draw3DPawnAtRed(pawnX_R2, pawnY_R2);
     }
     if (redPawnInPlay3) {
-        bitmapHandler.drawPionek(pawnX_R3, pawnY_R3, 0.1f, 0.1f, bitmapHandler.texture_pionek);
+        //bitmapHandler.drawPionek(pawnX_R3, pawnY_R3, 0.1f, 0.1f, bitmapHandler.texture_pionek);
+        pawn3D.draw3DPawnAtRed(pawnX_R3, pawnY_R3);
     }
     if (redPawnInPlay4) {
-        bitmapHandler.drawPionek(pawnX_R4, pawnY_R4, 0.1f, 0.1f, bitmapHandler.texture_pionek);
+       // bitmapHandler.drawPionek(pawnX_R4, pawnY_R4, 0.1f, 0.1f, bitmapHandler.texture_pionek);
+        pawn3D.draw3DPawnAtRed(pawnX_R4, pawnY_R4);
     }
 
     if (bluePawnInPlay) {
-        bitmapHandler.drawPionek(pawnX2, pawnY2, 0.1f, 0.1f, bitmapHandler.texture_pionek2);
-        //pawn3D.draw3DPawnAtBlue(pawnX2, pawnY2);
+       // bitmapHandler.drawPionek(pawnX2, pawnY2, 0.1f, 0.1f, bitmapHandler.texture_pionek2);
+        pawn3D.draw3DPawnAtBlue(pawnX2, pawnY2);
     }
     if (bluePawnInPlay2) {
-        bitmapHandler.drawPionek(pawnX_B2, pawnY_B2, 0.1f, 0.1f, bitmapHandler.texture_pionek2);
+        //bitmapHandler.drawPionek(pawnX_B2, pawnY_B2, 0.1f, 0.1f, bitmapHandler.texture_pionek2);
+        pawn3D.draw3DPawnAtBlue(pawnX_B2, pawnY_B2);
     }
     if (bluePawnInPlay3) {
-        bitmapHandler.drawPionek(pawnX_B3, pawnY_B3, 0.1f, 0.1f, bitmapHandler.texture_pionek2);
+        //bitmapHandler.drawPionek(pawnX_B3, pawnY_B3, 0.1f, 0.1f, bitmapHandler.texture_pionek2);
+        pawn3D.draw3DPawnAtBlue(pawnX_B3, pawnY_B3);
     }
     if (bluePawnInPlay4) {
-        bitmapHandler.drawPionek(pawnX_B4, pawnY_B4, 0.1f, 0.1f, bitmapHandler.texture_pionek2);
+       // bitmapHandler.drawPionek(pawnX_B4, pawnY_B4, 0.1f, 0.1f, bitmapHandler.texture_pionek2);
+        pawn3D.draw3DPawnAtBlue(pawnX_B4, pawnY_B4);
     }
     
     glMatrixMode(GL_PROJECTION);
@@ -406,7 +414,9 @@ void Engine::render() {
     }
     cubeScreenPosY = firstThrowDone ? 0.32f : 0.90f;
 
-
+     glPushAttrib(GL_LIGHTING_BIT);
+     glDisable(GL_LIGHTING);
+     glColor4f(1.0f, 1.0f, 1.0f, 1.0f); // reset koloru
     // Translacja do środka kostki, bo rysowana jest od -1 do 1 (czyli 2x większa)
     glTranslatef(cubeScreenPosX + cubeScreenScale, cubeScreenPosY + cubeScreenScale, 0.0f);
     glScalef(cubeScreenScale * 0.5f, cubeScreenScale * 0.5f, cubeScreenScale * 0.5f); // Dzielimy na pół, bo kostka ma 2x2x2 jednostki
@@ -713,7 +723,7 @@ void Engine::updatePawnPosition(const std::string& id) {
             }
 
             // Wygrana Niebieskiego
-            if (blueFinished == 1 && !pawn.isRed) {
+            if (blueFinished == 4 && !pawn.isRed) {
                 showWinnerMessage(player2Name); // albo pawn.winnerName
                 resetGame();
                 return;

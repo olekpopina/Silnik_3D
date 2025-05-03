@@ -17,7 +17,7 @@ int main(int argc, char** argv) {
     };
 
     int frameRate = 60;
-    Engine gameEngine(800, 600, "Game Engine", frameRate);
+    Engine gameEngine(800, 600, "Gra Chinczyk", frameRate);
     Engine::setInstance(&gameEngine);
     gameEngine.setPlayerNicknames(menu.getNickname1(), menu.getNickname2());
     gameEngine.init(argc, argv);

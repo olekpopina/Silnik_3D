@@ -15,6 +15,7 @@ public:
     void draw() const;
 
     void draw3DPawnAtBlue(float x, float y);
+    void draw3DPawnAtRed(float x, float y);
 
 private:
     Assimp::Importer importer;

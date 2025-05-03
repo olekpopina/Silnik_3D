@@ -216,6 +216,7 @@ void Engine::render() {
     glEnable(GL_LIGHTING);
     
     pawn3D.draw3DPawnAtBlue(pawnX2t, pawnY2t);
+    pawn3D.draw3DPawnAtRed(pawnX2t2, pawnY2t2);
 
     // Obracanie kostki
     if (isCubeRotating) {
@@ -325,8 +326,8 @@ void Engine::render() {
         }
     }
     glPushAttrib(GL_LIGHTING_BIT);
-    glDisable(GL_LIGHTING);
-   glColor4f(1.0f, 1.0f, 1.0f, 1.0f); // reset koloru
+   glDisable(GL_LIGHTING);
+  glColor4f(1.0f, 1.0f, 1.0f, 1.0f); // reset koloru
     // Rysowanie czerwonych pionków w domku
     for (const auto& pos : redHouse) {
         bitmapHandler.drawPionek(pos.first, pos.second, 0.08f, 0.08f, bitmapHandler.texture_pionek);
@@ -343,6 +344,7 @@ void Engine::render() {
     if (redPawnInPlay) {
 
         bitmapHandler.drawPionek(pawnX, pawnY, 0.1f, 0.1f, bitmapHandler.texture_pionek);
+        //pawn3D.draw3DPawnAtRed(pawnX, pawnY);
     }
     if (redPawnInPlay2) {
         bitmapHandler.drawPionek(pawnX_R2, pawnY_R2, 0.1f, 0.1f, bitmapHandler.texture_pionek);
@@ -356,7 +358,7 @@ void Engine::render() {
 
     if (bluePawnInPlay) {
         bitmapHandler.drawPionek(pawnX2, pawnY2, 0.1f, 0.1f, bitmapHandler.texture_pionek2);
-   
+        //pawn3D.draw3DPawnAtBlue(pawnX2, pawnY2);
     }
     if (bluePawnInPlay2) {
         bitmapHandler.drawPionek(pawnX_B2, pawnY_B2, 0.1f, 0.1f, bitmapHandler.texture_pionek2);

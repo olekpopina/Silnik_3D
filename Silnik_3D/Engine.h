@@ -224,7 +224,8 @@ private:
 
     float pawnX2t = 0.90f;
     float pawnY2t = 0.20f;
-
+    float pawnX2t2 = 0.70f;
+    float pawnY2t2 = 0.20f;
 
     int windowWidth, windowHeight; ///< Wymiary okna
     const char* windowTitle; ///< Tytuł okna

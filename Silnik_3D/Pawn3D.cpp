@@ -105,3 +105,47 @@ void Pawn3D::draw3DPawnAtBlue(float x, float y) {
 
 
 }
+
+void Pawn3D::draw3DPawnAtRed(float x, float y)
+{
+    static float angle = 0.0f; // zapamiêtuje wartoœæ miêdzy wywo³aniami
+    angle += 0.5f;
+    if (angle >= 360.0f) angle -= 360.0f;
+
+
+    glMatrixMode(GL_PROJECTION);
+    glPushMatrix();
+    glLoadIdentity();
+    gluPerspective(60.0, 1.0, 0.1, 10.0);  // poprawna perspektywa
+
+    glMatrixMode(GL_MODELVIEW);
+    glPushMatrix();
+    glLoadIdentity();
+    gluLookAt(0.5f, 0.8f, 1.5f,  // kamera: trochê z góry i z przodu
+        0.5f, 0.3f, 0.0f,  // cel: œrodek planszy (na pionek)
+        0.0f, 1.0f, 0.0f); // oœ Y w górê
+
+    // Przesuniêcie i skalowanie modelu 3D w uk³adzie 2D
+   // glTranslatef(0.5f, 0.3f, 0.0f);  // Pozycja na ekranie 2D (wspó³rzêdne od 0 do 1)
+    glTranslatef(x, y, 0.0f);
+    // glRotatef(-10, 1.2f, 0.0f, 0.0f);
+    // glRotatef(angle, 0.0f, 1.0f, 0.0f);    // Obrót wokó³ osi Y
+    glScalef(0.17f, 0.17f, 0.17f);      // Skalowanie modelu
+    GLfloat matAmbient[] = { 0.4f, 0.0f, 0.0f, 1.0f };// jeszcze ciemniejszy czerwony
+    GLfloat matDiffuse[] = { 0.4f, 0.0f, 0.0f, 1.0f };  // mniej intensywny
+    GLfloat matSpecular[] = { 0.0f, 0.0f, 0.0f, 1.0f }; // brak b³ysku
+    GLfloat matShininess = 0.0f;                       // ca³kowicie matowy
+
+
+    glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, matAmbient);
+    glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, matDiffuse);
+    glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, matSpecular);
+    glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, matShininess);
+
+    draw();                  // Rysowanie modelu
+
+    glPopMatrix();
+    glMatrixMode(GL_PROJECTION);
+    glPopMatrix();
+    glMatrixMode(GL_MODELVIEW);
+}

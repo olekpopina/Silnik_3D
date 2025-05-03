@@ -6,6 +6,10 @@
 Cube cube;
 Engine* Engine::instance = nullptr;
 
+int pI = 0;
+float cooldown = 250;
+float t = cooldown;
+
 /**
  * @brief Konstruktor klasy Engine, inicjalizuje wszystkie ważne parametry.
  *
@@ -215,7 +219,22 @@ void Engine::render() {
     bitmapHandler.drawBackground();
     glEnable(GL_LIGHTING);
     
-    pawn3D.draw3DPawnAtBlue(pawnX2t, pawnY2t);
+    float x3D = bluePath[pI].first;
+    float y3D = bluePath[pI].second;
+    //pawn3D.draw3DPawnAtBlue(pawnX2t, pawnY2t);
+    pawn3D.draw3DPawnAtBlue(x3D, y3D);
+
+    if (instance->lastTime >= t)
+    {
+        t += cooldown;
+        pI++;
+        if (pI >= bluePath.size())
+        {
+            pI = 0;
+        }
+    }
+
+
     //pawn3D.draw3DPawnAtRed(pawnX2t2, pawnY2t2);
 
     // Obracanie kostki
@@ -1172,7 +1191,6 @@ void Engine::idleCallback() {
         float currentTime = static_cast<float>(glutGet(GLUT_ELAPSED_TIME));
         float elapsedTime = currentTime - instance->lastTime;
         instance->lastTime = static_cast<int>(currentTime);
-
         instance->player.update(elapsedTime);
         glutPostRedisplay(); 
     }

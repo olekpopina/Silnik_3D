@@ -69,21 +69,36 @@ void Pawn3D::draw3DPawnAtBlue(float x, float y) {
     glMatrixMode(GL_PROJECTION);
     glPushMatrix();
     glLoadIdentity();
-    gluPerspective(60.0, 1.0, 0.1, 10.0);  // poprawna perspektywa
+    //gluPerspective(60.0, 1.0, 0.1, 10.0);  // poprawna perspektywa
+    gluOrtho2D(0.0, 1.0, 0.0, 1.0); // Ustawienie ortograficzne (2D)
 
     glMatrixMode(GL_MODELVIEW);
     glPushMatrix();
     glLoadIdentity();
-    gluLookAt(0.5f, 0.8f, 1.5f,  // kamera: trochê z góry i z przodu
-        0.5f, 0.3f, 0.0f,  // cel: œrodek planszy (na pionek)
+
+    //gluLookAt(x * 1.75f, y * 1.75f, 1.75f,  // kamera: trochê z góry i z przodu
+    //    x* 1.75f, y * 1.75f, 0.0f,  // cel: œrodek planszy (na pionek)
+    //    0.0f, 1.0f, 0.0f); // oœ Y w górê
+
+    float xc = x + 0.1/2;// * 2.0f - 1.0f + 0.17/2;
+    float yc = y + 0.07/2;// * 2.0f - 1.0f;
+    float vx = 0.0;//0.8 * 1.75;
+    float vy = 0.0;//0.8 * 1.75;
+    gluLookAt(0, 0, 0.5f,  // kamera: trochê z góry i z przodu
+        0, 0, 0.0f,  // cel: œrodek planszy (na pionek)
         0.0f, 1.0f, 0.0f); // oœ Y w górê
+
 
     // Przesuniêcie i skalowanie modelu 3D w uk³adzie 2D
    // glTranslatef(0.5f, 0.3f, 0.0f);  // Pozycja na ekranie 2D (wspó³rzêdne od 0 do 1)
-    glTranslatef(x, y, 0.0f);
+    float x1 = 0.0;
+
+    //std::cin >> x1;
+    glTranslatef(xc,yc, 0.0f);
     // glRotatef(-10, 1.2f, 0.0f, 0.0f);
-    // glRotatef(angle, 0.0f, 1.0f, 0.0f);    // Obrót wokó³ osi Y
-    glScalef(0.17f, 0.17f, 0.17f);      // Skalowanie modelu
+    angle = 45.0f;
+    glRotatef(angle, 1.0f, 0.0f, 0.0f);    // Obrót wokó³ osi Y
+    glScalef(0.1f, 0.1f, 0.1f);      // Skalowanie modelu
     GLfloat matAmbient[] = { 0.0f, 0.0f, 0.2f, 1.0f };  // jeszcze ciemniejszy niebieski
     GLfloat matDiffuse[] = { 0.0f, 0.0f, 0.4f, 1.0f };  // mniej intensywny
     GLfloat matSpecular[] = { 0.0f, 0.0f, 0.0f, 1.0f }; // brak b³ysku

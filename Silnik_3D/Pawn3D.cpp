@@ -122,8 +122,8 @@ void Pawn3D::draw3DPawnAtRed(float x, float y)
     glPushMatrix();
     glLoadIdentity();
     gluLookAt(0.5f, 0.8f, 1.5f,  // kamera: trochê z góry i z przodu
-        0.5f, 0.3f, 0.0f,  // cel: œrodek planszy (na pionek)
-        0.0f, 1.0f, 0.0f); // oœ Y w górê
+        0.0f, 0.0f, 0.0f,  // cel: œrodek planszy (na pionek)
+        0.0f, 0.0f, 0.0f); // oœ Y w górê
 
     // Przesuniêcie i skalowanie modelu 3D w uk³adzie 2D
    // glTranslatef(0.5f, 0.3f, 0.0f);  // Pozycja na ekranie 2D (wspó³rzêdne od 0 do 1)

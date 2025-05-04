@@ -177,3 +177,103 @@ void Pawn3D::draw3DPawnAtRed(float x, float y)
     glPopMatrix();
     glMatrixMode(GL_MODELVIEW);
 }
+
+void Pawn3D::draw3DPawnAtYellow(float x, float y)
+{
+    static float angle = 0.0f; // zapamiêtuje wartoœæ miêdzy wywo³aniami
+    angle += 0.5f;
+    if (angle >= 360.0f) angle -= 360.0f;
+
+
+    glMatrixMode(GL_PROJECTION);
+    glPushMatrix();
+    glLoadIdentity();
+ 
+    gluOrtho2D(0.0, 1.0, 0.0, 1.0); // Ustawienie ortograficzne (2D)
+
+    glMatrixMode(GL_MODELVIEW);
+    glPushMatrix();
+    glLoadIdentity();
+   
+    float xc = x + 0.1 / 2;// * 2.0f - 1.0f + 0.17/2;
+    float yc = y + 0.07 / 2;// * 2.0f - 1.0f;
+    float vx = 0.0;//0.8 * 1.75;
+    float vy = 0.0;//0.8 * 1.75;
+    gluLookAt(0, 0, 0.5f,  // kamera: troch? z góry i z przodu
+        0, 0, 0.0f,  // cel: ?rodek planszy (na pionek)
+        0.0f, 1.0f, 0.0f); // o? Y w gór?
+
+
+    float x1 = 0.0;
+
+    glTranslatef(xc, yc, 0.0f);
+    angle = 25.0f;
+    glRotatef(angle, 1.0f, 0.0f, 0.0f);    // Obrót wokó³ osi Y
+    glScalef(0.1f, 0.1f, 0.1f);      // Skalowanie modelu
+    GLfloat matAmbient[] = { 0.1f, 0.1f, 0.0f, 1.0f };  // bardzo ciemna ¿ó³æ w cieniu
+    GLfloat matDiffuse[] = { 0.15f, 0.15f, 0.0f, 1.0f }; // bardzo ciemna ¿ó³æ w œwietle
+    GLfloat matSpecular[] = { 0.0f, 0.0f, 0.0f, 1.0f };   // brak po³ysku
+    GLfloat matShininess = 0.0f;                         // ca³kowicie matowy
+
+    glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, matAmbient);
+    glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, matDiffuse);
+    glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, matSpecular);
+    glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, matShininess);
+
+    draw();                  // Rysowanie modelu
+
+    glPopMatrix();
+    glMatrixMode(GL_PROJECTION);
+    glPopMatrix();
+    glMatrixMode(GL_MODELVIEW);
+}
+
+void Pawn3D::draw3DPawnAtGreen(float x, float y)
+{
+    static float angle = 0.0f; // zapamiêtuje wartoœæ miêdzy wywo³aniami
+    angle += 0.5f;
+    if (angle >= 360.0f) angle -= 360.0f;
+
+
+    glMatrixMode(GL_PROJECTION);
+    glPushMatrix();
+    glLoadIdentity();
+
+    gluOrtho2D(0.0, 1.0, 0.0, 1.0); // Ustawienie ortograficzne (2D)
+
+    glMatrixMode(GL_MODELVIEW);
+    glPushMatrix();
+    glLoadIdentity();
+
+    float xc = x + 0.1 / 2;// * 2.0f - 1.0f + 0.17/2;
+    float yc = y + 0.07 / 2;// * 2.0f - 1.0f;
+    float vx = 0.0;//0.8 * 1.75;
+    float vy = 0.0;//0.8 * 1.75;
+    gluLookAt(0, 0, 0.5f,  // kamera: troch? z góry i z przodu
+        0, 0, 0.0f,  // cel: ?rodek planszy (na pionek)
+        0.0f, 1.0f, 0.0f); // o? Y w gór?
+
+
+    float x1 = 0.0;
+
+    glTranslatef(xc, yc, 0.0f);
+    angle = 25.0f;
+    glRotatef(angle, 1.0f, 0.0f, 0.0f);    // Obrót wokó³ osi Y
+    glScalef(0.1f, 0.1f, 0.1f);      // Skalowanie modelu
+    GLfloat matAmbient[] = { 0.0f, 0.1f, 0.0f, 1.0f };  // bardzo ciemna zieleñ w cieniu
+    GLfloat matDiffuse[] = { 0.0f, 0.15f, 0.0f, 1.0f }; // bardzo ciemna zieleñ w œwietle
+    GLfloat matSpecular[] = { 0.0f, 0.0f, 0.0f, 1.0f };  // brak po³ysku
+    GLfloat matShininess = 0.0f;                        // matowy wygl¹d
+
+    glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, matAmbient);
+    glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, matDiffuse);
+    glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, matSpecular);
+    glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, matShininess);
+
+    draw();                  // Rysowanie modelu
+
+    glPopMatrix();
+    glMatrixMode(GL_PROJECTION);
+    glPopMatrix();
+    glMatrixMode(GL_MODELVIEW);
+}

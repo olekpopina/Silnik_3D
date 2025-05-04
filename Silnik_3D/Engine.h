@@ -336,6 +336,8 @@ private:
     float lastMoveTimeRed4 = 0.0f;
     float lastMoveTimeBlue4 = 0.0f;
 
+    std::vector<std::pair<float, float>> greenHouse = Paths::getGreenHouse();
+    std::vector<std::pair<float, float>> yellowHouse = Paths::getYellowHouse();
     std::vector<std::pair<float, float>> redHouse = Paths::getRedHouse();
     std::vector<std::pair<float, float>> blueHouse = Paths::getBlueHouse();
     std::vector<std::pair<float, float>> redPath = Paths::getRedPath();

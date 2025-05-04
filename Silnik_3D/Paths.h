@@ -7,6 +7,8 @@
 
 class Paths {
 public:
+    static std::vector<std::pair<float, float>> getGreenHouse();
+    static std::vector<std::pair<float, float>> getYellowHouse();
     static std::vector<std::pair<float, float>> getRedHouse();
     static std::vector<std::pair<float, float>> getBlueHouse();
     static std::vector<std::pair<float, float>> getRedPath();

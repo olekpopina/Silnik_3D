@@ -350,6 +350,14 @@ void Engine::render() {
    // glPushAttrib(GL_LIGHTING_BIT);
   // glDisable(GL_LIGHTING);
  // glColor4f(1.0f, 1.0f, 1.0f, 1.0f); // reset koloru
+    for (const auto& pos : greenHouse) {
+        // bitmapHandler.drawPionek(pos.first, pos.second, 0.08f, 0.08f, bitmapHandler.texture_pionek);
+        pawn3D.draw3DPawnAtGreen(pos.first, pos.second);
+    }
+    for (const auto& pos : yellowHouse) {
+       // bitmapHandler.drawPionek(pos.first, pos.second, 0.08f, 0.08f, bitmapHandler.texture_pionek);
+        pawn3D.draw3DPawnAtYellow(pos.first, pos.second);
+    }
     // Rysowanie czerwonych pionków w domku
     for (const auto& pos : redHouse) {
         //bitmapHandler.drawPionek(pos.first, pos.second, 0.08f, 0.08f, bitmapHandler.texture_pionek);

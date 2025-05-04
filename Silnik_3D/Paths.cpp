@@ -1,5 +1,19 @@
 #include "Paths.h"
 
+std::vector<std::pair<float, float>> Paths::getGreenHouse()
+{
+    return {
+        {0.12f, 0.72f}, {0.12f, 0.82f}, {0.22f, 0.72f}, {0.22f, 0.82f}
+    };
+}
+
+std::vector<std::pair<float, float>> Paths::getYellowHouse()
+{
+    return {
+        {0.80f, 0.72f}, {0.80f, 0.82f}, {0.70f, 0.72f}, {0.70f, 0.82f}
+    };
+}
+
 std::vector<std::pair<float, float>> Paths::getRedHouse() {
     return {
         {0.12f, 0.12f}, {0.12f, 0.22f}, {0.22f, 0.12f}, {0.22f, 0.22f}

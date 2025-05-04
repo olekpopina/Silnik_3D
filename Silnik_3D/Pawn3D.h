@@ -16,7 +16,8 @@ public:
 
     void draw3DPawnAtBlue(float x, float y);
     void draw3DPawnAtRed(float x, float y);
-
+    void draw3DPawnAtYellow(float x, float y);
+    void draw3DPawnAtGreen(float x, float y);
 private:
     Assimp::Importer importer;
     const aiScene* scene;

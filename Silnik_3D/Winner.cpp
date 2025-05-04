@@ -20,7 +20,7 @@ Winner::Winner(unsigned int width, unsigned int height, const std::string& winne
     winnerText.setString(winnerName);
     winnerText.setCharacterSize(30);
     winnerText.setFillColor(sf::Color::White);
-    winnerText.setPosition(100, 160);
+    winnerText.setPosition(180, 360);
 }
 
 bool Winner::showWinnerScreen() {

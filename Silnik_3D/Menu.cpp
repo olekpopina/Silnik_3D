@@ -27,6 +27,14 @@ Menu::Menu(unsigned int width, unsigned int height)
     loginButton2.setSize(sf::Vector2f(300, 70));
     loginButton2.setPosition(150, 300);
     loginButton2.setFillColor(sf::Color(0, 0, 0, 0));
+
+    loginButton3.setSize(sf::Vector2f(300, 70));
+    loginButton3.setPosition(150, 390);
+    loginButton3.setFillColor(sf::Color::Black);
+
+    loginButton4.setSize(sf::Vector2f(300, 70));
+    loginButton4.setPosition(150, 480);
+    loginButton4.setFillColor(sf::Color::Green);
     
     dialogBox.setSize(sf::Vector2f(400, 200));
     dialogBox.setFillColor(sf::Color(50, 50, 50, 230));
@@ -112,6 +120,19 @@ void Menu::processEvents(bool& gameShouldStart) {
                 dialogInput.clear();
                 dialogInputText.setString("");
             }
+            if (!showDialog && loginButton3.getGlobalBounds().contains(mx, my)) {
+                showDialog = true;
+                activeDialogPlayer = 3;
+                dialogInput.clear();
+                dialogInputText.setString("");
+            }
+
+            if (!showDialog && loginButton4.getGlobalBounds().contains(mx, my)) {
+                showDialog = true;
+                activeDialogPlayer = 4;
+                dialogInput.clear();
+                dialogInputText.setString("");
+            }
 
             if (showDialog && dialogOkButton.getGlobalBounds().contains(mx, my)) {
                 if (activeDialogPlayer == 1) {
@@ -121,6 +142,14 @@ void Menu::processEvents(bool& gameShouldStart) {
                 else if (activeDialogPlayer == 2) {
                     nickname2 = dialogInput;
                     std::cout << "Gracz 2: " << nickname2 << std::endl;
+                }
+                if (activeDialogPlayer == 3) {
+                    nickname3 = dialogInput;
+                    std::cout << "Gracz 3: " << nickname3 << std::endl;
+                }
+                else if (activeDialogPlayer == 4) {
+                    nickname4 = dialogInput;
+                    std::cout << "Gracz 4: " << nickname4 << std::endl;
                 }
                 showDialog = false;
             }   
@@ -156,6 +185,18 @@ void Menu::processEvents(bool& gameShouldStart) {
         else {
             loginButton2.setFillColor(sf::Color(0, 0, 0, 0)); // ca³kowicie przezroczysty
         }
+        if (loginButton3.getGlobalBounds().contains(mousePosF)) {
+            loginButton3.setFillColor(sf::Color(255, 255, 255, 100)); // lekko przezroczysty bia³y
+        }
+        else {
+            loginButton3.setFillColor(sf::Color(0, 0, 0, 0)); // ca³kowicie przezroczysty
+        }
+        if (loginButton4.getGlobalBounds().contains(mousePosF)) {
+            loginButton4.setFillColor(sf::Color(255, 255, 255, 100)); // lekko przezroczysty bia³y
+        }
+        else {
+            loginButton4.setFillColor(sf::Color(0, 0, 0, 0)); // ca³kowicie przezroczysty
+        }
         if (dialogOkButton.getGlobalBounds().contains(mousePosF)) {
             dialogOkButton.setFillColor(sf::Color(255, 255, 255, 100)); // lekko przezroczysty bia³y
         }
@@ -172,9 +213,13 @@ void Menu::render() {
     window.draw(startButton);
     window.draw(startText);
     window.draw(loginButton1);
-    window.draw(loginText1);
+    //window.draw(loginText1);
     window.draw(loginButton2);
-    window.draw(loginText2);
+    //window.draw(loginText2);
+
+    window.draw(loginButton3);
+    window.draw(loginButton4);
+
     if (showDialog) {
         window.draw(dialogBox);
         window.draw(dialogPrompt);

@@ -445,6 +445,8 @@ void Engine::render() {
     glColor3f(1.0f, 1.0f, 1.0f); 
     drawText(0.18f, 0.03f, player1Name);
     drawText(0.77f, 0.03f, player2Name);
+    drawText(0.18f, 0.63f, player3Name);
+    drawText(0.77f, 0.63f, player4Name);
 
     glPopMatrix(); 
     glMatrixMode(GL_PROJECTION);
@@ -1114,9 +1116,11 @@ void Engine::onMouse(int button, int state, int x, int y) {
     }
 }
 
-void Engine::setPlayerNicknames(const std::string& name1, const std::string& name2) {
+void Engine::setPlayerNicknames(const std::string& name1, const std::string& name2, const std::string& name3, const std::string& name4) {
     player1Name = name1;
     player2Name = name2;
+    player3Name = name3;
+    player4Name = name4;
 }
 
 

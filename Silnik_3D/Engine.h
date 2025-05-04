@@ -207,7 +207,7 @@ public:
    int frameRate; ///< Liczba klatek na sekundę
 
 
-       void setPlayerNicknames(const std::string& name1, const std::string& name2);
+       void setPlayerNicknames(const std::string& name1, const std::string& name2, const std::string& name3, const std::string& name4);
 
 
 
@@ -355,6 +355,8 @@ private:
 
     std::string player1Name = "Gracz 1";
     std::string player2Name = "Gracz 2";
+    std::string player3Name = "Gracz 3";
+    std::string player4Name = "Gracz 4";
 
     bool extraRollAfterCapture = false; // Nowa zmienna - pozwala na dodatkowy rzut po zbiciu pionka
     bool forceEndTurnAfterRotation = false;

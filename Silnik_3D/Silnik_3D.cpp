@@ -19,7 +19,7 @@ int main(int argc, char** argv) {
     int frameRate = 60;
     Engine gameEngine(800, 600, "Gra Chinczyk", frameRate);
     Engine::setInstance(&gameEngine);
-    gameEngine.setPlayerNicknames(menu.getNickname1(), menu.getNickname2());
+    gameEngine.setPlayerNicknames(menu.getNickname1(), menu.getNickname2(), menu.getNickname3(), menu.getNickname4());
     gameEngine.init(argc, argv);
     gameEngine.setClearColor(0.2f, 0.3f, 0.4f);
     gameEngine.setTextures(texturePaths);

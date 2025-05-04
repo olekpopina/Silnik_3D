@@ -424,7 +424,7 @@ void Engine::render() {
 
     // Rysowanie
     PrimitiveDrawer::drawCubeWithTexture(1.0f, 0.0f, 0.0f, bitmapHandler);
-    glPopAttrib();
+
 
     glMatrixMode(GL_PROJECTION);
     glPushMatrix();
@@ -442,7 +442,7 @@ void Engine::render() {
     glMatrixMode(GL_PROJECTION);
     glPopMatrix();
     glMatrixMode(GL_MODELVIEW);
-    
+    glPopAttrib();
     // Rysowanie trójkąta
     glPushMatrix();
     //triangle.updateRotation();

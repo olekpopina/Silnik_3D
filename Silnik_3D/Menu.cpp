@@ -15,13 +15,7 @@ Menu::Menu(unsigned int width, unsigned int height)
     float scaleX = static_cast<float>(windowSize.x) / textureSize.x;
     float scaleY = static_cast<float>(windowSize.y) / textureSize.y;
     backgroundSprite.setScale(scaleX, scaleY);
-    /*
-    startText.setFont(font);
-    startText.setString("Start gry");
-    startText.setCharacterSize(40);
-    startText.setFillColor(sf::Color::White);
-    startText.setPosition(300, 190);
-    */
+    
     startButton.setSize(sf::Vector2f(300, 50));
     startButton.setPosition(150, 150);
     startButton.setFillColor(sf::Color(0, 0, 0, 0));//przezroczysty kolor 
@@ -29,23 +23,11 @@ Menu::Menu(unsigned int width, unsigned int height)
     loginButton1.setSize(sf::Vector2f(300, 70));
     loginButton1.setPosition(150, 210);
     loginButton1.setFillColor(sf::Color(0, 0, 0, 0));
-    /*
-    loginText1.setFont(font);
-    loginText1.setString("Zaloguj sie Gracz 1");
-    loginText1.setCharacterSize(24);
-    loginText1.setFillColor(sf::Color::Black);
-    loginText1.setPosition(275, 355);
-    */
+   
     loginButton2.setSize(sf::Vector2f(300, 70));
     loginButton2.setPosition(150, 300);
     loginButton2.setFillColor(sf::Color(0, 0, 0, 0));
-    /*
-    loginText2.setFont(font);
-    loginText2.setString("Zaloguj sie Gracz 2");
-    loginText2.setCharacterSize(24);
-    loginText2.setFillColor(sf::Color::Black);
-    loginText2.setPosition(275, 425);
-    */
+    
     dialogBox.setSize(sf::Vector2f(400, 200));
     dialogBox.setFillColor(sf::Color(50, 50, 50, 230));
     dialogBox.setOutlineColor(sf::Color::White);
@@ -72,6 +54,14 @@ Menu::Menu(unsigned int width, unsigned int height)
     dialogOkText.setCharacterSize(20);
     dialogOkText.setFillColor(sf::Color::Black);
     dialogOkText.setPosition(425, 325);
+
+    errorText.setFont(font);
+    errorText.setCharacterSize(30);
+    errorText.setFillColor(sf::Color::Black);
+    errorText.setString("Obaj gracze musza podac nick!");
+    errorText.setPosition(100, 450);
+    showError = false;
+
 }
 
 bool Menu::show() {
@@ -100,8 +90,14 @@ void Menu::processEvents(bool& gameShouldStart) {
             auto my = static_cast<float>(event.mouseButton.y);
 
             if (startButton.getGlobalBounds().contains(mx, my)){
-                
-                gameShouldStart = true;
+
+                if (!nickname1.empty() && !nickname2.empty()) {
+                    gameShouldStart = true;
+                    showError = false;
+                }
+                else {
+                    showError = true;
+                }
             }
             if (!showDialog && loginButton1.getGlobalBounds().contains(mx, my)) {
                 showDialog = true;
@@ -185,6 +181,9 @@ void Menu::render() {
         window.draw(dialogInputText);
         window.draw(dialogOkButton);
         window.draw(dialogOkText);
+    }
+    if (showError) {
+        window.draw(errorText);
     }
     window.display();
 }

@@ -39,7 +39,8 @@ private:
     sf::Text dialogOkText;
     sf::Text dialogInputText;
     std::string dialogInput;
-
+    sf::Text errorText;
+    bool showError = false;
 
 
     void processEvents(bool& gameShouldStart);

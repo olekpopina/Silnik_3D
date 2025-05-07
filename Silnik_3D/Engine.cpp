@@ -668,7 +668,8 @@ void Engine::updatePawnPosition(const std::string& id) {
                 pawn.isMoving = false;
 
                 if (!rolledSix && !extraRollAfterCapture) {
-                    isMyTurn = !isMyTurn;
+                    //isMyTurn = !isMyTurn;
+                    advanceToNextPlayer();
                     std::cout << "[DEBUG] Tura zmieniona! Teraz gra: " << (isMyTurn ? "Czerwony" : "Niebieski") << std::endl;
                 }
 
@@ -767,7 +768,9 @@ void Engine::updatePawnPosition(const std::string& id) {
                 pawn.isMoving = false;
             }
             if (pawn.pawnStepsRemaining == 0 && !rolledSix && !extraRollAfterCapture) {
-                isMyTurn = !isMyTurn;
+                //isMyTurn = !isMyTurn;
+                advanceToNextPlayer();
+
                 std::cout << "[DEBUG] Tura zmieniona! Teraz gra: " << (isMyTurn ? "Czerwony" : "Niebieski") << std::endl;
                 consecutiveSixes = 0;
 
@@ -901,7 +904,7 @@ void Engine::onMouse(int button, int state, int x, int y) {
         float normalizedX = (float)x / glutGet(GLUT_WINDOW_WIDTH);
         float normalizedY = 1.0f - (float)y / glutGet(GLUT_WINDOW_HEIGHT);
 
-        if (waitingForRedPawnClick && isMyTurn) {
+        if (waitingForRedPawnClick && currentPlayer == 1) {
             auto pos = redHouse[redHouseIndex];
             float size = 0.08f;
 
@@ -943,7 +946,7 @@ void Engine::onMouse(int button, int state, int x, int y) {
                 return;
             }
         }
-        if (waitingForBluePawnClick && !isMyTurn) {
+        if (waitingForBluePawnClick && currentPlayer == 4) {
             auto pos = blueHouse[blueHouseIndex];
             float size = 0.08f;
 
@@ -1032,7 +1035,7 @@ void Engine::onMouse(int button, int state, int x, int y) {
                 return;
             }
             //--------------------------------------
-            if (isMyTurn) {
+            if (currentPlayer == 1) {
                 if (redPawnInPlay &&
                     currentStepRed < redPath.size() &&  
                     normalizedX >= pawnX && normalizedX <= pawnX + size &&
@@ -1084,7 +1087,7 @@ void Engine::onMouse(int button, int state, int x, int y) {
                     return;
                 }
             }
-            else {
+            else if(currentPlayer == 4) {
                 if (bluePawnInPlay && currentStepBlue < bluePath.size() &&
                     normalizedX >= pawnX2 && normalizedX <= pawnX2 + size &&
                     normalizedY >= pawnY2 && normalizedY <= pawnY2 + size) {
@@ -1156,8 +1159,8 @@ void Engine::onMouse(int button, int state, int x, int y) {
             manualDiceValue = -1; // resetuj po użyciu
 
             rolledSix = (steps == 6);
-            diceRolledForRed = isMyTurn;
-            diceRolledForBlue = !isMyTurn;
+            diceRolledForRed = currentPlayer == 1;
+            diceRolledForBlue = currentPlayer == 4;
             if (rolledSix) {
                 consecutiveSixes++;
                 std::cout << "[DEBUG] Wyrzucono 6 po raz " << consecutiveSixes << "." << std::endl;
@@ -1173,7 +1176,7 @@ void Engine::onMouse(int button, int state, int x, int y) {
                 consecutiveSixes = 0; // zresetuj licznik jeśli nie szóstka
             }
           
-            if (isMyTurn) {
+            if (currentPlayer == 1) {
                 if (steps == 6) {
                     if (redHouseIndex < redHouse.size()) {
                         waitingForRedPawnClick = true;
@@ -1189,7 +1192,7 @@ void Engine::onMouse(int button, int state, int x, int y) {
                     std::cout << "[DEBUG] Ruch czerwonego pionka o " << steps << " krokow." << std::endl;
                 }
             }
-            else {
+            else if(currentPlayer == 4){
                 if (steps == 6) {
                     if (blueHouseIndex < blueHouse.size()) {
                         waitingForBluePawnClick = true;

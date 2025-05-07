@@ -567,7 +567,7 @@ void Engine::initializePawnPaths()
 }
 void Engine::updatePawnPosition(const std::string& id) {
     
-    std::array<PawnData, 8> pawns = { {
+    std::array<PawnData, 9> pawns = { {
         {pawnX, pawnY, pawnStepsRemaining, pawnStepSize, bitmapHandler.texture_pionek, isPawnMoving, "Pionek czerwony", crossedBottomBoundary1, redHouse, currentStepRed, redPath, true, redHouseIndex},
         {pawnX2, pawnY2, pawnStepsRemaining2, pawnStepSize2, bitmapHandler.texture_pionek2, isPawnMoving2, "Pionek niebieski", crossedBottomBoundary2, blueHouse, currentStepBlue, bluePath, false, blueHouseIndex},
         {pawnX_R2, pawnY_R2, pawnStepsRemainingRed2, pawnStepSize, bitmapHandler.texture_pionek, isRedPawn2Moving, "Pionek czerwony 2", crossedBottomBoundary1, redHouse, currentStepRed2, redPath, true, redHouseIndex},
@@ -575,7 +575,8 @@ void Engine::updatePawnPosition(const std::string& id) {
         {pawnX_R3, pawnY_R3, pawnStepsRemainingRed3, pawnStepSize, bitmapHandler.texture_pionek, isRedPawn3Moving, "Pionek czerwony 3", crossedBottomBoundary1, redHouse, currentStepRed3, redPath, true, redHouseIndex},
         {pawnX_B3, pawnY_B3, pawnStepsRemainingBlue3, pawnStepSize2, bitmapHandler.texture_pionek2, isBluePawn3Moving, "Pionek niebieski 3", crossedBottomBoundary2, blueHouse, currentStepBlue3, bluePath, false, blueHouseIndex},
         {pawnX_R4, pawnY_R4, pawnStepsRemainingRed4, pawnStepSize, bitmapHandler.texture_pionek, isRedPawn4Moving, "Pionek czerwony 4", crossedBottomBoundary1, redHouse, currentStepRed4, redPath, true, redHouseIndex},
-        {pawnX_B4, pawnY_B4, pawnStepsRemainingBlue4, pawnStepSize2, bitmapHandler.texture_pionek2, isBluePawn4Moving, "Pionek niebieski 4", crossedBottomBoundary2, blueHouse, currentStepBlue4, bluePath, false, blueHouseIndex}
+        {pawnX_B4, pawnY_B4, pawnStepsRemainingBlue4, pawnStepSize2, bitmapHandler.texture_pionek2, isBluePawn4Moving, "Pionek niebieski 4", crossedBottomBoundary2, blueHouse, currentStepBlue4, bluePath, false, blueHouseIndex},
+        {pawnX_YE, pawnY_YE, pawnStepsRemainingYellow, pawnStepSizeYellow, bitmapHandler.texture_pionek2, isYellowPawnMoving, "Pionek zolty 4", crossedBottomBoundary2, yellowHouse, currentStepYellow, yellowPath, false, yellowHouseIndex}
     } };
 
     for (auto& pawn : pawns) {
@@ -586,7 +587,8 @@ void Engine::updatePawnPosition(const std::string& id) {
             (id == "red3" && &pawn != &pawns[4]) ||
             (id == "blue3" && &pawn != &pawns[5])||
             (id == "red4" && &pawn != &pawns[6]) ||
-            (id == "blue4" && &pawn != &pawns[7]))
+            (id == "blue4" && &pawn != &pawns[7]) ||
+            (id == "yellow1" && &pawn != &pawns[8]))
         {
             continue;
         }
@@ -648,6 +650,7 @@ void Engine::updatePawnPosition(const std::string& id) {
                 else if (&other == &pawns[5]) otherId = "blue3";
                 else if (&other == &pawns[6]) otherId = "red4";
                 else if (&other == &pawns[7]) otherId = "blue4";
+                else if (&other == &pawns[8]) otherId = "yellow1";
 
                 // Nie bij pionków z własnej drużyny
                 bool isEnemy = (pawn.isRed && !other.isRed) || (!pawn.isRed && other.isRed);
@@ -700,6 +703,11 @@ void Engine::updatePawnPosition(const std::string& id) {
                         else if (otherId == "blue4") {
                             bluePawnInPlay4 = false;
                             other.house.insert(other.house.begin() + other.houseIndex, { 0.70f, 0.23f });
+                        }
+                        //laczone z chodzeniem niebieskiego pionku
+                        else if (otherId == "yellow1") {
+                            yellowPawnInPlay = false;
+                            other.house.insert(other.house.begin() + other.houseIndex, { 0.80f, 0.72f });
                         }
                     }
                 }

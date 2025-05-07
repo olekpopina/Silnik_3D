@@ -22,6 +22,13 @@
 #include "Light.h"
 #include "Pawn3D.h"
 
+
+enum PlayerColor { 
+    RED = 1, 
+    BLUE = 2, 
+    GREEN = 3, 
+    YELLOW = 4 };
+
 /**
  * @brief Klasa zarządzająca silnikiem graficznym.
  *
@@ -344,6 +351,13 @@ private:
     int currentStepYellow = 0;
     float pawnStepSizeYellow = 0.1f;
     int pawnStepsRemainingYellow = 0;
+
+
+
+    int tury[4] = { 1, 2, 3, 4 };
+    int currentPlayerIndex = 0;  // 0 = Gracz 1, 1 = Gracz 2 itd.
+    int currentPlayer = tury[currentPlayerIndex];
+    void advanceToNextPlayer();
 
     std::vector<std::pair<float, float>> greenHouse = Paths::getGreenHouse();
     std::vector<std::pair<float, float>> yellowHouse = Paths::getYellowHouse();

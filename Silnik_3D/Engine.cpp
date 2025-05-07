@@ -251,7 +251,7 @@ void Engine::render() {
         }
         else {
             isCubeRotating = false;    // Zakończenie obrotu kostki
-          
+          /*
             if ((isMyTurn && pawnStepsRemaining > 0) || (!isMyTurn && pawnStepsRemaining2 > 0)) {
                 allowPawnSelection = true; // Pozwól na kliknięcie pionka
                 std::cout << "[INFO] Kliknij pionka, ktorym chcesz sie poruszyc." << std::endl;
@@ -261,18 +261,33 @@ void Engine::render() {
                 isMyTurn = !isMyTurn;
             }
             std::cout << "[DEBUG] Tura gracza: " << (isMyTurn ? "1" : "2") << std::endl;
-       
+       */
+            bool anyPawnCanMove =
+                (currentPlayer == 1 && pawnStepsRemaining > 0) ||
+                (currentPlayer == 2 && pawnStepsRemaining2 > 0) ||
+                (currentPlayer == 4 && pawnStepsRemainingYellow > 0); // dodaj inne kolory jeśli masz
+
+            if (anyPawnCanMove) {
+                allowPawnSelection = true;
+                std::cout << "[INFO] Kliknij pionka, ktorym chcesz sie poruszyc." << std::endl;
+            }
+            else if (!rolledSix) {
+                advanceToNextPlayer();
+            }
+
+            std::cout << "[DEBUG] Tura gracza: " << currentPlayer << std::endl;
         }
         // Jeśli wymuszone zakończenie tury po 3 szóstkach
         if (forceEndTurnAfterRotation) {
-            isMyTurn = !isMyTurn;
+           // isMyTurn = !isMyTurn;
+            advanceToNextPlayer();
             consecutiveSixes = 0;
             forceEndTurnAfterRotation = false;
             allowPawnSelection = false;
             waitingForRedPawnClick = false;
             waitingForBluePawnClick = false;
-            std::cout << "[INFO] Tura zakonczona po 3 szóstkach z rzędu. Teraz gra: "
-                << (isMyTurn ? "Czerwony" : "Niebieski") << std::endl;
+           // std::cout << "[INFO] Tura zakonczona po 3 szóstkach z rzędu. Teraz gra: "
+               // << (isMyTurn ? "Czerwony" : "Niebieski") << std::endl;
         }
 
 
@@ -427,7 +442,7 @@ void Engine::render() {
     glMatrixMode(GL_MODELVIEW);
     glPushMatrix();
     glLoadIdentity();
-
+    /*
     if (diceInCenter) {
         cubeScreenPosX = 0.02f - cubeScreenScale / 2.0f;
     }
@@ -435,6 +450,35 @@ void Engine::render() {
         cubeScreenPosX = isMyTurn ? 0.00f : 0.90f; // lewa lub prawa
     }
     cubeScreenPosY = firstThrowDone ? 0.32f : 0.90f;
+    */
+    if (diceInCenter) {
+        cubeScreenPosX = 0.00f; // 0.5f - cubeScreenScale / 2.0f; // Środek ekranu
+        cubeScreenPosY = 0.32f;
+    }
+    else {
+        switch (currentPlayer) {
+        case 1: // Czerwony – dolny lewy
+            cubeScreenPosX = 0.00f;
+            cubeScreenPosY = 0.32f;
+            break;
+        case 2: // Zielony – dolny prawy
+            cubeScreenPosX = 0.00f;
+            cubeScreenPosY = 0.90f;
+            break;
+        case 3: // ZOlty – górny lewy
+            cubeScreenPosX = 0.90f;
+            cubeScreenPosY = 0.90f;
+            break;
+        case 4: // Niebieski – górny prawy
+            cubeScreenPosX = 0.90f;
+            cubeScreenPosY = 0.32f;
+            break;
+        default:
+            cubeScreenPosX = 0.5f;
+            cubeScreenPosY = 0.5f;
+            break;
+        }
+    }
 
      glPushAttrib(GL_LIGHTING_BIT);
      glDisable(GL_LIGHTING);
@@ -944,7 +988,7 @@ void Engine::onMouse(int button, int state, int x, int y) {
         }
         //TESTOWE WYCHODZENIE ZOLTEGO PIONKU
 
-        if (waitingForYellowPawnClick) {
+        if (waitingForYellowPawnClick){
             auto pos = yellowHouse[yellowHouseIndex];
             float size = 0.08f;
 
@@ -1273,6 +1317,19 @@ void Engine::idleCallback() {
         glutPostRedisplay(); 
     }
 }
+
+void Engine::advanceToNextPlayer() {
+    currentPlayerIndex = (currentPlayerIndex + 1) % 4;
+    currentPlayer = tury[currentPlayerIndex];
+
+    std::cout << "[INFO] Tura gracza: " << currentPlayer << std::endl;
+
+    waitingForRedPawnClick = (currentPlayer == 1);
+    waitingForBluePawnClick = (currentPlayer == 2);
+    waitingForYellowPawnClick = (currentPlayer == 4);
+    //zielony
+}
+
 
 /**
  * @brief Funkcja wywoływana w celu rysowania sceny.

@@ -257,6 +257,7 @@ private:
     float cubeScreenPosY = 0.32f;
     float cubeScreenScale = 0.05f;  // Takie jak używasz w render()
     bool firstThrowDone = false;
+    bool waitingForPawnClickAfterRoll = false;
 
 
     std::mt19937 rng; ///< Generator liczb losowych
@@ -281,6 +282,7 @@ private:
 
     bool diceRolledForRed = false;
     bool diceRolledForBlue = false;
+    bool diceRolledForYellow = false;
 
     bool redPawnInPlay2 = false;
     float pawnX_R2;

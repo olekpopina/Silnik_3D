@@ -20,7 +20,11 @@ struct PawnData {
     int& currentStep;
     const std::vector<std::pair<float, float>>& path;
     bool isRed;
+    bool isBlue;
+    bool isYellow;
+    bool isGreen;
     int& houseIndex;
 };
 
 #endif // PAWN_DATA_H
+//false, false, true, false,

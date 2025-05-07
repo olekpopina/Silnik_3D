@@ -25,9 +25,9 @@
 
 enum PlayerColor { 
     RED = 1, 
-    BLUE = 2, 
-    GREEN = 3, 
-    YELLOW = 4 };
+    BLUE = 4, 
+    GREEN = 2, 
+    YELLOW = 3 };
 
 /**
  * @brief Klasa zarządzająca silnikiem graficznym.

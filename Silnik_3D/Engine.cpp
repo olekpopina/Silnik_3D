@@ -347,6 +347,16 @@ void Engine::render() {
             lastMoveTimeBlue4 = currentTime;
         }
     }
+    //--------------------------------------------
+    else if (isYellowPawnMoving && pawnStepsRemainingYellow > 0) {
+        float currentTime = glutGet(GLUT_ELAPSED_TIME) / 1000.0f;
+        float elapsedTime = currentTime - lastMoveTimeYellow;
+        if (elapsedTime >= 0.1f) {
+            updatePawnPosition("yellow1");
+            lastMoveTimeYellow = currentTime;
+        }
+    }
+
    // glPushAttrib(GL_LIGHTING_BIT);
   // glDisable(GL_LIGHTING);
  // glColor4f(1.0f, 1.0f, 1.0f, 1.0f); // reset koloru
@@ -404,7 +414,11 @@ void Engine::render() {
        // bitmapHandler.drawPionek(pawnX_B4, pawnY_B4, 0.1f, 0.1f, bitmapHandler.texture_pionek2);
         pawn3D.draw3DPawnAtBlue(pawnX_B4, pawnY_B4);
     }
-    
+    //------------------------------
+    if (yellowPawnInPlay) {
+        pawn3D.draw3DPawnAtYellow(pawnX_YE, pawnY_YE);
+    }
+
     glMatrixMode(GL_PROJECTION);
     glPushMatrix();
     glLoadIdentity();
@@ -548,6 +562,7 @@ void Engine::initializePawnPaths()
     blueHouse = Paths::getBlueHouse();
     redPath = Paths::getRedPath();
     bluePath = Paths::getBluePath();
+    yellowPath = Paths::getYellowPath();
 
 }
 void Engine::updatePawnPosition(const std::string& id) {
@@ -798,14 +813,7 @@ void Engine::resetGame() {
     isBluePawn3Moving = false;
     isRedPawn4Moving = false;
     isBluePawn4Moving = false;
-    /*
-    redHouse = Paths::getRedHouse();
-    blueHouse = Paths::getBlueHouse();
-    redPath = Paths::getRedPath();
-    bluePath = Paths::getBluePath();
-    redHouseIndex = 0;
-    blueHouseIndex = 0;
-    */
+   
     isCubeRotating = false;
     firstThrowDone = false;
     diceInCenter = true;
@@ -821,7 +829,7 @@ void Engine::resetGame() {
     manualDiceValue = -1;
 
     // Reset pozycji kamery
-    cameraZ = 5.0f;
+   // cameraZ = 5.0f;
 
     // Reset czasów ruchu
     pawnLastMoveTime = 0.0f;
@@ -840,7 +848,7 @@ void Engine::onMouse(int button, int state, int x, int y) {
     if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
         float normalizedX = (float)x / glutGet(GLUT_WINDOW_WIDTH);
         float normalizedY = 1.0f - (float)y / glutGet(GLUT_WINDOW_HEIGHT);
-       
+
         if (waitingForRedPawnClick && isMyTurn) {
             auto pos = redHouse[redHouseIndex];
             float size = 0.08f;
@@ -926,12 +934,52 @@ void Engine::onMouse(int button, int state, int x, int y) {
                 return;
             }
         }
-       
+        //TESTOWE WYCHODZENIE ZOLTEGO PIONKU
+
+        if (waitingForYellowPawnClick) {
+            auto pos = yellowHouse[yellowHouseIndex];
+            float size = 0.08f;
+
+            if (normalizedX >= pos.first && normalizedX <= pos.first + size &&
+                normalizedY >= pos.second && normalizedY <= pos.second + size) {
+
+                if (!yellowPawnInPlay) {
+                    yellowPawnInPlay = true;
+                    pawnStepsRemainingYellow = 1;
+                    currentStepYellow = 1;
+                    pawnX_YE = yellowPath[0].first;
+                    pawnY_YE = yellowPath[0].second;
+                }
+
+                yellowHouse.erase(yellowHouse.begin() + yellowHouseIndex);
+                waitingForYellowPawnClick = false;
+                isCubeRotating = false;
+                std::cout << "[DEBUG] Zolty pionek zostal klikniety i wychodzi na plansze!" << std::endl;
+
+                return;
+            }
+        }
+
         if (allowPawnSelection && drawer.textureSet > 0) {
             float size = 0.2f;
 
             std::cout << "[DEBUG] Sprawdzam klikniecie w pionki..." << std::endl;
+            //-----------------------------
+            if (yellowPawnInPlay &&
+                currentStepYellow < yellowPath.size() &&
+                normalizedX >= pawnX_YE && normalizedX <= pawnX_YE + size &&
+                normalizedY >= pawnY_YE && normalizedY <= pawnY_YE + size) {
 
+
+                pawnStepsRemainingYellow = drawer.textureSet;
+                isYellowPawnMoving = true;
+                lastMoveTimeYellow = glutGet(GLUT_ELAPSED_TIME) / 1000.0f;
+                std::cout << "[DEBUG] Kliknieto zoltego pionka 1 - rusza!" << std::endl;
+                drawer.textureSet = 0;
+                allowPawnSelection = false;
+                return;
+            }
+            //--------------------------------------
             if (isMyTurn) {
                 if (redPawnInPlay &&
                     currentStepRed < redPath.size() &&  
@@ -1062,7 +1110,7 @@ void Engine::onMouse(int button, int state, int x, int y) {
                 consecutiveSixes++;
                 std::cout << "[DEBUG] Wyrzucono 6 po raz " << consecutiveSixes << "." << std::endl;
                 if (consecutiveSixes >= 3) {
-                    std::cout << "[INFO] Trzy szóstki z rzędu! Tura przejdzie po zakonczeniu obrotu kostki." << std::endl;
+                    std::cout << "[INFO] Trzy szostki z rzedu! Tura przejdzie po zakonczeniu obrotu kostki." << std::endl;
                     forceEndTurnAfterRotation = true;
                     rolledSix = false;
                     drawer.textureSet = 0;

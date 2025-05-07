@@ -13,6 +13,7 @@ public:
     static std::vector<std::pair<float, float>> getBlueHouse();
     static std::vector<std::pair<float, float>> getRedPath();
     static std::vector<std::pair<float, float>> getBluePath();
+    static std::vector<std::pair<float, float>> getYellowPath();
 };
 
 #endif // PATHS_H

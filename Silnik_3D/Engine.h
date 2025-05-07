@@ -336,12 +336,25 @@ private:
     float lastMoveTimeRed4 = 0.0f;
     float lastMoveTimeBlue4 = 0.0f;
 
+    bool yellowPawnInPlay = false;
+    float pawnX_YE;
+    float pawnY_YE;
+    float lastMoveTimeYellow = 0.0f;
+    bool isYellowPawnMoving = false;
+    int currentStepYellow = 0;
+    float pawnStepSizeYellow = 0.1f;
+    int pawnStepsRemainingYellow = 0;
+
     std::vector<std::pair<float, float>> greenHouse = Paths::getGreenHouse();
     std::vector<std::pair<float, float>> yellowHouse = Paths::getYellowHouse();
     std::vector<std::pair<float, float>> redHouse = Paths::getRedHouse();
     std::vector<std::pair<float, float>> blueHouse = Paths::getBlueHouse();
     std::vector<std::pair<float, float>> redPath = Paths::getRedPath();
     std::vector<std::pair<float, float>> bluePath = Paths::getBluePath();
+    std::vector<std::pair<float, float>> yellowPath = Paths::getYellowPath();
+    
+    bool waitingForYellowPawnClick = true;//domyslnie bedzie false pozniej
+    int yellowHouseIndex = 0;
 
     int redHouseIndex = 0;
     int blueHouseIndex = 0;

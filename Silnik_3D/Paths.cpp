@@ -56,3 +56,11 @@ std::vector<std::pair<float, float>> Paths::getBluePath() {
         {0.58f, 0.46f}, {0.51f, 0.46f}
     };
 }
+
+std::vector<std::pair<float, float>> Paths::getYellowPath()
+{
+    return {
+    { 0.52f, 0.87f }, { 0.52f, 0.80f }, { 0.52f, 0.73f }, { 0.52f, 0.66f },
+    { 0.52f, 0.59f }, { 0.59f, 0.53f }
+    };
+}

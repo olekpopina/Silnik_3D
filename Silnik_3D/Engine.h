@@ -21,6 +21,7 @@
 #include "Winner.h"
 #include "Light.h"
 #include "Pawn3D.h"
+#include "PawnManager.h"
 
 
 enum PlayerColor { 
@@ -228,11 +229,12 @@ private:
     Point point;
     Light light;
     Pawn3D pawn3D;
+    PawnManager pawnManager;
 
-    float pawnX2t = 0.90f;
-    float pawnY2t = 0.20f;
-    float pawnX2t2 = 0.70f;
-    float pawnY2t2 = 0.20f;
+    float pawnX2t;
+    float pawnY2t;
+    float pawnX2t2;
+    float pawnY2t2;
 
     int windowWidth, windowHeight; ///< Wymiary okna
     const char* windowTitle; ///< Tytuł okna

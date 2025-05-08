@@ -113,7 +113,7 @@ void Pawn3D::draw3DPawnAtBlue(float x, float y) {
     glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, matShininess);
 
     draw();                  // Rysowanie modelu
-
+   
     glPopMatrix();
     glMatrixMode(GL_PROJECTION);
     glPopMatrix();
@@ -276,4 +276,46 @@ void Pawn3D::draw3DPawnAtGreen(float x, float y)
     glMatrixMode(GL_PROJECTION);
     glPopMatrix();
     glMatrixMode(GL_MODELVIEW);
+}
+
+void Pawn3D::drawPawns()
+{
+    if (greenHouse) {
+        for (const auto& pos : *greenHouse) {
+            draw3DPawnAtGreen(pos.first, pos.second);
+
+        }
+    }
+    if (yellowHouse) {
+        for (const auto& pos : *yellowHouse) {
+            // bitmapHandler.drawPionek(pos.first, pos.second, 0.08f, 0.08f, bitmapHandler.texture_pionek);
+            draw3DPawnAtYellow(pos.first, pos.second);
+        }
+    }
+    if (redHouse) {
+        // Rysowanie czerwonych pionków w domku
+        for (const auto& pos : *redHouse) {
+            //bitmapHandler.drawPionek(pos.first, pos.second, 0.08f, 0.08f, bitmapHandler.texture_pionek);
+            draw3DPawnAtRed(pos.first, pos.second);
+        }
+    }
+    if (blueHouse) {}
+    // Rysowanie niebieskich pionków w domku
+    for (const auto& pos : *blueHouse) {
+        //bitmapHandler.drawPionek(pos.first, pos.second, 0.08f, 0.08f, bitmapHandler.texture_pionek2);
+        draw3DPawnAtBlue(pos.first, pos.second);
+    }
+}
+
+
+void Pawn3D::setHousePointers(
+   std::vector<std::pair<float, float>>* red,
+   std::vector<std::pair<float, float>>* blue,
+   std::vector<std::pair<float, float>>* yellow,
+   std::vector<std::pair<float, float>>* green) {
+
+   redHouse = red;
+   blueHouse = blue;
+   yellowHouse = yellow;
+   greenHouse = green;
 }

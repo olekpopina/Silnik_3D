@@ -27,6 +27,8 @@ Engine::Engine(int width, int height, const char* title, int fps)
     //winners.showWinnerScreen();
     initializePawnPaths();
     //currentLightingMode = LightingMode::DIRECTIONAL_LIGHT;
+    pawn3D.setHousePointers(&redHouse, &blueHouse, &yellowHouse, &greenHouse);
+
   
     if (!pawn3D.loadModel()) {
         std::cerr << "[ERROR] Nie udało się załadować modelu pionka 3D!" << std::endl;
@@ -376,10 +378,15 @@ void Engine::render() {
    // glPushAttrib(GL_LIGHTING_BIT);
   // glDisable(GL_LIGHTING);
  // glColor4f(1.0f, 1.0f, 1.0f, 1.0f); // reset koloru
+    /*
     for (const auto& pos : greenHouse) {
         // bitmapHandler.drawPionek(pos.first, pos.second, 0.08f, 0.08f, bitmapHandler.texture_pionek);
         pawn3D.draw3DPawnAtGreen(pos.first, pos.second);
     }
+    */
+
+    pawn3D.drawPawns();
+    /*
     for (const auto& pos : yellowHouse) {
        // bitmapHandler.drawPionek(pos.first, pos.second, 0.08f, 0.08f, bitmapHandler.texture_pionek);
         pawn3D.draw3DPawnAtYellow(pos.first, pos.second);
@@ -395,7 +402,7 @@ void Engine::render() {
         //bitmapHandler.drawPionek(pos.first, pos.second, 0.08f, 0.08f, bitmapHandler.texture_pionek2);
         pawn3D.draw3DPawnAtBlue(pos.first, pos.second);
     }
-
+    */
    // Rysowanie pionków tylko jeśli wyszły z domku
     if (redPawnInPlay) {
         //bitmapHandler.drawPionek(pawnX, pawnY, 0.1f, 0.1f, bitmapHandler.texture_pionek);
@@ -959,7 +966,10 @@ void Engine::onMouse(int button, int state, int x, int y) {
                     pawnY_R4 = redPath[0].second;
                 }
 
-                redHouse.erase(redHouse.begin() + redHouseIndex);
+                if (pawn3D.redHouse) {
+                    pawn3D.redHouse->erase(pawn3D.redHouse->begin() + redHouseIndex);
+                }
+                //redHouse.erase(redHouse.begin() + redHouseIndex);
                 waitingForRedPawnClick = false;
                 std::cout << "[DEBUG] Czerwony pionek zostal klikniety i wychodzi na plansze!" << std::endl;
                 return;
@@ -1000,8 +1010,10 @@ void Engine::onMouse(int button, int state, int x, int y) {
                     pawnX_B4 = bluePath[0].first;
                     pawnY_B4 = bluePath[0].second;
                 }
-
-                blueHouse.erase(blueHouse.begin() + blueHouseIndex);
+                if (pawn3D.blueHouse) {
+                    pawn3D.blueHouse->erase(pawn3D.blueHouse->begin() + blueHouseIndex);
+                }
+                //blueHouse.erase(blueHouse.begin() + blueHouseIndex);
                 waitingForBluePawnClick = false;
 
                 isCubeRotating = false;
@@ -1025,8 +1037,10 @@ void Engine::onMouse(int button, int state, int x, int y) {
                     pawnX_YE = yellowPath[0].first;
                     pawnY_YE = yellowPath[0].second;
                 }
-
-                yellowHouse.erase(yellowHouse.begin() + yellowHouseIndex);
+                if (pawn3D.yellowHouse) {
+                    pawn3D.yellowHouse->erase(pawn3D.yellowHouse->begin() + yellowHouseIndex);
+                }
+                //yellowHouse.erase(yellowHouse.begin() + yellowHouseIndex);
                 waitingForYellowPawnClick = false;
                 isCubeRotating = false;
                 std::cout << "[DEBUG] Zolty pionek zostal klikniety i wychodzi na plansze!" << std::endl;
@@ -1048,8 +1062,10 @@ void Engine::onMouse(int button, int state, int x, int y) {
                     pawnX_G = greenPath[0].first;
                     pawnY_G = greenPath[0].second;
                 }
-
-                greenHouse.erase(greenHouse.begin() + greenHouseIndex);
+                if (pawn3D.greenHouse) {
+                    pawn3D.greenHouse->erase(pawn3D.greenHouse->begin() + greenHouseIndex);
+                }
+                //greenHouse.erase(greenHouse.begin() + greenHouseIndex);
                 waitingForGreenPawnClick = false;
                 isCubeRotating = false;
                 std::cout << "[DEBUG] Zielony pionek zostal klikniety i wychodzi na plansze!" << std::endl;

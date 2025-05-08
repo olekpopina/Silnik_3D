@@ -14,6 +14,7 @@ public:
     static std::vector<std::pair<float, float>> getRedPath();
     static std::vector<std::pair<float, float>> getBluePath();
     static std::vector<std::pair<float, float>> getYellowPath();
+    static std::vector<std::pair<float, float>> getGreenPath();
 };
 
 #endif // PATHS_H

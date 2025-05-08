@@ -283,6 +283,7 @@ private:
     bool diceRolledForRed = false;
     bool diceRolledForBlue = false;
     bool diceRolledForYellow = false;
+    bool diceRolledForGreen = false;
 
     bool redPawnInPlay2 = false;
     float pawnX_R2;
@@ -354,6 +355,14 @@ private:
     float pawnStepSizeYellow = 0.1f;
     int pawnStepsRemainingYellow = 0;
 
+    bool greenPawnInPlay = false;
+    float pawnX_G;
+    float pawnY_G;
+    float lastMoveTimeGreen = 0.0f;
+    bool isGreenPawnMoving = false;
+    int currentStepGreen = 0;
+    float pawnStepSizeGreen = 0.1f;
+    int pawnStepsRemainingGreen = 0;
 
 
     int tury[4] = { 1, 2, 3, 4 };
@@ -368,9 +377,12 @@ private:
     std::vector<std::pair<float, float>> redPath = Paths::getRedPath();
     std::vector<std::pair<float, float>> bluePath = Paths::getBluePath();
     std::vector<std::pair<float, float>> yellowPath = Paths::getYellowPath();
+    std::vector<std::pair<float, float>> greenPath = Paths::getGreenPath();
     
     bool waitingForYellowPawnClick = true;//domyslnie bedzie false pozniej
     int yellowHouseIndex = 0;
+    bool waitingForGreenPawnClick = true;//domyslnie bedzie false pozniej
+    int greenHouseIndex = 0;
 
     int redHouseIndex = 0;
     int blueHouseIndex = 0;

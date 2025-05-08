@@ -8,6 +8,7 @@
 #include "Paths.h"
 #include <iostream>
 
+
 class Pawn3D {
 public:
     Pawn3D();
@@ -21,6 +22,8 @@ public:
     void draw3DPawnAtYellow(float x, float y);
     void draw3DPawnAtGreen(float x, float y);
     void drawPawns();
+    void drawPawnsPlay();
+    void PlayPawnsPointers(bool *RedPlay, float *pawnXred, float *pawnYred);
 
     void setHousePointers(
         std::vector<std::pair<float, float>>* red,
@@ -32,8 +35,12 @@ public:
     std::vector<std::pair<float, float>>* blueHouse = nullptr;
     std::vector<std::pair<float, float>>* yellowHouse = nullptr;
     std::vector<std::pair<float, float>>* greenHouse = nullptr;
+    bool* redPawnInPlay = nullptr;
+    float* pawnX = nullptr;
+    float* pawnY = nullptr;
+
 private:
     Assimp::Importer importer;
     const aiScene* scene;
-
+   
 };

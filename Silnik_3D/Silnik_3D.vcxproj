@@ -138,7 +138,6 @@
     <ClCompile Include="Line.cpp" />
     <ClCompile Include="Paths.cpp" />
     <ClCompile Include="Pawn3D.cpp" />
-    <ClCompile Include="PawnManager.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Point.cpp" />
     <ClCompile Include="PrimitiveDrawer.cpp" />
@@ -162,7 +161,6 @@
     <ClInclude Include="Paths.h" />
     <ClInclude Include="Pawn3D.h" />
     <ClInclude Include="PawnData.h" />
-    <ClInclude Include="PawnManager.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Point.h" />
     <ClInclude Include="PrimitiveDrawer.h" />

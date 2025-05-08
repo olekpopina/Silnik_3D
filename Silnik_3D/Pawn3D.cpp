@@ -307,6 +307,20 @@ void Pawn3D::drawPawns()
     }
 }
 
+void Pawn3D::drawPawnsPlay()
+{
+    if (*redPawnInPlay) {
+        draw3DPawnAtRed(*pawnX, *pawnY);
+    }
+}
+
+void Pawn3D::PlayPawnsPointers(bool* RedPlay, float* pawnXred, float* pawnYred)
+{
+    redPawnInPlay = RedPlay;
+    pawnX = pawnXred;
+    pawnY = pawnYred;
+}
+
 
 void Pawn3D::setHousePointers(
    std::vector<std::pair<float, float>>* red,

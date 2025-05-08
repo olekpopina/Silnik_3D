@@ -21,7 +21,6 @@
 #include "Winner.h"
 #include "Light.h"
 #include "Pawn3D.h"
-#include "PawnManager.h"
 
 
 enum PlayerColor { 
@@ -213,11 +212,11 @@ public:
    static void timer(int value);
 
    int frameRate; ///< Liczba klatek na sekundę
+   void setPlayerNicknames(const std::string& name1, const std::string& name2, const std::string& name3, const std::string& name4);
 
-
-       void setPlayerNicknames(const std::string& name1, const std::string& name2, const std::string& name3, const std::string& name4);
-
-
+   bool redPawnInPlay = false;
+   float pawnX;
+   float pawnY;
 
 private:
     // Obiekty i zmienne związane z grą
@@ -229,12 +228,6 @@ private:
     Point point;
     Light light;
     Pawn3D pawn3D;
-    PawnManager pawnManager;
-
-    float pawnX2t;
-    float pawnY2t;
-    float pawnX2t2;
-    float pawnY2t2;
 
     int windowWidth, windowHeight; ///< Wymiary okna
     const char* windowTitle; ///< Tytuł okna
@@ -271,8 +264,8 @@ private:
     int pawnStepsRemaining2 = 0; ///< Liczba pozostałych kroków drugiego pionka
     float pawnStepSize = 0.05f; ///< Wielkość kroku pionka
     float pawnStepSize2 = 0.1f; ///< Wielkość kroku drugiego pionka
-    float pawnX; 
-    float pawnY;
+    //float pawnX; 
+    //float pawnY;
     float pawnX2;
     float pawnY2; 
     float pawnLastMoveTime = 0.0f; ///< Czas ostatniego ruchu pionka
@@ -388,7 +381,7 @@ private:
 
     int redHouseIndex = 0;
     int blueHouseIndex = 0;
-    bool redPawnInPlay = false;
+    //bool redPawnInPlay = false;
     bool bluePawnInPlay = false;
     bool waitingForRedPawnClick = false;
     bool waitingForBluePawnClick = false;

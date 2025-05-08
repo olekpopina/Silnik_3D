@@ -28,7 +28,7 @@ Engine::Engine(int width, int height, const char* title, int fps)
     initializePawnPaths();
     //currentLightingMode = LightingMode::DIRECTIONAL_LIGHT;
     pawn3D.setHousePointers(&redHouse, &blueHouse, &yellowHouse, &greenHouse);
-
+    pawn3D.PlayPawnsPointers(&redPawnInPlay, &pawnX, &pawnY);
   
     if (!pawn3D.loadModel()) {
         std::cerr << "[ERROR] Nie udało się załadować modelu pionka 3D!" << std::endl;
@@ -220,27 +220,7 @@ void Engine::render() {
     // Rysowanie tła
     bitmapHandler.drawBackground();
     glEnable(GL_LIGHTING);
-    /*
-    float x3D = bluePath[pI].first;
-    float y3D = bluePath[pI].second;
-    float x3D2 = redPath[pI].first;
-    float y3D2 = redPath[pI].second;
-    //pawn3D.draw3DPawnAtBlue(pawnX2t, pawnY2t);
-    pawn3D.draw3DPawnAtBlue(x3D, y3D);
-    pawn3D.draw3DPawnAtRed(x3D2, y3D2);
-    
-    if (instance->lastTime >= t)
-    {
-        t += cooldown;
-        pI++;
-        if (pI >= bluePath.size())
-        {
-            pI = 0;
-        }
-    }
-
-    */
-    //pawn3D.draw3DPawnAtRed(pawnX2t2, pawnY2t2);
+  
 
     // Obracanie kostki
     if (isCubeRotating) {
@@ -404,10 +384,15 @@ void Engine::render() {
     }
     */
    // Rysowanie pionków tylko jeśli wyszły z domku
+    /*
     if (redPawnInPlay) {
         //bitmapHandler.drawPionek(pawnX, pawnY, 0.1f, 0.1f, bitmapHandler.texture_pionek);
         pawn3D.draw3DPawnAtRed(pawnX, pawnY);
     }
+    */
+
+    pawn3D.drawPawnsPlay();
+
     if (redPawnInPlay2) {
         //bitmapHandler.drawPionek(pawnX_R2, pawnY_R2, 0.1f, 0.1f, bitmapHandler.texture_pionek);
         pawn3D.draw3DPawnAtRed(pawnX_R2, pawnY_R2);

@@ -4,7 +4,7 @@ Menu::Menu(unsigned int width, unsigned int height)
     : window(sf::VideoMode(width, height), "Menu") {
     font.loadFromFile("C:\\Windows\\Fonts\\Arial.ttf");
 
-    if (!backgroundTexture.loadFromFile("images/tlo_menu.png")) {
+    if (!backgroundTexture.loadFromFile("images/tlo_menu2.png")) {
    
         std::cerr << "Nie udalo sie zaladowac tla menu!" << std::endl;
     }
@@ -29,16 +29,16 @@ Menu::Menu(unsigned int width, unsigned int height)
     loginButton2.setFillColor(sf::Color(0, 0, 0, 0));
 
     loginButton3.setSize(sf::Vector2f(300, 70));
-    loginButton3.setPosition(150, 390);
+    loginButton3.setPosition(150, 380);
     loginButton3.setFillColor(sf::Color::Black);
 
     loginButton4.setSize(sf::Vector2f(300, 70));
-    loginButton4.setPosition(150, 480);
-    loginButton4.setFillColor(sf::Color::Green);
+    loginButton4.setPosition(150, 466);
+    loginButton4.setFillColor(sf::Color(0, 0, 0, 0));
     
     dialogBox.setSize(sf::Vector2f(400, 200));
     dialogBox.setFillColor(sf::Color(50, 50, 50, 230));
-    dialogBox.setOutlineColor(sf::Color::White);
+    dialogBox.setOutlineColor(sf::Color(0, 0, 0, 0));
     dialogBox.setOutlineThickness(3);
     dialogBox.setPosition(100, 200);
 

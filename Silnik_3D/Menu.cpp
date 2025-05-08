@@ -30,7 +30,7 @@ Menu::Menu(unsigned int width, unsigned int height)
 
     loginButton3.setSize(sf::Vector2f(300, 70));
     loginButton3.setPosition(150, 380);
-    loginButton3.setFillColor(sf::Color::Black);
+    loginButton3.setFillColor(sf::Color(0, 0, 0, 0));
 
     loginButton4.setSize(sf::Vector2f(300, 70));
     loginButton4.setPosition(150, 466);

@@ -214,19 +214,6 @@ public:
    int frameRate; ///< Liczba klatek na sekundę
    void setPlayerNicknames(const std::string& name1, const std::string& name2, const std::string& name3, const std::string& name4);
 
-   bool redPawnInPlay = false;
-   float pawnX;
-   float pawnY;
-   bool redPawnInPlay2 = false;
-   float pawnX_R2;
-   float pawnY_R2;
-   bool redPawnInPlay3 = false;
-   float pawnX_R3;
-   float pawnY_R3;
-   bool redPawnInPlay4 = false;
-   float pawnX_R4;
-   float pawnY_R4;
-
 private:
     // Obiekty i zmienne związane z grą
     Triangle triangle;
@@ -273,8 +260,8 @@ private:
     int pawnStepsRemaining2 = 0; ///< Liczba pozostałych kroków drugiego pionka
     float pawnStepSize = 0.05f; ///< Wielkość kroku pionka
     float pawnStepSize2 = 0.1f; ///< Wielkość kroku drugiego pionka
-    //float pawnX; 
-    //float pawnY;
+    float pawnX; 
+    float pawnY;
     float pawnX2;
     float pawnY2; 
     float pawnLastMoveTime = 0.0f; ///< Czas ostatniego ruchu pionka
@@ -289,9 +276,9 @@ private:
     bool diceRolledForYellow = false;
     bool diceRolledForGreen = false;
 
-   /* bool redPawnInPlay2 = false;
+    bool redPawnInPlay2 = false;
     float pawnX_R2;
-    float pawnY_R2;*/
+    float pawnY_R2;
 
     bool bluePawnInPlay2 = false;
     float pawnX_B2;
@@ -310,9 +297,9 @@ private:
     float lastMoveTimeBlue2 = 0.0f;
 
 
-   /* bool redPawnInPlay3 = false;
+    bool redPawnInPlay3 = false;
     float pawnX_R3;
-    float pawnY_R3;*/
+    float pawnY_R3;
 
     bool bluePawnInPlay3 = false;
     float pawnX_B3;
@@ -330,9 +317,9 @@ private:
     float lastMoveTimeRed3 = 0.0f;
     float lastMoveTimeBlue3 = 0.0f;
 
-   /* bool redPawnInPlay4 = false;
+    bool redPawnInPlay4 = false;
     float pawnX_R4;
-    float pawnY_R4;*/
+    float pawnY_R4;
 
     bool bluePawnInPlay4 = false;
     float pawnX_B4;
@@ -365,8 +352,16 @@ private:
     float lastMoveTimeYellow2 = 0.0f;
     bool isYellowPawnMoving2 = false;
     int currentStepYellow2 = 0;
-    float pawnStepSizeYellow2 = 0.1f;
     int pawnStepsRemainingYellow2 = 0;
+
+    bool yellowPawnInPlay3 = false;
+    float pawnX_YE3;
+    float pawnY_YE3;
+    float lastMoveTimeYellow3 = 0.0f;
+    bool isYellowPawnMoving3 = false;
+    int currentStepYellow3 = 0;
+    float pawnStepSizeYellow3 = 0.1f;
+    int pawnStepsRemainingYellow3 = 0;
 
     bool greenPawnInPlay = false;
     float pawnX_G;
@@ -385,6 +380,15 @@ private:
     int currentStepGreen2 = 0;
     float pawnStepSizeGreen2 = 0.1f;
     int pawnStepsRemainingGreen2 = 0;
+
+    bool greenPawnInPlay3 = false;
+    float pawnX_G3;
+    float pawnY_G3;
+    float lastMoveTimeGreen3 = 0.0f;
+    bool isGreenPawnMoving3 = false;
+    int currentStepGreen3 = 0;
+    float pawnStepSizeGreen3 = 0.1f;
+    int pawnStepsRemainingGreen3 = 0;
 
     int tury[4] = { 1, 2, 3, 4 };
     int currentPlayerIndex = 0;  // 0 = Gracz 1, 1 = Gracz 2 itd.
@@ -407,7 +411,7 @@ private:
 
     int redHouseIndex = 0;
     int blueHouseIndex = 0;
-    //bool redPawnInPlay = false;
+    bool redPawnInPlay = false;
     bool bluePawnInPlay = false;
     bool waitingForRedPawnClick = false;
     bool waitingForBluePawnClick = false;

@@ -31,7 +31,8 @@ Engine::Engine(int width, int height, const char* title, int fps)
     pawn3D.PlayPawnsPointers(&redPawnInPlay, &pawnX, &pawnY, &redPawnInPlay2, &pawnX_R2, &pawnY_R2, 
     &redPawnInPlay3, &pawnX_R3, &pawnY_R3, &redPawnInPlay4, &pawnX_R4, &pawnY_R4,
     &bluePawnInPlay, &pawnX2, &pawnY2, &bluePawnInPlay2, &pawnX_B2, &pawnY_B2,
-    &bluePawnInPlay3, &pawnX_B3, &pawnY_B3, &bluePawnInPlay4, &pawnX_B4, &pawnY_B4);
+    &bluePawnInPlay3, &pawnX_B3, &pawnY_B3, &bluePawnInPlay4, &pawnX_B4, &pawnY_B4, &yellowPawnInPlay, &pawnX_YE, &pawnY_YE, 
+    &greenPawnInPlay, &pawnX_G, &pawnY_G);
   
     if (!pawn3D.loadModel()) {
         std::cerr << "[ERROR] Nie udało się załadować modelu pionka 3D!" << std::endl;
@@ -362,27 +363,14 @@ void Engine::render() {
     pawn3D.drawPawns();
 
     pawn3D.drawPawnsPlay();
-   /*
-    if (bluePawnInPlay) {
-        pawn3D.draw3DPawnAtBlue(pawnX2, pawnY2);
-    }
-    if (bluePawnInPlay2) {
-        pawn3D.draw3DPawnAtBlue(pawnX_B2, pawnY_B2);
-    }
-    if (bluePawnInPlay3) {
-        pawn3D.draw3DPawnAtBlue(pawnX_B3, pawnY_B3);
-    }
-    if (bluePawnInPlay4) {
-        pawn3D.draw3DPawnAtBlue(pawnX_B4, pawnY_B4);
-    }
-    */
-    //------------------------------
-    if (yellowPawnInPlay) {
-        pawn3D.draw3DPawnAtYellow(pawnX_YE, pawnY_YE);
-    }
-    if (greenPawnInPlay) {
+   
+    ////------------------------------
+    //if (yellowPawnInPlay) {
+    //    pawn3D.draw3DPawnAtYellow(pawnX_YE, pawnY_YE);
+    //}
+   /* if (greenPawnInPlay) {
         pawn3D.draw3DPawnAtGreen(pawnX_G, pawnY_G);
-    }
+    }*/
 
     glMatrixMode(GL_PROJECTION);
     glPushMatrix();

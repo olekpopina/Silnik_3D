@@ -28,7 +28,7 @@ public:
     bool* BluePlay, float* pawnXblue, float* pawnYblue, bool* BluePlay2, float* pawnXblue2, float* pawnYblue2,
     bool* Blueblue3, float* pawnXblue3, float* pawnYblue3, bool* Redblue4, float* pawnXblue4, float* pawnYblue4,
     bool* YellowPlay, float* pawnXyellow, float* pawnYyellow, bool* GreenPlay, float*pawnXgreen, float* pawnYgreen,
-    bool* YellowPlay2, float* pawnXyellow2, float* pawnYyellow2);
+    bool* YellowPlay2, float* pawnXyellow2, float* pawnYyellow2, bool* YellowPlay3, float* pawnXyellow3, float* pawnYyellow3);
 
     void setHousePointers(
         std::vector<std::pair<float, float>>* red,
@@ -79,6 +79,10 @@ public:
     bool* yellowPawnInPlay2 = nullptr;
     float* pawnX_YE2 = nullptr;
     float* pawnY_YE2 = nullptr;
+
+    bool* yellowPawnInPlay3 = nullptr;
+    float* pawnX_YE3 = nullptr;
+    float* pawnY_YE3 = nullptr;
     
     bool* greenPawnInPlay = nullptr;
     float* pawnX_G = nullptr;

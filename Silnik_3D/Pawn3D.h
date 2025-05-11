@@ -30,7 +30,7 @@ public:
     bool* YellowPlay, float* pawnXyellow, float* pawnYyellow, bool* GreenPlay, float*pawnXgreen, float* pawnYgreen,
     bool* YellowPlay2, float* pawnXyellow2, float* pawnYyellow2, bool* YellowPlay3, float* pawnXyellow3, float* pawnYyellow3,
     bool* YellowPlay4, float* pawnXyellow4, float* pawnYyellow4, bool* GreenPlay2, float* pawnXgreen2, float* pawnYgreen2,
-    bool* GreenPlay3, float* pawnXgreen3, float* pawnYgreen3);
+    bool* GreenPlay3, float* pawnXgreen3, float* pawnYgreen3, bool* GreenPlay4, float* pawnXgreen4, float* pawnYgreen4);
 
     void setHousePointers(
         std::vector<std::pair<float, float>>* red,

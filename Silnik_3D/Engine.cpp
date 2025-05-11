@@ -342,7 +342,6 @@ void Engine::render() {
             lastMoveTimeBlue4 = currentTime;
         }
     }
-    //--------------------------------------------
     else if (isYellowPawnMoving && pawnStepsRemainingYellow > 0) {
         float currentTime = glutGet(GLUT_ELAPSED_TIME) / 1000.0f;
         float elapsedTime = currentTime - lastMoveTimeYellow;
@@ -408,29 +407,8 @@ void Engine::render() {
         }
         }
     pawn3D.drawPawns();
-
     pawn3D.drawPawnsPlay();
    
-
-   /* if (yellowPawnInPlay2) {
-        pawn3D.draw3DPawnAtYellow(pawnX_YE2, pawnY_YE2);
-    }*/
-   /*if (greenPawnInPlay2) {
-        pawn3D.draw3DPawnAtGreen(pawnX_G2, pawnY_G2);
-    }*/
-  /* if (yellowPawnInPlay3) {
-       pawn3D.draw3DPawnAtYellow(pawnX_YE3, pawnY_YE3);
-   }*/
-   /*if (greenPawnInPlay3) {
-       pawn3D.draw3DPawnAtGreen(pawnX_G3, pawnY_G3);
-   }*/
-   /*if (yellowPawnInPlay4) {
-       pawn3D.draw3DPawnAtYellow(pawnX_YE4, pawnY_YE4);
-   }*/
-  /* if (greenPawnInPlay4) {
-       pawn3D.draw3DPawnAtGreen(pawnX_G4, pawnY_G4);
-   }*/
-
     glMatrixMode(GL_PROJECTION);
     glPushMatrix();
     glLoadIdentity();
@@ -814,9 +792,7 @@ void Engine::updatePawnPosition(const std::string& id) {
                 pawn.isMoving = false;
             }
             if (pawn.pawnStepsRemaining == 0 && !rolledSix && !extraRollAfterCapture) {
-                //isMyTurn = !isMyTurn;
                 advanceToNextPlayer();
-
                 std::cout << "[DEBUG] Tura zmieniona! Teraz gra: " << (isMyTurn ? "Czerwony" : "Niebieski") << std::endl;
                 consecutiveSixes = 0;
 
@@ -965,7 +941,6 @@ void Engine::onMouse(int button, int state, int x, int y) {
         }
 
         if (waitingForRedPawnClick && currentPlayer == PlayerColor::RED) {
-            //auto pos = redHouse[redHouseIndex];
             if (!redHouse.empty()) {
                 auto pos = redHouse.back(); // albo redHouse[0], jeśli trzymasz w kolejności
             }
@@ -1057,7 +1032,6 @@ void Engine::onMouse(int button, int state, int x, int y) {
                 if (pawn3D.blueHouse) {
                     pawn3D.blueHouse->erase(pawn3D.blueHouse->begin() + blueHouseIndex);
                 }
-                //blueHouse.erase(blueHouse.begin() + blueHouseIndex);
                 waitingForBluePawnClick = false;
 
                 isCubeRotating = false;
@@ -1065,8 +1039,6 @@ void Engine::onMouse(int button, int state, int x, int y) {
                 return;
             }
         }
-        //TESTOWE WYCHODZENIE ZOLTEGO PIONKU
-
         else if (waitingForYellowPawnClick && currentPlayer == PlayerColor::YELLOW){
             auto pos = yellowHouse[yellowHouseIndex];
             float size = 0.08f;
@@ -1105,7 +1077,6 @@ void Engine::onMouse(int button, int state, int x, int y) {
                 if (pawn3D.yellowHouse) {
                     pawn3D.yellowHouse->erase(pawn3D.yellowHouse->begin() + yellowHouseIndex);
                 }
-                //yellowHouse.erase(yellowHouse.begin() + yellowHouseIndex);
                 waitingForYellowPawnClick = false;
                 isCubeRotating = false;
                 std::cout << "[DEBUG] Zolty pionek zostal klikniety i wychodzi na plansze!" << std::endl;
@@ -1151,7 +1122,6 @@ void Engine::onMouse(int button, int state, int x, int y) {
                 if (pawn3D.greenHouse) {
                     pawn3D.greenHouse->erase(pawn3D.greenHouse->begin() + greenHouseIndex);
                 }
-                //greenHouse.erase(greenHouse.begin() + greenHouseIndex);
                 waitingForGreenPawnClick = false;
                 isCubeRotating = false;
                 std::cout << "[DEBUG] Zielony pionek zostal klikniety i wychodzi na plansze!" << std::endl;
@@ -1159,7 +1129,6 @@ void Engine::onMouse(int button, int state, int x, int y) {
                 return;
             }
         }
-
         if (allowPawnSelection && drawer.textureSet > 0) {
             float size = 0.2f;
 
@@ -1170,7 +1139,6 @@ void Engine::onMouse(int button, int state, int x, int y) {
                     currentStepRed < redPath.size() &&  
                     normalizedX >= pawnX && normalizedX <= pawnX + size &&
                     normalizedY >= pawnY && normalizedY <= pawnY + size) {
-
 
                     pawnStepsRemaining = drawer.textureSet;
                     isPawnMoving = true;
@@ -1268,7 +1236,6 @@ void Engine::onMouse(int button, int state, int x, int y) {
                 }
             }
             else if (currentPlayer == PlayerColor::YELLOW) {
-                //-----------------------------
                 if (yellowPawnInPlay &&
                     currentStepYellow < yellowPath.size() &&
                     normalizedX >= pawnX_YE && normalizedX <= pawnX_YE + size &&
@@ -1283,7 +1250,6 @@ void Engine::onMouse(int button, int state, int x, int y) {
                     allowPawnSelection = false;
                     return;
                 }
-                //--------------------------------------
                 else if (yellowPawnInPlay2 &&
                     currentStepYellow2 < yellowPath.size() &&
                     normalizedX >= pawnX_YE2 && normalizedX <= pawnX_YE2 + size &&
@@ -1296,7 +1262,6 @@ void Engine::onMouse(int button, int state, int x, int y) {
                     allowPawnSelection = false;
                     return;
                 }
-                //--------------------------------------
                 else if (yellowPawnInPlay3 &&
                     currentStepYellow3 < yellowPath.size() &&
                     normalizedX >= pawnX_YE3 && normalizedX <= pawnX_YE3 + size &&
@@ -1309,7 +1274,6 @@ void Engine::onMouse(int button, int state, int x, int y) {
                     allowPawnSelection = false;
                     return;
                 }
-                //--------------------------------------
                 else if (yellowPawnInPlay4 &&
                     currentStepYellow4 < yellowPath.size() &&
                     normalizedX >= pawnX_YE4 && normalizedX <= pawnX_YE4 + size &&
@@ -1322,7 +1286,6 @@ void Engine::onMouse(int button, int state, int x, int y) {
                     allowPawnSelection = false;
                     return;
                 }
-                //--------------------------------------
             }
             else if (currentPlayer == PlayerColor::GREEN) {
                 //-----------------------------
@@ -1340,7 +1303,6 @@ void Engine::onMouse(int button, int state, int x, int y) {
                     allowPawnSelection = false;
                     return;
                 }
-                //--------------------------------------
                 else if (greenPawnInPlay2 &&
                     currentStepGreen2 < greenPath.size() &&
                     normalizedX >= pawnX_G2 && normalizedX <= pawnX_G2 + size &&
@@ -1353,7 +1315,6 @@ void Engine::onMouse(int button, int state, int x, int y) {
                     allowPawnSelection = false;
                     return;
                 }
-                //--------------------------------------
                 else if (greenPawnInPlay3 &&
                     currentStepGreen3 < greenPath.size() &&
                     normalizedX >= pawnX_G3 && normalizedX <= pawnX_G3 + size &&
@@ -1366,7 +1327,6 @@ void Engine::onMouse(int button, int state, int x, int y) {
                     allowPawnSelection = false;
                     return;
                 }
-                //--------------------------------------
                 else if (greenPawnInPlay4 &&
                     currentStepGreen4 < greenPath.size() &&
                     normalizedX >= pawnX_G4 && normalizedX <= pawnX_G4 + size &&
@@ -1379,12 +1339,9 @@ void Engine::onMouse(int button, int state, int x, int y) {
                     allowPawnSelection = false;
                     return;
                 }
-                //--------------------------------------
             }
             std::cout << "[DEBUG] Kliknieto poza pionkami - brak ruchu" << std::endl;
         }
-
-
         // Sprawdzenie, czy kliknięto na kostkę
         if (isClickOnCube(x, y) && !isCubeRotating && !isPawnMoving && !isPawnMoving2 && !isGreenPawnMoving && !isYellowPawnMoving && !isGreenPawnMoving2 && !isYellowPawnMoving2 && !isGreenPawnMoving3 && !isYellowPawnMoving3 && !isGreenPawnMoving4 && !isYellowPawnMoving4) {
             isDragging = true;

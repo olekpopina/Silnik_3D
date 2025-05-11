@@ -32,7 +32,7 @@ Engine::Engine(int width, int height, const char* title, int fps)
     &redPawnInPlay3, &pawnX_R3, &pawnY_R3, &redPawnInPlay4, &pawnX_R4, &pawnY_R4,
     &bluePawnInPlay, &pawnX2, &pawnY2, &bluePawnInPlay2, &pawnX_B2, &pawnY_B2,
     &bluePawnInPlay3, &pawnX_B3, &pawnY_B3, &bluePawnInPlay4, &pawnX_B4, &pawnY_B4, &yellowPawnInPlay, &pawnX_YE, &pawnY_YE, 
-    &greenPawnInPlay, &pawnX_G, &pawnY_G);
+    &greenPawnInPlay, &pawnX_G, &pawnY_G, &yellowPawnInPlay2, &pawnX_YE2, &pawnY_YE2);
   
     if (!pawn3D.loadModel()) {
         std::cerr << "[ERROR] Nie udalo sie zaladowac modelu pionka 3D!" << std::endl;
@@ -410,9 +410,9 @@ void Engine::render() {
     pawn3D.drawPawnsPlay();
    
 
-    if (yellowPawnInPlay2) {
+   /* if (yellowPawnInPlay2) {
         pawn3D.draw3DPawnAtYellow(pawnX_YE2, pawnY_YE2);
-    }
+    }*/
    if (greenPawnInPlay2) {
         pawn3D.draw3DPawnAtGreen(pawnX_G2, pawnY_G2);
     }

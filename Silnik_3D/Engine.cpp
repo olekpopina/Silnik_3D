@@ -29,7 +29,9 @@ Engine::Engine(int width, int height, const char* title, int fps)
     //currentLightingMode = LightingMode::DIRECTIONAL_LIGHT;
     pawn3D.setHousePointers(&redHouse, &blueHouse, &yellowHouse, &greenHouse);
     pawn3D.PlayPawnsPointers(&redPawnInPlay, &pawnX, &pawnY, &redPawnInPlay2, &pawnX_R2, &pawnY_R2, 
-    &redPawnInPlay3, &pawnX_R3, &pawnY_R3, &redPawnInPlay4, &pawnX_R4, &pawnY_R4);
+    &redPawnInPlay3, &pawnX_R3, &pawnY_R3, &redPawnInPlay4, &pawnX_R4, &pawnY_R4,
+    &bluePawnInPlay, &pawnX2, &pawnY2, &bluePawnInPlay2, &pawnX_B2, &pawnY_B2,
+    &bluePawnInPlay3, &pawnX_B3, &pawnY_B3, &bluePawnInPlay4, &pawnX_B4, &pawnY_B4);
   
     if (!pawn3D.loadModel()) {
         std::cerr << "[ERROR] Nie udało się załadować modelu pionka 3D!" << std::endl;
@@ -356,74 +358,24 @@ void Engine::render() {
             lastMoveTimeGreen = currentTime;
         }
     }
-   // glPushAttrib(GL_LIGHTING_BIT);
-  // glDisable(GL_LIGHTING);
- // glColor4f(1.0f, 1.0f, 1.0f, 1.0f); // reset koloru
-    /*
-    for (const auto& pos : greenHouse) {
-        // bitmapHandler.drawPionek(pos.first, pos.second, 0.08f, 0.08f, bitmapHandler.texture_pionek);
-        pawn3D.draw3DPawnAtGreen(pos.first, pos.second);
-    }
-    */
 
     pawn3D.drawPawns();
-    /*
-    for (const auto& pos : yellowHouse) {
-       // bitmapHandler.drawPionek(pos.first, pos.second, 0.08f, 0.08f, bitmapHandler.texture_pionek);
-        pawn3D.draw3DPawnAtYellow(pos.first, pos.second);
-    }
-    // Rysowanie czerwonych pionków w domku
-    for (const auto& pos : redHouse) {
-        //bitmapHandler.drawPionek(pos.first, pos.second, 0.08f, 0.08f, bitmapHandler.texture_pionek);
-        pawn3D.draw3DPawnAtRed(pos.first, pos.second);
-    }
-
-    // Rysowanie niebieskich pionków w domku
-    for (const auto& pos : blueHouse) {
-        //bitmapHandler.drawPionek(pos.first, pos.second, 0.08f, 0.08f, bitmapHandler.texture_pionek2);
-        pawn3D.draw3DPawnAtBlue(pos.first, pos.second);
-    }
-    */
-   // Rysowanie pionków tylko jeśli wyszły z domku
-    /*
-    if (redPawnInPlay) {
-        //bitmapHandler.drawPionek(pawnX, pawnY, 0.1f, 0.1f, bitmapHandler.texture_pionek);
-        pawn3D.draw3DPawnAtRed(pawnX, pawnY);
-    }
-    */
 
     pawn3D.drawPawnsPlay();
-    /*
-    if (redPawnInPlay2) {
-        //bitmapHandler.drawPionek(pawnX_R2, pawnY_R2, 0.1f, 0.1f, bitmapHandler.texture_pionek);
-        pawn3D.draw3DPawnAtRed(pawnX_R2, pawnY_R2);
-    }
-    
-    if (redPawnInPlay3) {
-        //bitmapHandler.drawPionek(pawnX_R3, pawnY_R3, 0.1f, 0.1f, bitmapHandler.texture_pionek);
-        pawn3D.draw3DPawnAtRed(pawnX_R3, pawnY_R3);
-    }
-    if (redPawnInPlay4) {
-       // bitmapHandler.drawPionek(pawnX_R4, pawnY_R4, 0.1f, 0.1f, bitmapHandler.texture_pionek);
-        pawn3D.draw3DPawnAtRed(pawnX_R4, pawnY_R4);
-    }
-    */
+   /*
     if (bluePawnInPlay) {
-       // bitmapHandler.drawPionek(pawnX2, pawnY2, 0.1f, 0.1f, bitmapHandler.texture_pionek2);
         pawn3D.draw3DPawnAtBlue(pawnX2, pawnY2);
     }
     if (bluePawnInPlay2) {
-        //bitmapHandler.drawPionek(pawnX_B2, pawnY_B2, 0.1f, 0.1f, bitmapHandler.texture_pionek2);
         pawn3D.draw3DPawnAtBlue(pawnX_B2, pawnY_B2);
     }
     if (bluePawnInPlay3) {
-        //bitmapHandler.drawPionek(pawnX_B3, pawnY_B3, 0.1f, 0.1f, bitmapHandler.texture_pionek2);
         pawn3D.draw3DPawnAtBlue(pawnX_B3, pawnY_B3);
     }
     if (bluePawnInPlay4) {
-       // bitmapHandler.drawPionek(pawnX_B4, pawnY_B4, 0.1f, 0.1f, bitmapHandler.texture_pionek2);
         pawn3D.draw3DPawnAtBlue(pawnX_B4, pawnY_B4);
     }
+    */
     //------------------------------
     if (yellowPawnInPlay) {
         pawn3D.draw3DPawnAtYellow(pawnX_YE, pawnY_YE);
@@ -440,15 +392,7 @@ void Engine::render() {
     glMatrixMode(GL_MODELVIEW);
     glPushMatrix();
     glLoadIdentity();
-    /*
-    if (diceInCenter) {
-        cubeScreenPosX = 0.02f - cubeScreenScale / 2.0f;
-    }
-    else {
-        cubeScreenPosX = isMyTurn ? 0.00f : 0.90f; // lewa lub prawa
-    }
-    cubeScreenPosY = firstThrowDone ? 0.32f : 0.90f;
-    */
+    
     if (diceInCenter) {
         cubeScreenPosX = 0.00f; // 0.5f - cubeScreenScale / 2.0f; // Środek ekranu
         cubeScreenPosY = 0.32f;

@@ -321,10 +321,25 @@ void Pawn3D::drawPawnsPlay()
     if (*redPawnInPlay4) {
         draw3DPawnAtRed(*pawnX_R4, *pawnY_R4);
     }
+
+    if (*bluePawnInPlay) {
+        draw3DPawnAtBlue(*pawnX2, *pawnY2);
+    }
+    if (*bluePawnInPlay2) {
+        draw3DPawnAtBlue(*pawnX_B2, *pawnY_B2);
+    }
+    if (*bluePawnInPlay3) {
+        draw3DPawnAtBlue(*pawnX_B3, *pawnY_B3);
+    }
+    if (*bluePawnInPlay4) {
+        draw3DPawnAtBlue(*pawnX_B4, *pawnY_B4);
+    }
 }
 
 void Pawn3D::PlayPawnsPointers(bool* RedPlay, float* pawnXred, float* pawnYred, bool* RedPlay2, float* pawnXred2, float* pawnYred2,
-    bool* RedPlay3, float* pawnXred3, float* pawnYred3, bool* RedPlay4, float* pawnXred4, float* pawnYred4)
+    bool* RedPlay3, float* pawnXred3, float* pawnYred3, bool* RedPlay4, float* pawnXred4, float* pawnYred4,/*|||||*/
+    bool* BluePlay, float* pawnXblue, float* pawnYblue, bool* BluePlay2, float* pawnXblue2, float* pawnYblue2,
+    bool* BluePlay3, float* pawnXblue3, float* pawnYblue3, bool* BluePlay4, float* pawnXblue4, float* pawnYblue4)
 {
     redPawnInPlay = RedPlay;
     pawnX = pawnXred;
@@ -341,6 +356,22 @@ void Pawn3D::PlayPawnsPointers(bool* RedPlay, float* pawnXred, float* pawnYred, 
     redPawnInPlay4 = RedPlay4;
     pawnX_R4 = pawnXred4;
     pawnY_R4 = pawnYred4;
+
+    bluePawnInPlay = BluePlay;
+    pawnX2 = pawnXblue;
+    pawnY2 = pawnYblue;
+
+    bluePawnInPlay2 = BluePlay2;
+    pawnX_B2 = pawnXblue2;
+    pawnY_B2 = pawnYblue2;
+
+    bluePawnInPlay3 = BluePlay3;
+    pawnX_B3 = pawnXblue3;
+    pawnY_B3 = pawnYblue3;
+
+    bluePawnInPlay4 = BluePlay4;
+    pawnX_B4 = pawnXblue4;
+    pawnY_B4 = pawnYblue4;
 }
 
 

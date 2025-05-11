@@ -362,6 +362,14 @@ private:
     int currentStepYellow3 = 0;
     float pawnStepSizeYellow3 = 0.1f;
     int pawnStepsRemainingYellow3 = 0;
+    bool yellowPawnInPlay4 = false;
+    float pawnX_YE4;
+    float pawnY_YE4;
+    float lastMoveTimeYellow4 = 0.0f;
+    bool isYellowPawnMoving4 = false;
+    int currentStepYellow4 = 0;
+    float pawnStepSizeYellow4 = 0.1f;
+    int pawnStepsRemainingYellow4 = 0;
 
     bool greenPawnInPlay = false;
     float pawnX_G;
@@ -389,6 +397,15 @@ private:
     int currentStepGreen3 = 0;
     float pawnStepSizeGreen3 = 0.1f;
     int pawnStepsRemainingGreen3 = 0;
+
+    bool greenPawnInPlay4 = false;
+    float pawnX_G4;
+    float pawnY_G4;
+    float lastMoveTimeGreen4 = 0.0f;
+    bool isGreenPawnMoving4 = false;
+    int currentStepGreen4 = 0;
+    float pawnStepSizeGreen4 = 0.1f;
+    int pawnStepsRemainingGreen4 = 0;
 
     int tury[4] = { 1, 2, 3, 4 };
     int currentPlayerIndex = 0;  // 0 = Gracz 1, 1 = Gracz 2 itd.

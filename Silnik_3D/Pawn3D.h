@@ -23,7 +23,8 @@ public:
     void draw3DPawnAtGreen(float x, float y);
     void drawPawns();
     void drawPawnsPlay();
-    void PlayPawnsPointers(bool *RedPlay, float *pawnXred, float *pawnYred);
+    void PlayPawnsPointers(bool *RedPlay, float *pawnXred, float *pawnYred, bool* RedPlay2, float* pawnXred2, float* pawnYred2,
+    bool* RedPlay3, float* pawnXred3, float* pawnYred3, bool* RedPlay4, float* pawnXred4, float* pawnYred4);
 
     void setHousePointers(
         std::vector<std::pair<float, float>>* red,
@@ -38,6 +39,18 @@ public:
     bool* redPawnInPlay = nullptr;
     float* pawnX = nullptr;
     float* pawnY = nullptr;
+
+    bool* redPawnInPlay2 = nullptr;
+    float* pawnX_R2 = nullptr;
+    float* pawnY_R2 = nullptr;
+
+    bool* redPawnInPlay3 = nullptr;
+    float* pawnX_R3 = nullptr;
+    float* pawnY_R3 = nullptr;
+
+    bool* redPawnInPlay4 = nullptr;
+    float* pawnX_R4 = nullptr;
+    float* pawnY_R4 = nullptr;
 
 private:
     Assimp::Importer importer;

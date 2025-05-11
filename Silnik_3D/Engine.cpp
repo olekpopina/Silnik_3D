@@ -28,7 +28,8 @@ Engine::Engine(int width, int height, const char* title, int fps)
     initializePawnPaths();
     //currentLightingMode = LightingMode::DIRECTIONAL_LIGHT;
     pawn3D.setHousePointers(&redHouse, &blueHouse, &yellowHouse, &greenHouse);
-    pawn3D.PlayPawnsPointers(&redPawnInPlay, &pawnX, &pawnY);
+    pawn3D.PlayPawnsPointers(&redPawnInPlay, &pawnX, &pawnY, &redPawnInPlay2, &pawnX_R2, &pawnY_R2, 
+    &redPawnInPlay3, &pawnX_R3, &pawnY_R3, &redPawnInPlay4, &pawnX_R4, &pawnY_R4);
   
     if (!pawn3D.loadModel()) {
         std::cerr << "[ERROR] Nie udało się załadować modelu pionka 3D!" << std::endl;
@@ -392,11 +393,12 @@ void Engine::render() {
     */
 
     pawn3D.drawPawnsPlay();
-
+    /*
     if (redPawnInPlay2) {
         //bitmapHandler.drawPionek(pawnX_R2, pawnY_R2, 0.1f, 0.1f, bitmapHandler.texture_pionek);
         pawn3D.draw3DPawnAtRed(pawnX_R2, pawnY_R2);
     }
+    
     if (redPawnInPlay3) {
         //bitmapHandler.drawPionek(pawnX_R3, pawnY_R3, 0.1f, 0.1f, bitmapHandler.texture_pionek);
         pawn3D.draw3DPawnAtRed(pawnX_R3, pawnY_R3);
@@ -405,7 +407,7 @@ void Engine::render() {
        // bitmapHandler.drawPionek(pawnX_R4, pawnY_R4, 0.1f, 0.1f, bitmapHandler.texture_pionek);
         pawn3D.draw3DPawnAtRed(pawnX_R4, pawnY_R4);
     }
-
+    */
     if (bluePawnInPlay) {
        // bitmapHandler.drawPionek(pawnX2, pawnY2, 0.1f, 0.1f, bitmapHandler.texture_pionek2);
         pawn3D.draw3DPawnAtBlue(pawnX2, pawnY2);
@@ -915,8 +917,28 @@ void Engine::onMouse(int button, int state, int x, int y) {
         float normalizedX = (float)x / glutGet(GLUT_WINDOW_WIDTH);
         float normalizedY = 1.0f - (float)y / glutGet(GLUT_WINDOW_HEIGHT);
 
+        // Jeśli oczekiwano kliknięcia w domek, ale domek jest pusty – anuluj to oczekiwanie
+        if (waitingForRedPawnClick && redHouse.empty()) {
+            waitingForRedPawnClick = false;
+        }
+        if (waitingForBluePawnClick && blueHouse.empty()) {
+            waitingForBluePawnClick = false;
+        }
+        if (waitingForYellowPawnClick && yellowHouse.empty()) {
+            waitingForYellowPawnClick = false;
+        }
+        if (waitingForGreenPawnClick && greenHouse.empty()) {
+            waitingForGreenPawnClick = false;
+        }
+
         if (waitingForRedPawnClick && currentPlayer == PlayerColor::RED) {
+            //auto pos = redHouse[redHouseIndex];
+            if (!redHouse.empty()) {
+                auto pos = redHouse.back(); // albo redHouse[0], jeśli trzymasz w kolejności
+            }
+
             auto pos = redHouse[redHouseIndex];
+
             float size = 0.08f;
 
             if (normalizedX >= pos.first && normalizedX <= pos.first + size &&
@@ -951,8 +973,12 @@ void Engine::onMouse(int button, int state, int x, int y) {
                     pawnY_R4 = redPath[0].second;
                 }
 
-                if (pawn3D.redHouse) {
+                if (pawn3D.redHouse && redHouseIndex < pawn3D.redHouse->size()) {
                     pawn3D.redHouse->erase(pawn3D.redHouse->begin() + redHouseIndex);
+                }
+                else {
+                    std::cerr << "[ERROR] Nieprawidlowy redHouseIndex: " << redHouseIndex
+                        << " (rozmiar: " << (pawn3D.redHouse ? pawn3D.redHouse->size() : 0) << ")\n";
                 }
                 //redHouse.erase(redHouse.begin() + redHouseIndex);
                 waitingForRedPawnClick = false;
@@ -1245,11 +1271,11 @@ void Engine::onMouse(int button, int state, int x, int y) {
           
             if (currentPlayer == PlayerColor::RED) {
                 if (steps == 6) {
-                    if (redHouseIndex < redHouse.size()) {
+                    if (!redHouse.empty() && redHouseIndex < redHouse.size()) {
                         waitingForRedPawnClick = true;
                         std::cout << "[INFO] Wyrzucono 6 – kliknij czerwonego pionka w domku." << std::endl;
                     }
-                    if (redPawnInPlay || redPawnInPlay2 || redPawnInPlay3 || redPawnInPlay4) {
+                    if (redPawnInPlay || redPawnInPlay2 || redPawnInPlay3 || redPawnInPlay4 || redHouse.empty()) {
                         allowPawnSelection = true;
                         std::cout << "[INFO] Mozesz tez kliknac istniejacego czerwonego pionka i poruszyc go o " << steps << " kroków." << std::endl;
                     }
@@ -1261,7 +1287,7 @@ void Engine::onMouse(int button, int state, int x, int y) {
             }
             else if(currentPlayer == PlayerColor::BLUE){
                 if (steps == 6) {
-                    if (blueHouseIndex < blueHouse.size()) {
+                    if (!blueHouse.empty() && blueHouseIndex < blueHouse.size()) {
                         waitingForBluePawnClick = true;
                         std::cout << "[INFO] Wyrzucono 6 – kliknij niebieskiego pionka w domku." << std::endl;
                     }
@@ -1277,7 +1303,7 @@ void Engine::onMouse(int button, int state, int x, int y) {
 
             else if (currentPlayer == PlayerColor::YELLOW) {
                 if (steps == 6) {
-                    if (yellowHouseIndex < yellowHouse.size()) {
+                    if (!yellowHouse.empty() && yellowHouseIndex < yellowHouse.size()) {
                         waitingForYellowPawnClick = true;
                         std::cout << "[INFO] Wyrzucono 6 – kliknij zoltego pionka w domku." << std::endl;
                     }
@@ -1293,7 +1319,7 @@ void Engine::onMouse(int button, int state, int x, int y) {
             }
             else if (currentPlayer == PlayerColor::GREEN) {
                 if (steps == 6) {
-                    if (greenHouseIndex < greenHouse.size()) {
+                    if (!greenHouse.empty() && greenHouseIndex < greenHouse.size()) {
                         waitingForGreenPawnClick = true;
                         std::cout << "[INFO] Wyrzucono 6 – kliknij zoltego pionka w domku." << std::endl;
                     }

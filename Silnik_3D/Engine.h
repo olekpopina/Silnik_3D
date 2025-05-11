@@ -217,6 +217,15 @@ public:
    bool redPawnInPlay = false;
    float pawnX;
    float pawnY;
+   bool redPawnInPlay2 = false;
+   float pawnX_R2;
+   float pawnY_R2;
+   bool redPawnInPlay3 = false;
+   float pawnX_R3;
+   float pawnY_R3;
+   bool redPawnInPlay4 = false;
+   float pawnX_R4;
+   float pawnY_R4;
 
 private:
     // Obiekty i zmienne związane z grą
@@ -280,9 +289,9 @@ private:
     bool diceRolledForYellow = false;
     bool diceRolledForGreen = false;
 
-    bool redPawnInPlay2 = false;
+   /* bool redPawnInPlay2 = false;
     float pawnX_R2;
-    float pawnY_R2;
+    float pawnY_R2;*/
 
     bool bluePawnInPlay2 = false;
     float pawnX_B2;
@@ -301,9 +310,9 @@ private:
     float lastMoveTimeBlue2 = 0.0f;
 
 
-    bool redPawnInPlay3 = false;
+   /* bool redPawnInPlay3 = false;
     float pawnX_R3;
-    float pawnY_R3;
+    float pawnY_R3;*/
 
     bool bluePawnInPlay3 = false;
     float pawnX_B3;
@@ -321,9 +330,9 @@ private:
     float lastMoveTimeRed3 = 0.0f;
     float lastMoveTimeBlue3 = 0.0f;
 
-    bool redPawnInPlay4 = false;
+   /* bool redPawnInPlay4 = false;
     float pawnX_R4;
-    float pawnY_R4;
+    float pawnY_R4;*/
 
     bool bluePawnInPlay4 = false;
     float pawnX_B4;

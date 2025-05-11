@@ -312,13 +312,35 @@ void Pawn3D::drawPawnsPlay()
     if (*redPawnInPlay) {
         draw3DPawnAtRed(*pawnX, *pawnY);
     }
+    if (*redPawnInPlay2) {
+        draw3DPawnAtRed(*pawnX_R2, *pawnY_R2);
+    }
+    if (*redPawnInPlay3) {
+        draw3DPawnAtRed(*pawnX_R3, *pawnY_R3);
+    }
+    if (*redPawnInPlay4) {
+        draw3DPawnAtRed(*pawnX_R4, *pawnY_R4);
+    }
 }
 
-void Pawn3D::PlayPawnsPointers(bool* RedPlay, float* pawnXred, float* pawnYred)
+void Pawn3D::PlayPawnsPointers(bool* RedPlay, float* pawnXred, float* pawnYred, bool* RedPlay2, float* pawnXred2, float* pawnYred2,
+    bool* RedPlay3, float* pawnXred3, float* pawnYred3, bool* RedPlay4, float* pawnXred4, float* pawnYred4)
 {
     redPawnInPlay = RedPlay;
     pawnX = pawnXred;
     pawnY = pawnYred;
+
+    redPawnInPlay2 = RedPlay2;
+    pawnX_R2 = pawnXred2;
+    pawnY_R2 = pawnYred2;
+
+    redPawnInPlay3 = RedPlay3;
+    pawnX_R3 = pawnXred3;
+    pawnY_R3 = pawnYred3;
+
+    redPawnInPlay4 = RedPlay4;
+    pawnX_R4 = pawnXred4;
+    pawnY_R4 = pawnYred4;
 }
 
 

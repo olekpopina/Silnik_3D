@@ -407,9 +407,13 @@ private:
     float pawnStepSizeGreen4 = 0.1f;
     int pawnStepsRemainingGreen4 = 0;
 
-    int tury[4] = { 1, 2, 3, 4 };
-    int currentPlayerIndex = 0;  // 0 = Gracz 1, 1 = Gracz 2 itd.
-    int currentPlayer = tury[currentPlayerIndex];
+    //int tury[4] = { 1, 2, 3, 4 };
+    //int currentPlayerIndex = 0;  // 0 = Gracz 1, 1 = Gracz 2 itd.
+    //int currentPlayer = tury[currentPlayerIndex];
+    std::vector<int> tury;  // <- dynamiczna lista graczy
+    int currentPlayerIndex = 0;
+    int currentPlayer = 1;  // domyślnie pierwszy gracz
+    void initializeTurns();
     void advanceToNextPlayer();
 
     std::vector<std::pair<float, float>> greenHouse = Paths::getGreenHouse();

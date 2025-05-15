@@ -191,6 +191,22 @@ void drawText(float x, float y, const std::string& text) {
         glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, c);
     }
 }
+void Engine::initializeTurns() {
+    tury.clear();
+
+    if (!player1Name.empty()) tury.push_back(1); // RED
+    if (!player3Name.empty()) tury.push_back(2); // GREEN
+    if (!player4Name.empty()) tury.push_back(3); // YELLOW
+    if (!player2Name.empty()) tury.push_back(4); // BLUE
+
+    if (tury.empty()) {
+        std::cerr << "[ERROR] Brak graczy! Nie mozna rozpoczzc gry." << std::endl;
+        tury.push_back(1); // fallback
+    }
+
+    currentPlayerIndex = 0;
+    currentPlayer = tury[currentPlayerIndex];
+}
 
 /**
  * @brief Funkcja renderująca całą scenę gry.
@@ -421,10 +437,11 @@ void Engine::render() {
     glLoadIdentity();
     
     if (diceInCenter) {
-        cubeScreenPosX = 0.00f; // 0.5f - cubeScreenScale / 2.0f; // Środek ekranu
+        cubeScreenPosX = 0.00f; 
         cubeScreenPosY = 0.32f;
     }
     else {
+
         switch (currentPlayer) {
         case 1: // Czerwony – dolny lewy
             cubeScreenPosX = 0.00f;
@@ -442,13 +459,15 @@ void Engine::render() {
             cubeScreenPosX = 0.90f;
             cubeScreenPosY = 0.32f;
             break;
+
         default:
             cubeScreenPosX = 0.5f;
             cubeScreenPosY = 0.5f;
             break;
+
         }
     }
-
+  
      glPushAttrib(GL_LIGHTING_BIT);
      glDisable(GL_LIGHTING);
      glColor4f(1.0f, 1.0f, 1.0f, 1.0f); // reset koloru
@@ -1462,6 +1481,8 @@ void Engine::setPlayerNicknames(const std::string& name1, const std::string& nam
     player2Name = name2;
     player3Name = name3;
     player4Name = name4;
+
+    initializeTurns();
 }
 
 
@@ -1560,7 +1581,8 @@ void Engine::idleCallback() {
 }
 
 void Engine::advanceToNextPlayer() {
-    currentPlayerIndex = (currentPlayerIndex + 1) % 4;
+    //currentPlayerIndex = (currentPlayerIndex + 1) % 4;
+    currentPlayerIndex = (currentPlayerIndex + 1) % tury.size();
     currentPlayer = tury[currentPlayerIndex];
 
     std::cout << "[INFO] Tura gracza: " << currentPlayer << std::endl;

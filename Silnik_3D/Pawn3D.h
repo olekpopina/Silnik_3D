@@ -23,6 +23,8 @@ public:
     void draw3DPawnAtGreen(float x, float y);
     void drawPawns();
     void drawPawnsPlay();
+    void setNicknames(const std::string* red, const std::string* blue,
+        const std::string* green, const std::string* yellow);
     void PlayPawnsPointers(bool *RedPlay, float *pawnXred, float *pawnYred, bool* RedPlay2, float* pawnXred2, float* pawnYred2,
     bool* RedPlay3, float* pawnXred3, float* pawnYred3, bool* RedPlay4, float* pawnXred4, float* pawnYred4,
     bool* BluePlay, float* pawnXblue, float* pawnYblue, bool* BluePlay2, float* pawnXblue2, float* pawnYblue2,
@@ -109,5 +111,8 @@ public:
 private:
     Assimp::Importer importer;
     const aiScene* scene;
-   
+    std::string* player1Name = nullptr;
+    std::string* player2Name = nullptr;
+    std::string* player3Name = nullptr;
+    std::string* player4Name = nullptr;
 };

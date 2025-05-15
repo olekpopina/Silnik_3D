@@ -36,6 +36,8 @@ Engine::Engine(int width, int height, const char* title, int fps)
     &yellowPawnInPlay4, &pawnX_YE4, &pawnY_YE4, &greenPawnInPlay2, &pawnX_G2, &pawnY_G2, &greenPawnInPlay3, &pawnX_G3, &pawnY_G3,
     &greenPawnInPlay4, &pawnX_G4, &pawnY_G4);
   
+    pawn3D.setNicknames(&player1Name, &player2Name, &player3Name, &player4Name);
+
     if (!pawn3D.loadModel()) {
         std::cerr << "[ERROR] Nie udalo sie zaladowac modelu pionka 3D!" << std::endl;
     }

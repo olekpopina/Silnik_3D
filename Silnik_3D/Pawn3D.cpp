@@ -280,26 +280,26 @@ void Pawn3D::draw3DPawnAtGreen(float x, float y)
 
 void Pawn3D::drawPawns()
 {
-    if (greenHouse) {
+    if (player3Name && !player3Name->empty() && greenHouse) {
         for (const auto& pos : *greenHouse) {
             draw3DPawnAtGreen(pos.first, pos.second);
 
         }
     }
-    if (yellowHouse) {
+    if (player4Name && !player4Name->empty() && yellowHouse) {
         for (const auto& pos : *yellowHouse) {
             // bitmapHandler.drawPionek(pos.first, pos.second, 0.08f, 0.08f, bitmapHandler.texture_pionek);
             draw3DPawnAtYellow(pos.first, pos.second);
         }
     }
-    if (redHouse) {
+    if (player1Name && !player1Name->empty() && redHouse) {
         // Rysowanie czerwonych pionków w domku
         for (const auto& pos : *redHouse) {
             //bitmapHandler.drawPionek(pos.first, pos.second, 0.08f, 0.08f, bitmapHandler.texture_pionek);
             draw3DPawnAtRed(pos.first, pos.second);
         }
     }
-    if (blueHouse) {}
+    if (player2Name && !player2Name->empty() && blueHouse) {}
     // Rysowanie niebieskich pionków w domku
     for (const auto& pos : *blueHouse) {
         //bitmapHandler.drawPionek(pos.first, pos.second, 0.08f, 0.08f, bitmapHandler.texture_pionek2);
@@ -358,6 +358,15 @@ void Pawn3D::drawPawnsPlay()
     if (*greenPawnInPlay4) {
         draw3DPawnAtGreen(*pawnX_G4, *pawnY_G4);
     }
+}
+
+void Pawn3D::setNicknames(const std::string* red, const std::string* blue,  
+   const std::string* green, const std::string* yellow)  
+{  
+    player1Name = const_cast<std::string*>(red);
+    player2Name = const_cast<std::string*>(blue);
+    player3Name = const_cast<std::string*>(green);
+    player4Name = const_cast<std::string*>(yellow);
 }
 
 void Pawn3D::PlayPawnsPointers(bool* RedPlay, float* pawnXred, float* pawnYred, bool* RedPlay2, float* pawnXred2, float* pawnYred2,

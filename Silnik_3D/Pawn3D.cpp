@@ -310,54 +310,61 @@ void Pawn3D::drawPawns()
 
 void Pawn3D::drawPawnsPlay()
 {
-    if (*redPawnInPlay) {
-        draw3DPawnAtRed(*pawnX, *pawnY);
+    if (player1Name && !player1Name->empty()) {
+        if (*redPawnInPlay) {
+            draw3DPawnAtRed(*pawnX, *pawnY);
+        }
+        if (*redPawnInPlay2) {
+            draw3DPawnAtRed(*pawnX_R2, *pawnY_R2);
+        }
+        if (*redPawnInPlay3) {
+            draw3DPawnAtRed(*pawnX_R3, *pawnY_R3);
+        }
+        if (*redPawnInPlay4) {
+            draw3DPawnAtRed(*pawnX_R4, *pawnY_R4);
+        }
     }
-    if (*redPawnInPlay2) {
-        draw3DPawnAtRed(*pawnX_R2, *pawnY_R2);
+    if (player2Name && !player2Name->empty()) {
+        if (*bluePawnInPlay) {
+            draw3DPawnAtBlue(*pawnX2, *pawnY2);
+        }
+        if (*bluePawnInPlay2) {
+            draw3DPawnAtBlue(*pawnX_B2, *pawnY_B2);
+        }
+        if (*bluePawnInPlay3) {
+            draw3DPawnAtBlue(*pawnX_B3, *pawnY_B3);
+        }
+        if (*bluePawnInPlay4) {
+            draw3DPawnAtBlue(*pawnX_B4, *pawnY_B4);
+        }
     }
-    if (*redPawnInPlay3) {
-        draw3DPawnAtRed(*pawnX_R3, *pawnY_R3);
+    if (player4Name && !player4Name->empty()) {
+        if (*yellowPawnInPlay) {
+            draw3DPawnAtYellow(*pawnX_YE, *pawnY_YE);
+        }
+        if (*yellowPawnInPlay2) {
+            draw3DPawnAtYellow(*pawnX_YE2, *pawnY_YE2);
+        }
+        if (*yellowPawnInPlay3) {
+            draw3DPawnAtYellow(*pawnX_YE3, *pawnY_YE3);
+        }
+        if (*yellowPawnInPlay4) {
+            draw3DPawnAtYellow(*pawnX_YE4, *pawnY_YE4);
+        }
     }
-    if (*redPawnInPlay4) {
-        draw3DPawnAtRed(*pawnX_R4, *pawnY_R4);
-    }
-
-    if (*bluePawnInPlay) {
-        draw3DPawnAtBlue(*pawnX2, *pawnY2);
-    }
-    if (*bluePawnInPlay2) {
-        draw3DPawnAtBlue(*pawnX_B2, *pawnY_B2);
-    }
-    if (*bluePawnInPlay3) {
-        draw3DPawnAtBlue(*pawnX_B3, *pawnY_B3);
-    }
-    if (*bluePawnInPlay4) {
-        draw3DPawnAtBlue(*pawnX_B4, *pawnY_B4);
-    }
-    if (*yellowPawnInPlay) {
-        draw3DPawnAtYellow(*pawnX_YE, *pawnY_YE);
-    }
-    if (*yellowPawnInPlay2) {
-        draw3DPawnAtYellow(*pawnX_YE2, *pawnY_YE2);
-    }
-    if (*yellowPawnInPlay3) {
-        draw3DPawnAtYellow(*pawnX_YE3, *pawnY_YE3);
-    }
-    if (*yellowPawnInPlay4) {
-        draw3DPawnAtYellow(*pawnX_YE4, *pawnY_YE4);
-    }
-    if (*greenPawnInPlay) {
-        draw3DPawnAtGreen(*pawnX_G, *pawnY_G);
-    }
-    if (*greenPawnInPlay2) {
-        draw3DPawnAtGreen(*pawnX_G2, *pawnY_G2);
-    }
-    if (*greenPawnInPlay3) {
-        draw3DPawnAtGreen(*pawnX_G3, *pawnY_G3);
-    }
-    if (*greenPawnInPlay4) {
-        draw3DPawnAtGreen(*pawnX_G4, *pawnY_G4);
+    if (player3Name && !player3Name->empty()) {
+        if (*greenPawnInPlay) {
+            draw3DPawnAtGreen(*pawnX_G, *pawnY_G);
+        }
+        if (*greenPawnInPlay2) {
+            draw3DPawnAtGreen(*pawnX_G2, *pawnY_G2);
+        }
+        if (*greenPawnInPlay3) {
+            draw3DPawnAtGreen(*pawnX_G3, *pawnY_G3);
+        }
+        if (*greenPawnInPlay4) {
+            draw3DPawnAtGreen(*pawnX_G4, *pawnY_G4);
+        }
     }
 }
 

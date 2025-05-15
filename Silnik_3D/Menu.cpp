@@ -66,7 +66,7 @@ Menu::Menu(unsigned int width, unsigned int height)
     errorText.setFont(font);
     errorText.setCharacterSize(30);
     errorText.setFillColor(sf::Color::Black);
-    errorText.setString("Obaj gracze musza podac nick!");
+    errorText.setString("Podaj nicki przynajmniej 2 graczy!");
     errorText.setPosition(100, 450);
     showError = false;
 
@@ -99,7 +99,20 @@ void Menu::processEvents(bool& gameShouldStart) {
 
             if (startButton.getGlobalBounds().contains(mx, my)){
 
-                if (!nickname1.empty() && !nickname2.empty()) {
+                //if (!nickname1.empty() && !nickname2.empty()) {
+                //    gameShouldStart = true;
+                //    showError = false;
+                //}
+                //else {
+                //    showError = true;
+                //}
+                int nickCount = 0;
+                if (!nickname1.empty()) nickCount++;
+                if (!nickname2.empty()) nickCount++;
+                if (!nickname3.empty()) nickCount++;
+                if (!nickname4.empty()) nickCount++;
+
+                if (nickCount >= 2) {
                     gameShouldStart = true;
                     showError = false;
                 }

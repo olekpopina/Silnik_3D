@@ -299,11 +299,12 @@ void Pawn3D::drawPawns()
             draw3DPawnAtRed(pos.first, pos.second);
         }
     }
-    if (player2Name && !player2Name->empty() && blueHouse) {}
-    // Rysowanie niebieskich pionków w domku
-    for (const auto& pos : *blueHouse) {
-        //bitmapHandler.drawPionek(pos.first, pos.second, 0.08f, 0.08f, bitmapHandler.texture_pionek2);
-        draw3DPawnAtBlue(pos.first, pos.second);
+    if (player2Name && !player2Name->empty() && blueHouse) {
+        // Rysowanie niebieskich pionków w domku
+        for (const auto& pos : *blueHouse) {
+            //bitmapHandler.drawPionek(pos.first, pos.second, 0.08f, 0.08f, bitmapHandler.texture_pionek2);
+            draw3DPawnAtBlue(pos.first, pos.second);
+        }
     }
 }
 

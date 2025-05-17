@@ -828,31 +828,50 @@ void Engine::updatePawnPosition(const std::string& id) {
             // i czy **wszystkie 4 pionki** gracza osiągnęły cel.
             int redFinished = 0;
             int blueFinished = 0;
+            int greenFinished = 0;
+            int yellowFinished = 0;
 
             for (const auto& other : pawns) {
                 if (other.isRed && other.currentStep >= other.path.size()) {
                     redFinished++;
                 }
-                else if (!other.isRed && other.currentStep >= other.path.size()) {
+                else if (other.isBlue && other.currentStep >= other.path.size()) {
                     blueFinished++;
+                }
+                else if (other.isGreen && other.currentStep >= other.path.size()) {
+                    greenFinished++;
+                }
+                else if (other.isYellow && other.currentStep >= other.path.size()) {
+                    yellowFinished++;
                 }
             }
 
             // Wygrana Czerwonego
             if (redFinished == 4 && pawn.isRed) {
-                showWinnerMessage(player1Name); // albo pawn.winnerName
+                showWinnerMessage(player1Name); 
                 resetGame();
                 return;
             }
 
             // Wygrana Niebieskiego
-            if (blueFinished == 4 && !pawn.isRed) {
-                showWinnerMessage(player2Name); // albo pawn.winnerName
+            if (blueFinished == 4 && pawn.isBlue) {
+                showWinnerMessage(player2Name); 
+                resetGame();
+                return;
+            }
+            // Wygrana zielonego
+            if (greenFinished == 4 && pawn.isGreen) {
+                showWinnerMessage(player3Name); 
                 resetGame();
                 return;
             }
 
-
+            // Wygrana zoltego
+            if (yellowFinished == 4 && pawn.isYellow) {
+                showWinnerMessage(player4Name); 
+                resetGame();
+                return;
+            }
         }
     }
     
@@ -883,7 +902,23 @@ void Engine::resetGame() {
     pawnY_R3 = 0.12f;
     pawnX_R4 = 0.22f;
     pawnY_R4 = 0.22f;
-    
+    pawnX_YE = 0.80f;
+    pawnY_YE = 0.72f;
+    pawnX_YE2 = 0.80f;
+    pawnY_YE2 = 0.82f;
+    pawnX_YE3 = 0.70f;
+    pawnY_YE3 = 0.72f;
+    pawnX_YE4 = 0.70f;
+    pawnY_YE4 = 0.82f;
+    pawnX_G = 0.12f;
+    pawnY_G = 0.72f;
+    pawnX_G2 = 0.12f;
+    pawnY_G2 = 0.82f;
+    pawnX_G3 = 0.22f;
+    pawnY_G3 = 0.72f;
+    pawnX_G4 = 0.22f;
+    pawnY_G4 = 0.82f;
+
     currentStepRed = 0;
     currentStepBlue = 0;
     currentStepRed2 = 0;
@@ -892,6 +927,15 @@ void Engine::resetGame() {
     currentStepBlue3 = 0;
     currentStepRed4 = 0;
     currentStepBlue4 = 0;
+    currentStepYellow = 0;
+    currentStepYellow2 = 0;
+    currentStepYellow3 = 0;
+    currentStepYellow4 = 0;
+    currentStepGreen = 0;
+    currentStepGreen2 = 0;
+    currentStepGreen3 = 0;
+    currentStepGreen4 = 0;
+
     //// Resetowanie liczby kroków
     pawnStepsRemaining = 0;
     pawnStepsRemaining2 = 0;
@@ -901,6 +945,14 @@ void Engine::resetGame() {
     pawnStepsRemainingBlue3 = 0;
     pawnStepsRemainingRed4 = 0;
     pawnStepsRemainingBlue4 = 0;
+    pawnStepsRemainingYellow = 0;
+    pawnStepsRemainingYellow2 = 0;
+    pawnStepsRemainingYellow3 = 0;
+    pawnStepsRemainingYellow4 = 0;
+    pawnStepsRemainingGreen = 0;
+    pawnStepsRemainingGreen2 = 0;
+    pawnStepsRemainingGreen3 = 0;
+    pawnStepsRemainingGreen4 = 0;
 
     //// Zatrzymanie ruchu pionków
     isPawnMoving = false;
@@ -911,7 +963,15 @@ void Engine::resetGame() {
     isBluePawn3Moving = false;
     isRedPawn4Moving = false;
     isBluePawn4Moving = false;
-   
+    isYellowPawnMoving = false;
+    isYellowPawnMoving2 = false;
+    isYellowPawnMoving3 = false;
+    isYellowPawnMoving4 = false;
+    isGreenPawnMoving = false;
+    isGreenPawnMoving2 = false;
+    isGreenPawnMoving3 = false;
+    isGreenPawnMoving4 = false;
+
     isCubeRotating = false;
     firstThrowDone = false;
     diceInCenter = true;
@@ -923,11 +983,10 @@ void Engine::resetGame() {
     allowPawnSelection = false;
     waitingForRedPawnClick = false;
     waitingForBluePawnClick = false;
+    waitingForYellowPawnClick = false;
+    waitingForGreenPawnClick = false;
     rolledSix = false;
     manualDiceValue = -1;
-
-    // Reset pozycji kamery
-   // cameraZ = 5.0f;
 
     // Reset czasów ruchu
     pawnLastMoveTime = 0.0f;
@@ -938,6 +997,14 @@ void Engine::resetGame() {
     lastMoveTimeBlue2 = 0.0f;
     lastMoveTimeBlue3 = 0.0f;
     lastMoveTimeBlue4 = 0.0f;
+    lastMoveTimeYellow = 0.0f;
+    lastMoveTimeYellow2 = 0.0f;
+    lastMoveTimeYellow3 = 0.0f;
+    lastMoveTimeYellow4 = 0.0f;
+    lastMoveTimeGreen = 0.0f;
+    lastMoveTimeGreen2 = 0.0f;
+    lastMoveTimeGreen3 = 0.0f;
+    lastMoveTimeGreen4 = 0.0f;
     std::cout << "[INFO] Gra zostala zresetowana!" << std::endl;
 }
 

@@ -7,7 +7,7 @@ Pawn3D::Pawn3D() : scene(nullptr) {}
 Pawn3D::~Pawn3D() {}
 
 bool Pawn3D::loadModel() {
-    std::string path = "images/pionek.obj"; // <<--- tutaj wpisujesz œcie¿kê
+    std::string path = "images/pionek.obj"; // <<--- Œcie¿ka do modelu 3D pionka
 
     scene = importer.ReadFile(path,
         aiProcess_Triangulate | aiProcess_GenSmoothNormals);
@@ -28,9 +28,7 @@ void Pawn3D::draw() const {
 
         aiColor3D diffuse(0.f, 0.f, 0.f);
         if (material->Get(AI_MATKEY_COLOR_DIFFUSE, diffuse) == AI_SUCCESS) {
-            //std::cout << "[INFO] Kolor z materia³u: "
-               // << diffuse.r << ", " << diffuse.g << ", " << diffuse.b << std::endl;
-            float brightnessScale = 3.0f; // mo¿esz zwiêkszyæ, np. do 5.0
+            float brightnessScale = 3.0f; 
             glColor3f(
                 std::min(1.0f, diffuse.r * brightnessScale),
                 std::min(1.0f, diffuse.g * brightnessScale),
@@ -40,7 +38,6 @@ void Pawn3D::draw() const {
             std::cout << "[WARN] Brak koloru w materiale – ustawiam szary domyœlny." << std::endl;
             glColor3f(0.8f, 0.8f, 0.8f);
         }
-
         glBegin(GL_TRIANGLES);
         for (unsigned int j = 0; j < mesh->mNumFaces; ++j) {
             const aiFace& face = mesh->mFaces[j];
@@ -48,7 +45,6 @@ void Pawn3D::draw() const {
                 unsigned int index = face.mIndices[k];
                 aiVector3D vertex = mesh->mVertices[index];
 
-                // Dodaj normalne (pomagaj¹, gdybyœ chcia³ œwiat³o)
                 if (mesh->HasNormals()) {
                     aiVector3D normal = mesh->mNormals[index];
                     glNormal3f(normal.x, normal.y, normal.z);
@@ -65,20 +61,14 @@ void Pawn3D::draw3DPawnAtBlue(float x, float y) {
     angle += 0.5f;
     if (angle >= 360.0f) angle -= 360.0f;
 
-
     glMatrixMode(GL_PROJECTION);
     glPushMatrix();
     glLoadIdentity();
-    //gluPerspective(60.0, 1.0, 0.1, 10.0);  // poprawna perspektywa
     gluOrtho2D(0.0, 1.0, 0.0, 1.0); // Ustawienie ortograficzne (2D)
 
     glMatrixMode(GL_MODELVIEW);
     glPushMatrix();
     glLoadIdentity();
-
-    //gluLookAt(x * 1.75f, y * 1.75f, 1.75f,  // kamera: trochê z góry i z przodu
-    //    x* 1.75f, y * 1.75f, 0.0f,  // cel: œrodek planszy (na pionek)
-    //    0.0f, 1.0f, 0.0f); // oœ Y w górê
 
     float xc = x + 0.1/2;// * 2.0f - 1.0f + 0.17/2;
     float yc = y + 0.07/2;// * 2.0f - 1.0f;
@@ -89,15 +79,9 @@ void Pawn3D::draw3DPawnAtBlue(float x, float y) {
         0, 0, 0.0f,  // cel: œrodek planszy (na pionek)
         0.0f, 1.0f, 0.0f); // oœ Y w górê
 
-   
-
-    // Przesuniêcie i skalowanie modelu 3D w uk³adzie 2D
-   // glTranslatef(0.5f, 0.3f, 0.0f);  // Pozycja na ekranie 2D (wspó³rzêdne od 0 do 1)
     float x1 = 0.0;
 
-    //std::cin >> x1;
     glTranslatef(xc,yc, 0.0f);
-    // glRotatef(-10, 1.2f, 0.0f, 0.0f);
     angle = 25.0f;
     glRotatef(angle, 1.0f, 0.0f, 0.0f);    // Obrót wokó³ osi Y
     glScalef(0.1f, 0.1f, 0.1f);      // Skalowanie modelu
@@ -112,7 +96,7 @@ void Pawn3D::draw3DPawnAtBlue(float x, float y) {
     glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, matSpecular);
     glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, matShininess);
 
-    draw();                  // Rysowanie modelu
+    draw();           
    
     glPopMatrix();
     glMatrixMode(GL_PROJECTION);
@@ -133,17 +117,12 @@ void Pawn3D::draw3DPawnAtRed(float x, float y)
     glMatrixMode(GL_PROJECTION);
     glPushMatrix();
     glLoadIdentity();
-   // gluPerspective(60.0, 1.0, 0.1, 10.0);  // poprawna perspektywa
     gluOrtho2D(0.0, 1.0, 0.0, 1.0); // Ustawienie ortograficzne (2D)
 
     glMatrixMode(GL_MODELVIEW);
     glPushMatrix();
     glLoadIdentity();
-    /*
-    gluLookAt(0.5f, 0.8f, 1.5f,  // kamera: trochê z góry i z przodu
-        0.0f, 0.0f, 0.0f,  // cel: œrodek planszy (na pionek)
-        0.0f, 0.0f, 0.0f); // oœ Y w górê
-*/
+   
     float xc = x + 0.1 / 2;// * 2.0f - 1.0f + 0.17/2;
     float yc = y + 0.07 / 2;// * 2.0f - 1.0f;
     float vx = 0.0;//0.8 * 1.75;

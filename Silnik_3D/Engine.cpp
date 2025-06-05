@@ -830,6 +830,7 @@ void Engine::updatePawnPosition(const std::string& id) {
             int blueFinished = 0;
             int greenFinished = 0;
             int yellowFinished = 0;
+            //int finishedCount = 0;
 
             for (const auto& other : pawns) {
                 if (other.isRed && other.currentStep >= other.path.size()) {
@@ -873,8 +874,7 @@ void Engine::updatePawnPosition(const std::string& id) {
                 return;
             }
         }
-    }
-    
+    } 
 }
 
 /**

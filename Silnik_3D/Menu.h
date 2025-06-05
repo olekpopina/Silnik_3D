@@ -25,6 +25,7 @@ private:
     sf::RectangleShape loginButton2;
     sf::RectangleShape loginButton3;
     sf::RectangleShape loginButton4;
+    sf::RectangleShape dialogCommunicat;
     sf::Text loginText1;
     sf::Text loginText2;
 

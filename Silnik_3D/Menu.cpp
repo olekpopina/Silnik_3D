@@ -63,11 +63,15 @@ Menu::Menu(unsigned int width, unsigned int height)
     dialogOkText.setFillColor(sf::Color::Black);
     dialogOkText.setPosition(425, 325);
 
+    dialogCommunicat.setSize(sf::Vector2f(480, 40));
+    dialogCommunicat.setFillColor(sf::Color::Red);
+    dialogCommunicat.setPosition(65, 7);
     errorText.setFont(font);
     errorText.setCharacterSize(30);
     errorText.setFillColor(sf::Color::Black);
     errorText.setString("Podaj nicki przynajmniej 2 graczy!");
-    errorText.setPosition(100, 450);
+    
+    errorText.setPosition(70, 7);
     showError = false;
 
 }
@@ -99,13 +103,7 @@ void Menu::processEvents(bool& gameShouldStart) {
 
             if (startButton.getGlobalBounds().contains(mx, my)){
 
-                //if (!nickname1.empty() && !nickname2.empty()) {
-                //    gameShouldStart = true;
-                //    showError = false;
-                //}
-                //else {
-                //    showError = true;
-                //}
+             
                 int nickCount = 0;
                 if (!nickname1.empty()) nickCount++;
                 if (!nickname2.empty()) nickCount++;
@@ -241,6 +239,7 @@ void Menu::render() {
         window.draw(dialogOkText);
     }
     if (showError) {
+        window.draw(dialogCommunicat);
         window.draw(errorText);
     }
     window.display();

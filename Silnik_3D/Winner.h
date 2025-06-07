@@ -1,6 +1,10 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 
+/**
+ * @class Winner
+ * @brief Klasa odpowiedzialna za wyœwietlanie ekranu koñcowego z informacj¹ o zwyciêzcy.
+ */
 class Winner {
 public:
 	Winner(unsigned int width, unsigned int height, const std::string& winnerName);

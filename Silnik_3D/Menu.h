@@ -3,6 +3,17 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 
+/**
+ * @brief Klasa reprezentuj¹ca menu startowe gry Ludo (Chiñczyk).
+ *
+ * Klasa `Menu` odpowiada za wyœwietlenie okna startowego, pobranie nazw (nicków)
+ * graczy oraz rozpoczêcie gry po klikniêciu przycisku „Start”.
+ *
+ * Umo¿liwia wpisanie nazw dla maksymalnie 4 graczy i przekazuje je dalej
+ * do silnika gry (`Engine`). Obs³uguje te¿ proste okno dialogowe do wprowadzania tekstu.
+ *
+ * @note Klasa u¿ywa biblioteki SFML do obs³ugi okna, renderowania i zdarzeñ.
+ */
 class Menu {
 public:
     Menu(unsigned int width, unsigned int height);

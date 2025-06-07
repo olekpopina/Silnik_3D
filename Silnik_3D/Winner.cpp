@@ -1,5 +1,13 @@
 #include "Winner.h"
 
+/**
+ * @brief Konstruktor klasy Winner.
+ * Inicjalizuje okno, t³o oraz ustawia tekst z nazw¹ zwyciêzcy.
+ *
+ * @param width Szerokoœæ okna.
+ * @param height Wysokoœæ okna.
+ * @param winnerName Nazwa zwyciêzcy wyœwietlana na ekranie.
+ */
 Winner::Winner(unsigned int width, unsigned int height, const std::string& winnerName)
     : window(sf::VideoMode(width, height), "Winner"), winnerName(winnerName) {
     font.loadFromFile("C:\\Windows\\Fonts\\Arial.ttf");
@@ -23,6 +31,11 @@ Winner::Winner(unsigned int width, unsigned int height, const std::string& winne
     winnerText.setPosition(180, 360);
 }
 
+/**
+ * @brief Uruchamia pêtlê renderowania ekranu zwyciêzcy.
+ *
+ * @return true jeœli u¿ytkownik zamkn¹³ okno zwyciêstwa.
+ */
 bool Winner::showWinnerScreen() {
     bool gameShouldFinish = false;
 
@@ -36,6 +49,12 @@ bool Winner::showWinnerScreen() {
     }
     return gameShouldFinish;
 }
+
+/**
+ * @brief Obs³uguje zdarzenia SFML, np. zamkniêcie okna.
+ *
+ * @param gameShouldStart Flaga ustawiana na true jeœli okno nale¿y zamkn¹æ.
+ */
 void Winner::processEvents(bool& gameShouldStart) {
     sf::Event event;
     while (window.pollEvent(event)) {
@@ -49,6 +68,9 @@ void Winner::processEvents(bool& gameShouldStart) {
     }
 }
 
+/**
+ * @brief Renderuje ekran zwyciêzcy: t³o oraz teksty.
+ */
 void Winner::render() {
     window.clear(sf::Color::Blue);
     window.draw(backgroundSprite);

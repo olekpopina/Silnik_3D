@@ -71,7 +71,7 @@ bool BitmapHandler::loadTextures(const std::vector<std::string>& texturePaths) {
     };
 
     if (texturePaths.size() != textures.size()) {
-        std::cerr << "Niepoprawna liczba ścieżek do tekstur!" << std::endl;
+        std::cerr << "Niepoprawna liczba sciezek do tekstur!" << std::endl;
         return false;
     }
 
@@ -79,7 +79,7 @@ bool BitmapHandler::loadTextures(const std::vector<std::string>& texturePaths) {
     for (size_t i = 0; i < texturePaths.size(); ++i) {
         *textures[i] = loadSingleTexture(texturePaths[i]);
         if (!glIsTexture(*textures[i])) { // Sprawdź, czy tekstura została poprawnie załadowana
-            std::cerr << "Nie udało się załadować tekstury: " << texturePaths[i] << std::endl;
+            std::cerr << "Nie udalo sie zaladowac tekstury: " << texturePaths[i] << std::endl;
             allLoaded = false;
         }
     }

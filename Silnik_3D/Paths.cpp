@@ -1,5 +1,10 @@
 #include "Paths.h"
 
+/**
+ * @brief Zwraca wspó³rzêdne domku gracza zielonego.
+ *
+ * @return Wektor wspó³rzêdnych 2D (x, y) dla pozycji startowych pionków zielonych.
+ */
 std::vector<std::pair<float, float>> Paths::getGreenHouse()
 {
     return {
@@ -7,6 +12,11 @@ std::vector<std::pair<float, float>> Paths::getGreenHouse()
     };
 }
 
+/**
+ * @brief Zwraca wspó³rzêdne domku gracza ¿ó³tego.
+ *
+ * @return Wektor wspó³rzêdnych 2D (x, y) dla pozycji startowych pionków ¿ó³tych.
+ */
 std::vector<std::pair<float, float>> Paths::getYellowHouse()
 {
     return {
@@ -14,12 +24,22 @@ std::vector<std::pair<float, float>> Paths::getYellowHouse()
     };
 }
 
+/**
+ * @brief Zwraca wspó³rzêdne domku gracza czerwonego.
+ *
+ * @return Wektor wspó³rzêdnych 2D (x, y) dla pozycji startowych pionków czerwonych.
+ */
 std::vector<std::pair<float, float>> Paths::getRedHouse() {
     return {
         {0.12f, 0.12f}, {0.12f, 0.22f}, {0.22f, 0.12f}, {0.22f, 0.22f}
     };
 }
 
+/**
+ * @brief Zwraca wspó³rzêdne domku gracza niebieskiego.
+ *
+ * @return Wektor wspó³rzêdnych 2D (x, y) dla pozycji startowych pionków niebieskich.
+ */
 std::vector<std::pair<float, float>> Paths::getBlueHouse() {
     return {
         {0.80f, 0.13f}, {0.80f, 0.23f}, {0.70f, 0.13f}, {0.70f, 0.23f}
@@ -27,6 +47,11 @@ std::vector<std::pair<float, float>> Paths::getBlueHouse() {
     };
 }
 
+/**
+ * @brief Zwraca œcie¿kê ruchu dla gracza czerwonego.
+ *
+ * @return Wektor wspó³rzêdnych 2D reprezentuj¹cych kolejne pola œcie¿ki czerwonego gracza.
+ */
 std::vector<std::pair<float, float>> Paths::getRedPath() {
     return {
         {0.38f, 0.06f},{0.38f, 0.14f}, {0.38f, 0.21f}, {0.38f, 0.28f}, {0.38f, 0.35f}, {0.31f, 0.4f}, {0.25f, 0.4f},
@@ -42,6 +67,11 @@ std::vector<std::pair<float, float>> Paths::getRedPath() {
     };
 }
 
+/**
+ * @brief Zwraca œcie¿kê ruchu dla gracza niebieskiego.
+ *
+ * @return Wektor wspó³rzêdnych 2D reprezentuj¹cych kolejne pola œcie¿ki niebieskiego gracza.
+ */
 std::vector<std::pair<float, float>> Paths::getBluePath() {
     return {
         {0.85f, 0.4f},{0.78f, 0.4f}, {0.71f, 0.4f}, {0.64f, 0.4f}, {0.58f, 0.4f}, {0.52f, 0.33f}, {0.52f, 0.26f},
@@ -57,6 +87,11 @@ std::vector<std::pair<float, float>> Paths::getBluePath() {
     };
 }
 
+/**
+ * @brief Zwraca œcie¿kê ruchu dla gracza ¿ó³tego.
+ *
+ * @return Wektor wspó³rzêdnych 2D reprezentuj¹cych kolejne pola œcie¿ki ¿ó³tego gracza.
+ */
 std::vector<std::pair<float, float>> Paths::getYellowPath()
 {
     return {
@@ -72,6 +107,11 @@ std::vector<std::pair<float, float>> Paths::getYellowPath()
     };
 }
 
+/**
+ * @brief Zwraca œcie¿kê ruchu dla gracza zielonego.
+ *
+ * @return Wektor wspó³rzêdnych 2D reprezentuj¹cych kolejne pola œcie¿ki zielonego gracza.
+ */
 std::vector<std::pair<float, float>> Paths::getGreenPath()
 {
     return {

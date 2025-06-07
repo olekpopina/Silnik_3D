@@ -24,9 +24,7 @@ Engine::Engine(int width, int height, const char* title, int fps)
     line(1.5f, 0.2f, 1.0f, 1.5f, 2.0f, 1.0f), rng(std::random_device{}()), dist(0, 5), frameRate(fps),
     isMyTurn(false)
 {
-    //winners.showWinnerScreen();
     initializePawnPaths();
-    //currentLightingMode = LightingMode::DIRECTIONAL_LIGHT;
     pawn3D.setHousePointers(&redHouse, &blueHouse, &yellowHouse, &greenHouse);
     pawn3D.PlayPawnsPointers(&redPawnInPlay, &pawnX, &pawnY, &redPawnInPlay2, &pawnX_R2, &pawnY_R2, 
     &redPawnInPlay3, &pawnX_R3, &pawnY_R3, &redPawnInPlay4, &pawnX_R4, &pawnY_R4,
@@ -185,12 +183,39 @@ void Engine::setTextures(const std::vector<std::string>& texturePaths) {
     }
 }
 
+/**
+ * @brief Rysuje tekst w trybie 2D w zadanej pozycji na ekranie.
+ *
+ * Funkcja ustawia pozycję startową tekstu w przestrzeni ekranu (ortho)
+ * i wypisuje go znak po znaku za pomocą czcionki GLUT (Helvetica 18).
+ *
+ * @param x Pozycja X tekstu w układzie współrzędnych ekranu (zakres 0.0 – 1.0).
+ * @param y Pozycja Y tekstu w układzie współrzędnych ekranu (zakres 0.0 – 1.0).
+ * @param text Tekst do wyświetlenia.
+ */
 void drawText(float x, float y, const std::string& text) {
     glRasterPos2f(x, y);
     for (char c : text) {
         glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, c);
     }
 }
+
+/**
+ * @brief Inicjalizuje kolejność tur graczy na podstawie wprowadzonych nazw.
+ *
+ * Funkcja sprawdza, którzy gracze (spośród czerwonego, zielonego, żółtego i niebieskiego)
+ * mają ustawione nazwy użytkowników. Dla każdego aktywnego gracza przypisuje numer
+ * tury i dodaje go do wektora `tury` w ustalonej kolejności:
+ * - RED (1)
+ * - GREEN (2)
+ * - YELLOW (3)
+ * - BLUE (4)
+ *
+ * Jeśli żaden gracz nie jest aktywny (brak nazw), wypisywany jest komunikat błędu
+ * i jako fallback dodawany jest gracz czerwony.
+ *
+ * Na końcu ustawia indeks obecnego gracza (`currentPlayerIndex`) oraz jego identyfikator (`currentPlayer`).
+ */
 void Engine::initializeTurns() {
     tury.clear();
 
@@ -209,7 +234,23 @@ void Engine::initializeTurns() {
 }
 
 /**
- * @brief Funkcja renderująca całą scenę gry.
+ * @brief Główna funkcja odpowiedzialna za renderowanie sceny gry.
+ *
+ * Funkcja `render()` jest wywoływana każdą klatkę gry. Jej zadania obejmują:
+ *
+ * - Kontrolę liczby klatek na sekundę (frameRate).
+ * - Czyszczenie buforów i przygotowanie kamery oraz oświetlenia.
+ * - Renderowanie tła planszy oraz elementów 3D (kostka, pionki).
+ * - Obsługę animacji obrotu kostki i jej losowania.
+ * - Inicjalizację wyboru pionka, jeśli rzut kostką zakończył się i są dostępne ruchy.
+ * - Obsługę ruchu wszystkich pionków w zależności od tego, który się porusza.
+ * - Rysowanie pionków oraz nazw graczy na planszy.
+ * - Renderowanie kostki w widoku ortograficznym (2D) w rogu ekranu lub na środku.
+ *
+ * Dodatkowo funkcja przełącza turę gracza, jeśli warunki (np. brak 6) są spełnione.
+ * Współpracuje z funkcją `updatePawnPosition()` w celu przesuwania pionków o ustalone kroki.
+ *
+ * Funkcja kończy się wywołaniem `glutSwapBuffers()`, które zamienia bufory i wyświetla obraz.
  */
 void Engine::render() {
    
@@ -232,14 +273,6 @@ void Engine::render() {
    
     player.configureLighting();
 
-    // Ustawienie kamery
-   // gluLookAt(1.5, 1.5, cameraZ, 0.0, 0.0, 0.0, 0.0, 8.0, 0.0);
-  /*
-    gluLookAt(0.5, 0.5, cameraZ,  // nad środkiem planszy
-        0.5, 0.5, 0.0,      // patrz na środek planszy
-        0.0, 1.0, 0.0);     // oś Y jako góra
-*/
-   
     glDisable(GL_LIGHTING);
     // Rysowanie tła
     bitmapHandler.drawBackground();
@@ -511,8 +544,7 @@ void Engine::render() {
    // point.draw();
     glPopMatrix();
 
-    // Ustawienie drugiej kamery
-    //gluLookAt(3.0, 3.0, cameraZ, 5.0, 0.0, 0.0, 0.0, 3.0, 2.0);
+   
 
     // Wymiana buforów
     glutSwapBuffers();
@@ -588,6 +620,13 @@ void Engine::onSpecialKeyboard(int key, int x, int y) {
     glutPostRedisplay();
 }
 
+/**
+ * @brief Inicjalizuje ścieżki ruchu i pozycje domków dla wszystkich pionków.
+ *
+ * Funkcja pobiera domyślne ścieżki ruchu oraz pozycje startowe (domki) pionków dla każdego z graczy
+ * (czerwonego, niebieskiego, żółtego i zielonego) z klasy pomocniczej `Paths`.
+ * Ustawienia te są wykorzystywane podczas poruszania pionkami i przy ich wyjściu z domku na planszę.
+ */
 void Engine::initializePawnPaths()
 {
     redHouse = Paths::getRedHouse();
@@ -598,6 +637,21 @@ void Engine::initializePawnPaths()
     greenPath = Paths::getGreenPath();
 
 }
+
+/**
+ * @brief Aktualizuje pozycję wybranego pionka na planszy na podstawie jego identyfikatora.
+ *
+ * Funkcja odpowiada za wykonanie ruchu pionka:
+ * - sprawdza czy pionek powinien wykonać pierwszy ruch (wyjście z domku),
+ * - porusza pionkiem po jego ścieżce o określoną liczbę kroków (rzut kostką),
+ * - sprawdza możliwość zbicia przeciwnika i wykonuje zbijanie, jeśli pionki są na tym samym polu,
+ * - zarządza ruchem pionków w kolejnych krokach,
+ * - obsługuje regułę wejścia dokładnie na pole końcowe (nie można przekroczyć),
+ * - sprawdza warunek zwycięstwa gracza (wszystkie 4 pionki na mecie),
+ * - inicjuje zakończenie tury, jeśli nie wylosowano 6 ani nie wykonano zbicia.
+ *
+ * @param id Identyfikator pionka, który ma się poruszyć (np. "red1", "blue2", "yellow4").
+ */
 void Engine::updatePawnPosition(const std::string& id) {
     
     std::array<PawnData, 16> pawns = { {
@@ -671,14 +725,11 @@ void Engine::updatePawnPosition(const std::string& id) {
                 pawn.isMoving = false;
 
                 if (!rolledSix && !extraRollAfterCapture) {
-                    //isMyTurn = !isMyTurn;
                     advanceToNextPlayer();
-                   // std::cout << "[DEBUG] Tura zmieniona! Teraz gra: " << (isMyTurn ? "Czerwony" : "Niebieski") << std::endl;
                 }
 
-                continue; // <- bardzo ważne!
+                continue; 
             }
-
 
             // Sprawdzenie czy pionek może zbić przeciwnika (najpierw ustal, gdzie pionek ma się przemieścić)
             int nextStep = pawn.currentStep;
@@ -708,7 +759,6 @@ void Engine::updatePawnPosition(const std::string& id) {
                 else if (&other == &pawns[15]) otherId = "green4";
 
                 // Nie bij pionków z własnej drużyny
-                //bool isEnemy = (pawn.isRed && !other.isRed) || (!pawn.isRed && other.isRed);
                 bool isEnemy = (pawn.isRed && !other.isRed) || (pawn.isBlue && !other.isBlue) || (pawn.isYellow && !other.isYellow) || (pawn.isGreen && !other.isGreen);
                 if (!isEnemy) continue;
 
@@ -830,7 +880,6 @@ void Engine::updatePawnPosition(const std::string& id) {
             int blueFinished = 0;
             int greenFinished = 0;
             int yellowFinished = 0;
-            //int finishedCount = 0;
 
             for (const auto& other : pawns) {
                 if (other.isRed && other.currentStep >= other.path.size()) {
@@ -1008,7 +1057,19 @@ void Engine::resetGame() {
     std::cout << "[INFO] Gra zostala zresetowana!" << std::endl;
 }
 
-
+/**
+ * @brief Obsługuje zdarzenia kliknięcia myszy w grze.
+ *
+ * Funkcja reaguje na kliknięcia lewym przyciskiem myszy:
+ * - Kliknięcie w domek: wyciąga pionek na planszę (jeśli wyrzucono 6).
+ * - Kliknięcie w pionek: rozpoczyna ruch pionka o wylosowaną liczbę kroków.
+ * - Kliknięcie w kostkę: rozpoczyna obrót i losuje liczbę oczek.
+ *
+ * @param button Przycisk myszy (np. GLUT_LEFT_BUTTON).
+ * @param state Stan przycisku (GLUT_DOWN lub GLUT_UP).
+ * @param x Pozycja X kursora myszy w oknie.
+ * @param y Pozycja Y kursora myszy w oknie.
+ */
 void Engine::onMouse(int button, int state, int x, int y) {
     if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
         float normalizedX = (float)x / glutGet(GLUT_WINDOW_WIDTH);
@@ -1030,7 +1091,7 @@ void Engine::onMouse(int button, int state, int x, int y) {
 
         if (waitingForRedPawnClick && currentPlayer == PlayerColor::RED) {
             if (!redHouse.empty()) {
-                auto pos = redHouse.back(); // albo redHouse[0], jeśli trzymasz w kolejności
+                auto pos = redHouse.back(); 
             }
 
             auto pos = redHouse[redHouseIndex];
@@ -1076,7 +1137,7 @@ void Engine::onMouse(int button, int state, int x, int y) {
                     std::cerr << "[ERROR] Nieprawidlowy redHouseIndex: " << redHouseIndex
                         << " (rozmiar: " << (pawn3D.redHouse ? pawn3D.redHouse->size() : 0) << ")\n";
                 }
-                //redHouse.erase(redHouse.begin() + redHouseIndex);
+             
                 waitingForRedPawnClick = false;
                 std::cout << "[DEBUG] Czerwony pionek zostal klikniety i wychodzi na plansze!" << std::endl;
                 return;
@@ -1442,7 +1503,7 @@ void Engine::onMouse(int button, int state, int x, int y) {
 
             // Generowanie losowej liczby kroków dla pionka
             srand(static_cast<unsigned int>(time(nullptr)));
-            //int steps = (rand() % 6) + 1;
+        
             int steps = (manualDiceValue != -1) ? manualDiceValue : (rand() % 6 + 1);
             manualDiceValue = -1; // resetuj po użyciu
 
@@ -1543,6 +1604,23 @@ void Engine::onMouse(int button, int state, int x, int y) {
     }
 }
 
+/**
+ * @brief Ustawia nazwy (nicki) graczy i inicjalizuje kolejność tur.
+ *
+ * Funkcja przypisuje podane nazwy graczom w kolejności:
+ * - `name1` → gracz czerwony,
+ * - `name2` → gracz niebieski,
+ * - `name3` → gracz zielony,
+ * - `name4` → gracz żółty.
+ *
+ * Po ustawieniu nicków funkcja wywołuje `initializeTurns()`, aby określić,
+ * którzy gracze są aktywni i w jakiej kolejności będą rozgrywać swoje tury.
+ *
+ * @param name1 Nazwa gracza czerwonego.
+ * @param name2 Nazwa gracza niebieskiego.
+ * @param name3 Nazwa gracza zielonego.
+ * @param name4 Nazwa gracza żółtego.
+ */
 void Engine::setPlayerNicknames(const std::string& name1, const std::string& name2, const std::string& name3, const std::string& name4) {
     player1Name = name1;
     player2Name = name2;
@@ -1551,7 +1629,6 @@ void Engine::setPlayerNicknames(const std::string& name1, const std::string& nam
 
     initializeTurns();
 }
-
 
 /**
  * @brief Obsługuje kliknięcie myszką na kostce.
@@ -1647,8 +1724,18 @@ void Engine::idleCallback() {
     }
 }
 
+/**
+ * @brief Przechodzi do następnego gracza w kolejności tur.
+ *
+ * Funkcja aktualizuje indeks obecnego gracza (`currentPlayerIndex`) w tablicy `tury`
+ * i ustawia nowego aktywnego gracza (`currentPlayer`).
+ *
+ * Na podstawie koloru gracza ustawia odpowiednie flagi `waitingForXxxPawnClick`,
+ * które pozwalają na kliknięcie w pionek danego gracza w trakcie jego tury.
+ *
+ * Funkcja wyświetla także w konsoli numer gracza, którego teraz jest tura.
+ */
 void Engine::advanceToNextPlayer() {
-    //currentPlayerIndex = (currentPlayerIndex + 1) % 4;
     currentPlayerIndex = (currentPlayerIndex + 1) % tury.size();
     currentPlayer = tury[currentPlayerIndex];
 

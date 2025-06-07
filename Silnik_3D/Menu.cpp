@@ -1,5 +1,14 @@
 #include "Menu.h"
 
+/**
+ * @brief Konstruktor klasy Menu.
+ *
+ * Inicjalizuje okno menu, ³aduje czcionkê i tekstury, ustawia pozycje oraz style przycisków
+ * i elementów dialogowych do wpisywania nazw graczy.
+ *
+ * @param width Szerokoœæ okna menu w pikselach.
+ * @param height Wysokoœæ okna menu w pikselach.
+ */
 Menu::Menu(unsigned int width, unsigned int height)
     : window(sf::VideoMode(width, height), "Menu") {
     font.loadFromFile("C:\\Windows\\Fonts\\Arial.ttf");
@@ -76,6 +85,15 @@ Menu::Menu(unsigned int width, unsigned int height)
 
 }
 
+/**
+ * @brief Wyœwietla okno menu i obs³uguje g³ówn¹ pêtlê zdarzeñ do momentu rozpoczêcia gry.
+ *
+ * Funkcja dzia³a w pêtli dopóki okno menu jest otwarte. Obs³uguje zdarzenia wejœciowe
+ * oraz renderowanie. Zamyka okno i zwraca true, jeœli klikniêto „Start” i podano co najmniej 2 nicki.
+ *
+ * @return true jeœli gracz rozpocz¹³ grê, false jeœli zamkniêto okno bez rozpoczêcia gry.
+ */
+
 bool Menu::show() {
     bool gameShouldStart = false;
 
@@ -91,6 +109,19 @@ bool Menu::show() {
     return gameShouldStart;
 }
 
+/**
+ * @brief Obs³uguje zdarzenia u¿ytkownika w oknie menu (mysz, klawiatura, interakcje).
+ *
+ * Reaguje na:
+ * - klikniêcie przycisku „Start” — sprawdza, czy podano nicki dla co najmniej 2 graczy,
+ * - klikniêcia przycisków logowania — otwiera dialog do wpisania nicku,
+ * - klikniêcie przycisku „OK” w dialogu — przypisuje nick do odpowiedniego gracza,
+ * - wpisywanie tekstu — rejestruje nicki graczy,
+ * - naje¿d¿anie kursorem na przyciski — zmienia ich kolor, by podkreœliæ interakcjê.
+ *
+ * @param gameShouldStart Referencja do flagi, która zostanie ustawiona na true,
+ *                        jeœli u¿ytkownik kliknie „Start” z co najmniej dwoma podanymi nickami.
+ */
 void Menu::processEvents(bool& gameShouldStart) {
     sf::Event event;
     while (window.pollEvent(event)) {
@@ -218,15 +249,19 @@ void Menu::processEvents(bool& gameShouldStart) {
     }
 }
 
+/**
+ * @brief Renderuje wszystkie widoczne elementy interfejsu menu do okna.
+ *
+ * Rysuje t³o, przyciski do logowania, przycisk startu, dialog do wpisywania nicku
+ * oraz ewentualny komunikat o b³êdzie, jeœli nie podano wystarczaj¹cej liczby graczy.
+ */
 void Menu::render() {
     window.clear(sf::Color::Blue);
     window.draw(backgroundSprite);
     window.draw(startButton);
     window.draw(startText);
     window.draw(loginButton1);
-    //window.draw(loginText1);
     window.draw(loginButton2);
-    //window.draw(loginText2);
 
     window.draw(loginButton3);
     window.draw(loginButton4);

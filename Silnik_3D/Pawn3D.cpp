@@ -2,10 +2,21 @@
 #include <GL/glew.h>
 #include <iostream>
 
+/**
+ * @brief Konstruktor klasy Pawn3D.
+ */
 Pawn3D::Pawn3D() : scene(nullptr) {}
 
+/**
+ * @brief Destruktor klasy Pawn3D.
+ */
 Pawn3D::~Pawn3D() {}
 
+/**
+ * @brief £aduje model pionka 3D z pliku przy u¿yciu Assimp.
+ *
+ * @return true jeœli model za³adowano poprawnie, false w przeciwnym razie.
+ */
 bool Pawn3D::loadModel() {
     std::string path = "images/pionek.obj"; // <<--- Œcie¿ka do modelu 3D pionka
 
@@ -19,6 +30,9 @@ bool Pawn3D::loadModel() {
     return true;
 }
 
+/**
+ * @brief Rysuje model 3D pionka w aktualnej przestrzeni OpenGL.
+ */
 void Pawn3D::draw() const {
     if (!scene) return;
 
@@ -35,7 +49,7 @@ void Pawn3D::draw() const {
                 std::min(1.0f, diffuse.b * brightnessScale));
         }
         else {
-            std::cout << "[WARN] Brak koloru w materiale – ustawiam szary domyœlny." << std::endl;
+            std::cout << "[WARN] Brak koloru w materiale – ustawiam szary domyslny." << std::endl;
             glColor3f(0.8f, 0.8f, 0.8f);
         }
         glBegin(GL_TRIANGLES);
@@ -56,6 +70,13 @@ void Pawn3D::draw() const {
         glEnd();
     }
 }
+
+/**
+ * @brief Rysuje niebieski pionek 3D w zadanej pozycji na planszy.
+ *
+ * @param x Pozycja X na planszy (od 0 do 1).
+ * @param y Pozycja Y na planszy (od 0 do 1).
+ */
 void Pawn3D::draw3DPawnAtBlue(float x, float y) {
     static float angle = 0.0f; // zapamiêtuje wartoœæ miêdzy wywo³aniami
     angle += 0.5f;
@@ -70,10 +91,10 @@ void Pawn3D::draw3DPawnAtBlue(float x, float y) {
     glPushMatrix();
     glLoadIdentity();
 
-    float xc = x + 0.1/2;// * 2.0f - 1.0f + 0.17/2;
-    float yc = y + 0.07/2;// * 2.0f - 1.0f;
-    float vx = 0.0;//0.8 * 1.75;
-    float vy = 0.0;//0.8 * 1.75;
+    float xc = x + 0.1/2;
+    float yc = y + 0.07/2;
+    float vx = 0.0;
+    float vy = 0.0;
     
     gluLookAt(0, 0, 0.5f,  // kamera: trochê z góry i z przodu
         0, 0, 0.0f,  // cel: œrodek planszy (na pionek)
@@ -102,11 +123,14 @@ void Pawn3D::draw3DPawnAtBlue(float x, float y) {
     glMatrixMode(GL_PROJECTION);
     glPopMatrix();
     glMatrixMode(GL_MODELVIEW);
-
-
-
 }
 
+/**
+ * @brief Rysuje czerwony pionek 3D w zadanej pozycji na planszy.
+ *
+ * @param x Pozycja X na planszy (od 0 do 1).
+ * @param y Pozycja Y na planszy (od 0 do 1).
+ */
 void Pawn3D::draw3DPawnAtRed(float x, float y)
 {
     static float angle = 0.0f; // zapamiêtuje wartoœæ miêdzy wywo³aniami
@@ -123,10 +147,10 @@ void Pawn3D::draw3DPawnAtRed(float x, float y)
     glPushMatrix();
     glLoadIdentity();
    
-    float xc = x + 0.1 / 2;// * 2.0f - 1.0f + 0.17/2;
-    float yc = y + 0.07 / 2;// * 2.0f - 1.0f;
-    float vx = 0.0;//0.8 * 1.75;
-    float vy = 0.0;//0.8 * 1.75;
+    float xc = x + 0.1 / 2;
+    float yc = y + 0.07 / 2;
+    float vx = 0.0;
+    float vy = 0.0;
     gluLookAt(0, 0, 0.5f,  // kamera: troch? z góry i z przodu
         0, 0, 0.0f,  // cel: ?rodek planszy (na pionek)
         0.0f, 1.0f, 0.0f); // o? Y w gór?
@@ -157,6 +181,12 @@ void Pawn3D::draw3DPawnAtRed(float x, float y)
     glMatrixMode(GL_MODELVIEW);
 }
 
+/**
+ * @brief Rysuje ¿ó³ty pionek 3D w zadanej pozycji na planszy.
+ *
+ * @param x Pozycja X na planszy (od 0 do 1).
+ * @param y Pozycja Y na planszy (od 0 do 1).
+ */
 void Pawn3D::draw3DPawnAtYellow(float x, float y)
 {
     static float angle = 0.0f; // zapamiêtuje wartoœæ miêdzy wywo³aniami
@@ -174,14 +204,13 @@ void Pawn3D::draw3DPawnAtYellow(float x, float y)
     glPushMatrix();
     glLoadIdentity();
    
-    float xc = x + 0.1 / 2;// * 2.0f - 1.0f + 0.17/2;
-    float yc = y + 0.07 / 2;// * 2.0f - 1.0f;
-    float vx = 0.0;//0.8 * 1.75;
-    float vy = 0.0;//0.8 * 1.75;
+    float xc = x + 0.1 / 2;
+    float yc = y + 0.07 / 2;
+    float vx = 0.0;
+    float vy = 0.0;
     gluLookAt(0, 0, 0.5f,  // kamera: troch? z góry i z przodu
         0, 0, 0.0f,  // cel: ?rodek planszy (na pionek)
         0.0f, 1.0f, 0.0f); // o? Y w gór?
-
 
     float x1 = 0.0;
 
@@ -207,6 +236,12 @@ void Pawn3D::draw3DPawnAtYellow(float x, float y)
     glMatrixMode(GL_MODELVIEW);
 }
 
+/**
+ * @brief Rysuje zielony pionek 3D w zadanej pozycji na planszy.
+ *
+ * @param x Pozycja X na planszy (od 0 do 1).
+ * @param y Pozycja Y na planszy (od 0 do 1).
+ */
 void Pawn3D::draw3DPawnAtGreen(float x, float y)
 {
     static float angle = 0.0f; // zapamiêtuje wartoœæ miêdzy wywo³aniami
@@ -224,14 +259,13 @@ void Pawn3D::draw3DPawnAtGreen(float x, float y)
     glPushMatrix();
     glLoadIdentity();
 
-    float xc = x + 0.1 / 2;// * 2.0f - 1.0f + 0.17/2;
-    float yc = y + 0.07 / 2;// * 2.0f - 1.0f;
-    float vx = 0.0;//0.8 * 1.75;
-    float vy = 0.0;//0.8 * 1.75;
+    float xc = x + 0.1 / 2;
+    float yc = y + 0.07 / 2;
+    float vx = 0.0;
+    float vy = 0.0;
     gluLookAt(0, 0, 0.5f,  // kamera: troch? z góry i z przodu
         0, 0, 0.0f,  // cel: ?rodek planszy (na pionek)
         0.0f, 1.0f, 0.0f); // o? Y w gór?
-
 
     float x1 = 0.0;
 
@@ -257,6 +291,9 @@ void Pawn3D::draw3DPawnAtGreen(float x, float y)
     glMatrixMode(GL_MODELVIEW);
 }
 
+/**
+ * @brief Rysuje wszystkie pionki znajduj¹ce siê w domkach graczy.
+ */
 void Pawn3D::drawPawns()
 {
     if (player3Name && !player3Name->empty() && greenHouse) {
@@ -287,6 +324,9 @@ void Pawn3D::drawPawns()
     }
 }
 
+/**
+ * @brief Rysuje wszystkie pionki bêd¹ce aktualnie na planszy.
+ */
 void Pawn3D::drawPawnsPlay()
 {
     if (player1Name && !player1Name->empty()) {
@@ -347,6 +387,14 @@ void Pawn3D::drawPawnsPlay()
     }
 }
 
+/**
+ * @brief Ustawia wskaŸniki na nicki graczy.
+ *
+ * @param red Nick gracza czerwonego.
+ * @param blue Nick gracza niebieskiego.
+ * @param green Nick gracza zielonego.
+ * @param yellow Nick gracza ¿ó³tego.
+ */
 void Pawn3D::setNicknames(const std::string* red, const std::string* blue,  
    const std::string* green, const std::string* yellow)  
 {  
@@ -356,6 +404,12 @@ void Pawn3D::setNicknames(const std::string* red, const std::string* blue,
     player4Name = const_cast<std::string*>(yellow);
 }
 
+/**
+ * @brief Przypisuje wskaŸniki na pozycje i statusy wszystkich pionków w grze.
+ *
+ * Umo¿liwia zewnêtrznej klasie (np. Engine) aktualizacjê pozycji pionków.
+ * Przyjmuje a¿ 32 wskaŸniki (4 graczy x 4 pionki x [bool + x + y]).
+ */
 void Pawn3D::PlayPawnsPointers(bool* RedPlay, float* pawnXred, float* pawnYred, bool* RedPlay2, float* pawnXred2, float* pawnYred2,
     bool* RedPlay3, float* pawnXred3, float* pawnYred3, bool* RedPlay4, float* pawnXred4, float* pawnYred4,
     bool* BluePlay, float* pawnXblue, float* pawnYblue, bool* BluePlay2, float* pawnXblue2, float* pawnYblue2,
@@ -430,7 +484,14 @@ void Pawn3D::PlayPawnsPointers(bool* RedPlay, float* pawnXred, float* pawnYred, 
     pawnY_G4 = pawnYgreen4;
 }
 
-
+/**
+ * @brief Ustawia wskaŸniki na wspó³rzêdne pól domków dla ka¿dego gracza.
+ *
+ * @param red Pozycje domku gracza czerwonego.
+ * @param blue Pozycje domku gracza niebieskiego.
+ * @param yellow Pozycje domku gracza ¿ó³tego.
+ * @param green Pozycje domku gracza zielonego.
+ */
 void Pawn3D::setHousePointers(
    std::vector<std::pair<float, float>>* red,
    std::vector<std::pair<float, float>>* blue,

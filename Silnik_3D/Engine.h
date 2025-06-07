@@ -22,7 +22,18 @@
 #include "Light.h"
 #include "Pawn3D.h"
 
-
+/**
+ * @brief Reprezentuje kolory graczy w grze Ludo (Chińczyk).
+ *
+ * Każdy kolor gracza jest powiązany z unikalną wartością liczbową,
+ * używaną w logice kolejkowania tur, rozróżniania pionków i renderowania.
+ *
+ * Wartości:
+ * - RED = 1 – Gracz czerwony,
+ * - GREEN = 2 – Gracz zielony,
+ * - YELLOW = 3 – Gracz żółty,
+ * - BLUE = 4 – Gracz niebieski.
+ */
 enum PlayerColor { 
     RED = 1, 
     BLUE = 4, 

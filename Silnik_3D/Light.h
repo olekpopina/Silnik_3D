@@ -4,21 +4,21 @@
 
 #include <GL/freeglut.h>
 
-// Enum reprezentuj¹cy tryby oœwietlenia
+// Enum reprezentujÄ…cy tryby oÅ›wietlenia
 enum class LightingMode {
-    NONE,            ///< Brak oœwietlenia
-    POINT_LIGHT,     ///< Œwiat³o punktowe
-    DIRECTIONAL_LIGHT, ///< Œwiat³o kierunkowe
-    SPOTLIGHT        ///< Œwiat³o punktowe o w¹skim k¹cie
+    NONE,            ///< Brak oÅ›wietlenia
+    POINT_LIGHT,     ///< ÅšwiatÅ‚o punktowe
+    DIRECTIONAL_LIGHT, ///< ÅšwiatÅ‚o kierunkowe
+    SPOTLIGHT        ///< ÅšwiatÅ‚o punktowe o wÄ…skim kÄ…cie
 };
 
 /**
  * @class Light
- * @brief Klasa zarz¹dzaj¹ca oœwietleniem w scenie 3D.
+ * @brief Klasa zarzÄ…dzajÄ…ca oÅ›wietleniem w scenie 3D.
  *
- * Umo¿liwia konfiguracjê i prze³¹czanie trybu oœwietlenia.
- * Obs³uguje ró¿ne tryby (np. œwiat³o punktowe, kierunkowe),
- * zale¿nie od wartoœci typu LightingMode.
+ * UmoÅ¼liwia konfiguracjÄ™ i przeÅ‚Ä…czanie trybu oÅ›wietlenia.
+ * ObsÅ‚uguje rÃ³Å¼ne tryby (np. Å›wiatÅ‚o punktowe, kierunkowe),
+ * zaleÅ¼nie od wartoÅ›ci typu LightingMode.
  */
 class Light {
 public:

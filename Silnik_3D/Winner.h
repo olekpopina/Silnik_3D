@@ -3,7 +3,7 @@
 
 /**
  * @class Winner
- * @brief Klasa odpowiedzialna za wyœwietlanie ekranu koñcowego z informacj¹ o zwyciêzcy.
+ * @brief Klasa odpowiedzialna za wyÅ›wietlanie ekranu koÅ„cowego z informacjÄ… o zwyciÄ™zcy.
  */
 class Winner {
 public:

@@ -3,11 +3,11 @@
 /**
  * @brief Konstruktor klasy Menu.
  *
- * Inicjalizuje okno menu, ≥aduje czcionkÍ i tekstury, ustawia pozycje oraz style przyciskÛw
- * i elementÛw dialogowych do wpisywania nazw graczy.
+ * Inicjalizuje okno menu, ≈Çaduje czcionkƒô i tekstury, ustawia pozycje oraz style przycisk√≥w
+ * i element√≥w dialogowych do wpisywania nazw graczy.
  *
- * @param width SzerokoúÊ okna menu w pikselach.
- * @param height WysokoúÊ okna menu w pikselach.
+ * @param width Szeroko≈õƒá okna menu w pikselach.
+ * @param height Wysoko≈õƒá okna menu w pikselach.
  */
 Menu::Menu(unsigned int width, unsigned int height)
     : window(sf::VideoMode(width, height), "Menu") {
@@ -86,12 +86,12 @@ Menu::Menu(unsigned int width, unsigned int height)
 }
 
 /**
- * @brief Wyúwietla okno menu i obs≥uguje g≥Ûwnπ pÍtlÍ zdarzeÒ do momentu rozpoczÍcia gry.
+ * @brief Wy≈õwietla okno menu i obs≈Çuguje g≈Ç√≥wnƒÖ pƒôtlƒô zdarze≈Ñ do momentu rozpoczƒôcia gry.
  *
- * Funkcja dzia≥a w pÍtli dopÛki okno menu jest otwarte. Obs≥uguje zdarzenia wejúciowe
- * oraz renderowanie. Zamyka okno i zwraca true, jeúli klikniÍto ÑStartî i podano co najmniej 2 nicki.
+ * Funkcja dzia≈Ça w pƒôtli dop√≥ki okno menu jest otwarte. Obs≈Çuguje zdarzenia wej≈õciowe
+ * oraz renderowanie. Zamyka okno i zwraca true, je≈õli klikniƒôto ‚ÄûStart‚Äù i podano co najmniej 2 nicki.
  *
- * @return true jeúli gracz rozpoczπ≥ grÍ, false jeúli zamkniÍto okno bez rozpoczÍcia gry.
+ * @return true je≈õli gracz rozpoczƒÖ≈Ç grƒô, false je≈õli zamkniƒôto okno bez rozpoczƒôcia gry.
  */
 
 bool Menu::show() {
@@ -110,17 +110,17 @@ bool Menu::show() {
 }
 
 /**
- * @brief Obs≥uguje zdarzenia uøytkownika w oknie menu (mysz, klawiatura, interakcje).
+ * @brief Obs≈Çuguje zdarzenia u≈ºytkownika w oknie menu (mysz, klawiatura, interakcje).
  *
  * Reaguje na:
- * - klikniÍcie przycisku ÑStartî ó sprawdza, czy podano nicki dla co najmniej 2 graczy,
- * - klikniÍcia przyciskÛw logowania ó otwiera dialog do wpisania nicku,
- * - klikniÍcie przycisku ÑOKî w dialogu ó przypisuje nick do odpowiedniego gracza,
- * - wpisywanie tekstu ó rejestruje nicki graczy,
- * - najeødøanie kursorem na przyciski ó zmienia ich kolor, by podkreúliÊ interakcjÍ.
+ * - klikniƒôcie przycisku ‚ÄûStart‚Äù ‚Äî sprawdza, czy podano nicki dla co najmniej 2 graczy,
+ * - klikniƒôcia przycisk√≥w logowania ‚Äî otwiera dialog do wpisania nicku,
+ * - klikniƒôcie przycisku ‚ÄûOK‚Äù w dialogu ‚Äî przypisuje nick do odpowiedniego gracza,
+ * - wpisywanie tekstu ‚Äî rejestruje nicki graczy,
+ * - naje≈ºd≈ºanie kursorem na przyciski ‚Äî zmienia ich kolor, by podkre≈õliƒá interakcjƒô.
  *
- * @param gameShouldStart Referencja do flagi, ktÛra zostanie ustawiona na true,
- *                        jeúli uøytkownik kliknie ÑStartî z co najmniej dwoma podanymi nickami.
+ * @param gameShouldStart Referencja do flagi, kt√≥ra zostanie ustawiona na true,
+ *                        je≈õli u≈ºytkownik kliknie ‚ÄûStart‚Äù z co najmniej dwoma podanymi nickami.
  */
 void Menu::processEvents(bool& gameShouldStart) {
     sf::Event event;
@@ -204,43 +204,43 @@ void Menu::processEvents(bool& gameShouldStart) {
                 dialogInput += static_cast<char>(event.text.unicode);
             dialogInputText.setString(dialogInput);
         }
-        // Pobierz pozycjÍ kursora
+        // Pobierz pozycjƒô kursora
         sf::Vector2i mousePos = sf::Mouse::getPosition(window);
         sf::Vector2f mousePosF(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y));
 
-        // Jeúli kursor jest nad przyciskiem Start, zmieÒ kolor
+        // Je≈õli kursor jest nad przyciskiem Start, zmie≈Ñ kolor
         if (startButton.getGlobalBounds().contains(mousePosF)) {
-            startButton.setFillColor(sf::Color(255, 255, 255, 100)); // lekko przezroczysty bia≥y
+            startButton.setFillColor(sf::Color(255, 255, 255, 100)); // lekko przezroczysty bia≈Çy
         }
         else {
-            startButton.setFillColor(sf::Color(0, 0, 0, 0)); // ca≥kowicie przezroczysty
+            startButton.setFillColor(sf::Color(0, 0, 0, 0)); // ca≈Çkowicie przezroczysty
         }
         if (loginButton1.getGlobalBounds().contains(mousePosF)) {
-            loginButton1.setFillColor(sf::Color(255, 255, 255, 100)); // lekko przezroczysty bia≥y
+            loginButton1.setFillColor(sf::Color(255, 255, 255, 100)); // lekko przezroczysty bia≈Çy
         }
         else {
-            loginButton1.setFillColor(sf::Color(0, 0, 0, 0)); // ca≥kowicie przezroczysty
+            loginButton1.setFillColor(sf::Color(0, 0, 0, 0)); // ca≈Çkowicie przezroczysty
         }
         if (loginButton2.getGlobalBounds().contains(mousePosF)) {
-            loginButton2.setFillColor(sf::Color(255, 255, 255, 100)); // lekko przezroczysty bia≥y
+            loginButton2.setFillColor(sf::Color(255, 255, 255, 100)); // lekko przezroczysty bia≈Çy
         }
         else {
-            loginButton2.setFillColor(sf::Color(0, 0, 0, 0)); // ca≥kowicie przezroczysty
+            loginButton2.setFillColor(sf::Color(0, 0, 0, 0)); // ca≈Çkowicie przezroczysty
         }
         if (loginButton3.getGlobalBounds().contains(mousePosF)) {
-            loginButton3.setFillColor(sf::Color(255, 255, 255, 100)); // lekko przezroczysty bia≥y
+            loginButton3.setFillColor(sf::Color(255, 255, 255, 100)); // lekko przezroczysty bia≈Çy
         }
         else {
-            loginButton3.setFillColor(sf::Color(0, 0, 0, 0)); // ca≥kowicie przezroczysty
+            loginButton3.setFillColor(sf::Color(0, 0, 0, 0)); // ca≈Çkowicie przezroczysty
         }
         if (loginButton4.getGlobalBounds().contains(mousePosF)) {
-            loginButton4.setFillColor(sf::Color(255, 255, 255, 100)); // lekko przezroczysty bia≥y
+            loginButton4.setFillColor(sf::Color(255, 255, 255, 100)); // lekko przezroczysty bia≈Çy
         }
         else {
-            loginButton4.setFillColor(sf::Color(0, 0, 0, 0)); // ca≥kowicie przezroczysty
+            loginButton4.setFillColor(sf::Color(0, 0, 0, 0)); // ca≈Çkowicie przezroczysty
         }
         if (dialogOkButton.getGlobalBounds().contains(mousePosF)) {
-            dialogOkButton.setFillColor(sf::Color(255, 255, 255, 100)); // lekko przezroczysty bia≥y
+            dialogOkButton.setFillColor(sf::Color(255, 255, 255, 100)); // lekko przezroczysty bia≈Çy
         }
         else {
             dialogOkButton.setFillColor(sf::Color::Green); 
@@ -252,8 +252,8 @@ void Menu::processEvents(bool& gameShouldStart) {
 /**
  * @brief Renderuje wszystkie widoczne elementy interfejsu menu do okna.
  *
- * Rysuje t≥o, przyciski do logowania, przycisk startu, dialog do wpisywania nicku
- * oraz ewentualny komunikat o b≥Ídzie, jeúli nie podano wystarczajπcej liczby graczy.
+ * Rysuje t≈Ço, przyciski do logowania, przycisk startu, dialog do wpisywania nicku
+ * oraz ewentualny komunikat o b≈Çƒôdzie, je≈õli nie podano wystarczajƒÖcej liczby graczy.
  */
 void Menu::render() {
     window.clear(sf::Color::Blue);

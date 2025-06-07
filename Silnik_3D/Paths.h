@@ -6,13 +6,13 @@
 #include <utility>
 
 /**
- * @brief Klasa pomocnicza zawieraj¹ca wspó³rzêdne œcie¿ek i domków graczy w grze Ludo.
+ * @brief Klasa pomocnicza zawierajÄ…ca wspÃ³Å‚rzÄ™dne Å›cieÅ¼ek i domkÃ³w graczy w grze Ludo.
  *
- * Klasa `Paths` dostarcza zestawy wspó³rzêdnych 2D reprezentuj¹cych:
- * - pozycje domków startowych dla ka¿dego z graczy,
- * - œcie¿ki ruchu pionków po planszy od pola startowego do mety.
+ * Klasa `Paths` dostarcza zestawy wspÃ³Å‚rzÄ™dnych 2D reprezentujÄ…cych:
+ * - pozycje domkÃ³w startowych dla kaÅ¼dego z graczy,
+ * - Å›cieÅ¼ki ruchu pionkÃ³w po planszy od pola startowego do mety.
  *
- * Wszystkie metody s¹ statyczne i zwracaj¹ gotowe wektory wspó³rzêdnych w formacie `(x, y)`.
+ * Wszystkie metody sÄ… statyczne i zwracajÄ… gotowe wektory wspÃ³Å‚rzÄ™dnych w formacie `(x, y)`.
  */
 class Paths {
 public:

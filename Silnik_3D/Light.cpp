@@ -2,9 +2,9 @@
 
 
 /**
- * @brief Konfiguruje oúwietlenie w grze.
+ * @brief Konfiguruje o≈õwietlenie w grze.
  *
- * Funkcja ta ustawia odpowiedni typ oúwietlenia (punktowe, kierunkowe, spot) w zaleønoúci od aktualnego trybu.
+ * Funkcja ta ustawia odpowiedni typ o≈õwietlenia (punktowe, kierunkowe, spot) w zale≈ºno≈õci od aktualnego trybu.
  */
 void Light::configureLighting()
 {
@@ -27,10 +27,10 @@ void Light::configureLighting()
     case LightingMode::DIRECTIONAL_LIGHT: {
         glEnable(GL_LIGHT1);
 
-        GLfloat dirLightDir[] = { -0.3f, -1.0f, -0.7f, 0.0f }; // úwiat≥o z gÛry pod kπtem
+        GLfloat dirLightDir[] = { -0.3f, -1.0f, -0.7f, 0.0f }; // ≈õwiat≈Ço z g√≥ry pod kƒÖtem
         GLfloat dirLightDiffuse[] = { 0.5f, 0.5f, 0.5f, 1.0f };   // mniej intensywne
-        GLfloat dirLightAmbient[] = { 0.15f, 0.15f, 0.15f, 1.0f }; // subtelne t≥o
-        GLfloat dirLightSpecular[] = { 0.1f, 0.1f, 0.1f, 1.0f };  // prawie brak b≥ysku
+        GLfloat dirLightAmbient[] = { 0.15f, 0.15f, 0.15f, 1.0f }; // subtelne t≈Ço
+        GLfloat dirLightSpecular[] = { 0.1f, 0.1f, 0.1f, 1.0f };  // prawie brak b≈Çysku
 
         glLightfv(GL_LIGHT1, GL_POSITION, dirLightDir);
         glLightfv(GL_LIGHT1, GL_DIFFUSE, dirLightDiffuse);
@@ -66,9 +66,9 @@ void Light::configureLighting()
 }
 
 /**
- * @brief Prze≥πcza tryb oúwietlenia.
+ * @brief Prze≈ÇƒÖcza tryb o≈õwietlenia.
  *
- * Funkcja ta prze≥πcza pomiÍdzy rÛønymi trybami oúwietlenia (brak, punktowe, kierunkowe, spot).
+ * Funkcja ta prze≈ÇƒÖcza pomiƒôdzy r√≥≈ºnymi trybami o≈õwietlenia (brak, punktowe, kierunkowe, spot).
  */
 void Light::switchLightingMode()
 {

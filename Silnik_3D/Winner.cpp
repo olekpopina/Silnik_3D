@@ -2,11 +2,11 @@
 
 /**
  * @brief Konstruktor klasy Winner.
- * Inicjalizuje okno, t³o oraz ustawia tekst z nazw¹ zwyciêzcy.
+ * Inicjalizuje okno, tÅ‚o oraz ustawia tekst z nazwÄ… zwyciÄ™zcy.
  *
- * @param width Szerokoœæ okna.
- * @param height Wysokoœæ okna.
- * @param winnerName Nazwa zwyciêzcy wyœwietlana na ekranie.
+ * @param width SzerokoÅ›Ä‡ okna.
+ * @param height WysokoÅ›Ä‡ okna.
+ * @param winnerName Nazwa zwyciÄ™zcy wyÅ›wietlana na ekranie.
  */
 Winner::Winner(unsigned int width, unsigned int height, const std::string& winnerName)
     : window(sf::VideoMode(width, height), "Winner"), winnerName(winnerName) {
@@ -32,9 +32,9 @@ Winner::Winner(unsigned int width, unsigned int height, const std::string& winne
 }
 
 /**
- * @brief Uruchamia pêtlê renderowania ekranu zwyciêzcy.
+ * @brief Uruchamia pÄ™tlÄ™ renderowania ekranu zwyciÄ™zcy.
  *
- * @return true jeœli u¿ytkownik zamkn¹³ okno zwyciêstwa.
+ * @return true jeÅ›li uÅ¼ytkownik zamknÄ…Å‚ okno zwyciÄ™stwa.
  */
 bool Winner::showWinnerScreen() {
     bool gameShouldFinish = false;
@@ -51,9 +51,9 @@ bool Winner::showWinnerScreen() {
 }
 
 /**
- * @brief Obs³uguje zdarzenia SFML, np. zamkniêcie okna.
+ * @brief ObsÅ‚uguje zdarzenia SFML, np. zamkniÄ™cie okna.
  *
- * @param gameShouldStart Flaga ustawiana na true jeœli okno nale¿y zamkn¹æ.
+ * @param gameShouldStart Flaga ustawiana na true jeÅ›li okno naleÅ¼y zamknÄ…Ä‡.
  */
 void Winner::processEvents(bool& gameShouldStart) {
     sf::Event event;
@@ -69,7 +69,7 @@ void Winner::processEvents(bool& gameShouldStart) {
 }
 
 /**
- * @brief Renderuje ekran zwyciêzcy: t³o oraz teksty.
+ * @brief Renderuje ekran zwyciÄ™zcy: tÅ‚o oraz teksty.
  */
 void Winner::render() {
     window.clear(sf::Color::Blue);

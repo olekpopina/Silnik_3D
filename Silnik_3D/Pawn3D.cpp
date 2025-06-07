@@ -13,18 +13,18 @@ Pawn3D::Pawn3D() : scene(nullptr) {}
 Pawn3D::~Pawn3D() {}
 
 /**
- * @brief £aduje model pionka 3D z pliku przy uøyciu Assimp.
+ * @brief ≈Åaduje model pionka 3D z pliku przy u≈ºyciu Assimp.
  *
- * @return true jeúli model za≥adowano poprawnie, false w przeciwnym razie.
+ * @return true je≈õli model za≈Çadowano poprawnie, false w przeciwnym razie.
  */
 bool Pawn3D::loadModel() {
-    std::string path = "images/pionek.obj"; // <<--- åcieøka do modelu 3D pionka
+    std::string path = "images/pionek.obj"; // <<--- ≈öcie≈ºka do modelu 3D pionka
 
     scene = importer.ReadFile(path,
         aiProcess_Triangulate | aiProcess_GenSmoothNormals);
 
     if (!scene) {
-        std::cerr << "B≥πd ≥adowania modelu: " << importer.GetErrorString() << std::endl;
+        std::cerr << "B≈ÇƒÖd ≈Çadowania modelu: " << importer.GetErrorString() << std::endl;
         return false;
     }
     return true;
@@ -49,7 +49,7 @@ void Pawn3D::draw() const {
                 std::min(1.0f, diffuse.b * brightnessScale));
         }
         else {
-            std::cout << "[WARN] Brak koloru w materiale ñ ustawiam szary domyslny." << std::endl;
+            std::cout << "[WARN] Brak koloru w materiale ‚Äì ustawiam szary domyslny." << std::endl;
             glColor3f(0.8f, 0.8f, 0.8f);
         }
         glBegin(GL_TRIANGLES);
@@ -78,7 +78,7 @@ void Pawn3D::draw() const {
  * @param y Pozycja Y na planszy (od 0 do 1).
  */
 void Pawn3D::draw3DPawnAtBlue(float x, float y) {
-    static float angle = 0.0f; // zapamiÍtuje wartoúÊ miÍdzy wywo≥aniami
+    static float angle = 0.0f; // zapamiƒôtuje warto≈õƒá miƒôdzy wywo≈Çaniami
     angle += 0.5f;
     if (angle >= 360.0f) angle -= 360.0f;
 
@@ -96,20 +96,20 @@ void Pawn3D::draw3DPawnAtBlue(float x, float y) {
     float vx = 0.0;
     float vy = 0.0;
     
-    gluLookAt(0, 0, 0.5f,  // kamera: trochÍ z gÛry i z przodu
-        0, 0, 0.0f,  // cel: úrodek planszy (na pionek)
-        0.0f, 1.0f, 0.0f); // oú Y w gÛrÍ
+    gluLookAt(0, 0, 0.5f,  // kamera: trochƒô z g√≥ry i z przodu
+        0, 0, 0.0f,  // cel: ≈õrodek planszy (na pionek)
+        0.0f, 1.0f, 0.0f); // o≈õ Y w g√≥rƒô
 
     float x1 = 0.0;
 
     glTranslatef(xc,yc, 0.0f);
     angle = 25.0f;
-    glRotatef(angle, 1.0f, 0.0f, 0.0f);    // ObrÛt wokÛ≥ osi Y
+    glRotatef(angle, 1.0f, 0.0f, 0.0f);    // Obr√≥t wok√≥≈Ç osi Y
     glScalef(0.1f, 0.1f, 0.1f);      // Skalowanie modelu
     GLfloat matAmbient[] = { 0.0f, 0.0f, 0.2f, 1.0f };  // jeszcze ciemniejszy niebieski
     GLfloat matDiffuse[] = { 0.0f, 0.0f, 0.4f, 1.0f };  // mniej intensywny
-    GLfloat matSpecular[] = { 0.0f, 0.0f, 0.0f, 1.0f }; // brak b≥ysku
-    GLfloat matShininess = 0.0f;                       // ca≥kowicie matowy
+    GLfloat matSpecular[] = { 0.0f, 0.0f, 0.0f, 1.0f }; // brak b≈Çysku
+    GLfloat matShininess = 0.0f;                       // ca≈Çkowicie matowy
 
 
     glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, matAmbient);
@@ -133,7 +133,7 @@ void Pawn3D::draw3DPawnAtBlue(float x, float y) {
  */
 void Pawn3D::draw3DPawnAtRed(float x, float y)
 {
-    static float angle = 0.0f; // zapamiÍtuje wartoúÊ miÍdzy wywo≥aniami
+    static float angle = 0.0f; // zapamiƒôtuje warto≈õƒá miƒôdzy wywo≈Çaniami
     angle += 0.5f;
     if (angle >= 360.0f) angle -= 360.0f;
 
@@ -151,21 +151,21 @@ void Pawn3D::draw3DPawnAtRed(float x, float y)
     float yc = y + 0.07 / 2;
     float vx = 0.0;
     float vy = 0.0;
-    gluLookAt(0, 0, 0.5f,  // kamera: troch? z gÛry i z przodu
+    gluLookAt(0, 0, 0.5f,  // kamera: troch? z g√≥ry i z przodu
         0, 0, 0.0f,  // cel: ?rodek planszy (na pionek)
-        0.0f, 1.0f, 0.0f); // o? Y w gÛr?
+        0.0f, 1.0f, 0.0f); // o? Y w g√≥r?
 
 
     float x1 = 0.0;
 
     glTranslatef(xc, yc, 0.0f);
     angle = 25.0f;
-    glRotatef(angle, 1.0f, 0.0f, 0.0f);    // ObrÛt wokÛ≥ osi Y
+    glRotatef(angle, 1.0f, 0.0f, 0.0f);    // Obr√≥t wok√≥≈Ç osi Y
     glScalef(0.1f, 0.1f, 0.1f);      // Skalowanie modelu
     GLfloat matAmbient[] = { 0.4f, 0.0f, 0.0f, 1.0f };// jeszcze ciemniejszy czerwony
     GLfloat matDiffuse[] = { 0.4f, 0.0f, 0.0f, 1.0f };  // mniej intensywny
-    GLfloat matSpecular[] = { 0.0f, 0.0f, 0.0f, 1.0f }; // brak b≥ysku
-    GLfloat matShininess = 0.0f;                       // ca≥kowicie matowy
+    GLfloat matSpecular[] = { 0.0f, 0.0f, 0.0f, 1.0f }; // brak b≈Çysku
+    GLfloat matShininess = 0.0f;                       // ca≈Çkowicie matowy
 
 
     glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, matAmbient);
@@ -182,14 +182,14 @@ void Pawn3D::draw3DPawnAtRed(float x, float y)
 }
 
 /**
- * @brief Rysuje øÛ≥ty pionek 3D w zadanej pozycji na planszy.
+ * @brief Rysuje ≈º√≥≈Çty pionek 3D w zadanej pozycji na planszy.
  *
  * @param x Pozycja X na planszy (od 0 do 1).
  * @param y Pozycja Y na planszy (od 0 do 1).
  */
 void Pawn3D::draw3DPawnAtYellow(float x, float y)
 {
-    static float angle = 0.0f; // zapamiÍtuje wartoúÊ miÍdzy wywo≥aniami
+    static float angle = 0.0f; // zapamiƒôtuje warto≈õƒá miƒôdzy wywo≈Çaniami
     angle += 0.5f;
     if (angle >= 360.0f) angle -= 360.0f;
 
@@ -208,20 +208,20 @@ void Pawn3D::draw3DPawnAtYellow(float x, float y)
     float yc = y + 0.07 / 2;
     float vx = 0.0;
     float vy = 0.0;
-    gluLookAt(0, 0, 0.5f,  // kamera: troch? z gÛry i z przodu
+    gluLookAt(0, 0, 0.5f,  // kamera: troch? z g√≥ry i z przodu
         0, 0, 0.0f,  // cel: ?rodek planszy (na pionek)
-        0.0f, 1.0f, 0.0f); // o? Y w gÛr?
+        0.0f, 1.0f, 0.0f); // o? Y w g√≥r?
 
     float x1 = 0.0;
 
     glTranslatef(xc, yc, 0.0f);
     angle = 25.0f;
-    glRotatef(angle, 1.0f, 0.0f, 0.0f);    // ObrÛt wokÛ≥ osi Y
+    glRotatef(angle, 1.0f, 0.0f, 0.0f);    // Obr√≥t wok√≥≈Ç osi Y
     glScalef(0.1f, 0.1f, 0.1f);      // Skalowanie modelu
-    GLfloat matAmbient[] = { 0.1f, 0.1f, 0.0f, 1.0f };  // bardzo ciemna øÛ≥Ê w cieniu
-    GLfloat matDiffuse[] = { 0.15f, 0.15f, 0.0f, 1.0f }; // bardzo ciemna øÛ≥Ê w úwietle
-    GLfloat matSpecular[] = { 0.0f, 0.0f, 0.0f, 1.0f };   // brak po≥ysku
-    GLfloat matShininess = 0.0f;                         // ca≥kowicie matowy
+    GLfloat matAmbient[] = { 0.1f, 0.1f, 0.0f, 1.0f };  // bardzo ciemna ≈º√≥≈Çƒá w cieniu
+    GLfloat matDiffuse[] = { 0.15f, 0.15f, 0.0f, 1.0f }; // bardzo ciemna ≈º√≥≈Çƒá w ≈õwietle
+    GLfloat matSpecular[] = { 0.0f, 0.0f, 0.0f, 1.0f };   // brak po≈Çysku
+    GLfloat matShininess = 0.0f;                         // ca≈Çkowicie matowy
 
     glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, matAmbient);
     glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, matDiffuse);
@@ -244,7 +244,7 @@ void Pawn3D::draw3DPawnAtYellow(float x, float y)
  */
 void Pawn3D::draw3DPawnAtGreen(float x, float y)
 {
-    static float angle = 0.0f; // zapamiÍtuje wartoúÊ miÍdzy wywo≥aniami
+    static float angle = 0.0f; // zapamiƒôtuje warto≈õƒá miƒôdzy wywo≈Çaniami
     angle += 0.5f;
     if (angle >= 360.0f) angle -= 360.0f;
 
@@ -263,20 +263,20 @@ void Pawn3D::draw3DPawnAtGreen(float x, float y)
     float yc = y + 0.07 / 2;
     float vx = 0.0;
     float vy = 0.0;
-    gluLookAt(0, 0, 0.5f,  // kamera: troch? z gÛry i z przodu
+    gluLookAt(0, 0, 0.5f,  // kamera: troch? z g√≥ry i z przodu
         0, 0, 0.0f,  // cel: ?rodek planszy (na pionek)
-        0.0f, 1.0f, 0.0f); // o? Y w gÛr?
+        0.0f, 1.0f, 0.0f); // o? Y w g√≥r?
 
     float x1 = 0.0;
 
     glTranslatef(xc, yc, 0.0f);
     angle = 25.0f;
-    glRotatef(angle, 1.0f, 0.0f, 0.0f);    // ObrÛt wokÛ≥ osi Y
+    glRotatef(angle, 1.0f, 0.0f, 0.0f);    // Obr√≥t wok√≥≈Ç osi Y
     glScalef(0.1f, 0.1f, 0.1f);      // Skalowanie modelu
-    GLfloat matAmbient[] = { 0.0f, 0.1f, 0.0f, 1.0f };  // bardzo ciemna zieleÒ w cieniu
-    GLfloat matDiffuse[] = { 0.0f, 0.15f, 0.0f, 1.0f }; // bardzo ciemna zieleÒ w úwietle
-    GLfloat matSpecular[] = { 0.0f, 0.0f, 0.0f, 1.0f };  // brak po≥ysku
-    GLfloat matShininess = 0.0f;                        // matowy wyglπd
+    GLfloat matAmbient[] = { 0.0f, 0.1f, 0.0f, 1.0f };  // bardzo ciemna ziele≈Ñ w cieniu
+    GLfloat matDiffuse[] = { 0.0f, 0.15f, 0.0f, 1.0f }; // bardzo ciemna ziele≈Ñ w ≈õwietle
+    GLfloat matSpecular[] = { 0.0f, 0.0f, 0.0f, 1.0f };  // brak po≈Çysku
+    GLfloat matShininess = 0.0f;                        // matowy wyglƒÖd
 
     glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, matAmbient);
     glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, matDiffuse);
@@ -292,7 +292,7 @@ void Pawn3D::draw3DPawnAtGreen(float x, float y)
 }
 
 /**
- * @brief Rysuje wszystkie pionki znajdujπce siÍ w domkach graczy.
+ * @brief Rysuje wszystkie pionki znajdujƒÖce siƒô w domkach graczy.
  */
 void Pawn3D::drawPawns()
 {
@@ -309,14 +309,14 @@ void Pawn3D::drawPawns()
         }
     }
     if (player1Name && !player1Name->empty() && redHouse) {
-        // Rysowanie czerwonych pionkÛw w domku
+        // Rysowanie czerwonych pionk√≥w w domku
         for (const auto& pos : *redHouse) {
             //bitmapHandler.drawPionek(pos.first, pos.second, 0.08f, 0.08f, bitmapHandler.texture_pionek);
             draw3DPawnAtRed(pos.first, pos.second);
         }
     }
     if (player2Name && !player2Name->empty() && blueHouse) {
-        // Rysowanie niebieskich pionkÛw w domku
+        // Rysowanie niebieskich pionk√≥w w domku
         for (const auto& pos : *blueHouse) {
             //bitmapHandler.drawPionek(pos.first, pos.second, 0.08f, 0.08f, bitmapHandler.texture_pionek2);
             draw3DPawnAtBlue(pos.first, pos.second);
@@ -325,7 +325,7 @@ void Pawn3D::drawPawns()
 }
 
 /**
- * @brief Rysuje wszystkie pionki bÍdπce aktualnie na planszy.
+ * @brief Rysuje wszystkie pionki bƒôdƒÖce aktualnie na planszy.
  */
 void Pawn3D::drawPawnsPlay()
 {
@@ -388,12 +388,12 @@ void Pawn3D::drawPawnsPlay()
 }
 
 /**
- * @brief Ustawia wskaüniki na nicki graczy.
+ * @brief Ustawia wska≈∫niki na nicki graczy.
  *
  * @param red Nick gracza czerwonego.
  * @param blue Nick gracza niebieskiego.
  * @param green Nick gracza zielonego.
- * @param yellow Nick gracza øÛ≥tego.
+ * @param yellow Nick gracza ≈º√≥≈Çtego.
  */
 void Pawn3D::setNicknames(const std::string* red, const std::string* blue,  
    const std::string* green, const std::string* yellow)  
@@ -405,10 +405,10 @@ void Pawn3D::setNicknames(const std::string* red, const std::string* blue,
 }
 
 /**
- * @brief Przypisuje wskaüniki na pozycje i statusy wszystkich pionkÛw w grze.
+ * @brief Przypisuje wska≈∫niki na pozycje i statusy wszystkich pionk√≥w w grze.
  *
- * Umoøliwia zewnÍtrznej klasie (np. Engine) aktualizacjÍ pozycji pionkÛw.
- * Przyjmuje aø 32 wskaüniki (4 graczy x 4 pionki x [bool + x + y]).
+ * Umo≈ºliwia zewnƒôtrznej klasie (np. Engine) aktualizacjƒô pozycji pionk√≥w.
+ * Przyjmuje a≈º 32 wska≈∫niki (4 graczy x 4 pionki x [bool + x + y]).
  */
 void Pawn3D::PlayPawnsPointers(bool* RedPlay, float* pawnXred, float* pawnYred, bool* RedPlay2, float* pawnXred2, float* pawnYred2,
     bool* RedPlay3, float* pawnXred3, float* pawnYred3, bool* RedPlay4, float* pawnXred4, float* pawnYred4,
@@ -485,11 +485,11 @@ void Pawn3D::PlayPawnsPointers(bool* RedPlay, float* pawnXred, float* pawnYred, 
 }
 
 /**
- * @brief Ustawia wskaüniki na wspÛ≥rzÍdne pÛl domkÛw dla kaødego gracza.
+ * @brief Ustawia wska≈∫niki na wsp√≥≈Çrzƒôdne p√≥l domk√≥w dla ka≈ºdego gracza.
  *
  * @param red Pozycje domku gracza czerwonego.
  * @param blue Pozycje domku gracza niebieskiego.
- * @param yellow Pozycje domku gracza øÛ≥tego.
+ * @param yellow Pozycje domku gracza ≈º√≥≈Çtego.
  * @param green Pozycje domku gracza zielonego.
  */
 void Pawn3D::setHousePointers(

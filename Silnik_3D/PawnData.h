@@ -8,10 +8,10 @@
 #include <GL/freeglut.h>
 
 /**
- * @brief Struktura przechowuj¹ca wszystkie dane i wskaŸniki zwi¹zane z jednym pionkiem w grze.
+ * @brief Struktura przechowujÄ…ca wszystkie dane i wskaÅºniki zwiÄ…zane z jednym pionkiem w grze.
  *
- * Struktura `PawnData` grupuje dane potrzebne do obs³ugi logiki, animacji i rysowania pojedynczego pionka.
- * Przechowuje odniesienia (referencje) do pozycji, stanu ruchu, tekstury i œcie¿ki, co pozwala zarz¹dzaæ pionkami dynamicznie.
+ * Struktura `PawnData` grupuje dane potrzebne do obsÅ‚ugi logiki, animacji i rysowania pojedynczego pionka.
+ * Przechowuje odniesienia (referencje) do pozycji, stanu ruchu, tekstury i Å›cieÅ¼ki, co pozwala zarzÄ…dzaÄ‡ pionkami dynamicznie.
  */
 struct PawnData {
     float& pawnX;

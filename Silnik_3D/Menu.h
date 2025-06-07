@@ -4,15 +4,15 @@
 #include <iostream>
 
 /**
- * @brief Klasa reprezentujπca menu startowe gry Ludo (ChiÒczyk).
+ * @brief Klasa reprezentujƒÖca menu startowe gry Ludo (Chi≈Ñczyk).
  *
- * Klasa `Menu` odpowiada za wyúwietlenie okna startowego, pobranie nazw (nickÛw)
- * graczy oraz rozpoczÍcie gry po klikniÍciu przycisku ÑStartî.
+ * Klasa `Menu` odpowiada za wy≈õwietlenie okna startowego, pobranie nazw (nick√≥w)
+ * graczy oraz rozpoczƒôcie gry po klikniƒôciu przycisku ‚ÄûStart‚Äù.
  *
- * Umoøliwia wpisanie nazw dla maksymalnie 4 graczy i przekazuje je dalej
- * do silnika gry (`Engine`). Obs≥uguje teø proste okno dialogowe do wprowadzania tekstu.
+ * Umo≈ºliwia wpisanie nazw dla maksymalnie 4 graczy i przekazuje je dalej
+ * do silnika gry (`Engine`). Obs≈Çuguje te≈º proste okno dialogowe do wprowadzania tekstu.
  *
- * @note Klasa uøywa biblioteki SFML do obs≥ugi okna, renderowania i zdarzeÒ.
+ * @note Klasa u≈ºywa biblioteki SFML do obs≈Çugi okna, renderowania i zdarze≈Ñ.
  */
 class Menu {
 public:

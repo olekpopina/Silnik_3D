@@ -9,16 +9,16 @@
 #include <iostream>
 
 /**
- * @brief Klasa odpowiedzialna za rysowanie i obs³ugê pionków 3D w grze Ludo.
+ * @brief Klasa odpowiedzialna za rysowanie i obsÅ‚ugÄ™ pionkÃ³w 3D w grze Ludo.
  *
- * Klasa `Pawn3D` umo¿liwia:
- * - ³adowanie modeli pionków 3D przy pomocy biblioteki Assimp,
- * - rysowanie pionków w domkach i na planszy w odpowiednich kolorach,
- * - pod³¹czenie wskaŸników do wspó³rzêdnych pionków i ich stanu (czy s¹ na planszy),
- * - ustawienie œcie¿ek domków graczy i przypisanie nicków do graczy.
+ * Klasa `Pawn3D` umoÅ¼liwia:
+ * - Å‚adowanie modeli pionkÃ³w 3D przy pomocy biblioteki Assimp,
+ * - rysowanie pionkÃ³w w domkach i na planszy w odpowiednich kolorach,
+ * - podÅ‚Ä…czenie wskaÅºnikÃ³w do wspÃ³Å‚rzÄ™dnych pionkÃ³w i ich stanu (czy sÄ… na planszy),
+ * - ustawienie Å›cieÅ¼ek domkÃ³w graczy i przypisanie nickÃ³w do graczy.
  *
- * Przechowuje równie¿ wskaŸniki na stany pionków i ich pozycje, co pozwala na
- * aktualizowanie pozycji z poziomu zewnêtrznego silnika gry (`Engine`).
+ * Przechowuje rÃ³wnieÅ¼ wskaÅºniki na stany pionkÃ³w i ich pozycje, co pozwala na
+ * aktualizowanie pozycji z poziomu zewnÄ™trznego silnika gry (`Engine`).
  */
 class Pawn3D {
 public:

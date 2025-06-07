@@ -1,0 +1,217 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pl">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Silnik_3D: Dokumentacja pliku D:/Silnik_3D/Silnik_3D/Engine.cpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Silnik_3D
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Wygenerowano za pomocą Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Szukaj',false);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Wczytywanie...</div>
+<div class="SRStatus" id="Searching">Szukanie...</div>
+<div class="SRStatus" id="NoMatches">Brak dopasowań</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#func-members">Funkcje</a> &#124;
+<a href="#var-members">Zmienne</a>  </div>
+  <div class="headertitle"><div class="title">Dokumentacja pliku D:/Silnik_3D/Silnik_3D/Engine.cpp</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &quot;<a class="el" href="_engine_8h_source.html">Engine.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_cube_8h_source.html">Cube.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_triangle_8h_source.html">Triangle.h</a>&quot;</code><br />
+<code>#include &lt;array&gt;</code><br />
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Funkcje</h2></td></tr>
+<tr class="memitem:aa20bbdb61e5c5283e2693a26baa19240" id="r_aa20bbdb61e5c5283e2693a26baa19240"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa20bbdb61e5c5283e2693a26baa19240">drawText</a> (float x, float y, const std::string &amp;text)</td></tr>
+<tr class="memdesc:aa20bbdb61e5c5283e2693a26baa19240"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rysuje tekst w trybie 2D w zadanej pozycji na ekranie.  <br /></td></tr>
+<tr class="separator:aa20bbdb61e5c5283e2693a26baa19240"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+Zmienne</h2></td></tr>
+<tr class="memitem:a4b3223914daf849dc1070382e080d0ca" id="r_a4b3223914daf849dc1070382e080d0ca"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_cube.html">Cube</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4b3223914daf849dc1070382e080d0ca">cube</a></td></tr>
+<tr class="separator:a4b3223914daf849dc1070382e080d0ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a25bf21422ce02f95827c35cfad14bccb" id="r_a25bf21422ce02f95827c35cfad14bccb"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a25bf21422ce02f95827c35cfad14bccb">pI</a> = 0</td></tr>
+<tr class="separator:a25bf21422ce02f95827c35cfad14bccb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aca09286cd8b3d4183f0d74bad38fff6e" id="r_aca09286cd8b3d4183f0d74bad38fff6e"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aca09286cd8b3d4183f0d74bad38fff6e">cooldown</a> = 250</td></tr>
+<tr class="separator:aca09286cd8b3d4183f0d74bad38fff6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afea36502e9d227ff62c5fb2719a246f2" id="r_afea36502e9d227ff62c5fb2719a246f2"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afea36502e9d227ff62c5fb2719a246f2">t</a> = <a class="el" href="#aca09286cd8b3d4183f0d74bad38fff6e">cooldown</a></td></tr>
+<tr class="separator:afea36502e9d227ff62c5fb2719a246f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Dokumentacja funkcji</h2>
+<a id="aa20bbdb61e5c5283e2693a26baa19240" name="aa20bbdb61e5c5283e2693a26baa19240"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa20bbdb61e5c5283e2693a26baa19240">&#9670;&#160;</a></span>drawText()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void drawText </td>
+          <td>(</td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>x</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>y</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>text</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Rysuje tekst w trybie 2D w zadanej pozycji na ekranie. </p>
+<p>Funkcja ustawia pozycję startową tekstu w przestrzeni ekranu (ortho) i wypisuje go znak po znaku za pomocą czcionki GLUT (Helvetica 18).</p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>Pozycja X tekstu w układzie współrzędnych ekranu (zakres 0.0 – 1.0). </td></tr>
+    <tr><td class="paramname">y</td><td>Pozycja Y tekstu w układzie współrzędnych ekranu (zakres 0.0 – 1.0). </td></tr>
+    <tr><td class="paramname">text</td><td>Tekst do wyświetlenia. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Dokumentacja zmiennych</h2>
+<a id="aca09286cd8b3d4183f0d74bad38fff6e" name="aca09286cd8b3d4183f0d74bad38fff6e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aca09286cd8b3d4183f0d74bad38fff6e">&#9670;&#160;</a></span>cooldown</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float cooldown = 250</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4b3223914daf849dc1070382e080d0ca" name="a4b3223914daf849dc1070382e080d0ca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4b3223914daf849dc1070382e080d0ca">&#9670;&#160;</a></span>cube</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_cube.html">Cube</a> cube</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a25bf21422ce02f95827c35cfad14bccb" name="a25bf21422ce02f95827c35cfad14bccb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a25bf21422ce02f95827c35cfad14bccb">&#9670;&#160;</a></span>pI</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int pI = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="afea36502e9d227ff62c5fb2719a246f2" name="afea36502e9d227ff62c5fb2719a246f2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afea36502e9d227ff62c5fb2719a246f2">&#9670;&#160;</a></span>t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float t = <a class="el" href="#aca09286cd8b3d4183f0d74bad38fff6e">cooldown</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Wygenerowano za pomocą&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

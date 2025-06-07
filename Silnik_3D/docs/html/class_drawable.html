@@ -1,0 +1,194 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pl">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Silnik_3D: Dokumentacja klasy Drawable</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Silnik_3D
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Wygenerowano za pomocą Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Szukaj',false);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Wczytywanie...</div>
+<div class="SRStatus" id="Searching">Szukanie...</div>
+<div class="SRStatus" id="NoMatches">Brak dopasowań</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Metody publiczne</a> &#124;
+<a href="class_drawable-members.html">Lista wszystkich składowych</a>  </div>
+  <div class="headertitle"><div class="title">Dokumentacja klasy Drawable<span class="mlabels"><span class="mlabel abstract">abstract</span></span></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Interfejs dla obiektów, które mogą być rysowane.  
+ <a href="#details">Więcej...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_drawable_8h_source.html">Drawable.h</a>&gt;</code></p>
+<div class="dynheader">
+Diagram dziedziczenia dla Drawable</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="class_drawable.png" usemap="#Drawable_map" alt=""/>
+  <map id="Drawable_map" name="Drawable_map">
+<area href="class_transformable_object.html" title="Klasa reprezentująca obiekt, który można transformować w przestrzeni 3D." alt="TransformableObject" shape="rect" coords="210,56,340,80"/>
+<area href="class_cube.html" title="Klasa reprezentująca sześcian 3D, dziedzicząca po TransformableObject." alt="Cube" shape="rect" coords="0,112,130,136"/>
+<area href="class_line.html" title="Klasa reprezentująca linię w przestrzeni 3D." alt="Line" shape="rect" coords="140,112,270,136"/>
+<area href="class_point.html" title="Reprezentuje punkt w przestrzeni 3D." alt="Point" shape="rect" coords="280,112,410,136"/>
+<area href="class_triangle.html" title="Klasa reprezentująca trójkąt." alt="Triangle" shape="rect" coords="420,112,550,136"/>
+  </map>
+</div></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Metody publiczne</h2></td></tr>
+<tr class="memitem:ad01732eb7df822045fb3fd830d5f5f22" id="r_ad01732eb7df822045fb3fd830d5f5f22"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad01732eb7df822045fb3fd830d5f5f22">draw</a> () const =0</td></tr>
+<tr class="memdesc:ad01732eb7df822045fb3fd830d5f5f22"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja rysująca obiekt.  <br /></td></tr>
+<tr class="separator:ad01732eb7df822045fb3fd830d5f5f22"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a489905d7db51e37ceee8fc7eaff6a762" id="r_a489905d7db51e37ceee8fc7eaff6a762"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a489905d7db51e37ceee8fc7eaff6a762">~Drawable</a> ()=default</td></tr>
+<tr class="memdesc:a489905d7db51e37ceee8fc7eaff6a762"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wirtualny destruktor.  <br /></td></tr>
+<tr class="separator:a489905d7db51e37ceee8fc7eaff6a762"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Opis szczegółowy</h2>
+<div class="textblock"><p>Interfejs dla obiektów, które mogą być rysowane. </p>
+<p>Klasa ta definiuje podstawowy interfejs dla wszystkich obiektów, które wymagają funkcji rysującej. Każda klasa, która chce być rysowana, musi implementować metodę <code><a class="el" href="#ad01732eb7df822045fb3fd830d5f5f22" title="Funkcja rysująca obiekt.">draw()</a></code>. </p>
+</div><h2 class="groupheader">Dokumentacja konstruktora i destruktora</h2>
+<a id="a489905d7db51e37ceee8fc7eaff6a762" name="a489905d7db51e37ceee8fc7eaff6a762"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a489905d7db51e37ceee8fc7eaff6a762">&#9670;&#160;</a></span>~Drawable()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual Drawable::~Drawable </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel virtual">virtual</span><span class="mlabel default">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Wirtualny destruktor. </p>
+<p>Wirtualny destruktor, zapewniający prawidłowe usuwanie obiektów w hierarchii dziedziczenia, gdy są usuwane przez wskaźnik do klasy bazowej. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Dokumentacja funkcji składowych</h2>
+<a id="ad01732eb7df822045fb3fd830d5f5f22" name="ad01732eb7df822045fb3fd830d5f5f22"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad01732eb7df822045fb3fd830d5f5f22">&#9670;&#160;</a></span>draw()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void Drawable::draw </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel pure-virtual">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Funkcja rysująca obiekt. </p>
+<p>Wirtualna funkcja czysto wirtualna, która musi zostać zaimplementowana w każdej klasie dziedziczącej. Odpowiada za rysowanie obiektu na ekranie. </p>
+
+<p>Implementowany w <a class="el" href="class_cube.html#a79a0991eac9baba71e610995bf95405d">Cube</a>, <a class="el" href="class_line.html#adb1aa4d03526e04275ef9abe8d286866">Line</a>, <a class="el" href="class_point.html#a19a3dfe182236758e4faa33615520663">Point</a> i <a class="el" href="class_triangle.html#a796d7569e63291151de1a3e8801e1614">Triangle</a>.</p>
+
+</div>
+</div>
+<hr/>Dokumentacja dla tej klasy została wygenerowana z pliku:<ul>
+<li>D:/Silnik_3D/Silnik_3D/<a class="el" href="_drawable_8h_source.html">Drawable.h</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Wygenerowano za pomocą&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

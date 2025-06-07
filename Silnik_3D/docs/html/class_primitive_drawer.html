@@ -1,0 +1,734 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pl">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Silnik_3D: Dokumentacja klasy PrimitiveDrawer</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Silnik_3D
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Wygenerowano za pomocą Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Szukaj',false);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Wczytywanie...</div>
+<div class="SRStatus" id="Searching">Szukanie...</div>
+<div class="SRStatus" id="NoMatches">Brak dopasowań</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-static-methods">Statyczne metody publiczne</a> &#124;
+<a href="#pub-static-attribs">Statyczne atrybuty publiczne</a> &#124;
+<a href="#pri-static-attribs">Statyczne atrybuty prywatne</a> &#124;
+<a href="class_primitive_drawer-members.html">Lista wszystkich składowych</a>  </div>
+  <div class="headertitle"><div class="title">Dokumentacja klasy PrimitiveDrawer</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Klasa służąca do rysowania różnych prymitywów w przestrzeni 3D przy użyciu OpenGL.  
+ <a href="#details">Więcej...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_primitive_drawer_8h_source.html">PrimitiveDrawer.h</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+Statyczne metody publiczne</h2></td></tr>
+<tr class="memitem:ada72b96fc7e21a801ff76df80808834e" id="r_ada72b96fc7e21a801ff76df80808834e"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ada72b96fc7e21a801ff76df80808834e">setShadingMode</a> (<a class="el" href="_shading_mode_8h.html#a474716bb9224d44d614704a0bd331d99">ShadingMode</a> mode)</td></tr>
+<tr class="memdesc:ada72b96fc7e21a801ff76df80808834e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ustawia tryb cieniowania dla obiektów.  <br /></td></tr>
+<tr class="separator:ada72b96fc7e21a801ff76df80808834e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af9be9deb7818169eee94e3b796723857" id="r_af9be9deb7818169eee94e3b796723857"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af9be9deb7818169eee94e3b796723857">drawPoint</a> (float x, float y, float z, float size=1.0f)</td></tr>
+<tr class="memdesc:af9be9deb7818169eee94e3b796723857"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rysuje punkt w przestrzeni 3D.  <br /></td></tr>
+<tr class="separator:af9be9deb7818169eee94e3b796723857"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac152e8d6dc8d06699ffbf005259c83a8" id="r_ac152e8d6dc8d06699ffbf005259c83a8"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac152e8d6dc8d06699ffbf005259c83a8">drawLine</a> (float x1, float y1, float z1, float x2, float y2, float z2, float width=2.0f)</td></tr>
+<tr class="memdesc:ac152e8d6dc8d06699ffbf005259c83a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rysuje linię między dwoma punktami w przestrzeni 3D.  <br /></td></tr>
+<tr class="separator:ac152e8d6dc8d06699ffbf005259c83a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aed5e5f8ddf147f2e2660d884073b333e" id="r_aed5e5f8ddf147f2e2660d884073b333e"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aed5e5f8ddf147f2e2660d884073b333e">drawTriangle</a> (const float vertices1[9], const float vertices2[9], const float vertices3[9], const float colors[9], float posX, float posY, float scale, float rotationAngle)</td></tr>
+<tr class="memdesc:aed5e5f8ddf147f2e2660d884073b333e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rysuje trójkąt w przestrzeni 3D.  <br /></td></tr>
+<tr class="separator:aed5e5f8ddf147f2e2660d884073b333e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7fb262e8f2bda889a2666a44fa03e4ef" id="r_a7fb262e8f2bda889a2666a44fa03e4ef"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7fb262e8f2bda889a2666a44fa03e4ef">drawCubeWithTexture</a> (float scale, float offsetX, float offsetY, <a class="el" href="class_bitmap_handler.html">BitmapHandler</a> &amp;bitmapHandler)</td></tr>
+<tr class="memdesc:a7fb262e8f2bda889a2666a44fa03e4ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rysuje sześcian z teksturą.  <br /></td></tr>
+<tr class="separator:a7fb262e8f2bda889a2666a44fa03e4ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab94ec5b9270903c1c2a96300e9bab99a" id="r_ab94ec5b9270903c1c2a96300e9bab99a"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab94ec5b9270903c1c2a96300e9bab99a">configureLight</a> (GLenum light, const GLfloat *position, const GLfloat *ambient, const GLfloat *diffuse, const GLfloat *specular, const GLfloat *direction=nullptr, float cutoff=180.0f, float exponent=0.0f)</td></tr>
+<tr class="memdesc:ab94ec5b9270903c1c2a96300e9bab99a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Konfiguruje światło w OpenGL.  <br /></td></tr>
+<tr class="separator:ab94ec5b9270903c1c2a96300e9bab99a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af449468139bf41438c5ca5665be5713a" id="r_af449468139bf41438c5ca5665be5713a"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af449468139bf41438c5ca5665be5713a">drawCube</a> (float scale, float offsetX, float offsetY, const float *vertices, const unsigned int *indices, const float *normals, const float *colors)</td></tr>
+<tr class="memdesc:af449468139bf41438c5ca5665be5713a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rysuje sześcian w przestrzeni 3D.  <br /></td></tr>
+<tr class="separator:af449468139bf41438c5ca5665be5713a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-attribs" name="pub-static-attribs"></a>
+Statyczne atrybuty publiczne</h2></td></tr>
+<tr class="memitem:a34f4f7e9ac26feff3ba82398a7ed91e1" id="r_a34f4f7e9ac26feff3ba82398a7ed91e1"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a34f4f7e9ac26feff3ba82398a7ed91e1">textureSet</a></td></tr>
+<tr class="memdesc:a34f4f7e9ac26feff3ba82398a7ed91e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zmienna statyczna do przechowywania ustawionego trybu cieniowania.  <br /></td></tr>
+<tr class="separator:a34f4f7e9ac26feff3ba82398a7ed91e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a35266e039b30140c95cef333f2ec3b76" id="r_a35266e039b30140c95cef333f2ec3b76"><td class="memItemLeft" align="right" valign="top">static GLuint&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a35266e039b30140c95cef333f2ec3b76">textures</a> [6]</td></tr>
+<tr class="memdesc:a35266e039b30140c95cef333f2ec3b76"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tablica przechowująca tekstury dla sześcianu.  <br /></td></tr>
+<tr class="separator:a35266e039b30140c95cef333f2ec3b76"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-static-attribs" name="pri-static-attribs"></a>
+Statyczne atrybuty prywatne</h2></td></tr>
+<tr class="memitem:a9f420994cd4adf938d7831be2a2a4ab9" id="r_a9f420994cd4adf938d7831be2a2a4ab9"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="_shading_mode_8h.html#a474716bb9224d44d614704a0bd331d99">ShadingMode</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9f420994cd4adf938d7831be2a2a4ab9">currentShadingMode</a> = <a class="el" href="_shading_mode_8h.html#a474716bb9224d44d614704a0bd331d99a464948bf38663fe1c4053f72402b63d5">ShadingMode::SMOOTH</a></td></tr>
+<tr class="memdesc:a9f420994cd4adf938d7831be2a2a4ab9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zmienna statyczna przechowująca bieżący tryb cieniowania.  <br /></td></tr>
+<tr class="separator:a9f420994cd4adf938d7831be2a2a4ab9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Opis szczegółowy</h2>
+<div class="textblock"><p>Klasa służąca do rysowania różnych prymitywów w przestrzeni 3D przy użyciu OpenGL. </p>
+<p>Klasa zapewnia statyczne metody do rysowania punktów, linii, trójkątów, sześcianów z teksturami, konfigurowania oświetlenia oraz ustalania trybu cieniowania. </p>
+</div><h2 class="groupheader">Dokumentacja funkcji składowych</h2>
+<a id="ab94ec5b9270903c1c2a96300e9bab99a" name="ab94ec5b9270903c1c2a96300e9bab99a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab94ec5b9270903c1c2a96300e9bab99a">&#9670;&#160;</a></span>configureLight()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PrimitiveDrawer::configureLight </td>
+          <td>(</td>
+          <td class="paramtype">GLenum</td>          <td class="paramname"><span class="paramname"><em>light</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const GLfloat *</td>          <td class="paramname"><span class="paramname"><em>position</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const GLfloat *</td>          <td class="paramname"><span class="paramname"><em>ambient</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const GLfloat *</td>          <td class="paramname"><span class="paramname"><em>diffuse</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const GLfloat *</td>          <td class="paramname"><span class="paramname"><em>specular</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const GLfloat *</td>          <td class="paramname"><span class="paramname"><em>direction</em></span><span class="paramdefsep"> = </span><span class="paramdefval">nullptr</span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>cutoff</em></span><span class="paramdefsep"> = </span><span class="paramdefval">180.0f</span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>exponent</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0.0f</span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Konfiguruje światło w OpenGL. </p>
+<p>Ustawia parametry światła, takie jak pozycja, kolor ambient, kolor rozproszenia, kolor odbicia, kąt i współczynnik wygładzenia.</p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">light</td><td>Identyfikator źródła światła (np. GL_LIGHT0). </td></tr>
+    <tr><td class="paramname">position</td><td>Pozycja źródła światła. </td></tr>
+    <tr><td class="paramname">ambient</td><td>Kolor ambient źródła światła. </td></tr>
+    <tr><td class="paramname">diffuse</td><td>Kolor rozproszenia źródła światła. </td></tr>
+    <tr><td class="paramname">specular</td><td>Kolor odbicia źródła światła. </td></tr>
+    <tr><td class="paramname">direction</td><td>Kierunek światła (opcjonalnie). </td></tr>
+    <tr><td class="paramname">cutoff</td><td>Kąt odcięcia światła (opcjonalnie, domyślnie 180.0f). </td></tr>
+    <tr><td class="paramname">exponent</td><td>Współczynnik wygładzenia światła (opcjonalnie, domyślnie 0.0f).</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Konfiguruje światło w scenie.</p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">light</td><td>Numer światła (np. GL_LIGHT0). </td></tr>
+    <tr><td class="paramname">position</td><td>Pozycja światła w przestrzeni 3D. </td></tr>
+    <tr><td class="paramname">ambient</td><td>Kolor otoczenia światła. </td></tr>
+    <tr><td class="paramname">diffuse</td><td>Kolor rozproszonego światła. </td></tr>
+    <tr><td class="paramname">specular</td><td>Kolor światła odbitego. </td></tr>
+    <tr><td class="paramname">direction</td><td>Kierunek światła spot (opcjonalny). </td></tr>
+    <tr><td class="paramname">cutoff</td><td>Kąt cięcia światła spot (opcjonalny). </td></tr>
+    <tr><td class="paramname">exponent</td><td>Współczynnik eksponenta dla światła spot (opcjonalny). </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="af449468139bf41438c5ca5665be5713a" name="af449468139bf41438c5ca5665be5713a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af449468139bf41438c5ca5665be5713a">&#9670;&#160;</a></span>drawCube()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PrimitiveDrawer::drawCube </td>
+          <td>(</td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>scale</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>offsetX</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>offsetY</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float *</td>          <td class="paramname"><span class="paramname"><em>vertices</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned int *</td>          <td class="paramname"><span class="paramname"><em>indices</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float *</td>          <td class="paramname"><span class="paramname"><em>normals</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float *</td>          <td class="paramname"><span class="paramname"><em>colors</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Rysuje sześcian w przestrzeni 3D. </p>
+<p>Rysuje sześcian przy użyciu zadanych wierzchołków, indeksów, normalnych i kolorów.</p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">scale</td><td>Skala sześcianu. </td></tr>
+    <tr><td class="paramname">offsetX</td><td>Przesunięcie w osi X. </td></tr>
+    <tr><td class="paramname">offsetY</td><td>Przesunięcie w osi Y. </td></tr>
+    <tr><td class="paramname">vertices</td><td>Tablica wierzchołków sześcianu. </td></tr>
+    <tr><td class="paramname">indices</td><td>Tablica indeksów wierzchołków sześcianu. </td></tr>
+    <tr><td class="paramname">normals</td><td>Tablica normalnych dla każdego wierzchołka. </td></tr>
+    <tr><td class="paramname">colors</td><td>Tablica kolorów dla każdego wierzchołka.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Rysuje sześcian w przestrzeni 3D.</p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">scale</td><td>Skalowanie sześcianu. </td></tr>
+    <tr><td class="paramname">offsetX</td><td>Przesunięcie wzdłuż osi X. </td></tr>
+    <tr><td class="paramname">offsetY</td><td>Przesunięcie wzdłuż osi Y. </td></tr>
+    <tr><td class="paramname">vertices</td><td>Tablica wierzchołków sześcianu. </td></tr>
+    <tr><td class="paramname">indices</td><td>Tablica indeksów wierzchołków. </td></tr>
+    <tr><td class="paramname">normals</td><td>Tablica normalnych wierzchołków. </td></tr>
+    <tr><td class="paramname">colors</td><td>Tablica kolorów przypisanych do wierzchołków. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a7fb262e8f2bda889a2666a44fa03e4ef" name="a7fb262e8f2bda889a2666a44fa03e4ef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7fb262e8f2bda889a2666a44fa03e4ef">&#9670;&#160;</a></span>drawCubeWithTexture()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PrimitiveDrawer::drawCubeWithTexture </td>
+          <td>(</td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>scale</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>offsetX</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>offsetY</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_bitmap_handler.html">BitmapHandler</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>bitmapHandler</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Rysuje sześcian z teksturą. </p>
+<p>Rysuje sześcian o zadanej skali i przesunięciu, używając tekstury wczytanej przy pomocy obiektu <code><a class="el" href="class_bitmap_handler.html" title="Klasa do obsługi tekstur w aplikacjach wykorzystujących OpenGL.">BitmapHandler</a></code>.</p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">scale</td><td>Skala sześcianu. </td></tr>
+    <tr><td class="paramname">offsetX</td><td>Przesunięcie w osi X. </td></tr>
+    <tr><td class="paramname">offsetY</td><td>Przesunięcie w osi Y. </td></tr>
+    <tr><td class="paramname">bitmapHandler</td><td>Obiekt do obsługi bitmapy (tekstury).</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Rysuje sześcian z teksturą w przestrzeni 3D.</p>
+<p>Funkcja rysuje sześcian w przestrzeni 3D, przypisując odpowiednie tekstury do każdej z jego ścian. Tekstury są wybierane na podstawie numeru zestawu, który jest określony przez zmienną <code>textureSet</code>.</p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">scale</td><td>Skalowanie sześcianu. </td></tr>
+    <tr><td class="paramname">offsetX</td><td>Przesunięcie wzdłuż osi X. </td></tr>
+    <tr><td class="paramname">offsetY</td><td>Przesunięcie wzdłuż osi Y. </td></tr>
+    <tr><td class="paramname">bitmapHandler</td><td>Obiekt klasy <code><a class="el" href="class_bitmap_handler.html" title="Klasa do obsługi tekstur w aplikacjach wykorzystujących OpenGL.">BitmapHandler</a></code> zawierający tekstury, które będą używane do renderowania sześcianu. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ac152e8d6dc8d06699ffbf005259c83a8" name="ac152e8d6dc8d06699ffbf005259c83a8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac152e8d6dc8d06699ffbf005259c83a8">&#9670;&#160;</a></span>drawLine()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PrimitiveDrawer::drawLine </td>
+          <td>(</td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>x1</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>y1</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>z1</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>x2</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>y2</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>z2</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>width</em></span><span class="paramdefsep"> = </span><span class="paramdefval">2.0f</span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Rysuje linię między dwoma punktami w przestrzeni 3D. </p>
+<p>Rysuje linię od punktu (x1, y1, z1) do punktu (x2, y2, z2) o zadanej szerokości.</p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x1</td><td>Współrzędna X pierwszego punktu. </td></tr>
+    <tr><td class="paramname">y1</td><td>Współrzędna Y pierwszego punktu. </td></tr>
+    <tr><td class="paramname">z1</td><td>Współrzędna Z pierwszego punktu. </td></tr>
+    <tr><td class="paramname">x2</td><td>Współrzędna X drugiego punktu. </td></tr>
+    <tr><td class="paramname">y2</td><td>Współrzędna Y drugiego punktu. </td></tr>
+    <tr><td class="paramname">z2</td><td>Współrzędna Z drugiego punktu. </td></tr>
+    <tr><td class="paramname">width</td><td>Szerokość linii (domyślnie 2.0f).</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Rysuje linię między dwoma punktami w przestrzeni 3D.</p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x1</td><td>Współrzędna X pierwszego punktu. </td></tr>
+    <tr><td class="paramname">y1</td><td>Współrzędna Y pierwszego punktu. </td></tr>
+    <tr><td class="paramname">z1</td><td>Współrzędna Z pierwszego punktu. </td></tr>
+    <tr><td class="paramname">x2</td><td>Współrzędna X drugiego punktu. </td></tr>
+    <tr><td class="paramname">y2</td><td>Współrzędna Y drugiego punktu. </td></tr>
+    <tr><td class="paramname">z2</td><td>Współrzędna Z drugiego punktu. </td></tr>
+    <tr><td class="paramname">width</td><td>Szerokość linii (domyślnie 2.0f). </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="af9be9deb7818169eee94e3b796723857" name="af9be9deb7818169eee94e3b796723857"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af9be9deb7818169eee94e3b796723857">&#9670;&#160;</a></span>drawPoint()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PrimitiveDrawer::drawPoint </td>
+          <td>(</td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>x</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>y</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>z</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>size</em></span><span class="paramdefsep"> = </span><span class="paramdefval">1.0f</span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Rysuje punkt w przestrzeni 3D. </p>
+<p>Używa OpenGL do rysowania punktu o zadanej pozycji (x, y, z) oraz rozmiarze.</p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>Współrzędna X punktu. </td></tr>
+    <tr><td class="paramname">y</td><td>Współrzędna Y punktu. </td></tr>
+    <tr><td class="paramname">z</td><td>Współrzędna Z punktu. </td></tr>
+    <tr><td class="paramname">size</td><td>Rozmiar punktu (domyślnie 1.0f).</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Rysuje punkt w przestrzeni 3D.</p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>Współrzędna X punktu. </td></tr>
+    <tr><td class="paramname">y</td><td>Współrzędna Y punktu. </td></tr>
+    <tr><td class="paramname">z</td><td>Współrzędna Z punktu. </td></tr>
+    <tr><td class="paramname">size</td><td>Rozmiar punktu (domyślnie 1.0f). </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aed5e5f8ddf147f2e2660d884073b333e" name="aed5e5f8ddf147f2e2660d884073b333e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aed5e5f8ddf147f2e2660d884073b333e">&#9670;&#160;</a></span>drawTriangle()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PrimitiveDrawer::drawTriangle </td>
+          <td>(</td>
+          <td class="paramtype">const float</td>          <td class="paramname"><span class="paramname"><em>vertices1</em></span>[9], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float</td>          <td class="paramname"><span class="paramname"><em>vertices2</em></span>[9], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float</td>          <td class="paramname"><span class="paramname"><em>vertices3</em></span>[9], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float</td>          <td class="paramname"><span class="paramname"><em>colors</em></span>[9], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>posX</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>posY</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>scale</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>rotationAngle</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Rysuje trójkąt w przestrzeni 3D. </p>
+<p>Rysuje trójkąt złożony z trzech wierzchołków, określonych przez tablice <code>vertices1</code>, <code>vertices2</code>, <code>vertices3</code> oraz przypisanych kolorów z tablicy <code>colors</code>. Można ustawić również pozycję, skalę i kąt obrotu.</p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">vertices1</td><td>Współrzędne pierwszego wierzchołka trójkąta. </td></tr>
+    <tr><td class="paramname">vertices2</td><td>Współrzędne drugiego wierzchołka trójkąta. </td></tr>
+    <tr><td class="paramname">vertices3</td><td>Współrzędne trzeciego wierzchołka trójkąta. </td></tr>
+    <tr><td class="paramname">colors</td><td>Kolory wierzchołków. </td></tr>
+    <tr><td class="paramname">posX</td><td>Współrzędna X pozycji trójkąta. </td></tr>
+    <tr><td class="paramname">posY</td><td>Współrzędna Y pozycji trójkąta. </td></tr>
+    <tr><td class="paramname">scale</td><td>Skala trójkąta. </td></tr>
+    <tr><td class="paramname">rotationAngle</td><td>Kąt obrotu trójkąta.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Rysuje trójkąt w przestrzeni 3D.</p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">vertices1</td><td>Tablica zawierająca wierzchołki pierwszego trójkąta. </td></tr>
+    <tr><td class="paramname">vertices2</td><td>Tablica zawierająca wierzchołki drugiego trójkąta. </td></tr>
+    <tr><td class="paramname">vertices3</td><td>Tablica zawierająca wierzchołki trzeciego trójkąta. </td></tr>
+    <tr><td class="paramname">colors</td><td>Tablica kolorów przypisanych do wierzchołków. </td></tr>
+    <tr><td class="paramname">posX</td><td>Przesunięcie wzdłuż osi X. </td></tr>
+    <tr><td class="paramname">posY</td><td>Przesunięcie wzdłuż osi Y. </td></tr>
+    <tr><td class="paramname">scale</td><td>Skalowanie trójkąta. </td></tr>
+    <tr><td class="paramname">rotationAngle</td><td>Kąt obrotu trójkąta. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ada72b96fc7e21a801ff76df80808834e" name="ada72b96fc7e21a801ff76df80808834e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ada72b96fc7e21a801ff76df80808834e">&#9670;&#160;</a></span>setShadingMode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PrimitiveDrawer::setShadingMode </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_shading_mode_8h.html#a474716bb9224d44d614704a0bd331d99">ShadingMode</a></td>          <td class="paramname"><span class="paramname"><em>mode</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Ustawia tryb cieniowania dla obiektów. </p>
+<p>Zmienia tryb cieniowania w OpenGL na określony tryb.</p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">mode</td><td>Tryb cieniowania (np. Phong, Gouraud).</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Ustawia tryb cieniowania.</p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">mode</td><td>Tryb cieniowania, który ma zostać ustawiony (SMOOTH lub FLAT). </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Dokumentacja atrybutów składowych</h2>
+<a id="a9f420994cd4adf938d7831be2a2a4ab9" name="a9f420994cd4adf938d7831be2a2a4ab9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9f420994cd4adf938d7831be2a2a4ab9">&#9670;&#160;</a></span>currentShadingMode</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_shading_mode_8h.html#a474716bb9224d44d614704a0bd331d99">ShadingMode</a> PrimitiveDrawer::currentShadingMode = <a class="el" href="_shading_mode_8h.html#a474716bb9224d44d614704a0bd331d99a464948bf38663fe1c4053f72402b63d5">ShadingMode::SMOOTH</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Zmienna statyczna przechowująca bieżący tryb cieniowania. </p>
+
+</div>
+</div>
+<a id="a35266e039b30140c95cef333f2ec3b76" name="a35266e039b30140c95cef333f2ec3b76"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a35266e039b30140c95cef333f2ec3b76">&#9670;&#160;</a></span>textures</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">GLuint PrimitiveDrawer::textures</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Tablica przechowująca tekstury dla sześcianu. </p>
+
+</div>
+</div>
+<a id="a34f4f7e9ac26feff3ba82398a7ed91e1" name="a34f4f7e9ac26feff3ba82398a7ed91e1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a34f4f7e9ac26feff3ba82398a7ed91e1">&#9670;&#160;</a></span>textureSet</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int PrimitiveDrawer::textureSet</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Zmienna statyczna do przechowywania ustawionego trybu cieniowania. </p>
+
+</div>
+</div>
+<hr/>Dokumentacja dla tej klasy została wygenerowana z plików:<ul>
+<li>D:/Silnik_3D/Silnik_3D/<a class="el" href="_primitive_drawer_8h_source.html">PrimitiveDrawer.h</a></li>
+<li>D:/Silnik_3D/Silnik_3D/<a class="el" href="_primitive_drawer_8cpp.html">PrimitiveDrawer.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Wygenerowano za pomocą&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

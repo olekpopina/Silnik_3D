@@ -1,0 +1,145 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pl">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Silnik_3D: Plik źródłowy D:/Silnik_3D/Silnik_3D/PawnData.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Silnik_3D
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Wygenerowano za pomocą Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Szukaj',false);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="doc-content">
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Wczytywanie...</div>
+<div class="SRStatus" id="Searching">Szukanie...</div>
+<div class="SRStatus" id="NoMatches">Brak dopasowań</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">D:/Silnik_3D/Silnik_3D/PawnData.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="_pawn_data_8h.html">Idź do dokumentacji tego pliku.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#ifndef PAWN_DATA_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno"><a class="line" href="_pawn_data_8h.html#a8dced4e76afa24989a48ffcd17b92d13">    3</a></span><span class="preprocessor">#define PAWN_DATA_H</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;utility&gt;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;GL/freeglut.h&gt;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span></div>
+<div class="foldopen" id="foldopen00016" data-start="{" data-end="};">
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="struct_pawn_data.html">   16</a></span><span class="keyword">struct </span><a class="code hl_struct" href="struct_pawn_data.html">PawnData</a> {</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="struct_pawn_data.html#ab2be73a2046960faceb593f03a0f9d73">   17</a></span>    <span class="keywordtype">float</span>&amp; <a class="code hl_variable" href="struct_pawn_data.html#ab2be73a2046960faceb593f03a0f9d73">pawnX</a>;</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="struct_pawn_data.html#a7e8e8411b7c129f0eea62d75da2f0475">   18</a></span>    <span class="keywordtype">float</span>&amp; <a class="code hl_variable" href="struct_pawn_data.html#a7e8e8411b7c129f0eea62d75da2f0475">pawnY</a>;</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="struct_pawn_data.html#ac8f8cb95da174f996f42d9acb3770ba0">   19</a></span>    <span class="keywordtype">int</span>&amp; <a class="code hl_variable" href="struct_pawn_data.html#ac8f8cb95da174f996f42d9acb3770ba0">pawnStepsRemaining</a>;</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="struct_pawn_data.html#ab553a063a9f7a284b4baec3c8ed63c66">   20</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="struct_pawn_data.html#ab553a063a9f7a284b4baec3c8ed63c66">pawnStepSize</a>;</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="struct_pawn_data.html#a90cef7520cd2d550ccaf598a668e6033">   21</a></span>    GLuint <a class="code hl_variable" href="struct_pawn_data.html#a90cef7520cd2d550ccaf598a668e6033">texture</a>;</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="struct_pawn_data.html#a0d08d09ffd08c48e810341bf55c5c0f5">   22</a></span>    <span class="keywordtype">bool</span>&amp; <a class="code hl_variable" href="struct_pawn_data.html#a0d08d09ffd08c48e810341bf55c5c0f5">isMoving</a>;</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="struct_pawn_data.html#a699bdcb5043291deda03f4456060d10f">   23</a></span>    <span class="keyword">const</span> std::string <a class="code hl_variable" href="struct_pawn_data.html#a699bdcb5043291deda03f4456060d10f">winnerName</a>;</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="struct_pawn_data.html#a558c026d8cd406136824d445ba78a27c">   24</a></span>    <span class="keywordtype">bool</span>&amp; <a class="code hl_variable" href="struct_pawn_data.html#a558c026d8cd406136824d445ba78a27c">crossedBottomBoundary</a>;</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="struct_pawn_data.html#a6afb78f77f7498b1a56d0c76c8cc77f2">   25</a></span>    std::vector&lt;std::pair&lt;float, float&gt;&gt;&amp; <a class="code hl_variable" href="struct_pawn_data.html#a6afb78f77f7498b1a56d0c76c8cc77f2">house</a>;</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="struct_pawn_data.html#a9728548142c2d1910333fe9af2b5d050">   26</a></span>    <span class="keywordtype">int</span>&amp; <a class="code hl_variable" href="struct_pawn_data.html#a9728548142c2d1910333fe9af2b5d050">currentStep</a>;</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="struct_pawn_data.html#ad62c3a6d8ac4d28fdc176c7d0a14a97d">   27</a></span>    <span class="keyword">const</span> std::vector&lt;std::pair&lt;float, float&gt;&gt;&amp; <a class="code hl_variable" href="struct_pawn_data.html#ad62c3a6d8ac4d28fdc176c7d0a14a97d">path</a>;</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="struct_pawn_data.html#a46332bfd3abda422f608cfd27822873e">   28</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="struct_pawn_data.html#a46332bfd3abda422f608cfd27822873e">isRed</a>;</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="struct_pawn_data.html#a80c9d5ba7e14ba7200febcf53a671ec9">   29</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="struct_pawn_data.html#a80c9d5ba7e14ba7200febcf53a671ec9">isBlue</a>;</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="struct_pawn_data.html#abc118d9c683abc1e49ffd71e1c058c6b">   30</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="struct_pawn_data.html#abc118d9c683abc1e49ffd71e1c058c6b">isYellow</a>;</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="struct_pawn_data.html#a782746dc4b0d88ae67d7b1ed4dca2e87">   31</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="struct_pawn_data.html#a782746dc4b0d88ae67d7b1ed4dca2e87">isGreen</a>;</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="struct_pawn_data.html#a0f5c287605f4eb8e03beb291d0aadfa9">   32</a></span>    <span class="keywordtype">int</span>&amp; <a class="code hl_variable" href="struct_pawn_data.html#a0f5c287605f4eb8e03beb291d0aadfa9">houseIndex</a>;</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>};</div>
+</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="preprocessor">#endif </span><span class="comment">// PAWN_DATA_H</span></div>
+<div class="ttc" id="astruct_pawn_data_html"><div class="ttname"><a href="struct_pawn_data.html">PawnData</a></div><div class="ttdoc">Struktura przechowuj�ca wszystkie dane i wska�niki zwi�zane z jednym pionkiem w grze.</div><div class="ttdef"><b>Definicja</b> PawnData.h:16</div></div>
+<div class="ttc" id="astruct_pawn_data_html_a0d08d09ffd08c48e810341bf55c5c0f5"><div class="ttname"><a href="struct_pawn_data.html#a0d08d09ffd08c48e810341bf55c5c0f5">PawnData::isMoving</a></div><div class="ttdeci">bool &amp; isMoving</div><div class="ttdef"><b>Definicja</b> PawnData.h:22</div></div>
+<div class="ttc" id="astruct_pawn_data_html_a0f5c287605f4eb8e03beb291d0aadfa9"><div class="ttname"><a href="struct_pawn_data.html#a0f5c287605f4eb8e03beb291d0aadfa9">PawnData::houseIndex</a></div><div class="ttdeci">int &amp; houseIndex</div><div class="ttdef"><b>Definicja</b> PawnData.h:32</div></div>
+<div class="ttc" id="astruct_pawn_data_html_a46332bfd3abda422f608cfd27822873e"><div class="ttname"><a href="struct_pawn_data.html#a46332bfd3abda422f608cfd27822873e">PawnData::isRed</a></div><div class="ttdeci">bool isRed</div><div class="ttdef"><b>Definicja</b> PawnData.h:28</div></div>
+<div class="ttc" id="astruct_pawn_data_html_a558c026d8cd406136824d445ba78a27c"><div class="ttname"><a href="struct_pawn_data.html#a558c026d8cd406136824d445ba78a27c">PawnData::crossedBottomBoundary</a></div><div class="ttdeci">bool &amp; crossedBottomBoundary</div><div class="ttdef"><b>Definicja</b> PawnData.h:24</div></div>
+<div class="ttc" id="astruct_pawn_data_html_a699bdcb5043291deda03f4456060d10f"><div class="ttname"><a href="struct_pawn_data.html#a699bdcb5043291deda03f4456060d10f">PawnData::winnerName</a></div><div class="ttdeci">const std::string winnerName</div><div class="ttdef"><b>Definicja</b> PawnData.h:23</div></div>
+<div class="ttc" id="astruct_pawn_data_html_a6afb78f77f7498b1a56d0c76c8cc77f2"><div class="ttname"><a href="struct_pawn_data.html#a6afb78f77f7498b1a56d0c76c8cc77f2">PawnData::house</a></div><div class="ttdeci">std::vector&lt; std::pair&lt; float, float &gt; &gt; &amp; house</div><div class="ttdef"><b>Definicja</b> PawnData.h:25</div></div>
+<div class="ttc" id="astruct_pawn_data_html_a782746dc4b0d88ae67d7b1ed4dca2e87"><div class="ttname"><a href="struct_pawn_data.html#a782746dc4b0d88ae67d7b1ed4dca2e87">PawnData::isGreen</a></div><div class="ttdeci">bool isGreen</div><div class="ttdef"><b>Definicja</b> PawnData.h:31</div></div>
+<div class="ttc" id="astruct_pawn_data_html_a7e8e8411b7c129f0eea62d75da2f0475"><div class="ttname"><a href="struct_pawn_data.html#a7e8e8411b7c129f0eea62d75da2f0475">PawnData::pawnY</a></div><div class="ttdeci">float &amp; pawnY</div><div class="ttdef"><b>Definicja</b> PawnData.h:18</div></div>
+<div class="ttc" id="astruct_pawn_data_html_a80c9d5ba7e14ba7200febcf53a671ec9"><div class="ttname"><a href="struct_pawn_data.html#a80c9d5ba7e14ba7200febcf53a671ec9">PawnData::isBlue</a></div><div class="ttdeci">bool isBlue</div><div class="ttdef"><b>Definicja</b> PawnData.h:29</div></div>
+<div class="ttc" id="astruct_pawn_data_html_a90cef7520cd2d550ccaf598a668e6033"><div class="ttname"><a href="struct_pawn_data.html#a90cef7520cd2d550ccaf598a668e6033">PawnData::texture</a></div><div class="ttdeci">GLuint texture</div><div class="ttdef"><b>Definicja</b> PawnData.h:21</div></div>
+<div class="ttc" id="astruct_pawn_data_html_a9728548142c2d1910333fe9af2b5d050"><div class="ttname"><a href="struct_pawn_data.html#a9728548142c2d1910333fe9af2b5d050">PawnData::currentStep</a></div><div class="ttdeci">int &amp; currentStep</div><div class="ttdef"><b>Definicja</b> PawnData.h:26</div></div>
+<div class="ttc" id="astruct_pawn_data_html_ab2be73a2046960faceb593f03a0f9d73"><div class="ttname"><a href="struct_pawn_data.html#ab2be73a2046960faceb593f03a0f9d73">PawnData::pawnX</a></div><div class="ttdeci">float &amp; pawnX</div><div class="ttdef"><b>Definicja</b> PawnData.h:17</div></div>
+<div class="ttc" id="astruct_pawn_data_html_ab553a063a9f7a284b4baec3c8ed63c66"><div class="ttname"><a href="struct_pawn_data.html#ab553a063a9f7a284b4baec3c8ed63c66">PawnData::pawnStepSize</a></div><div class="ttdeci">float pawnStepSize</div><div class="ttdef"><b>Definicja</b> PawnData.h:20</div></div>
+<div class="ttc" id="astruct_pawn_data_html_abc118d9c683abc1e49ffd71e1c058c6b"><div class="ttname"><a href="struct_pawn_data.html#abc118d9c683abc1e49ffd71e1c058c6b">PawnData::isYellow</a></div><div class="ttdeci">bool isYellow</div><div class="ttdef"><b>Definicja</b> PawnData.h:30</div></div>
+<div class="ttc" id="astruct_pawn_data_html_ac8f8cb95da174f996f42d9acb3770ba0"><div class="ttname"><a href="struct_pawn_data.html#ac8f8cb95da174f996f42d9acb3770ba0">PawnData::pawnStepsRemaining</a></div><div class="ttdeci">int &amp; pawnStepsRemaining</div><div class="ttdef"><b>Definicja</b> PawnData.h:19</div></div>
+<div class="ttc" id="astruct_pawn_data_html_ad62c3a6d8ac4d28fdc176c7d0a14a97d"><div class="ttname"><a href="struct_pawn_data.html#ad62c3a6d8ac4d28fdc176c7d0a14a97d">PawnData::path</a></div><div class="ttdeci">const std::vector&lt; std::pair&lt; float, float &gt; &gt; &amp; path</div><div class="ttdef"><b>Definicja</b> PawnData.h:27</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Wygenerowano za pomocą&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

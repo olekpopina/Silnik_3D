@@ -12,6 +12,14 @@ enum class LightingMode {
     SPOTLIGHT        ///< Œwiat³o punktowe o w¹skim k¹cie
 };
 
+/**
+ * @class Light
+ * @brief Klasa zarz¹dzaj¹ca oœwietleniem w scenie 3D.
+ *
+ * Umo¿liwia konfiguracjê i prze³¹czanie trybu oœwietlenia.
+ * Obs³uguje ró¿ne tryby (np. œwiat³o punktowe, kierunkowe),
+ * zale¿nie od wartoœci typu LightingMode.
+ */
 class Light {
 public:
     void configureLighting();

@@ -1,0 +1,575 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pl">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Silnik_3D: Dokumentacja klasy TransformableObject</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Silnik_3D
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Wygenerowano za pomocą Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Szukaj',false);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Wczytywanie...</div>
+<div class="SRStatus" id="Searching">Szukanie...</div>
+<div class="SRStatus" id="NoMatches">Brak dopasowań</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Metody publiczne</a> &#124;
+<a href="#pro-attribs">Atrybuty chronione</a> &#124;
+<a href="class_transformable_object-members.html">Lista wszystkich składowych</a>  </div>
+  <div class="headertitle"><div class="title">Dokumentacja klasy TransformableObject</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Klasa reprezentująca obiekt, który można transformować w przestrzeni 3D.  
+ <a href="#details">Więcej...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_transformable_object_8h_source.html">TransformableObject.h</a>&gt;</code></p>
+<div class="dynheader">
+Diagram dziedziczenia dla TransformableObject</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="class_transformable_object.png" usemap="#TransformableObject_map" alt=""/>
+  <map id="TransformableObject_map" name="TransformableObject_map">
+<area href="class_drawable.html" title="Interfejs dla obiektów, które mogą być rysowane." alt="Drawable" shape="rect" coords="210,0,340,24"/>
+<area href="class_cube.html" title="Klasa reprezentująca sześcian 3D, dziedzicząca po TransformableObject." alt="Cube" shape="rect" coords="0,112,130,136"/>
+<area href="class_line.html" title="Klasa reprezentująca linię w przestrzeni 3D." alt="Line" shape="rect" coords="140,112,270,136"/>
+<area href="class_point.html" title="Reprezentuje punkt w przestrzeni 3D." alt="Point" shape="rect" coords="280,112,410,136"/>
+<area href="class_triangle.html" title="Klasa reprezentująca trójkąt." alt="Triangle" shape="rect" coords="420,112,550,136"/>
+  </map>
+</div></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Metody publiczne</h2></td></tr>
+<tr class="memitem:a2fe6508f5f72c0bf5cc097fae99aca31" id="r_a2fe6508f5f72c0bf5cc097fae99aca31"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2fe6508f5f72c0bf5cc097fae99aca31">TransformableObject</a> ()</td></tr>
+<tr class="memdesc:a2fe6508f5f72c0bf5cc097fae99aca31"><td class="mdescLeft">&#160;</td><td class="mdescRight">Konstruktor domyślny.  <br /></td></tr>
+<tr class="separator:a2fe6508f5f72c0bf5cc097fae99aca31"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af2966e8c6531e6bbb0ed276beb4ddc8a" id="r_af2966e8c6531e6bbb0ed276beb4ddc8a"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af2966e8c6531e6bbb0ed276beb4ddc8a">~TransformableObject</a> ()=default</td></tr>
+<tr class="memdesc:af2966e8c6531e6bbb0ed276beb4ddc8a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wirtualny destruktor.  <br /></td></tr>
+<tr class="separator:af2966e8c6531e6bbb0ed276beb4ddc8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a622ae2dd92411468fe37354bd17a1357" id="r_a622ae2dd92411468fe37354bd17a1357"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a622ae2dd92411468fe37354bd17a1357">scale</a> (float factor)</td></tr>
+<tr class="memdesc:a622ae2dd92411468fe37354bd17a1357"><td class="mdescLeft">&#160;</td><td class="mdescRight">Skalowanie obiektu.  <br /></td></tr>
+<tr class="separator:a622ae2dd92411468fe37354bd17a1357"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af85e7e73c01322cb6a6dddecbddcb23f" id="r_af85e7e73c01322cb6a6dddecbddcb23f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af85e7e73c01322cb6a6dddecbddcb23f">setPosition</a> (float x, float y, float z)</td></tr>
+<tr class="memdesc:af85e7e73c01322cb6a6dddecbddcb23f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ustawienie pozycji obiektu.  <br /></td></tr>
+<tr class="separator:af85e7e73c01322cb6a6dddecbddcb23f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d2502ae40d8d4ddb3e67c26a686d403" id="r_a8d2502ae40d8d4ddb3e67c26a686d403"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8d2502ae40d8d4ddb3e67c26a686d403">move</a> (float dx, float dy)</td></tr>
+<tr class="memdesc:a8d2502ae40d8d4ddb3e67c26a686d403"><td class="mdescLeft">&#160;</td><td class="mdescRight">Przemieszczanie obiektu.  <br /></td></tr>
+<tr class="separator:a8d2502ae40d8d4ddb3e67c26a686d403"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acf00e41e051398300cc8b529510d2ef8" id="r_acf00e41e051398300cc8b529510d2ef8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acf00e41e051398300cc8b529510d2ef8">rotate</a> (float angle)</td></tr>
+<tr class="memdesc:acf00e41e051398300cc8b529510d2ef8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Obrót obiektu.  <br /></td></tr>
+<tr class="separator:acf00e41e051398300cc8b529510d2ef8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7e1624660a9deef9744a504aa15d2d97" id="r_a7e1624660a9deef9744a504aa15d2d97"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7e1624660a9deef9744a504aa15d2d97">getScale</a> () const</td></tr>
+<tr class="memdesc:a7e1624660a9deef9744a504aa15d2d97"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pobranie skali obiektu.  <br /></td></tr>
+<tr class="separator:a7e1624660a9deef9744a504aa15d2d97"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad5e88246bdffcbc62600adf94d936a00" id="r_ad5e88246bdffcbc62600adf94d936a00"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad5e88246bdffcbc62600adf94d936a00">getPosition</a> (float &amp;x, float &amp;y, float &amp;z) const</td></tr>
+<tr class="memdesc:ad5e88246bdffcbc62600adf94d936a00"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pobranie pozycji obiektu.  <br /></td></tr>
+<tr class="separator:ad5e88246bdffcbc62600adf94d936a00"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a73e91567d81ac292e7265712885f0727" id="r_a73e91567d81ac292e7265712885f0727"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a73e91567d81ac292e7265712885f0727">getRotation</a> () const</td></tr>
+<tr class="memdesc:a73e91567d81ac292e7265712885f0727"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pobranie kąta obrotu obiektu.  <br /></td></tr>
+<tr class="separator:a73e91567d81ac292e7265712885f0727"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_class_drawable"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_class_drawable')"><img src="closed.png" alt="-"/>&#160;Metody publiczne dziedziczone z <a class="el" href="class_drawable.html">Drawable</a></td></tr>
+<tr class="memitem:ad01732eb7df822045fb3fd830d5f5f22 inherit pub_methods_class_drawable" id="r_ad01732eb7df822045fb3fd830d5f5f22"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_drawable.html#ad01732eb7df822045fb3fd830d5f5f22">draw</a> () const =0</td></tr>
+<tr class="memdesc:ad01732eb7df822045fb3fd830d5f5f22 inherit pub_methods_class_drawable"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja rysująca obiekt.  <br /></td></tr>
+<tr class="separator:ad01732eb7df822045fb3fd830d5f5f22 inherit pub_methods_class_drawable"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a489905d7db51e37ceee8fc7eaff6a762 inherit pub_methods_class_drawable" id="r_a489905d7db51e37ceee8fc7eaff6a762"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_drawable.html#a489905d7db51e37ceee8fc7eaff6a762">~Drawable</a> ()=default</td></tr>
+<tr class="memdesc:a489905d7db51e37ceee8fc7eaff6a762 inherit pub_methods_class_drawable"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wirtualny destruktor.  <br /></td></tr>
+<tr class="separator:a489905d7db51e37ceee8fc7eaff6a762 inherit pub_methods_class_drawable"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
+Atrybuty chronione</h2></td></tr>
+<tr class="memitem:aa43f46939a8e979227086d355a309d67" id="r_aa43f46939a8e979227086d355a309d67"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa43f46939a8e979227086d355a309d67">scaleFactor</a></td></tr>
+<tr class="separator:aa43f46939a8e979227086d355a309d67"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abe61bc4e2edd69d3c7e76fc22a8c5e7d" id="r_abe61bc4e2edd69d3c7e76fc22a8c5e7d"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abe61bc4e2edd69d3c7e76fc22a8c5e7d">posX</a></td></tr>
+<tr class="separator:abe61bc4e2edd69d3c7e76fc22a8c5e7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac6a6161443bfd3ab4dbb9945876697d5" id="r_ac6a6161443bfd3ab4dbb9945876697d5"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac6a6161443bfd3ab4dbb9945876697d5">posY</a></td></tr>
+<tr class="separator:ac6a6161443bfd3ab4dbb9945876697d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a166567c4a48b6b4e5f73ce83732bdaf4" id="r_a166567c4a48b6b4e5f73ce83732bdaf4"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a166567c4a48b6b4e5f73ce83732bdaf4">posZ</a></td></tr>
+<tr class="separator:a166567c4a48b6b4e5f73ce83732bdaf4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0f975dbc408eaf9f8af9df2e9820e87d" id="r_a0f975dbc408eaf9f8af9df2e9820e87d"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0f975dbc408eaf9f8af9df2e9820e87d">rotationAngle</a></td></tr>
+<tr class="separator:a0f975dbc408eaf9f8af9df2e9820e87d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Opis szczegółowy</h2>
+<div class="textblock"><p>Klasa reprezentująca obiekt, który można transformować w przestrzeni 3D. </p>
+<p><code><a class="el" href="class_transformable_object.html" title="Klasa reprezentująca obiekt, który można transformować w przestrzeni 3D.">TransformableObject</a></code> jest klasą bazową, która umożliwia zmianę pozycji, skali i kąta obrotu obiektów w przestrzeni 3D. Dziedziczy po klasie <code><a class="el" href="class_drawable.html" title="Interfejs dla obiektów, które mogą być rysowane.">Drawable</a></code> i udostępnia metody do wykonywania tych transformacji. </p>
+</div><h2 class="groupheader">Dokumentacja konstruktora i destruktora</h2>
+<a id="a2fe6508f5f72c0bf5cc097fae99aca31" name="a2fe6508f5f72c0bf5cc097fae99aca31"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2fe6508f5f72c0bf5cc097fae99aca31">&#9670;&#160;</a></span>TransformableObject()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TransformableObject::TransformableObject </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Konstruktor domyślny. </p>
+<p>Konstruktor domyślny klasy <a class="el" href="class_transformable_object.html" title="Klasa reprezentująca obiekt, który można transformować w przestrzeni 3D.">TransformableObject</a>.</p>
+<p>Tworzy obiekt <code><a class="el" href="class_transformable_object.html" title="Klasa reprezentująca obiekt, który można transformować w przestrzeni 3D.">TransformableObject</a></code> o domyślnych wartościach dla skali, pozycji i kąta obrotu.</p>
+<p>Inicjalizuje obiekt klasy <code><a class="el" href="class_transformable_object.html" title="Klasa reprezentująca obiekt, który można transformować w przestrzeni 3D.">TransformableObject</a></code> z domyślnymi wartościami:</p><ul>
+<li>współczynnik skali ustawiony na 1.0,</li>
+<li>pozycja (x, y, z) ustawiona na (0.0, 0.0, 0.0),</li>
+<li>kąt obrotu ustawiony na 0.0. </li>
+</ul>
+
+</div>
+</div>
+<a id="af2966e8c6531e6bbb0ed276beb4ddc8a" name="af2966e8c6531e6bbb0ed276beb4ddc8a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af2966e8c6531e6bbb0ed276beb4ddc8a">&#9670;&#160;</a></span>~TransformableObject()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual TransformableObject::~TransformableObject </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel virtual">virtual</span><span class="mlabel default">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Wirtualny destruktor. </p>
+<p>Destruktor zapewniający poprawne zwolnienie zasobów w przypadku, gdy obiekt jest usuwany. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Dokumentacja funkcji składowych</h2>
+<a id="ad5e88246bdffcbc62600adf94d936a00" name="ad5e88246bdffcbc62600adf94d936a00"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad5e88246bdffcbc62600adf94d936a00">&#9670;&#160;</a></span>getPosition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void TransformableObject::getPosition </td>
+          <td>(</td>
+          <td class="paramtype">float &amp;</td>          <td class="paramname"><span class="paramname"><em>x</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float &amp;</td>          <td class="paramname"><span class="paramname"><em>y</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float &amp;</td>          <td class="paramname"><span class="paramname"><em>z</em></span>&#160;) const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Pobranie pozycji obiektu. </p>
+<p>Zwraca współrzędne X, Y i Z obiektu. </p><dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>Zmienna, do której zostanie przypisana współrzędna X obiektu. </td></tr>
+    <tr><td class="paramname">y</td><td>Zmienna, do której zostanie przypisana współrzędna Y obiektu. </td></tr>
+    <tr><td class="paramname">z</td><td>Zmienna, do której zostanie przypisana współrzędna Z obiektu.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Zwraca współrzędne pozycji obiektu w przestrzeni 3D poprzez przekazywanie wartości do zmiennych <code>x</code>, <code>y</code>, <code>z</code>. </p><dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>Zmienna, do której zostanie przypisana współrzędna X obiektu. </td></tr>
+    <tr><td class="paramname">y</td><td>Zmienna, do której zostanie przypisana współrzędna Y obiektu. </td></tr>
+    <tr><td class="paramname">z</td><td>Zmienna, do której zostanie przypisana współrzędna Z obiektu. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a73e91567d81ac292e7265712885f0727" name="a73e91567d81ac292e7265712885f0727"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a73e91567d81ac292e7265712885f0727">&#9670;&#160;</a></span>getRotation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float TransformableObject::getRotation </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Pobranie kąta obrotu obiektu. </p>
+<p>Zwraca aktualny kąt obrotu obiektu w stopniach. </p><dl class="section return"><dt>Zwraca</dt><dd>Kąt obrotu obiektu.</dd></dl>
+<p>Zwraca aktualny kąt obrotu obiektu w stopniach. </p><dl class="section return"><dt>Zwraca</dt><dd>Kąt obrotu obiektu w stopniach. </dd></dl>
+
+</div>
+</div>
+<a id="a7e1624660a9deef9744a504aa15d2d97" name="a7e1624660a9deef9744a504aa15d2d97"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7e1624660a9deef9744a504aa15d2d97">&#9670;&#160;</a></span>getScale()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float TransformableObject::getScale </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Pobranie skali obiektu. </p>
+<p>Zwraca aktualny współczynnik skali obiektu. </p><dl class="section return"><dt>Zwraca</dt><dd>Współczynnik skali obiektu. </dd></dl>
+
+</div>
+</div>
+<a id="a8d2502ae40d8d4ddb3e67c26a686d403" name="a8d2502ae40d8d4ddb3e67c26a686d403"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8d2502ae40d8d4ddb3e67c26a686d403">&#9670;&#160;</a></span>move()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void TransformableObject::move </td>
+          <td>(</td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>dx</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>dy</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Przemieszczanie obiektu. </p>
+<p>Przemieszcza obiekt w przestrzeni 3D o zadany wektor (dx, dy). </p><dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dx</td><td>Zmiana pozycji w osi X. </td></tr>
+    <tr><td class="paramname">dy</td><td>Zmiana pozycji w osi Y.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Przemieszcza obiekt w przestrzeni 3D, dodając wartości <code>dx</code> i <code>dy</code> do współrzędnych <code>x</code> i <code>y</code>. </p><dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dx</td><td>Zmiana pozycji w osi X. </td></tr>
+    <tr><td class="paramname">dy</td><td>Zmiana pozycji w osi Y. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="acf00e41e051398300cc8b529510d2ef8" name="acf00e41e051398300cc8b529510d2ef8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acf00e41e051398300cc8b529510d2ef8">&#9670;&#160;</a></span>rotate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void TransformableObject::rotate </td>
+          <td>(</td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>angle</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Obrót obiektu. </p>
+<p>Zmienia kąt obrotu obiektu wokół osi Z. </p><dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">angle</td><td>Kąt obrotu w stopniach.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Zmienia kąt obrotu obiektu o zadany parametr <code>angle</code>. Kąt jest dodawany do aktualnego kąta, a jeśli przekroczy 360 stopni, zostaje zredukowany do wartości w przedziale [0, 360). </p><dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">angle</td><td>Kąt obrotu w stopniach. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a622ae2dd92411468fe37354bd17a1357" name="a622ae2dd92411468fe37354bd17a1357"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a622ae2dd92411468fe37354bd17a1357">&#9670;&#160;</a></span>scale()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void TransformableObject::scale </td>
+          <td>(</td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>factor</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Skalowanie obiektu. </p>
+<p>Zmienia skalę obiektu, modyfikując współczynnik skali. </p><dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">factor</td><td>Współczynnik skali, przez który obiekt będzie pomnożony.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Zmienia współczynnik skali obiektu, mnożąc go przez podany parametr <code>factor</code>. </p><dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">factor</td><td>Współczynnik skali, przez który zostanie pomnożony aktualny współczynnik skali. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="af85e7e73c01322cb6a6dddecbddcb23f" name="af85e7e73c01322cb6a6dddecbddcb23f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af85e7e73c01322cb6a6dddecbddcb23f">&#9670;&#160;</a></span>setPosition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void TransformableObject::setPosition </td>
+          <td>(</td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>x</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>y</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>z</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Ustawienie pozycji obiektu. </p>
+<p>Ustala pozycję obiektu w przestrzeni 3D za pomocą współrzędnych X, Y i Z. </p><dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>Wartość współrzędnej X. </td></tr>
+    <tr><td class="paramname">y</td><td>Wartość współrzędnej Y. </td></tr>
+    <tr><td class="paramname">z</td><td>Wartość współrzędnej Z.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Zmienia pozycję obiektu w przestrzeni 3D, przypisując wartości <code>x</code>, <code>y</code> i <code>z</code>. </p><dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>Wartość współrzędnej X obiektu. </td></tr>
+    <tr><td class="paramname">y</td><td>Wartość współrzędnej Y obiektu. </td></tr>
+    <tr><td class="paramname">z</td><td>Wartość współrzędnej Z obiektu. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Dokumentacja atrybutów składowych</h2>
+<a id="abe61bc4e2edd69d3c7e76fc22a8c5e7d" name="abe61bc4e2edd69d3c7e76fc22a8c5e7d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abe61bc4e2edd69d3c7e76fc22a8c5e7d">&#9670;&#160;</a></span>posX</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float TransformableObject::posX</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac6a6161443bfd3ab4dbb9945876697d5" name="ac6a6161443bfd3ab4dbb9945876697d5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac6a6161443bfd3ab4dbb9945876697d5">&#9670;&#160;</a></span>posY</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float TransformableObject::posY</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a166567c4a48b6b4e5f73ce83732bdaf4" name="a166567c4a48b6b4e5f73ce83732bdaf4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a166567c4a48b6b4e5f73ce83732bdaf4">&#9670;&#160;</a></span>posZ</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float TransformableObject::posZ</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Pozycja obiektu w przestrzeni 3D (współrzędne X, Y, Z) </p>
+
+</div>
+</div>
+<a id="a0f975dbc408eaf9f8af9df2e9820e87d" name="a0f975dbc408eaf9f8af9df2e9820e87d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0f975dbc408eaf9f8af9df2e9820e87d">&#9670;&#160;</a></span>rotationAngle</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float TransformableObject::rotationAngle</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Kąt obrotu obiektu w stopniach </p>
+
+</div>
+</div>
+<a id="aa43f46939a8e979227086d355a309d67" name="aa43f46939a8e979227086d355a309d67"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa43f46939a8e979227086d355a309d67">&#9670;&#160;</a></span>scaleFactor</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float TransformableObject::scaleFactor</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Współczynnik skali obiektu </p>
+
+</div>
+</div>
+<hr/>Dokumentacja dla tej klasy została wygenerowana z plików:<ul>
+<li>D:/Silnik_3D/Silnik_3D/<a class="el" href="_transformable_object_8h_source.html">TransformableObject.h</a></li>
+<li>D:/Silnik_3D/Silnik_3D/<a class="el" href="_transformable_object_8cpp.html">TransformableObject.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Wygenerowano za pomocą&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
